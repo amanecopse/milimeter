@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "261546240044",
+    "project_id": "mili-meter",
+    "storage_bucket": "mili-meter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:261546240044:android:4b56f8b1f71172b6ea8989",
+        "android_client_info": {
+          "package_name": "com.amnapp.milimeter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "261546240044-fuem38l4efe7dhbmr8rei497n55i7gv9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCp4p2AGbOGYs_ieVWcRK3qUTWOWv7OXkw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "261546240044-fuem38l4efe7dhbmr8rei497n55i7gv9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
