@@ -8,14 +8,14 @@ import com.amnapp.milimeter.R
 import com.amnapp.milimeter.UserData
 
 class AdminPageRecyclerAdapter(var subUserlist: MutableList<UserData>): RecyclerView.Adapter<AdminPageRecyclerAdapter.ViewHolder>() {
-    inner class ViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
-        LayoutInflater.from(parent.context).inflate(R.layout.item_admin_page, parent, false)
-    ) {
-        val userNameTv = parent.findViewById<TextView>(R.id.userNameTv)
-        val militaryIdTv = parent.findViewById<TextView>(R.id.militaryIdTv)
+    inner class ViewHolder(itemView: ViewGroup) : RecyclerView.ViewHolder(itemView) {
+        val userNameTv = itemView.findViewById<TextView>(R.id.userNameTv)
+        val militaryIdTv = itemView.findViewById<TextView>(R.id.militaryIdTv)
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(parent)
+        val itemView =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_admin_page,parent,false) as ViewGroup
+        return ViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
