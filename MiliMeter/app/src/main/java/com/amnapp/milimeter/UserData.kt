@@ -23,8 +23,12 @@ data class UserData(var id: String? = null){
     var goalOfFieldTrainingRank: String? = null
 
     companion object{
-        var mUserData: UserData? = null
+        private var mUserData: UserData? = null
+        var mTmpUserData: UserData? = null
 
+        fun setInstance(userData: UserData){
+            mUserData = userData
+        }
         fun getInstance(): UserData{
             return mUserData ?: UserData().also{
                 mUserData = it

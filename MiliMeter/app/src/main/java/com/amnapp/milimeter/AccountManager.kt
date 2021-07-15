@@ -164,6 +164,7 @@ class AccountManager {
     fun login(context: Context, id: String, pw: String, groupCode: String){
         val activity: LoginActivity = context as LoginActivity
         activity.binding.loginLl.isClickable = false //연타 방지
+        activity.mDialog.show() // 로딩화면 실행
         db.collection("users").whereEqualTo("id",id)
             .get().addOnSuccessListener {
                 if(it.isEmpty){
@@ -176,7 +177,7 @@ class AccountManager {
                     if (ud != null) {
                         if(ud.confirmHashCode==confirmHashCode){
                             ud.isLogined = true
-                            UserData.mUserData = ud // 서버에서 얻은 객체로 대체
+                            UserData.setInstance(ud) // 서버에서 얻은 객체로 대체
                             mGroupCode = groupCode // 그룹코드 저장
 
                             Toast.makeText(context, "로그인 성공", Toast.LENGTH_SHORT).show()
@@ -195,8 +196,9 @@ class AccountManager {
 
                     }
                 }
+                activity.binding.loginLl.isClickable = true //연타방지 해제
+                activity.mDialog.dismiss() // 로딩해제
             }
-        activity.binding.loginLl.isClickable = true //연타방지 해제
     }
 
     fun logout(context: Context){
@@ -272,7 +274,6 @@ class AccountManager {
                 val childIndexHashCode: String? = hash(myIndexHashCode+"!@#"+mGroupCode+"!@#"+i)
                 childUd =
                     childIndexHashCode?.let { db.collection("users").document(it).get().await().toObject<UserData>() }
-                Log.d("asdFca", childIndexHashCode.toString())
                 if (childUd != null) {
                     userList.add(childUd)
                 }

@@ -20,8 +20,8 @@
             android:layout_margin="5dp">
 
             <LinearLayout
-                android:id="@+id/linearLayout"
-                android:layout_width="250dp"
+                android:id="@+id/contentLl"
+                android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:background="?android:attr/selectableItemBackground"
                 android:clickable="true"
@@ -87,7 +87,7 @@
             </LinearLayout>
 
             <ImageButton
-                android:id="@+id/imageButton"
+                android:id="@+id/editIb"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="?android:attr/selectableItemBackground"
