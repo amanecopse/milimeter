@@ -20,5 +20,9 @@ class HomeActivity : AppCompatActivity() {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
+        binding.recordBt.setOnClickListener{
+            val intent = Intent(this, TrainingRecordActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

@@ -101,7 +101,7 @@ class LoginActivity : AppCompatActivity() {
         const val TAG = "%%%%%LoginActivityLog%%%%%"
     }
 
-    fun showDialogMessage(title: String, body: String) {
+    fun showDialogMessage(title: String, body: String) {//다이얼로그 메시지를 띄우는 함수
         val builder = AlertDialog.Builder(this)
         builder.setTitle(title)
         builder.setMessage(body)
