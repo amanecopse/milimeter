@@ -24,5 +24,9 @@ class HomeActivity : AppCompatActivity() {
             val intent = Intent(this, TrainingRecordActivity::class.java)
             startActivity(intent)
         }
+        binding.themeExampleBt.setOnClickListener{
+            val intent = Intent(this, ThemeExampleActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
