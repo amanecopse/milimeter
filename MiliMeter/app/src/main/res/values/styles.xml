@@ -12,8 +12,8 @@
         <item name="textColorSecondary">#717171</item>
         <item name="textColorBanner">#04B4AE</item>
         <item name="iconColor">#6A6A6A</item>
-        <item name="buttonBackground">#CDCDCD</item>
-        <item name="buttonTextColor">#000000</item>
+        <item name="buttonBackground">#04B4AE</item>
+        <item name="buttonTextColor">#FFFFFF</item>
     </style>
 
     <style name="DarkAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -24,8 +24,8 @@
         <item name="textColorSecondary">#DAA8A8A8</item>
         <item name="textColorBanner">#04B4AE</item>
         <item name="iconColor">#00fff5</item>
-        <item name="buttonBackground">@color/colorPrimary</item>
-        <item name="buttonTextColor">#000000</item>
+        <item name="buttonBackground">#04B4AE</item>
+        <item name="buttonTextColor">#FFFFFF</item>
     </style>
 
 </resources>
