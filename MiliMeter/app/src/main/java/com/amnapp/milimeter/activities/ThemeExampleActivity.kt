@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.Toast
 import com.amnapp.milimeter.PreferenceManager
 import com.amnapp.milimeter.R
+import com.google.android.material.textfield.TextInputEditText
 
 class ThemeExampleActivity : AppCompatActivity() {
     var mTheme: String? = null
@@ -28,6 +29,10 @@ class ThemeExampleActivity : AppCompatActivity() {
             val intent = Intent(this, ThemeExampleActivity::class.java)
             startActivity(intent)
             finish()
+        }
+
+        findViewById<Button>(R.id.button).setOnClickListener {
+            Toast.makeText(this, findViewById<TextInputEditText>(R.id.editText2).text.toString(), Toast.LENGTH_SHORT).show()
         }
 
     }
