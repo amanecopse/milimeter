@@ -389,21 +389,13 @@
                             android:textColor="@android:color/black"
                             android:textSize="@dimen/middleText" />
 
-                        <EditText
-                            android:id="@+id/bloodTypeEt"
-                            android:layout_width="10dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:ems="10"
-                            android:inputType="textPersonName" />
-
-                        <TextView
-                            android:id="@+id/textView13"
+                        <Spinner
+                            android:id="@+id/bloodTypeSp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="형"
-                            android:textSize="@dimen/middleText" />
+                            android:entries="@array/bloodType" />
+
                     </LinearLayout>
 
                 </LinearLayout>
@@ -467,20 +459,12 @@
                             android:textColor="@android:color/black"
                             android:textSize="@dimen/middleText" />
 
-                        <EditText
-                            android:id="@+id/goalOfTotalRankEt"
-                            android:layout_width="10dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:ems="10"
-                            android:inputType="textPersonName" />
-
-                        <TextView
+                        <Spinner
+                            android:id="@+id/goalOfTotalRankSp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="급"
-                            android:textSize="@dimen/middleText" />
+                            android:entries="@array/TrainingGrade" />
 
                     </LinearLayout>
 
@@ -498,20 +482,13 @@
                             android:textColor="@android:color/black"
                             android:textSize="@dimen/middleText" />
 
-                        <EditText
-                            android:id="@+id/goalOfLegTuckRankEt"
-                            android:layout_width="10dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:ems="10"
-                            android:inputType="textPersonName" />
-
-                        <TextView
+                        <Spinner
+                            android:id="@+id/goalOfLegTuckRankSp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="급"
-                            android:textSize="@dimen/middleText" />
+                            android:entries="@array/TrainingGrade" />
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -528,20 +505,13 @@
                             android:textColor="@android:color/black"
                             android:textSize="@dimen/middleText" />
 
-                        <EditText
-                            android:id="@+id/goalOfShuttleRunRankEt"
-                            android:layout_width="10dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:ems="10"
-                            android:inputType="textPersonName" />
-
-                        <TextView
+                        <Spinner
+                            android:id="@+id/goalOfShuttleRunRankSp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="급"
-                            android:textSize="@dimen/middleText" />
+                            android:entries="@array/TrainingGrade" />
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -557,20 +527,12 @@
                             android:textColor="@android:color/black"
                             android:textSize="@dimen/middleText" />
 
-                        <EditText
-                            android:id="@+id/goalOfFieldTrainingRankEt"
-                            android:layout_width="10dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:ems="10"
-                            android:inputType="textPersonName" />
-
-                        <TextView
+                        <Spinner
+                            android:id="@+id/goalOfFieldTrainingRankSp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="급"
-                            android:textSize="@dimen/middleText" />
+                            android:entries="@array/TrainingGrade" />
 
                     </LinearLayout>
 

@@ -22,10 +22,10 @@ class SettingActivity : AppCompatActivity() {
             val intent = Intent(this, LanguageActivity::class.java)
             startActivity(intent)
         }
-        binding.alarmSettingBt.setOnClickListener {
-            val intent = Intent(this, AlarmActivity::class.java)
-            startActivity(intent)
-        }
+//        binding.alarmSettingBt.setOnClickListener {
+//            val intent = Intent(this, AlarmActivity::class.java)
+//            startActivity(intent)
+//        }
         binding.privateSettingBt.setOnClickListener {
             val intent = Intent(this, PrivateAdministrationActivity::class.java)
             startActivity(intent)
@@ -41,20 +41,20 @@ class SettingActivity : AppCompatActivity() {
             startActivity(intent)
         }
         // 담당 미정 - body창(합친 뒤에 주석 없애주세요)
-        binding.bodyBt.setOnClickListener {
-            val intent = Intent(this, BodyActivity::class.java)
-            startActivity(intent)
-        }
+//        binding.bodyBt.setOnClickListener {
+//            val intent = Intent(this, BodyActivity::class.java)
+//            startActivity(intent)
+//        }
         // 고동현님 프로젝트 담당 부분 - result창(합친 뒤에 주석 없애주세요)
-        binding.resultBt.setOnClickListener {
-            val intent = Intent(this, ResultActivity::class.java)
-            startActivity(intent)
-        }
+//        binding.resultBt.setOnClickListener {
+//            val intent = Intent(this, ResultActivity::class.java)
+//            startActivity(intent)
+//        }
         // 이다현님 프로젝트 담당 부분 - goal창(합친 뒤에 주석 없애주세요)
-        binding.goalBt.setOnClickListener {
-            val intent = Intent(this, GoalActivity::class.java)
-            startActivity(intent)
-        }
+//        binding.goalBt.setOnClickListener {
+//            val intent = Intent(this, GoalActivity::class.java)
+//            startActivity(intent)
+//        }
         binding.settingBt.setOnClickListener {
             val intent = Intent(this, SettingActivity::class.java)
             startActivity(intent)
