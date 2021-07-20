@@ -30,7 +30,7 @@
                 android:id="@+id/trainingCourseSp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:entries="@array/trainingCourse" />
+                android:entries="@array/training_course" />
         </TableRow>
 
         <TableRow

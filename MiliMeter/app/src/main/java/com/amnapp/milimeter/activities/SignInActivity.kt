@@ -79,12 +79,12 @@ class SignInActivity : AppCompatActivity() {
                                     ,binding.heightEt.text.toString().toInt()
                                     ,binding.weightEt.text.toString().toInt()
                                     ,if(binding.ageEt.text.toString().isBlank()) null else binding.ageEt.text.toString().toInt()
-                                    ,binding.bloodTypeSp.selectedItemPosition
+                                    ,binding.bloodTypeEt.text.toString()
                                     ,if(binding.goalOfWeightEt.text.toString().isBlank()) null else binding.goalOfWeightEt.text.toString().toInt()
-                                    ,binding.goalOfTotalRankSp.selectedItemPosition
-                                    ,binding.goalOfLegTuckRankSp.selectedItemPosition
-                                    ,binding.goalOfShuttleRunRankSp.selectedItemPosition
-                                    ,binding.goalOfFieldTrainingRankSp.selectedItemPosition
+                                    ,binding.goalOfTotalRankEt.text.toString()
+                                    ,binding.goalOfLegTuckRankEt.text.toString()
+                                    ,binding.goalOfShuttleRunRankEt.text.toString()
+                                    ,binding.goalOfFieldTrainingRankEt.text.toString()
                                 )
                             }
                             else{//초대받지 않은 신규가입
@@ -98,12 +98,12 @@ class SignInActivity : AppCompatActivity() {
                                     ,binding.heightEt.text.toString().toInt()
                                     ,binding.weightEt.text.toString().toInt()
                                     ,if(binding.ageEt.text.toString().isBlank()) null else binding.ageEt.text.toString().toInt()
-                                    ,binding.bloodTypeSp.selectedItemPosition
+                                    ,binding.bloodTypeEt.text.toString()
                                     ,if(binding.goalOfWeightEt.text.toString().isBlank()) null else binding.goalOfWeightEt.text.toString().toInt()
-                                    ,binding.goalOfTotalRankSp.selectedItemPosition
-                                    ,binding.goalOfLegTuckRankSp.selectedItemPosition
-                                    ,binding.goalOfShuttleRunRankSp.selectedItemPosition
-                                    ,binding.goalOfFieldTrainingRankSp.selectedItemPosition
+                                    ,binding.goalOfTotalRankEt.text.toString()
+                                    ,binding.goalOfLegTuckRankEt.text.toString()
+                                    ,binding.goalOfShuttleRunRankEt.text.toString()
+                                    ,binding.goalOfFieldTrainingRankEt.text.toString()
                                 )
                             }
                         }else{

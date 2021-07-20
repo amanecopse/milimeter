@@ -32,13 +32,13 @@ class AccountManager {
         userWeight: Int,
 
         userAge: Int? = null,
-        userBloodType: Int? = null,
+        userBloodType: String? = null,
 
         goalOfWeight: Int? = null,
-        goalOfTotalRank: Int? = null,
-        goalOfLegTuckRank: Int? = null,
-        goalOfShuttleRunRank: Int? = null,
-        goalOfFieldTrainingRank: Int? = null
+        goalOfTotalRank: String? = null,
+        goalOfLegTuckRank: String? = null,
+        goalOfShuttleRunRank: String? = null,
+        goalOfFieldTrainingRank: String? = null
     ){
 
         val activity = context as SignInActivity
@@ -94,13 +94,13 @@ class AccountManager {
         userWeight: Int,
 
         userAge: Int? = null,
-        userBloodType: Int? = null,
+        userBloodType: String? = null,
 
         goalOfWeight: Int? = null,
-        goalOfTotalRank: Int? = null,
-        goalOfLegTuckRank: Int? = null,
-        goalOfShuttleRunRank: Int? = null,
-        goalOfFieldTrainingRank: Int? = null
+        goalOfTotalRank: String? = null,
+        goalOfLegTuckRank: String? = null,
+        goalOfShuttleRunRank: String? = null,
+        goalOfFieldTrainingRank: String? = null
     ) {
 
         val activity = context as SignInActivity

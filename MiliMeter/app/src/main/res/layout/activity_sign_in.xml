@@ -389,13 +389,21 @@
                             android:textColor="@android:color/black"
                             android:textSize="@dimen/middleText" />
 
-                        <Spinner
-                            android:id="@+id/bloodTypeSp"
+                        <EditText
+                            android:id="@+id/bloodTypeEt"
+                            android:layout_width="10dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="textPersonName" />
+
+                        <TextView
+                            android:id="@+id/textView13"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:entries="@array/bloodType" />
-
+                            android:text="형"
+                            android:textSize="@dimen/middleText" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -459,12 +467,20 @@
                             android:textColor="@android:color/black"
                             android:textSize="@dimen/middleText" />
 
-                        <Spinner
-                            android:id="@+id/goalOfTotalRankSp"
+                        <EditText
+                            android:id="@+id/goalOfTotalRankEt"
+                            android:layout_width="10dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="textPersonName" />
+
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:entries="@array/TrainingGrade" />
+                            android:text="급"
+                            android:textSize="@dimen/middleText" />
 
                     </LinearLayout>
 
@@ -482,13 +498,20 @@
                             android:textColor="@android:color/black"
                             android:textSize="@dimen/middleText" />
 
-                        <Spinner
-                            android:id="@+id/goalOfLegTuckRankSp"
+                        <EditText
+                            android:id="@+id/goalOfLegTuckRankEt"
+                            android:layout_width="10dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="textPersonName" />
+
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:entries="@array/TrainingGrade" />
-
+                            android:text="급"
+                            android:textSize="@dimen/middleText" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -505,13 +528,20 @@
                             android:textColor="@android:color/black"
                             android:textSize="@dimen/middleText" />
 
-                        <Spinner
-                            android:id="@+id/goalOfShuttleRunRankSp"
+                        <EditText
+                            android:id="@+id/goalOfShuttleRunRankEt"
+                            android:layout_width="10dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="textPersonName" />
+
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:entries="@array/TrainingGrade" />
-
+                            android:text="급"
+                            android:textSize="@dimen/middleText" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -527,12 +557,20 @@
                             android:textColor="@android:color/black"
                             android:textSize="@dimen/middleText" />
 
-                        <Spinner
-                            android:id="@+id/goalOfFieldTrainingRankSp"
+                        <EditText
+                            android:id="@+id/goalOfFieldTrainingRankEt"
+                            android:layout_width="10dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="textPersonName" />
+
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:entries="@array/TrainingGrade" />
+                            android:text="급"
+                            android:textSize="@dimen/middleText" />
 
                     </LinearLayout>
 
