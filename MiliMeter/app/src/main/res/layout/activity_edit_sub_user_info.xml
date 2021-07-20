@@ -257,11 +257,18 @@
                                 android:textColor="?attr/textColor"
                                 android:textSize="@dimen/smallText" />
 
-                            <Spinner
-                                android:id="@+id/bloodTypeSp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:entries="@array/bloodType" />
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@color/white"
+                                android:orientation="horizontal">
+
+                                <Spinner
+                                    android:id="@+id/bloodTypeSp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:entries="@array/bloodType" />
+                            </LinearLayout>
 
                         </LinearLayout>
 
@@ -319,11 +326,18 @@
                                 android:textColor="?attr/textColor"
                                 android:textSize="@dimen/smallText" />
 
-                            <Spinner
-                                android:id="@+id/goalOfTotalRankSp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:entries="@array/TrainingGrade" />
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@color/white"
+                                android:orientation="horizontal" >
+
+                                <Spinner
+                                    android:id="@+id/goalOfTotalRankSp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:entries="@array/TrainingGrade" />
+                            </LinearLayout>
 
                         </LinearLayout>
 
@@ -346,11 +360,18 @@
                                 android:textColor="?attr/textColor"
                                 android:textSize="@dimen/smallText" />
 
-                            <Spinner
-                                android:id="@+id/goalOfLegTuckRankSp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:entries="@array/TrainingGrade" />
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@color/white"
+                                android:orientation="horizontal" >
+
+                                <Spinner
+                                    android:id="@+id/goalOfLegTuckRankSp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:entries="@array/TrainingGrade" />
+                            </LinearLayout>
 
                         </LinearLayout>
 
@@ -373,11 +394,18 @@
                                 android:textColor="?attr/textColor"
                                 android:textSize="@dimen/smallText" />
 
-                            <Spinner
-                                android:id="@+id/goalOfShuttleRunRankSp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:entries="@array/TrainingGrade" />
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@color/white"
+                                android:orientation="horizontal" >
+
+                                <Spinner
+                                    android:id="@+id/goalOfShuttleRunRankSp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:entries="@array/TrainingGrade" />
+                            </LinearLayout>
 
                         </LinearLayout>
 
@@ -400,11 +428,18 @@
                                 android:textColor="?attr/textColor"
                                 android:textSize="@dimen/smallText" />
 
-                            <Spinner
-                                android:id="@+id/goalOfFieldTrainingRankSp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:entries="@array/TrainingGrade" />
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@color/white"
+                                android:orientation="horizontal" >
+
+                                <Spinner
+                                    android:id="@+id/goalOfFieldTrainingRankSp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:entries="@array/TrainingGrade" />
+                            </LinearLayout>
 
                         </LinearLayout>
 
