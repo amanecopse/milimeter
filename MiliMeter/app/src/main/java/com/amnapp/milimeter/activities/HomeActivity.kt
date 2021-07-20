@@ -1,11 +1,9 @@
 package com.amnapp.milimeter.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.amnapp.milimeter.R
+import androidx.appcompat.app.AppCompatActivity
 import com.amnapp.milimeter.databinding.ActivityHomeBinding
-import com.amnapp.milimeter.databinding.ActivityLoginBinding
 
 class HomeActivity : AppCompatActivity() {
 
