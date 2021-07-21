@@ -35,6 +35,8 @@
         <activity android:name=".activities.SpecialThemeSettingActivity" />
         <activity android:name=".activities.ThemeActivity" />
         <activity android:name=".activities.UserInformationActivity" />
+        
+         <!--고동현-->
     </application>
 
 </manifest>
