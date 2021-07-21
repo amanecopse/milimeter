@@ -4,43 +4,100 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.HomeActivity">
+    android:background="#7A8B6F">
+
+    <ImageButton
+        android:id="@+id/home"
+        android:layout_width="81dp"
+        android:layout_height="81dp"
+        android:background="@android:color/transparent"
+        android:scaleType="center"
+        android:src="@drawable/home_50_white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/body"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/body"
+        android:layout_width="81dp"
+        android:layout_height="81dp"
+        android:background="@android:color/transparent"
+        android:scaleType="center"
+        android:src="@drawable/body_50_white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/result"
+        app:layout_constraintStart_toEndOf="@+id/home" />
+
+    <ImageButton
+        android:id="@+id/result"
+        android:layout_width="81dp"
+        android:layout_height="81dp"
+        android:background="@android:color/transparent"
+        android:scaleType="center"
+        android:src="@drawable/result_50_white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/goal"
+        app:layout_constraintStart_toEndOf="@+id/body" />
+
+    <ImageButton
+        android:id="@+id/goal"
+        android:layout_width="81dp"
+        android:layout_height="81dp"
+        android:background="@android:color/transparent"
+        android:scaleType="center"
+        android:src="@drawable/goal_50_white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/setting"
+        app:layout_constraintStart_toEndOf="@+id/result" />
+
+    <ImageButton
+        android:id="@+id/setting"
+        android:layout_width="81dp"
+        android:layout_height="81dp"
+        android:background="@android:color/transparent"
+        android:scaleType="center"
+        android:src="@drawable/setting_50_white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/goal" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/circleImageView"
+        android:layout_width="248dp"
+        android:layout_height="207dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="81dp"
+        android:layout_marginTop="46dp"
+        android:layout_marginEnd="82dp"
+        android:src="@drawable/face"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button" />
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="편의상 만든 임시 홈 화면입니다 \n 나중에 정식 홈화면을 올리실 때 \n 이 파일을 지우고 대체해 주세요"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="251dp"
+        android:layout_height="179dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="80dp"
+        android:background="#ACB391"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/circleImageView" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="129dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="#ACB391"
+        android:text="D-365"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/loginBt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="로그인 및 계정관리"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <Button
-        android:id="@+id/recordBt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="운동기록입력"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginBt" />
-
-    <Button
-        android:id="@+id/themeExampleBt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="테마예시"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recordBt" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

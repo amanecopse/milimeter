@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,82 +12,109 @@
         android:id="@+id/lt_graph"
         android:layout_width="177dp"
         android:layout_height="177dp"
-        tools:layout_editor_absoluteX="40dp"
-        tools:layout_editor_absoluteY="36dp" />
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/gs_graph"
+        app:layout_constraintEnd_toStartOf="@+id/lt_goal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <com.dinuscxj.progressbar.CircleProgressBar
         android:id="@+id/gs_graph"
         android:layout_width="177dp"
         android:layout_height="177dp"
-        tools:layout_editor_absoluteX="40dp"
-        tools:layout_editor_absoluteY="236dp" />
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginBottom="23dp"
+        app:layout_constraintBottom_toTopOf="@+id/esmd_graph"
+        app:layout_constraintEnd_toStartOf="@+id/gs_goal"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.dinuscxj.progressbar.CircleProgressBar
         android:id="@+id/esmd_graph"
         android:layout_width="177dp"
         android:layout_height="177dp"
-        tools:layout_editor_absoluteX="40dp"
-        tools:layout_editor_absoluteY="436dp" />
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="9dp"
+        app:layout_constraintEnd_toStartOf="@+id/esmd_goal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gs_graph" />
 
     <TextView
         android:id="@+id/lt_goal"
         android:layout_width="90dp"
         android:layout_height="62dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="11dp"
         android:text="목표등급 :\n현재등급 :"
         android:textColor="#FF1F4C21"
         android:textSize="20sp"
-        tools:layout_editor_absoluteX="226dp"
-        tools:layout_editor_absoluteY="117dp" />
+        app:layout_constraintStart_toEndOf="@+id/lt_graph"
+        app:layout_constraintTop_toBottomOf="@+id/lt" />
 
     <TextView
         android:id="@+id/gs_goal"
         android:layout_width="90dp"
         android:layout_height="62dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="11dp"
         android:text="목표등급 :\n현재등급 :"
         android:textColor="#FF1F4C21"
         android:textSize="20sp"
-        tools:layout_editor_absoluteX="226dp"
-        tools:layout_editor_absoluteY="317dp" />
+        app:layout_constraintStart_toEndOf="@+id/gs_graph"
+        app:layout_constraintTop_toBottomOf="@+id/gs" />
 
     <TextView
         android:id="@+id/esmd_goal"
         android:layout_width="90dp"
         android:layout_height="62dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="11dp"
         android:text="목표등급 :\n현재등급 :"
         android:textColor="#FF1F4C21"
         android:textSize="20sp"
-        tools:layout_editor_absoluteX="226dp"
-        tools:layout_editor_absoluteY="517dp" />
+        app:layout_constraintStart_toEndOf="@+id/esmd_graph"
+        app:layout_constraintTop_toBottomOf="@+id/gs2" />
 
     <TextView
         android:id="@+id/lt"
         android:layout_width="90dp"
         android:layout_height="42dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="64dp"
         android:text="레그턱"
         android:textColor="#FF1F4C21"
         android:textSize="30sp"
-        tools:layout_editor_absoluteX="226dp"
-        tools:layout_editor_absoluteY="64dp" />
+        app:layout_constraintStart_toEndOf="@+id/lt_graph"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/gs"
         android:layout_width="181dp"
         android:layout_height="42dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="85dp"
         android:text="전장순환운동"
         android:textColor="#FF1F4C21"
         android:textSize="30sp"
-        tools:layout_editor_absoluteX="226dp"
-        tools:layout_editor_absoluteY="264dp" />
+        app:layout_constraintStart_toEndOf="@+id/gs_graph"
+        app:layout_constraintTop_toBottomOf="@+id/lt_goal" />
 
     <TextView
         android:id="@+id/gs2"
         android:layout_width="170dp"
         android:layout_height="42dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="85dp"
         android:text="240m달리기"
         android:textColor="#FF1F4C21"
         android:textSize="30sp"
-        tools:layout_editor_absoluteX="226dp"
-        tools:layout_editor_absoluteY="464dp" />
+        app:layout_constraintStart_toEndOf="@+id/esmd_graph"
+        app:layout_constraintTop_toBottomOf="@+id/gs_goal" />
 
     <ImageButton
         android:id="@+id/home"
@@ -95,7 +123,8 @@
         android:background="@android:color/transparent"
         android:scaleType="center"
         android:src="@drawable/home_50_white"
-        tools:layout_editor_absoluteY="650dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
         android:id="@+id/body"
@@ -104,8 +133,9 @@
         android:background="@android:color/transparent"
         android:scaleType="center"
         android:src="@drawable/body_50_white"
-        tools:layout_editor_absoluteX="81dp"
-        tools:layout_editor_absoluteY="650dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/result"
+        app:layout_constraintStart_toEndOf="@+id/home" />
 
     <ImageButton
         android:id="@+id/result"
@@ -114,8 +144,9 @@
         android:background="@android:color/transparent"
         android:scaleType="center"
         android:src="@drawable/result_50_white"
-        tools:layout_editor_absoluteX="165dp"
-        tools:layout_editor_absoluteY="650dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/goal"
+        app:layout_constraintStart_toEndOf="@+id/body" />
 
     <ImageButton
         android:id="@+id/goal"
@@ -124,8 +155,9 @@
         android:background="@android:color/transparent"
         android:scaleType="center"
         android:src="@drawable/goal_50_white"
-        tools:layout_editor_absoluteX="246dp"
-        tools:layout_editor_absoluteY="650dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/setting"
+        app:layout_constraintStart_toEndOf="@+id/result" />
 
     <ImageButton
         android:id="@+id/setting"
@@ -134,7 +166,8 @@
         android:background="@android:color/transparent"
         android:scaleType="center"
         android:src="@drawable/setting_50_white"
-        tools:layout_editor_absoluteX="327dp"
-        tools:layout_editor_absoluteY="650dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/goal" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
