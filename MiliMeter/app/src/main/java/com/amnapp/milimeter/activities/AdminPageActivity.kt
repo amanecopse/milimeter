@@ -1,5 +1,6 @@
 package com.amnapp.milimeter.activities
 
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -63,7 +64,8 @@ class AdminPageActivity : AppCompatActivity() {
             //아이템 편집 클릭 리스너 등록
             adminPageRecyclerAdapter.setEditOnClickListener(object: AdminPageRecyclerAdapter.OnEditClickListener{
                 override fun onClicked(v: View, pos: Int) {
-                    Toast.makeText(this@AdminPageActivity, "editClick", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this@AdminPageActivity, EditSubUserInfoActivity::class.java)
+                    startActivity(intent)
                 }
 
             })

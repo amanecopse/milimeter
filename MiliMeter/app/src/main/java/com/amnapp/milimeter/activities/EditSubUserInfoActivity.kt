@@ -13,7 +13,7 @@ import com.amnapp.milimeter.viewModels.AdminPageViewModel
 
 class EditSubUserInfoActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityAdminPageBinding
+    lateinit var binding: ActivityEditSubUserInfoBinding
     lateinit var mDialog: AlertDialog//로딩화면임. setProgressDialog()를 실행후 mDialog.show()로 시작
     private val viewModel: ActivityEditSubUserInfoBinding by viewModels()
 

@@ -16,32 +16,44 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/iconIv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:tint="?attr/textColorBanner"
+                    app:srcCompat="@drawable/ic_baseline_miscellaneous_services_20_white" />
+
+                <TextView
+                    android:id="@+id/titleTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="하위유저 편집"
+                    android:textColor="?attr/textColorBanner"
+                    android:textSize="@dimen/largeText" />
+            </LinearLayout>
+
             <ImageButton
                 android:id="@+id/backIb"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_marginLeft="5dp"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
-                android:baselineAlignBottom="false"
-                android:clickable="false"
                 android:scaleType="fitCenter"
-                android:tint="?attr/textColorBanner"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_baseline_settings_40_gray" />
-
-            <TextView
-                android:id="@+id/titleTv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="하위유저 편집"
-                android:textColor="?attr/textColorBanner"
-                android:textSize="@dimen/largeText"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/cancelIb"
-                app:layout_constraintStart_toEndOf="@+id/backIb"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:srcCompat="@drawable/ic_baseline_arrow_back_24_cyan" />
 
             <ImageButton
                 android:id="@+id/cancelIb"
@@ -293,7 +305,7 @@
                             android:layout_height="match_parent"
                             android:textColorHint="?attr/textColorSecondary"
                             app:passwordToggleTint="?attr/textColorSecondary"
-                            app:suffixText="세"
+                            app:suffixText="kg"
                             app:suffixTextColor="?attr/textColor">
 
                             <com.google.android.material.textfield.TextInputEditText
@@ -330,7 +342,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:background="@color/white"
-                                android:orientation="horizontal" >
+                                android:orientation="horizontal">
 
                                 <Spinner
                                     android:id="@+id/goalOfTotalRankSp"
@@ -364,7 +376,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:background="@color/white"
-                                android:orientation="horizontal" >
+                                android:orientation="horizontal">
 
                                 <Spinner
                                     android:id="@+id/goalOfLegTuckRankSp"
@@ -398,7 +410,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:background="@color/white"
-                                android:orientation="horizontal" >
+                                android:orientation="horizontal">
 
                                 <Spinner
                                     android:id="@+id/goalOfShuttleRunRankSp"
@@ -432,7 +444,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:background="@color/white"
-                                android:orientation="horizontal" >
+                                android:orientation="horizontal">
 
                                 <Spinner
                                     android:id="@+id/goalOfFieldTrainingRankSp"
