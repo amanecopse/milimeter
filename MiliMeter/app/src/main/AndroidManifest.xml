@@ -37,6 +37,10 @@
         <activity android:name=".activities.UserInformationActivity" />
         
          <!--고동현-->
+        <activity android:name=".activities.Current_Activity" />
+        <activity android:name=".activities.Circuit_Current_Activity" />
+        <activity android:name=".activities.Legtuck_Current_Activity" />
+        <activity android:name=".activities.Running_Current_Activity" />
     </application>
 
 </manifest>
