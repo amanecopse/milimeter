@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.amnapp.milimeter.databinding.ActivitySettingBinding
-import com.example.myapplication.HomeActivity
 
 class SettingActivity : AppCompatActivity() {
 
