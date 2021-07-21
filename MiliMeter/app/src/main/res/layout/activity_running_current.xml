@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".activities.Running_Current_Activity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="전 종목" />
+
+            <Button
+                android:id="@+id/legtuckbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="레그턱" />
+
+            <Button
+                android:id="@+id/run"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="240m" />
+
+            <Button
+                android:id="@+id/circuit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="전장 순환" />
+
+        </LinearLayout>
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/legChart"
+            android:layout_width="match_parent"
+            android:layout_height="221dp"
+            />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    >
+
+                    <TextView
+                        android:id="@+id/event_date"
+                        android:layout_width="92dp"
+                        android:layout_height="match_parent"
+                        android:text="특급"
+                        android:background="@color/teal_200"
+                        />
+
+                    <TextView
+
+                        android:layout_width="167dp"
+                        android:layout_height="match_parent"
+                        android:text="1분2초"
+                        android:textAlignment="center"
+                        android:background="@color/teal_200"
+                        android:gravity="center_horizontal" />
+
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/expert"
+
+                        />
+
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    >
+
+                    <TextView
+
+                        android:layout_width="92dp"
+                        android:layout_height="match_parent"
+                        android:text="1급"
+                        android:background="@color/cardview_shadow_start_color"
+                        />
+
+                    <TextView
+
+                        android:layout_width="167dp"
+                        android:layout_height="match_parent"
+                        android:text="1분8초"
+                        android:textAlignment="center"
+                        android:background="@color/cardview_shadow_start_color"
+                        android:gravity="center_horizontal" />
+
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/grade1"
+
+                        />
+
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    >
+
+                    <TextView
+
+                        android:layout_width="92dp"
+                        android:layout_height="match_parent"
+                        android:text="2급"
+                        android:background="@color/cardview_shadow_start_color"
+                        />
+
+                    <TextView
+
+                        android:layout_width="167dp"
+                        android:layout_height="match_parent"
+                        android:text="1분14초"
+                        android:textAlignment="center"
+                        android:background="@color/cardview_shadow_start_color"
+                        android:gravity="center_horizontal" />
+
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/grade2"
+
+                        />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    >
+
+                    <TextView
+
+                        android:layout_width="92dp"
+                        android:layout_height="match_parent"
+                        android:text="3급"
+                        android:background="@color/cardview_shadow_start_color"
+                        />
+
+                    <TextView
+
+                        android:layout_width="167dp"
+                        android:layout_height="match_parent"
+                        android:text="1분20초"
+                        android:textAlignment="center"
+                        android:background="@color/cardview_shadow_start_color"
+                        android:gravity="center_horizontal" />
+
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/grade3"
+
+                        />
+
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    >
+
+                    <TextView
+
+                        android:layout_width="92dp"
+                        android:layout_height="match_parent"
+                        android:text="4급"
+                        android:background="@color/cardview_shadow_start_color"
+                        />
+
+                    <TextView
+
+                        android:layout_width="167dp"
+                        android:layout_height="match_parent"
+                        android:text="1분26초"
+                        android:textAlignment="center"
+                        android:background="@color/cardview_shadow_start_color"
+                        android:gravity="center_horizontal" />
+
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/grade4"
+
+                        />
+
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    >
+
+                    <TextView
+
+                        android:layout_width="92dp"
+                        android:layout_height="match_parent"
+                        android:text="5급"
+                        android:background="@color/cardview_shadow_start_color"
+                        />
+
+                    <TextView
+
+                        android:layout_width="167dp"
+                        android:layout_height="match_parent"
+                        android:text="1분32초"
+                        android:textAlignment="center"
+                        android:background="@color/cardview_shadow_start_color"
+                        android:gravity="center_horizontal" />
+
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/grade5"
+
+                        />
+
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    >
+
+                    <TextView
+
+                        android:layout_width="92dp"
+                        android:layout_height="match_parent"
+                        android:text="6급"
+                        android:background="@color/cardview_shadow_start_color"
+                        />
+
+                    <TextView
+
+                        android:layout_width="167dp"
+                        android:layout_height="match_parent"
+                        android:text="1분38초"
+                        android:textAlignment="center"
+                        android:background="@color/cardview_shadow_start_color"
+                        android:gravity="center_horizontal" />
+
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/grade6"
+
+                        />
+
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    >
+
+                    <TextView
+
+                        android:layout_width="92dp"
+                        android:layout_height="match_parent"
+                        android:text="7급"
+                        android:background="@color/cardview_shadow_start_color"
+                        />
+
+                    <TextView
+
+                        android:layout_width="167dp"
+                        android:layout_height="match_parent"
+                        android:text="1분44초"
+                        android:textAlignment="center"
+                        android:background="@color/cardview_shadow_start_color"
+                        android:gravity="center_horizontal" />
+
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/grade7"
+
+                        />
+
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    >
+
+                    <TextView
+
+                        android:layout_width="92dp"
+                        android:layout_height="match_parent"
+                        android:text="8급"
+                        android:background="@color/cardview_shadow_start_color"
+                        />
+
+                    <TextView
+
+                        android:layout_width="167dp"
+                        android:layout_height="match_parent"
+                        android:text="1분50초"
+                        android:textAlignment="center"
+                        android:background="@color/cardview_shadow_start_color"
+                        android:gravity="center_horizontal" />
+
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/grade8"
+
+                        />
+
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    >
+
+                    <TextView
+
+                        android:layout_width="92dp"
+                        android:layout_height="match_parent"
+                        android:text="9급"
+                        android:background="@color/purple_200"
+                        />
+
+                    <TextView
+
+                        android:layout_width="167dp"
+                        android:layout_height="match_parent"
+                        android:text="1분50초초과"
+                        android:textAlignment="center"
+                        android:background="@color/purple_200"
+                        android:gravity="center_horizontal" />
+
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/grade9"
+
+                        />
+
+                </TableRow>
+
+
+
+
+            </TableLayout>
+
+        </ScrollView>
+    </LinearLayout>
+
+
+</RelativeLayout>
