@@ -31,8 +31,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
-                    android:tint="?attr/textColorBanner"
-                    app:srcCompat="@drawable/ic_baseline_miscellaneous_services_20_white" />
+                    app:srcCompat="@drawable/ic_baseline_miscellaneous_services_20_white"
+                    app:tint="?attr/textColorBanner" />
 
                 <TextView
                     android:id="@+id/titleTv"
@@ -222,7 +222,7 @@
                             app:suffixTextColor="?attr/textColor">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/heightTv"
+                                android:id="@+id/heightEt"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="키"

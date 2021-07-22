@@ -18,6 +18,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.amnapp.milimeter.R
+import com.amnapp.milimeter.UserData
 import com.amnapp.milimeter.databinding.ActivityAdminPageBinding
 import com.amnapp.milimeter.recyclerViews.AdminPageRecyclerAdapter
 import com.amnapp.milimeter.viewModels.AdminPageViewModel
@@ -64,6 +65,7 @@ class AdminPageActivity : AppCompatActivity() {
             //아이템 편집 클릭 리스너 등록
             adminPageRecyclerAdapter.setEditOnClickListener(object: AdminPageRecyclerAdapter.OnEditClickListener{
                 override fun onClicked(v: View, pos: Int) {
+                    UserData.mTmpUserData = it[pos]
                     val intent = Intent(this@AdminPageActivity, EditSubUserInfoActivity::class.java)
                     startActivity(intent)
                 }
