@@ -6,13 +6,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import com.amnapp.milimeter.DataUtil
 import com.github.mikephil.charting.charts.*
 import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.components.*
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.amnapp.milimeter.R
+import com.google.android.gms.common.util.DataUtils
 
-class CurrentActivity : AppCompatActivity() {
+class ResultActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,19 +27,19 @@ class CurrentActivity : AppCompatActivity() {
         //레그턱 가는 버튼
         var legButton =findViewById<Button>(R.id.legtuckbutton)
         legButton.setOnClickListener{
-            val legintent =Intent(this, Legtuck_Current_Activity::class.java)
+            val legintent =Intent(this, LegtuckCurrentActivity::class.java)
             startActivity(legintent)
         }
         //240m가는 버튼
         var runButton =findViewById<Button>(R.id.run)
         runButton.setOnClickListener{
-            val runintent =Intent(this,Running_Current_Activity::class.java)
+            val runintent =Intent(this,RunningCurrentActivity::class.java)
             startActivity(runintent)
         }
         //전장순환
         var circuitButton=findViewById<Button>(R.id.circuit)
         circuitButton.setOnClickListener{
-            val circuitintent =Intent(this,Circuit_Current_Activity::class.java)
+            val circuitintent =Intent(this,CircuitCurrentActivity::class.java)
             startActivity(circuitintent)
         }
 

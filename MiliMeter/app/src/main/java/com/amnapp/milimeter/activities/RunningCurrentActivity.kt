@@ -15,19 +15,19 @@ class RunningCurrentActivity: AppCompatActivity() {
             //버튼
             val CurrentButton =findViewById<Button>(R.id.all)
             CurrentButton.setOnClickListener{
-                val currentintent = Intent(this, Current_Activity::class.java)
+                val currentintent = Intent(this, ResultActivity::class.java)
                 startActivity(currentintent)
             }
             //레그턱 버튼
             val legButton =findViewById<Button>(R.id.legtuckbutton)
             legButton.setOnClickListener{
-                val legintent =Intent(this, Legtuck_Current_Activity::class.java)
+                val legintent =Intent(this, LegtuckCurrentActivity::class.java)
                 startActivity(legintent)
             }
             //전장순환
             val circuitButton=findViewById<Button>(R.id.circuit)
             circuitButton.setOnClickListener{
-                val circuitintent =Intent(this,Circuit_Current_Activity::class.java)
+                val circuitintent =Intent(this,CircuitCurrentActivity::class.java)
                 startActivity(circuitintent)
             }
 

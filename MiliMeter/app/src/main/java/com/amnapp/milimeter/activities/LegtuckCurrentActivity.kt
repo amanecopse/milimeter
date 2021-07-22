@@ -17,19 +17,19 @@ class LegtuckCurrentActivity: AppCompatActivity() {
         //버튼
         val CurrentButton =findViewById<Button>(R.id.all)
         CurrentButton.setOnClickListener{
-            val currentintent = Intent(this, Current_Activity::class.java)
+            val currentintent = Intent(this, ResultActivity::class.java)
             startActivity(currentintent)
         }
         //달리기
         val runButton =findViewById<Button>(R.id.run)
         runButton.setOnClickListener{
-            val runintent =Intent(this,Running_Current_Activity::class.java)
+            val runintent =Intent(this,RunningCurrentActivity::class.java)
             startActivity(runintent)
         }
         //전장순환
         val circuitButton=findViewById<Button>(R.id.circuit)
         circuitButton.setOnClickListener{
-            val circuitintent =Intent(this,Circuit_Current_Activity::class.java)
+            val circuitintent =Intent(this,CircuitCurrentActivity::class.java)
             startActivity(circuitintent)
         }
 
