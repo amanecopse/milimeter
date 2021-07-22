@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 
-class Running_Current_Activity: AppCompatActivity() {
+class RunningCurrentActivity: AppCompatActivity() {
         override fun onCreate(savedInstanceState: Bundle?) {
 
             super.onCreate(savedInstanceState)

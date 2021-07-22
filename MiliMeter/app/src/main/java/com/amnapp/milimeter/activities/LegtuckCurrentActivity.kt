@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.data.Entry
 
-class Legtuck_Current_Activity: AppCompatActivity() {
+class LegtuckCurrentActivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

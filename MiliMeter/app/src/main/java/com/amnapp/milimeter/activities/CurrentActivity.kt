@@ -12,7 +12,7 @@ import com.github.mikephil.charting.components.*
 import com.github.mikephil.charting.formatter.ValueFormatter
 
 
-class Current_Activity : AppCompatActivity() {
+class CurrentActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
