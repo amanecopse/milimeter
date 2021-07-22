@@ -10,12 +10,13 @@ import com.amnapp.milimeter.databinding.ActivityAdminPageBinding
 import com.amnapp.milimeter.databinding.ActivityEditSubUserInfoBinding
 import com.amnapp.milimeter.databinding.ActivityHomeBinding
 import com.amnapp.milimeter.viewModels.AdminPageViewModel
+import com.amnapp.milimeter.viewModels.EditSubUserInfoViewModel
 
 class EditSubUserInfoActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityEditSubUserInfoBinding
     lateinit var mDialog: AlertDialog//로딩화면임. setProgressDialog()를 실행후 mDialog.show()로 시작
-    private val viewModel: ActivityEditSubUserInfoBinding by viewModels()
+    private val viewModel: EditSubUserInfoViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
