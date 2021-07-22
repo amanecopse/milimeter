@@ -5,21 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f76ba81a-de21-444c-8ebd-853ac538e4a2" name="Default Changelist" comment="Add settingActivity">
-      <change afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_private_administration.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/.idea/runConfigurations.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/.idea/runConfigurations.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/AccountManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/AccountManager.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/UserData.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/UserData.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/SignInActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/SignInActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/ThemeExampleActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/ThemeExampleActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_home.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_sign_in.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_sign_in.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_theme_example.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_theme_example.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_training_record.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_training_record.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/res/values/arrays.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/res/values/arrays.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/res/values/colors.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/Circuit_Current_Activity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/Circuit_Current_Activity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/Legtuck_Current_Activity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/Legtuck_Current_Activity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/Running_Current_Activity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/Running_Current_Activity.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,9 +56,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="513" y="316" key="Github.CreatePullRequestDialog/0.0.1536.824@0.0.1536.824" timestamp="1626785626778" />
-    <state x="226" y="71" key="Vcs.Push.Dialog.v2" timestamp="1626785534439">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="2683" y="-164" key="Vcs.Push.Dialog.v2" timestamp="1626904817406">
+      <screen x="2400" y="-254" width="1920" height="1040" />
     </state>
     <state x="226" y="71" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1626785534438" />
+    <state x="2683" y="-164" key="Vcs.Push.Dialog.v2/2400.-254.1920.1040/0.0.1536.824@2400.-254.1920.1040" timestamp="1626904817406" />
   </component>
 </project>
