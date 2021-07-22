@@ -28,16 +28,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f76ba81a-de21-444c-8ebd-853ac538e4a2" name="Default Changelist" comment="Add settingActivity">
-      <change beforePath="$PROJECT_DIR$/.idea/ArmyAppDev.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ArmyAppDev.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/Circuit_Current_Activity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/CircuitCurrentActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/Current_Activity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/CurrentActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/Legtuck_Current_Activity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/LegtuckCurrentActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/Running_Current_Activity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/RunningCurrentActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_circuit_current.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_circuit_current.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_current.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_current.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_leg_current.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_leg_current.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_running_current.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_running_current.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/CircuitCurrentActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/CircuitCurrentActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/CurrentActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/CurrentActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/LegtuckCurrentActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/LegtuckCurrentActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/RunningCurrentActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/RunningCurrentActivity.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +72,14 @@
       <option name="project" value="LOCAL" />
       <updated>1626927848206</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Add settingActivity">
+      <created>1626929456586</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1626929456586</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

@@ -10,7 +10,7 @@ import com.github.mikephil.charting.charts.*
 import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.components.*
 import com.github.mikephil.charting.formatter.ValueFormatter
-
+import com.amnapp.milimeter.R
 
 class CurrentActivity : AppCompatActivity() {
 

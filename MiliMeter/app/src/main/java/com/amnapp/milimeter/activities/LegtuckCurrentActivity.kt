@@ -6,6 +6,7 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.data.Entry
+import com.amnapp.milimeter.R
 
 class LegtuckCurrentActivity: AppCompatActivity() {
 
