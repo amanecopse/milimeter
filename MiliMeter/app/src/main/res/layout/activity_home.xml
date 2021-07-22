@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#7A8B6F">
+    android:background="#7A8B6F"
+    tools:context=".activities.HomeActivity">
 
     <ImageButton
         android:id="@+id/home"
@@ -98,6 +99,14 @@
         android:text="D-365"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/debugBt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="디버그창"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

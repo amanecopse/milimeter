@@ -9,24 +9,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.HomeActivity"><!--홈화면-->
+        <activity android:name=".activities.HomeActivity"> <!-- 홈화면 -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <!--임주현-->
-        <activity android:name=".activities.AdminPageActivity" /><!--관리자창-->
-        <activity android:name=".activities.InviteCodeIssueActivity" /><!--초대코드발행창-->
-        <activity android:name=".activities.SignInActivity" /><!--회원가입창-->
-        <activity android:name=".activities.LoginActivity" /><!--로그인창-->
-        <activity android:name=".activities.ThemeExampleActivity" /><!--테마예시-->
-        <activity android:name=".activities.TrainingRecordActivity" /><!--운동기록창-->
-        <activity android:name=".activities.EditSubUserInfoActivity" /><!--하위유저편집창-->
-
-        <!--임지선-->
+        <!-- 임주현 -->
+        <activity android:name=".activities.AdminPageActivity" /> <!-- 관리자창 -->
+        <activity android:name=".activities.InviteCodeIssueActivity" /> <!-- 초대코드발행창 -->
+        <activity android:name=".activities.SignInActivity" /> <!-- 회원가입창 -->
+        <activity android:name=".activities.LoginActivity" /> <!-- 로그인창 -->
+        <activity android:name=".activities.ThemeExampleActivity" /> <!-- 테마예시 -->
+        <activity android:name=".activities.TrainingRecordActivity" /> <!-- 운동기록창 -->
+        <activity android:name=".activities.EditSubUserInfoActivity" /> <!-- 하위유저편집창 -->
+        <activity android:name=".activities.DebugActivity" /> <!-- 디버그창, 디버그 편의상 각 화면으로 이동하는 버튼을 두었음 -->
+        <!-- 임지선 -->
         <activity android:name=".activities.BasicThemeSettingActivity" />
         <activity android:name=".activities.LanguageActivity" />
         <activity android:name=".activities.MakingThemeSettingActivity" />
@@ -35,9 +34,7 @@
         <activity android:name=".activities.SpecialThemeSettingActivity" />
         <activity android:name=".activities.ThemeActivity" />
         <activity android:name=".activities.UserInformationActivity" />
-        
-         <!--고동현-->
-        <activity android:name=".activities.CurrentActivity" />
+        <!-- 고동현 -->
         <activity android:name=".activities.CircuitCurrentActivity" />
         <activity android:name=".activities.LegtuckCurrentActivity" />
         <activity android:name=".activities.RunningCurrentActivity" />
