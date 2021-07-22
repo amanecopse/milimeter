@@ -73,7 +73,8 @@
                         android:layout_width="92dp"
                         android:layout_height="match_parent"
                         android:text="특급"
-                        android:background="@color/teal_200"
+                        android:textColor="@android:color/black"
+                        android:background="@android:color/holo_blue_bright"
                         />
 
                     <TextView
@@ -82,14 +83,15 @@
                         android:layout_height="match_parent"
                         android:text="2분15초"
                         android:textAlignment="center"
-                        android:background="@color/teal_200"
+                        android:textColor="@android:color/black"
+                        android:background="@android:color/holo_blue_bright"
                         android:gravity="center_horizontal" />
 
                     <TextView
                         android:layout_width="150dp"
                         android:layout_height="match_parent"
                         android:id="@+id/expert"
-
+                        android:background="@android:color/white"
                         />
 
                 </TableRow>
@@ -103,7 +105,8 @@
                         android:layout_width="92dp"
                         android:layout_height="match_parent"
                         android:text="1급"
-                        android:background="@color/cardview_shadow_start_color"
+                        android:textColor="@android:color/black"
+                        android:background="@android:color/holo_blue_dark"
                         />
 
                     <TextView
@@ -112,13 +115,15 @@
                         android:layout_height="match_parent"
                         android:text="2분36초"
                         android:textAlignment="center"
-                        android:background="@color/cardview_shadow_start_color"
+                        android:textColor="@android:color/black"
+                        android:background="@android:color/holo_blue_dark"
                         android:gravity="center_horizontal" />
 
                     <TextView
                         android:layout_width="150dp"
                         android:layout_height="match_parent"
                         android:id="@+id/grade1"
+                        android:background="@android:color/white"
 
                         />
 
@@ -133,7 +138,8 @@
                         android:layout_width="92dp"
                         android:layout_height="match_parent"
                         android:text="2급"
-                        android:background="@color/cardview_shadow_start_color"
+                        android:textColor="@android:color/black"
+                        android:background="@android:color/holo_blue_dark"
                         />
 
                     <TextView
@@ -142,14 +148,15 @@
                         android:layout_height="match_parent"
                         android:text="2분57초"
                         android:textAlignment="center"
-                        android:background="@color/cardview_shadow_start_color"
+                        android:textColor="@android:color/black"
+                        android:background="@android:color/holo_blue_dark"
                         android:gravity="center_horizontal" />
 
                     <TextView
                         android:layout_width="150dp"
                         android:layout_height="match_parent"
                         android:id="@+id/grade2"
-
+                        android:background="@android:color/white"
                         />
 
                 </TableRow>
@@ -164,7 +171,8 @@
                         android:layout_width="92dp"
                         android:layout_height="match_parent"
                         android:text="3급"
-                        android:background="@color/cardview_shadow_start_color"
+                        android:textColor="@android:color/black"
+                        android:background="@android:color/holo_blue_dark"
                         />
 
                     <TextView
@@ -173,14 +181,15 @@
                         android:layout_height="match_parent"
                         android:text="3분18초"
                         android:textAlignment="center"
-                        android:background="@color/cardview_shadow_start_color"
+                        android:textColor="@android:color/black"
+                        android:background="@android:color/holo_blue_dark"
                         android:gravity="center_horizontal" />
 
                     <TextView
                         android:layout_width="150dp"
                         android:layout_height="match_parent"
                         android:id="@+id/grade3"
-
+                        android:background="@android:color/white"
                         />
 
                 </TableRow>
@@ -194,7 +203,8 @@
                         android:layout_width="92dp"
                         android:layout_height="match_parent"
                         android:text="4급"
-                        android:background="@color/cardview_shadow_start_color"
+                        android:textColor="@android:color/black"
+                        android:background="@android:color/holo_green_dark"
                         />
 
                     <TextView
@@ -203,14 +213,15 @@
                         android:layout_height="match_parent"
                         android:text="3분39초"
                         android:textAlignment="center"
-                        android:background="@color/cardview_shadow_start_color"
+                        android:textColor="@android:color/black"
+                        android:background="@android:color/holo_green_dark"
                         android:gravity="center_horizontal" />
 
                     <TextView
                         android:layout_width="150dp"
                         android:layout_height="match_parent"
                         android:id="@+id/grade4"
-
+                        android:background="@android:color/white"
                         />
 
                 </TableRow>
@@ -224,7 +235,8 @@
                         android:layout_width="92dp"
                         android:layout_height="match_parent"
                         android:text="5급"
-                        android:background="@color/cardview_shadow_start_color"
+                        android:textColor="@android:color/black"
+                        android:background="@android:color/holo_green_dark"
                         />
 
                     <TextView
@@ -233,14 +245,15 @@
                         android:layout_height="match_parent"
                         android:text="4분00초"
                         android:textAlignment="center"
-                        android:background="@color/cardview_shadow_start_color"
+                        android:textColor="@android:color/black"
+                        android:background="@android:color/holo_green_dark"
                         android:gravity="center_horizontal" />
 
                     <TextView
                         android:layout_width="150dp"
                         android:layout_height="match_parent"
                         android:id="@+id/grade5"
-
+                        android:background="@android:color/white"
                         />
 
                 </TableRow>
@@ -254,7 +267,8 @@
                         android:layout_width="92dp"
                         android:layout_height="match_parent"
                         android:text="6급"
-                        android:background="@color/cardview_shadow_start_color"
+                        android:textColor="@android:color/black"
+                        android:background="@android:color/holo_green_dark"
                         />
 
                     <TextView
@@ -263,14 +277,15 @@
                         android:layout_height="match_parent"
                         android:text="4분21초"
                         android:textAlignment="center"
-                        android:background="@color/cardview_shadow_start_color"
+                        android:textColor="@android:color/black"
+                        android:background="@android:color/holo_green_dark"
                         android:gravity="center_horizontal" />
 
                     <TextView
                         android:layout_width="150dp"
                         android:layout_height="match_parent"
                         android:id="@+id/grade6"
-
+                        android:background="@android:color/white"
                         />
 
                 </TableRow>
@@ -284,7 +299,8 @@
                         android:layout_width="92dp"
                         android:layout_height="match_parent"
                         android:text="7급"
-                        android:background="@color/cardview_shadow_start_color"
+                        android:textColor="@android:color/black"
+                        android:background="@android:color/holo_green_dark"
                         />
 
                     <TextView
@@ -293,14 +309,15 @@
                         android:layout_height="match_parent"
                         android:text="4분42초"
                         android:textAlignment="center"
-                        android:background="@color/cardview_shadow_start_color"
+                        android:textColor="@android:color/black"
+                        android:background="@android:color/holo_green_dark"
                         android:gravity="center_horizontal" />
 
                     <TextView
                         android:layout_width="150dp"
                         android:layout_height="match_parent"
                         android:id="@+id/grade7"
-
+                        android:background="@android:color/white"
                         />
 
                 </TableRow>
@@ -314,7 +331,8 @@
                         android:layout_width="92dp"
                         android:layout_height="match_parent"
                         android:text="8급"
-                        android:background="@color/cardview_shadow_start_color"
+                        android:textColor="@android:color/black"
+                        android:background="@android:color/holo_red_dark"
                         />
 
                     <TextView
@@ -323,14 +341,15 @@
                         android:layout_height="match_parent"
                         android:text="5분3초"
                         android:textAlignment="center"
-                        android:background="@color/cardview_shadow_start_color"
+                        android:textColor="@android:color/black"
+                        android:background="@android:color/holo_red_dark"
                         android:gravity="center_horizontal" />
 
                     <TextView
                         android:layout_width="150dp"
                         android:layout_height="match_parent"
                         android:id="@+id/grade8"
-
+                        android:background="@android:color/white"
                         />
 
                 </TableRow>
@@ -344,7 +363,8 @@
                         android:layout_width="92dp"
                         android:layout_height="match_parent"
                         android:text="9급"
-                        android:background="@color/purple_200"
+                        android:textColor="@android:color/black"
+                        android:background="@android:color/holo_red_dark"
                         />
 
                     <TextView
@@ -353,14 +373,15 @@
                         android:layout_height="match_parent"
                         android:text="5분3초초과"
                         android:textAlignment="center"
-                        android:background="@color/purple_200"
+                        android:textColor="@android:color/black"
+                        android:background="@android:color/holo_red_dark"
                         android:gravity="center_horizontal" />
 
                     <TextView
                         android:layout_width="150dp"
                         android:layout_height="match_parent"
                         android:id="@+id/grade9"
-
+                        android:background="@android:color/white"
                         />
 
                 </TableRow>
