@@ -7,61 +7,6 @@
     android:background="#7A8B6F"
     tools:context=".activities.HomeActivity">
 
-    <ImageButton
-        android:id="@+id/home"
-        android:layout_width="81dp"
-        android:layout_height="81dp"
-        android:background="@android:color/transparent"
-        android:scaleType="center"
-        android:src="@drawable/home_50_white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/body"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageButton
-        android:id="@+id/body"
-        android:layout_width="81dp"
-        android:layout_height="81dp"
-        android:background="@android:color/transparent"
-        android:scaleType="center"
-        android:src="@drawable/body_50_white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/result"
-        app:layout_constraintStart_toEndOf="@+id/home" />
-
-    <ImageButton
-        android:id="@+id/result"
-        android:layout_width="81dp"
-        android:layout_height="81dp"
-        android:background="@android:color/transparent"
-        android:scaleType="center"
-        android:src="@drawable/result_50_white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/goal"
-        app:layout_constraintStart_toEndOf="@+id/body" />
-
-    <ImageButton
-        android:id="@+id/goal"
-        android:layout_width="81dp"
-        android:layout_height="81dp"
-        android:background="@android:color/transparent"
-        android:scaleType="center"
-        android:src="@drawable/goal_50_white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/setting"
-        app:layout_constraintStart_toEndOf="@+id/result" />
-
-    <ImageButton
-        android:id="@+id/setting"
-        android:layout_width="81dp"
-        android:layout_height="81dp"
-        android:background="@android:color/transparent"
-        android:scaleType="center"
-        android:src="@drawable/setting_50_white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/goal" />
-
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/circleImageView"
         android:layout_width="248dp"
@@ -108,5 +53,74 @@
         android:text="디버그창"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="95dp"
+        android:layout_alignParentBottom="true"
+        android:gravity="fill_horizontal"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/homeBt"
+            android:layout_width="81dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/ic_baseline_home_20_white"
+            android:text="home"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:gravity="center_horizontal"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/bodyBt"
+            android:layout_width="81dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/ic_baseline_accessibility_20_white"
+            android:text="body"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:gravity="center_horizontal"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/resultBt"
+            android:layout_width="81dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/ic_baseline_insert_chart_outlined_20_white"
+            android:text="result"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:gravity="center_horizontal"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/goalBt"
+            android:layout_width="81dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/ic_baseline_track_changes_20_white"
+            android:text="goal"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:gravity="center_horizontal"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/settingBt"
+            android:layout_width="81dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/ic_baseline_miscellaneous_services_20_white"
+            android:text="setting"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:gravity="center_horizontal"
+            android:textAllCaps="false" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

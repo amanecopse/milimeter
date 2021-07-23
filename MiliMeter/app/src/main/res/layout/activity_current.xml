@@ -186,6 +186,77 @@
 
         </TableLayout>
 
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="95dp"
+            android:layout_alignParentBottom="true"
+            android:gravity="fill_horizontal"
+            android:orientation="horizontal"
+            android:layout_marginTop="290dp" >
+
+            <Button
+                android:id="@+id/homeBt"
+                android:layout_width="81dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:drawableTop="@drawable/ic_baseline_home_20_white"
+                android:text="home"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:gravity="center_horizontal"
+                android:textAllCaps="false"/>
+
+            <Button
+                android:id="@+id/bodyBt"
+                android:layout_width="81dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:drawableTop="@drawable/ic_baseline_accessibility_20_white"
+                android:text="body"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:gravity="center_horizontal"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/resultBt"
+                android:layout_width="81dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:drawableTop="@drawable/ic_baseline_insert_chart_outlined_20_white"
+                android:text="result"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:gravity="center_horizontal"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/goalBt"
+                android:layout_width="81dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:drawableTop="@drawable/ic_baseline_track_changes_20_white"
+                android:text="goal"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:gravity="center_horizontal"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/settingBt"
+                android:layout_width="81dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:drawableTop="@drawable/ic_baseline_miscellaneous_services_20_white"
+                android:text="setting"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:gravity="center_horizontal"
+                android:textAllCaps="false" />
+
+        </LinearLayout>
+
+
     </LinearLayout>
 
 

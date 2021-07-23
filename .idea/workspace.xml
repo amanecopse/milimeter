@@ -27,17 +27,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f76ba81a-de21-444c-8ebd-853ac538e4a2" name="Default Changelist" comment="Add settingActivity">
+    <list default="true" id="f76ba81a-de21-444c-8ebd-853ac538e4a2" name="Default Changelist" comment="package 수정(push확인)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/CircuitCurrentActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/CircuitCurrentActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/CurrentActivity.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/DataUtil" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/LegtuckCurrentActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/LegtuckCurrentActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/RunningCurrentActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/RunningCurrentActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_current.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_current.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_goal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_goal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_home.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_setting.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_setting.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +55,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/MiliMeter" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -85,7 +80,14 @@
       <option name="project" value="LOCAL" />
       <updated>1626929456586</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="package 수정(push확인)">
+      <created>1627015094104</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1627015094104</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -102,7 +104,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add settingActivity" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add settingActivity" />
+    <MESSAGE value="package 수정(push확인)" />
+    <option name="LAST_COMMIT_MESSAGE" value="package 수정(push확인)" />
   </component>
   <component name="WindowStateProjectService">
     <state x="2815" y="-79" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1626928676278">
@@ -117,14 +120,18 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="344" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1626785387096" />
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1627015297641">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1627015297641" />
     <state x="513" y="316" key="Github.CreatePullRequestDialog" timestamp="1626785626778">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="513" y="316" key="Github.CreatePullRequestDialog/0.0.1536.824@0.0.1536.824" timestamp="1626785626778" />
-    <state x="2683" y="-164" key="Vcs.Push.Dialog.v2" timestamp="1626929397923">
-      <screen x="2400" y="-254" width="1920" height="1040" />
+    <state x="226" y="71" key="Vcs.Push.Dialog.v2" timestamp="1627015101919">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="226" y="71" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1626785534438" />
+    <state x="226" y="71" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1627015101919" />
     <state x="2683" y="-164" key="Vcs.Push.Dialog.v2/2400.-254.1920.1040/0.0.1536.824@2400.-254.1920.1040" timestamp="1626929397923" />
     <state x="3174" y="179" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1626927917064">
       <screen x="2400" y="-254" width="1920" height="1040" />
