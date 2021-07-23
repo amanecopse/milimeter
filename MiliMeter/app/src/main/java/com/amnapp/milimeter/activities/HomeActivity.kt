@@ -16,5 +16,10 @@ class HomeActivity : AppCompatActivity() {
             val intent = Intent(this, DebugActivity::class.java)
             startActivity(intent)
         }
+
+        findViewById<Button>(R.id.resultBt).setOnClickListener {
+            val bodyintent =Intent(this,ResultActivity::class.java)
+            startActivity(bodyintent)
+        }
     }
 }

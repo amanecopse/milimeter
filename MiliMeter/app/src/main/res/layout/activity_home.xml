@@ -22,7 +22,6 @@
         app:layout_constraintTop_toBottomOf="@+id/button" />
 
     <TextView
-        android:id="@+id/textView5"
         android:layout_width="251dp"
         android:layout_height="179dp"
         android:layout_alignParentEnd="true"
@@ -60,8 +59,7 @@
         android:layout_height="95dp"
         android:layout_alignParentBottom="true"
         android:gravity="fill_horizontal"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent">
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/homeBt"
@@ -69,11 +67,11 @@
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
             android:drawableTop="@drawable/ic_baseline_home_20_white"
-            android:gravity="center_horizontal"
-            android:text="@string/home"
-            android:textAllCaps="false"
+            android:text="home"
             android:textColor="@color/white"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            android:gravity="center_horizontal"
+            android:textAllCaps="false"/>
 
         <Button
             android:id="@+id/bodyBt"
@@ -81,11 +79,11 @@
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
             android:drawableTop="@drawable/ic_baseline_accessibility_20_white"
-            android:gravity="center_horizontal"
-            android:text="@string/body"
-            android:textAllCaps="false"
+            android:text="body"
             android:textColor="@color/white"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            android:gravity="center_horizontal"
+            android:textAllCaps="false" />
 
         <Button
             android:id="@+id/resultBt"
@@ -93,11 +91,11 @@
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
             android:drawableTop="@drawable/ic_baseline_insert_chart_outlined_20_white"
-            android:gravity="center_horizontal"
-            android:text="@string/result"
-            android:textAllCaps="false"
+            android:text="result"
             android:textColor="@color/white"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            android:gravity="center_horizontal"
+            android:textAllCaps="false" />
 
         <Button
             android:id="@+id/goalBt"
@@ -105,11 +103,11 @@
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
             android:drawableTop="@drawable/ic_baseline_track_changes_20_white"
-            android:gravity="center_horizontal"
-            android:text="@string/goal"
-            android:textAllCaps="false"
+            android:text="goal"
             android:textColor="@color/white"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            android:gravity="center_horizontal"
+            android:textAllCaps="false" />
 
         <Button
             android:id="@+id/settingBt"
@@ -117,11 +115,11 @@
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
             android:drawableTop="@drawable/ic_baseline_miscellaneous_services_20_white"
-            android:gravity="center_horizontal"
-            android:text="@string/setting"
-            android:textAllCaps="false"
+            android:text="setting"
             android:textColor="@color/white"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            android:gravity="center_horizontal"
+            android:textAllCaps="false" />
 
 
     </LinearLayout>

@@ -44,6 +44,33 @@ class ResultActivity : AppCompatActivity() {
 
 
 
+        //홈버튼
+        var homebtn =findViewById<Button>(R.id.homeBt)
+        homebtn.setOnClickListener{
+            val homeintent =Intent(this, HomeActivity::class.java)
+            startActivity(homeintent)
+        }
+        /*
+        //바디버튼 //결과는 지금 이창
+        var bodyBtn =findViewById<Button>(this,)
+        bodyByn.setOnClickListner{
+               val bodyintent =Intent{this, }
+               starActivity(homeintent)
+            }
+            */
+        //목표버튼
+        var goalBtn =findViewById<Button>(R.id.goalBt)
+        goalBtn.setOnClickListener{
+            val goalintent =Intent(this,GoalActivity::class.java)
+            startActivity(goalintent)
+        }
+
+        //세팅버튼
+        var optionBtn =findViewById<Button>(R.id.settingBt)
+        optionBtn.setOnClickListener{
+            val optionintent = Intent(this,SettingActivity::class.java)
+        }
+
 
     }
     //그래프 생성
@@ -85,6 +112,7 @@ class ResultActivity : AppCompatActivity() {
         val running = mutableListOf<Int>()
         val circuit = mutableListOf<Int>()
 
+        //파이어 베이스와 연동
 
         for(data in DataUtil.getData()){
             legtuck.add(data.legtuck)
