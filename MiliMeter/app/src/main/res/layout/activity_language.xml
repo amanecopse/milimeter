@@ -62,7 +62,7 @@
                 android:textColor="@color/dark_green"
                 android:layout_marginTop="50dp"
                 android:drawableRight="@drawable/basic_icon_sample_black"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center" />
 
             <RadioButton
                 android:id="@+id/koreaIconRBt"
@@ -86,7 +86,8 @@
                 android:textColor="@color/dark_green"
                 android:layout_marginTop="50dp"
                 android:drawableRight="@drawable/english_icon_sample_black"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:checked="true" />
 
 
         </RadioGroup>

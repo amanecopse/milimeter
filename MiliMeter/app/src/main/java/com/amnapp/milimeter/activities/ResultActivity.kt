@@ -12,13 +12,12 @@ import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.components.*
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.amnapp.milimeter.R
-import com.google.android.gms.common.util.DataUtils
 
 class ResultActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_current)
+        setContentView(R.layout.`activity_result`)
 
         setLineChartData()
         Current_table()
