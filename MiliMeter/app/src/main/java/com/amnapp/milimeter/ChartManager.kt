@@ -139,7 +139,6 @@ class ChartManager {
                         )
                         callBack.whatToDoWithLineDataSets(lineDataSets, dateList)
                         callBack.whatToDoWithDocuments(docs)
-                        Log.d("asd", lineDataSets.toString())
                     }
             }
         }
