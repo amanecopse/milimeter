@@ -51,10 +51,11 @@ class SettingActivity : AppCompatActivity() {
 //            startActivity(intent)
 //        }
         // 이다현님 프로젝트 담당 부분 - goal창(합친 뒤에 주석 없애주세요)
-//        binding.goalBt.setOnClickListener {
-//            val intent = Intent(this, GoalActivity::class.java)
-//            startActivity(intent)
-//        }
+        binding.goalBt.setOnClickListener {
+            val intent = Intent(this, GoalActivity::class.java)
+            startActivity(intent)
+        }
+
         binding.settingBt.setOnClickListener {
             val intent = Intent(this, SettingActivity::class.java)
             startActivity(intent)
