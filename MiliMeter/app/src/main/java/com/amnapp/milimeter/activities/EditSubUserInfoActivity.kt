@@ -1,13 +1,9 @@
 package com.amnapp.milimeter.activities
 
 import android.content.DialogInterface
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
-import androidx.databinding.DataBindingUtil
-import com.amnapp.milimeter.R
+import androidx.appcompat.app.AppCompatActivity
 import com.amnapp.milimeter.UserData
 import com.amnapp.milimeter.databinding.ActivityEditSubUserInfoBinding
 
@@ -19,7 +15,8 @@ class EditSubUserInfoActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_edit_sub_user_info)
+        binding = ActivityEditSubUserInfoBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         initUI()
     }

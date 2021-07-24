@@ -5,11 +5,11 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.amnapp.milimeter.R
 
-class CircuitCurrentActivity:AppCompatActivity() {
+class CircuitResultActivity:AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.`activity_circuit_result`)
+        setContentView(R.layout.activity_circuit_result)
 
         //버튼
         val CurrentButton = findViewById<Button>(R.id.all)
@@ -20,13 +20,13 @@ class CircuitCurrentActivity:AppCompatActivity() {
         //레그턱
         val legButton = findViewById<Button>(R.id.legtuckbutton)
         legButton.setOnClickListener {
-            val legintent = Intent(this, LegtuckCurrentActivity::class.java)
+            val legintent = Intent(this, LegtuckResultActivity::class.java)
             startActivity(legintent)
         }
         //240m가는 버튼
         val runButton = findViewById<Button>(R.id.run)
         runButton.setOnClickListener {
-            val runintent = Intent(this, RunningCurrentActivity::class.java)
+            val runintent = Intent(this, RunningResultActivity::class.java)
             startActivity(runintent)
 
         }
