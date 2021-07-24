@@ -10,7 +10,7 @@ class RunningCurrentActivity: AppCompatActivity() {
         override fun onCreate(savedInstanceState: Bundle?) {
 
             super.onCreate(savedInstanceState)
-            setContentView(R.layout.activity_running_current)
+            setContentView(R.layout.`activity_running_result`)
 
             //버튼
             val CurrentButton =findViewById<Button>(R.id.all)

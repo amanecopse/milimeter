@@ -4,15 +4,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import com.github.mikephil.charting.charts.BarChart
-import com.github.mikephil.charting.data.Entry
 import com.amnapp.milimeter.R
 
 class LegtuckCurrentActivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_leg_current)
+        setContentView(R.layout.`activity_leg_result`)
 
         //버튼
         val CurrentButton =findViewById<Button>(R.id.all)

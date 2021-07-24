@@ -9,7 +9,7 @@ class CircuitCurrentActivity:AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_circuit_current)
+        setContentView(R.layout.`activity_circuit_result`)
 
         //버튼
         val CurrentButton = findViewById<Button>(R.id.all)
