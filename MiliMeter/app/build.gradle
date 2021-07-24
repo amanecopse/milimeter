@@ -16,7 +16,6 @@ android {
 
     buildFeatures {// 뷰바인딩과 데이터바인딩 사용
         viewBinding = true
-        dataBinding = true
     }
 
     buildTypes {

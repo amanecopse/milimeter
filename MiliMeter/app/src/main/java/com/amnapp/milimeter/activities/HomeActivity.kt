@@ -24,6 +24,7 @@ class HomeActivity : AppCompatActivity() {
             val intent = Intent(this, DebugActivity::class.java)
             startActivity(intent)
         }
+
         //Dday 날짜설정
 //        binding.DdayBt.setOnClickListener {
 //            val today = GregorianCalendar()
@@ -38,5 +39,12 @@ class HomeActivity : AppCompatActivity() {
 //         }, year, month, date)
 //        dlg.show()
 //      }
+
+
+        findViewById<Button>(R.id.resultBt).setOnClickListener {
+            val bodyintent =Intent(this,ResultActivity::class.java)
+            startActivity(bodyintent)
+        }
+
     }
 }

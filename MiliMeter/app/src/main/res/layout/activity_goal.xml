@@ -123,7 +123,8 @@
         android:gravity="fill_horizontal"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints">
 
         <Button
             android:id="@+id/homeBt"
@@ -132,7 +133,7 @@
             android:background="@android:color/transparent"
             android:drawableTop="@drawable/ic_baseline_home_20_white"
             android:gravity="center_horizontal"
-            android:text="home"
+            android:text="@string/home"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="15sp" />
@@ -144,7 +145,7 @@
             android:background="@android:color/transparent"
             android:drawableTop="@drawable/ic_baseline_accessibility_20_white"
             android:gravity="center_horizontal"
-            android:text="body"
+            android:text="@string/body"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="15sp" />
@@ -156,7 +157,7 @@
             android:background="@android:color/transparent"
             android:drawableTop="@drawable/ic_baseline_insert_chart_outlined_20_white"
             android:gravity="center_horizontal"
-            android:text="result"
+            android:text="@string/result"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="15sp" />
@@ -168,7 +169,7 @@
             android:background="@android:color/transparent"
             android:drawableTop="@drawable/ic_baseline_track_changes_20_white"
             android:gravity="center_horizontal"
-            android:text="goal"
+            android:text="@string/goal"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="15sp" />
@@ -180,7 +181,7 @@
             android:background="@android:color/transparent"
             android:drawableTop="@drawable/ic_baseline_miscellaneous_services_20_white"
             android:gravity="center_horizontal"
-            android:text="setting"
+            android:text="@string/setting"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="15sp" />

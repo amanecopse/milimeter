@@ -12,13 +12,12 @@ import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.components.*
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.amnapp.milimeter.R
-import com.google.android.gms.common.util.DataUtils
 
 class ResultActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_current)
+        setContentView(R.layout.activity_result)
 
         setLineChartData()
         Current_table()
@@ -27,19 +26,19 @@ class ResultActivity : AppCompatActivity() {
         //레그턱 가는 버튼
         var legButton =findViewById<Button>(R.id.legtuckbutton)
         legButton.setOnClickListener{
-            val legintent =Intent(this, LegtuckCurrentActivity::class.java)
+            val legintent =Intent(this, LegtuckResultActivity::class.java)
             startActivity(legintent)
         }
         //240m가는 버튼
         var runButton =findViewById<Button>(R.id.run)
         runButton.setOnClickListener{
-            val runintent =Intent(this,RunningCurrentActivity::class.java)
+            val runintent =Intent(this,RunningResultActivity::class.java)
             startActivity(runintent)
         }
         //전장순환
         var circuitButton=findViewById<Button>(R.id.circuit)
         circuitButton.setOnClickListener{
-            val circuitintent =Intent(this,CircuitCurrentActivity::class.java)
+            val circuitintent =Intent(this,CircuitResultActivity::class.java)
             startActivity(circuitintent)
         }
 
@@ -310,7 +309,6 @@ class ResultActivity : AppCompatActivity() {
                 return ("").toString()
             }
         }
-
     }
 
     fun Current_table(){//동적 데이터 입력

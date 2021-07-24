@@ -2,22 +2,18 @@ package com.amnapp.milimeter.activities
 
 import android.content.Intent
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
-import androidx.databinding.DataBindingUtil
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.amnapp.milimeter.R
 import com.amnapp.milimeter.UserData
 import com.amnapp.milimeter.databinding.ActivityAdminPageBinding
 import com.amnapp.milimeter.recyclerViews.AdminPageRecyclerAdapter
@@ -31,7 +27,8 @@ class AdminPageActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_admin_page)
+        binding = ActivityAdminPageBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         initUI()
     }
