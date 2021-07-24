@@ -310,7 +310,6 @@ class ResultActivity : AppCompatActivity() {
                 return ("").toString()
             }
         }
-
     }
 
     fun Current_table(){//동적 데이터 입력
