@@ -48,4 +48,12 @@ class AdminPageViewModel: ViewModel() {
             subUserList.postValue(preParent?.indexHashCode?.let { am.findChildAccount(it) })
         }
     }
+
+    fun reloadItems(callBack: ()->Unit){
+        CoroutineScope(Dispatchers.IO).launch{
+            val am = AccountManager()
+            subUserList.postValue(pathList.value?.last()?.indexHashCode?.let { am.findChildAccount(it) })
+            callBack()
+        }
+    }
 }

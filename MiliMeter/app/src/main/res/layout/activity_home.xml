@@ -19,7 +19,7 @@
         android:src="@drawable/face"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/DdayBt" />
 
     <TextView
         android:layout_width="251dp"
@@ -30,12 +30,14 @@
         android:layout_marginTop="30dp"
         android:layout_marginEnd="80dp"
         android:background="#ACB391"
+        android:text=" 이름 :\n\n 군번 :\n\n 소속 : "
+        android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/circleImageView" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/DdayBt"
         android:layout_width="129dp"
         android:layout_height="59dp"
         android:layout_marginTop="16dp"
@@ -61,7 +63,7 @@
         android:gravity="fill_horizontal"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:ignore="MissingConstraints">
+        app:layout_constraintStart_toStartOf="parent">
 
         <Button
             android:id="@+id/homeBt"

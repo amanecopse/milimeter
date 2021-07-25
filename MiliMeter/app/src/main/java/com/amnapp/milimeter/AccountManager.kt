@@ -11,6 +11,7 @@ import android.widget.Toast
 import com.amnapp.milimeter.activities.InviteCodeIssueActivity
 import com.amnapp.milimeter.activities.SignInActivity
 import com.amnapp.milimeter.activities.LoginActivity
+import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
@@ -19,6 +20,7 @@ import java.nio.charset.Charset
 import java.security.MessageDigest
 
 class AccountManager {
+
     var db = Firebase.firestore
 
     fun signInWithoutInvite(// 그룹개설자 가입과정
@@ -66,7 +68,7 @@ class AccountManager {
 
         hash(id+pw+userName)?.let {
             ud.indexHashCode = it
-            db.collection("users").document(it)
+            db.collection(USERS).document(it)
                 .set(ud)
                 .addOnSuccessListener {
                     Log.d(TAG, "DocumentSnapshot successfully written!")
@@ -108,7 +110,7 @@ class AccountManager {
 
         val inviteHashCode = hash(hostId+"!@#"+inviteCode+"!@#"+groupCode)
         val confirmHashCode = hash(id+"!@#"+pw+"!@#"+groupCode)
-        db.collection("users").whereEqualTo("inviteHashCode",inviteHashCode)
+        db.collection(USERS).whereEqualTo("inviteHashCode",inviteHashCode)
             .get()
             .addOnSuccessListener { querySnapshot ->
 
@@ -137,16 +139,16 @@ class AccountManager {
                     newUd.goalOfShuttleRunRank = goalOfShuttleRunRank
                     newUd.goalOfFieldTrainingRank = goalOfFieldTrainingRank
 
-                    db.collection("users").document(newUd.indexHashCode.toString())
+                    db.collection(USERS).document(newUd.indexHashCode.toString())
                         .set(newUd)
                         .addOnSuccessListener {
-                            db.collection("users").whereEqualTo("id",hostId)
+                            db.collection(USERS).whereEqualTo("id",hostId)
                                 .get()
                                 .addOnSuccessListener {
                                     val hostUd = it.documents[0].toObject<UserData>()
                                     if (hostUd != null) {
                                         hostUd.inviteHashCode = null //부모의 초대코드 발급 상태를 초기화시킨다
-                                        db.collection("users").document(hostUd.indexHashCode.toString())
+                                        db.collection(USERS).document(hostUd.indexHashCode.toString())
                                             .set(hostUd)
                                             .addOnSuccessListener {
                                                 Toast.makeText(context, "가입성공", Toast.LENGTH_SHORT).show()
@@ -161,14 +163,11 @@ class AccountManager {
             }
     }
 
-    fun login(context: Context, id: String, pw: String, groupCode: String){
-        val activity: LoginActivity = context as LoginActivity
-        activity.binding.loginLl.isClickable = false //연타 방지
-        activity.mDialog.show() // 로딩화면 실행
-        db.collection("users").whereEqualTo("id",id)
+    fun login(id: String, pw: String, groupCode: String, callBack: (message: String)->Unit){
+        db.collection(USERS).whereEqualTo("id",id)
             .get().addOnSuccessListener {
                 if(it.isEmpty){
-                    activity.showDialogMessage("로그인 실패", "존재하지 않는 아이디 입니다")
+                    callBack(ERROR_NOT_FOUND_ID)
                 }
                 else{
                     val document = it.documents[0]
@@ -179,42 +178,29 @@ class AccountManager {
                             ud.isLogined = true
                             UserData.setInstance(ud) // 서버에서 얻은 객체로 대체
                             mGroupCode = groupCode // 그룹코드 저장
+                            ud.indexHashCode?.let {
+                                db.collection(USERS).document(it)
+                                    .set(ud, SetOptions.merge())
+                            }
 
-                            Toast.makeText(context, "로그인 성공", Toast.LENGTH_SHORT).show()
-                            activity.binding.profileCiv.visibility = View.VISIBLE
-                            activity.binding.loginLl.visibility = View.GONE
-                            activity.binding.signInCv.visibility = View.GONE
-                            activity.binding.loginBoxCv.visibility = View.GONE
-                            activity.binding.logoutLl.visibility = View.VISIBLE
-                            activity.binding.issueCv.visibility = View.VISIBLE
-                            activity.binding.adminCv.visibility = if(ud.isAdmin) View.VISIBLE else View.GONE
-                            activity.binding.loginoutCv.setCardBackgroundColor(Color.RED)
+                            callBack(LOGIN_SUCCESS)
                         }
                         else{
-                            activity.showDialogMessage("로그인 실패", "비밀번호 또는 그룹코드가 다릅니다")
+                            callBack(ERROR_WRONG_INFO)
                         }
 
                     }
                 }
-                activity.binding.loginLl.isClickable = true //연타방지 해제
-                activity.mDialog.dismiss() // 로딩해제
             }
     }
 
-    fun logout(context: Context){
-        val activity = context as LoginActivity
+    fun logout(){
         val ud = UserData.getInstance()
-        activity.binding.profileCiv.visibility = View.GONE
-        activity.binding.loginLl.visibility = View.VISIBLE
-        activity.binding.signInCv.visibility = View.VISIBLE
-        activity.binding.loginBoxCv.visibility = View.VISIBLE
-        activity.binding.logoutLl.visibility = View.GONE
-        activity.binding.issueCv.visibility = View.GONE
-        activity.binding.adminCv.visibility = View.GONE
-        activity.binding.loginoutCv.setCardBackgroundColor(Color.WHITE)
-
         ud.isLogined = false
-
+        ud.indexHashCode?.let {
+            db.collection(USERS).document(it)
+                .set(ud, SetOptions.merge())
+        }
     }
 
     fun issueInviteCode(context: Context, inviteCode: String, isAdmin: Boolean){
@@ -233,17 +219,55 @@ class AccountManager {
             myUd.inviteHashCode = inviteCode// 초대코드 발급중인 부모계정임을 알리면서 현재 발급중인 코드(해시가 아닌 형태)를 저장
 
             //발급한 현재 상태를 서버에 올림
-            db.collection("users").document(childIndexHashCode)
+            db.collection(USERS).document(childIndexHashCode)
                 .set(childUd)
                 .addOnSuccessListener {
                     myUd.childCount += 1 //부모의 자식 카운트를 1늘려준다
-                    db.collection("users").document(myIndexHashCode)
+                    db.collection(USERS).document(myIndexHashCode)
                         .set(myUd)
                         .addOnSuccessListener {
                             activity.showDialogMessage("초대코드 발급 완료", "초대할 유저에게 초대코드를 공유해 주세요")
                         }
                 }
         }
+    }
+
+    fun uploadUserData(userData: UserData, callBack: (message: String) -> Unit){
+        userData.indexHashCode?.let {
+            db.collection(USERS).document(it)
+                .set(userData, SetOptions.merge())
+                .addOnSuccessListener {
+                    callBack(UPLOAD_SUCCESS)
+                }
+        }
+    }
+
+    suspend fun findChildAccount(myIndexHashCode: String): MutableList<UserData>{
+        val userList: MutableList<UserData> = mutableListOf()
+        val childCount: Int
+        val myUd = db.collection(USERS).document(myIndexHashCode).get().await().toObject<UserData>()
+        if (myUd != null) {
+            childCount = myUd.childCount
+            for (i in 0 until childCount){
+                val childUd: UserData?
+                val childIndexHashCode: String? = hash(myIndexHashCode+"!@#"+mGroupCode+"!@#"+i)
+                childUd =
+                    childIndexHashCode?.let { db.collection(USERS).document(it).get().await().toObject<UserData>() }
+                if (childUd != null) {
+                    userList.add(childUd)
+                }
+            }
+        }
+
+        return userList
+    }
+
+    fun hash(text: String): String? {
+        val sha = SHA256()
+        return sha.encrypt(text)
+
+        //초대해시코드는 myUd.id+"!@#"+inviteCode+"!@#"+mGroupCode
+        //자식의 인덱스 새로 만들 때는 -> myIndexHashCode+"!@#"+mGroupCode+"!@#"+i 순서유의
     }
 
     fun checkNetworkState(context: Context): Boolean {//인터넷 상태를 확인하는 함수
@@ -263,37 +287,15 @@ class AccountManager {
         }
     }
 
-    suspend fun findChildAccount(myIndexHashCode: String): MutableList<UserData>{
-        val userList: MutableList<UserData> = mutableListOf()
-        val childCount: Int
-        val myUd = db.collection("users").document(myIndexHashCode).get().await().toObject<UserData>()
-        if (myUd != null) {
-            childCount = myUd.childCount
-            for (i in 0 until childCount){
-                val childUd: UserData?
-                val childIndexHashCode: String? = hash(myIndexHashCode+"!@#"+mGroupCode+"!@#"+i)
-                childUd =
-                    childIndexHashCode?.let { db.collection("users").document(it).get().await().toObject<UserData>() }
-                if (childUd != null) {
-                    userList.add(childUd)
-                }
-            }
-        }
-
-        return userList
-    }
-
-    fun hash(text: String): String? {
-        val sha = SHA256()
-        return sha.encrypt(text)
-
-        //초대해시코드는 myUd.id+"!@#"+inviteCode+"!@#"+mGroupCode
-        //자식의 인덱스 새로 만들 때는 -> myIndexHashCode+"!@#"+mGroupCode+"!@#"+i 순서유의
-    }
-
     companion object{
         var mGroupCode: String? = null //트리순회에 필요하므로 로그인 시 정적으로 입력할 것
         const val TAG = "AccountManager"
+        const val USERS = "users"
+        const val ERROR_NOT_FOUND_ID = "아이디없는 오류"
+        const val ERROR_WRONG_INFO = "입력정보가 다름"
+        const val LOGIN_SUCCESS = "로그인 성공"
+        const val UPLOAD_SUCCESS = "업로드 성공"
+
     }
 }
 

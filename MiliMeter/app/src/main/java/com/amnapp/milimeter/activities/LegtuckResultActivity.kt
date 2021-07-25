@@ -6,11 +6,11 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.amnapp.milimeter.R
 
-class LegtuckCurrentActivity: AppCompatActivity() {
+class LegtuckResultActivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.`activity_leg_result`)
+        setContentView(R.layout.activity_leg_result)
 
         //버튼
         val CurrentButton =findViewById<Button>(R.id.all)
@@ -21,13 +21,13 @@ class LegtuckCurrentActivity: AppCompatActivity() {
         //달리기
         val runButton =findViewById<Button>(R.id.run)
         runButton.setOnClickListener{
-            val runintent =Intent(this,RunningCurrentActivity::class.java)
+            val runintent =Intent(this,RunningResultActivity::class.java)
             startActivity(runintent)
         }
         //전장순환
         val circuitButton=findViewById<Button>(R.id.circuit)
         circuitButton.setOnClickListener{
-            val circuitintent =Intent(this,CircuitCurrentActivity::class.java)
+            val circuitintent =Intent(this,CircuitResultActivity::class.java)
             startActivity(circuitintent)
         }
 

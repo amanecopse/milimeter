@@ -4,18 +4,20 @@ import android.app.DatePickerDialog
 import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.format.DateUtils
-import android.widget.DatePicker
+import android.util.Log
 import androidx.appcompat.app.AlertDialog
-import com.amnapp.milimeter.R
+import com.amnapp.milimeter.ChartManager
 import com.amnapp.milimeter.UserData
-import com.amnapp.milimeter.databinding.ActivityLoginBinding
 import com.amnapp.milimeter.databinding.ActivityTrainingRecordBinding
+import com.github.mikephil.charting.data.LineDataSet
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 class TrainingRecordActivity : AppCompatActivity() {
 
@@ -27,6 +29,15 @@ class TrainingRecordActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initUI()
+
+        showChart()
+    }
+
+    private fun showChart() {
+        val cm = ChartManager()
+        cm.loadTrainingRecordNDaysAgo(UserData.getInstance(), cm.getCurrentDateBasedOnFormat(), 7){ docs, lineDataSets, dateList ->
+            cm.makeLineChart(binding.chartLc, lineDataSets, dateList)
+        }
     }
 
     private fun initUI() {
@@ -35,6 +46,7 @@ class TrainingRecordActivity : AppCompatActivity() {
         }
         binding.confirmBt.setOnClickListener {
             val myUd = UserData.getInstance()
+            val currDate = binding.dateTv.text.toString()
             if(!myUd.isLogined){
                 showDialogMessage("오류", "로그인 한 뒤 기록해 주세요")
                 return@setOnClickListener
@@ -43,26 +55,33 @@ class TrainingRecordActivity : AppCompatActivity() {
                 showDialogMessage("오류", "공란을 입력해 주세요")
                 return@setOnClickListener
             }
-            val course = arrayOf("regTuck", "shuttleRun", "fieldTraining")
+            val course = arrayOf("legTuck", "shuttleRun", "fieldTraining", "weight")
             val record = hashMapOf(
-                course[binding.trainingCourseSp.selectedItemPosition] to binding.recordEt.text.toString()
+                course[binding.trainingCourseSp.selectedItemPosition] to binding.recordEt.text.toString(),
+                "date" to currDate
             )
-            myUd.indexHashCode?.let { indexHashCode ->
-                Firebase.firestore.collection("users")
-                    .document(indexHashCode)
-                    .collection("training records")
-                    .document(binding.dateTv.text.toString())
-                    .set(record, SetOptions.merge())
-                    .addOnSuccessListener {
-                        showDialogMessage("완료", "운동 결과를 기록했습니다")
-                    }
-            }
+            val cm = ChartManager()
+            cm.updateTrainingRecord(UserData.getInstance(),currDate,record,object: ChartManager.UICallBack{
+                override fun whatToDo() {
+                    showDialogMessage("완료", "운동 결과를 기록했습니다")
+                    showChart()
+                }
+
+                override fun whatToDoWithLineDataSets(lineDataSets: MutableList<LineDataSet>, dateList: ArrayList<String>) {
+                    return
+                }
+
+                override fun whatToDoWithDocuments(docs: MutableList<DocumentSnapshot>) {
+                    return
+                }
+
+            })
         }
     }
 
     private fun showDatePickerDialog() {
         val callBack = DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
-            binding.dateTv.text = ""+year+"."+month+"."+dayOfMonth
+            binding.dateTv.text = ""+year+"."+ String.format("%02d", month)+"."+String.format("%02d", dayOfMonth)
         }
         val year = SimpleDateFormat("yyyy").format(Date()).toInt()
         val month = SimpleDateFormat("MM").format(Date()).toInt()
@@ -76,25 +95,5 @@ class TrainingRecordActivity : AppCompatActivity() {
         builder.setMessage(body)
         builder.setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int -> }
         builder.show()
-    }
-
-    fun getTrainingRecord(recordDate: String, trainingCourse: String){// 날짜와 종목을 입력받아 서버에서 운동기록을 가져온다
-        TODO("이것은 예시로 작성된 함수이다 " +
-                "이러한 함수를 db의 운동기록값이 필요한 부분에서 사용하자")
-        val myUd = UserData.getInstance()
-        myUd.indexHashCode?.let { indexHashCode ->
-            Firebase.firestore.collection("users")
-                .document(indexHashCode)
-                .collection("training records")
-                .document(recordDate)
-                .get()
-                .addOnSuccessListener {
-                    val itIsHashMap = it.data
-                    val itIsScore = itIsHashMap?.get(trainingCourse)
-                    TODO("itIsScore에는 해당 일자 해당 종목의 기록이 있다" +
-                            "이 값을 UI의 표시하는 코드를 이곳에 작성하면된다")
-
-                }
-        }
     }
 }

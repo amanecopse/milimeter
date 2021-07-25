@@ -5,12 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import com.amnapp.milimeter.R
-import com.amnapp.milimeter.databinding.ActivityHomeBinding
 
 class HomeActivity : AppCompatActivity() {
-
-    val binding by lazy { ActivityHomeBinding.inflate(layoutInflater) }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
@@ -25,11 +21,5 @@ class HomeActivity : AppCompatActivity() {
             val bodyintent =Intent(this,ResultActivity::class.java)
             startActivity(bodyintent)
         }
-
-        findViewById<Button>(R.id.settingBt).setOnClickListener {
-            val intentSetting = Intent(this, SettingActivity::class.java)
-            startActivity(intentSetting)
-        }
-
     }
 }
