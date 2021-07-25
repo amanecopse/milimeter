@@ -67,31 +67,26 @@ class LoginActivity : AppCompatActivity() {
             val am = AccountManager()
 
             mDialog.show() // 로딩화면 실행
-            am.login(id, pw, groupCode, object: AccountManager.UICallBack{
-                override fun whatToDo() {
-                    return
-                }
-                override fun whatToDoWithMessage(result: String) {
-                    when(result){
-                        AccountManager.LOGIN_SUCCESS ->{
-                            Toast.makeText(this@LoginActivity, "로그인 성공", Toast.LENGTH_SHORT).show()
-                            binding.profileCiv.visibility = View.VISIBLE
-                            binding.loginLl.visibility = View.GONE
-                            binding.signInCv.visibility = View.GONE
-                            binding.loginBoxCv.visibility = View.GONE
-                            binding.logoutLl.visibility = View.VISIBLE
-                            binding.issueCv.visibility = View.VISIBLE
-                            binding.adminCv.visibility = if(UserData.getInstance().isAdmin) View.VISIBLE else View.GONE
-                            binding.loginoutCv.setCardBackgroundColor(Color.RED)
-                        }
-                        AccountManager.ERROR_NOT_FOUND_ID ->
-                            showDialogMessage("로그인 실패", "존재하지 않는 아이디 입니다")
-                        AccountManager.ERROR_WRONG_INFO ->
-                            showDialogMessage("로그인 실패", "비밀번호 또는 그룹코드가 다릅니다")
+            am.login(id, pw, groupCode){ result ->
+                when(result){
+                    AccountManager.LOGIN_SUCCESS ->{
+                        Toast.makeText(this@LoginActivity, "로그인 성공", Toast.LENGTH_SHORT).show()
+                        binding.profileCiv.visibility = View.VISIBLE
+                        binding.loginLl.visibility = View.GONE
+                        binding.signInCv.visibility = View.GONE
+                        binding.loginBoxCv.visibility = View.GONE
+                        binding.logoutLl.visibility = View.VISIBLE
+                        binding.issueCv.visibility = View.VISIBLE
+                        binding.adminCv.visibility = if(UserData.getInstance().isAdmin) View.VISIBLE else View.GONE
+                        binding.loginoutCv.setCardBackgroundColor(Color.RED)
                     }
-                    mDialog.dismiss() // 로딩해제
+                    AccountManager.ERROR_NOT_FOUND_ID ->
+                        showDialogMessage("로그인 실패", "존재하지 않는 아이디 입니다")
+                    AccountManager.ERROR_WRONG_INFO ->
+                        showDialogMessage("로그인 실패", "비밀번호 또는 그룹코드가 다릅니다")
                 }
-            })
+                mDialog.dismiss() // 로딩해제
+            }
             pm.setLoginData(this, id, pw, groupCode)//로컬저장소에 로그인 데이터 저장
         }
         binding.logoutLl.setOnClickListener {

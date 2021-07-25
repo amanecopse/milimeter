@@ -71,17 +71,12 @@ class HomeActivity : AppCompatActivity() {
             return// 로딩해제하고 빠져나옴
         }
 
-        AccountManager().login(loginDataArray[0]!!, loginDataArray[1]!!, loginDataArray[2]!!, object: AccountManager.UICallBack{
-            override fun whatToDo() {
-                return
+        AccountManager().login(loginDataArray[0]!!, loginDataArray[1]!!, loginDataArray[2]!!){result ->
+            if(result == AccountManager.LOGIN_SUCCESS){
+                Toast.makeText(this@HomeActivity, "로그인", Toast.LENGTH_SHORT).show()
             }
-            override fun whatToDoWithMessage(result: String) {
-                if(result == AccountManager.LOGIN_SUCCESS){
-                    Toast.makeText(this@HomeActivity, "로그인", Toast.LENGTH_SHORT).show()
-                }
-                mLoadingDialog.dismiss() // 로딩해제
-            }
-        })
+            mLoadingDialog.dismiss() // 로딩해제
+        }
     }
 
     fun setProgressDialog() {

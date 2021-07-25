@@ -20,10 +20,6 @@ import java.nio.charset.Charset
 import java.security.MessageDigest
 
 class AccountManager {
-    interface UICallBack{
-        fun whatToDo()
-        fun whatToDoWithMessage(result: String)
-    }
 
     var db = Firebase.firestore
 
@@ -167,11 +163,11 @@ class AccountManager {
             }
     }
 
-    fun login(id: String, pw: String, groupCode: String, callBack: UICallBack){
+    fun login(id: String, pw: String, groupCode: String, callBack: (message: String)->Unit){
         db.collection("users").whereEqualTo("id",id)
             .get().addOnSuccessListener {
                 if(it.isEmpty){
-                    callBack.whatToDoWithMessage(ERROR_NOT_FOUND_ID)
+                    callBack(ERROR_NOT_FOUND_ID)
                 }
                 else{
                     val document = it.documents[0]
@@ -187,10 +183,10 @@ class AccountManager {
                                     .set(ud, SetOptions.merge())
                             }
 
-                            callBack.whatToDoWithMessage(LOGIN_SUCCESS)
+                            callBack(LOGIN_SUCCESS)
                         }
                         else{
-                            callBack.whatToDoWithMessage(ERROR_WRONG_INFO)
+                            callBack(ERROR_WRONG_INFO)
                         }
 
                     }
@@ -236,21 +232,8 @@ class AccountManager {
         }
     }
 
-    fun checkNetworkState(context: Context): Boolean {//인터넷 상태를 확인하는 함수
-        val connectivityManager =
-            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            val nw = connectivityManager.activeNetwork ?: return false
-            val actNw = connectivityManager.getNetworkCapabilities(nw) ?: return false
-            return when {
-                actNw.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
-                actNw.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
-                else -> false
-            }
-        } else {
-            val nwInfo = connectivityManager.activeNetworkInfo ?: return false
-            return nwInfo.isConnected
-        }
+    fun uploadUserData(userData: UserData, body: (message: Int) -> Unit){
+
     }
 
     suspend fun findChildAccount(myIndexHashCode: String): MutableList<UserData>{
@@ -279,6 +262,23 @@ class AccountManager {
 
         //초대해시코드는 myUd.id+"!@#"+inviteCode+"!@#"+mGroupCode
         //자식의 인덱스 새로 만들 때는 -> myIndexHashCode+"!@#"+mGroupCode+"!@#"+i 순서유의
+    }
+
+    fun checkNetworkState(context: Context): Boolean {//인터넷 상태를 확인하는 함수
+        val connectivityManager =
+            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val nw = connectivityManager.activeNetwork ?: return false
+            val actNw = connectivityManager.getNetworkCapabilities(nw) ?: return false
+            return when {
+                actNw.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+                actNw.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+                else -> false
+            }
+        } else {
+            val nwInfo = connectivityManager.activeNetworkInfo ?: return false
+            return nwInfo.isConnected
+        }
     }
 
     companion object{
