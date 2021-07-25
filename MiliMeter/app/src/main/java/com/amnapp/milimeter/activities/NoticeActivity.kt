@@ -7,6 +7,7 @@ import com.amnapp.milimeter.R
 import com.amnapp.milimeter.databinding.ActivityNoticeBinding
 
 class NoticeActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_notice)
@@ -20,7 +21,7 @@ class NoticeActivity : AppCompatActivity() {
             }
 
         }
-        binding.alarmCheckSt.setOnCheckedChangeListener {buttonView, isChecked ->
+        binding.noticeCheckSt.setOnCheckedChangeListener {buttonView, isChecked ->
             if(isChecked) {
                 val intentAlarm = Intent(this, TimeSettingActivity::class.java)
                 startActivity(intentAlarm)
@@ -28,5 +29,4 @@ class NoticeActivity : AppCompatActivity() {
         }
 
     }
-
 }

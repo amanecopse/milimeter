@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.amnapp.milimeter.R
-import com.amnapp.milimeter.databinding.ActivitySettingBinding
 
 class SettingActivity : AppCompatActivity() {
 
