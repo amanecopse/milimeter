@@ -64,7 +64,7 @@ class ChartManager {
         val yRAxis = lineChart.axisRight
         yRAxis.axisMaximum=10f //y축최대
         yRAxis.axisMinimum=0f  //y축최소
-        yRAxis.valueFormatter =(ResultActivity.MyValueFormatter(yValue))
+        yRAxis.valueFormatter =(TrainingValueFormatter(yValue))
         yRAxis.granularity =1f
         yRAxis.labelCount=10
         yRAxis.textColor = Color.BLACK
@@ -74,7 +74,7 @@ class ChartManager {
         val yLAxis = lineChart.axisLeft
         yLAxis.axisMaximum=10f //y축최대
         yLAxis.axisMinimum=0f  //y축최소
-        yLAxis.valueFormatter =(ResultActivity.MyValueFormatter(yValue))
+        yLAxis.valueFormatter =(TrainingValueFormatter(yValue))
         yLAxis.granularity =1f
         yLAxis.labelCount=10
         yLAxis.textColor = Color.BLACK
