@@ -10,7 +10,6 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-//임주현
 
         findViewById<Button>(R.id.debugBt).setOnClickListener {//디버그 창으로 가는 코드
             val intent = Intent(this, DebugActivity::class.java)
@@ -22,11 +21,10 @@ class HomeActivity : AppCompatActivity() {
             startActivity(bodyintent)
         }
 
-        // 설정창 화면전환
+        // 설정 창으로 가는 코드
         findViewById<Button>(R.id.settingBt).setOnClickListener {//디버그 창으로 가는 코드
             val settingintent = Intent(this, SettingActivity::class.java)
             startActivity(intent)
         }
-        // 충돌 확인용
     }
 }
