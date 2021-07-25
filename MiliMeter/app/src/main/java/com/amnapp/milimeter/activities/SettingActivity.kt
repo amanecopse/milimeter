@@ -11,6 +11,7 @@ class SettingActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_setting)
         //setContentView(binding.root)
 
         // 테마설정창 이동
