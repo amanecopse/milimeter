@@ -10,7 +10,7 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-//임주현 코드
+//임지선 코드
 
         findViewById<Button>(R.id.debugBt).setOnClickListener {//디버그 창으로 가는 코드
             val intent = Intent(this, DebugActivity::class.java)
