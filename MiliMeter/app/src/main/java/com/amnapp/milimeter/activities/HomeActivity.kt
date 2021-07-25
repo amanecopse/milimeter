@@ -21,5 +21,11 @@ class HomeActivity : AppCompatActivity() {
             val bodyintent =Intent(this,ResultActivity::class.java)
             startActivity(bodyintent)
         }
+
+        // 설정창 화면전환
+        findViewById<Button>(R.id.settingBt).setOnClickListener {//디버그 창으로 가는 코드
+            val settingintent = Intent(this, SettingActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
