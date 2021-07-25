@@ -1,8 +1,6 @@
 package com.amnapp.milimeter
 
 import android.graphics.Color
-import android.util.Log
-import com.amnapp.milimeter.activities.ResultActivity
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.AxisBase
@@ -144,6 +142,62 @@ class ChartManager {
         }
     }
 
+    fun loadTrainingRecordNDaysAgo(
+        userData: UserData,
+        date: String, howLongAgo: Int,
+        callBack: (
+            docs: MutableList<DocumentSnapshot>, lineDataSets: MutableList<LineDataSet>, dateList: ArrayList<String>
+                ) -> Unit
+    ){
+        val ref = userData.indexHashCode?.let {
+            Firebase.firestore.collection(USERS).document(it)
+                .collection(TRAINING_RECORDS)
+        }
+        ref?.get()?.addOnSuccessListener {
+            if(!it.isEmpty){//training records 컬렉션이 존재함
+                ref.whereLessThanOrEqualTo(DATE, date)//기준일로부터
+                    .whereGreaterThan(DATE, calculateDate(date, -howLongAgo))//n일전까지의 자료를
+                    .orderBy(DATE)// 일자순으로 가져옴
+                    .get()
+                    .addOnSuccessListener { queryResult ->
+                        var index = 0
+                        val docs = queryResult.documents
+                        val dateList = ArrayList<String>()
+                        val legTuckEntryList = ArrayList<Entry>()
+                        val shuttleRunEntryList = ArrayList<Entry>()
+                        val fieldTrainingEntryList = ArrayList<Entry>()
+
+                        for(doc in docs){
+                            dateList.add(doc.data?.get(DATE) as String)
+                            doc.data?.get(LEG_TUCK)?.let { score->
+                                legTuckEntryList.add(
+                                    Entry(index.toFloat(),calculateGrade(score.toString().toInt(), LEG_TUCK))
+                                )
+                            }
+                            doc.data?.get(SHUTTLE_RUN)?.let { score->
+                                shuttleRunEntryList.add(
+                                    Entry(index.toFloat(),calculateGrade(score.toString().toInt(), SHUTTLE_RUN))
+                                )
+                            }
+                            doc.data?.get(FIELD_TRAINING)?.let { score->
+                                fieldTrainingEntryList.add(
+                                    Entry(index.toFloat(),calculateGrade(score.toString().toInt(), FIELD_TRAINING))
+                                )
+                            }
+                            index++
+                        }
+                        val legTuckLineDataSet = LineDataSet(legTuckEntryList,"레그턱")
+                        val shuttleRunLineDataSet = LineDataSet(shuttleRunEntryList,"240m 왕복달리기")
+                        val fieldTrainingLineDataSet = LineDataSet(fieldTrainingEntryList,"전장순환훈련")
+                        val lineDataSets = mutableListOf<LineDataSet>(
+                            legTuckLineDataSet, shuttleRunLineDataSet, fieldTrainingLineDataSet
+                        )
+                        callBack(docs, lineDataSets, dateList)
+                    }
+            }
+        }
+    }
+
     fun updateTrainingRecord(userData: UserData, date: String, record: HashMap<String, String>, callBack: UICallBack){
         userData.indexHashCode?.let { indexHashCode ->
             Firebase.firestore.collection(USERS)
@@ -202,6 +256,10 @@ class ChartManager {
             else if (score>135) return 9f //1등급
             else return 10f //특급
         }
+    }
+
+    fun getCurrentDateBasedOnFormat(): String{
+        return SimpleDateFormat("yyyy.MM.dd").format(Date())
     }
 
     companion object{

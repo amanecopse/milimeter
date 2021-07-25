@@ -2,22 +2,13 @@ package com.amnapp.milimeter.activities
 
 import android.app.DatePickerDialog
 import android.content.DialogInterface
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.format.DateUtils
 import android.util.Log
-import android.widget.DatePicker
 import androidx.appcompat.app.AlertDialog
 import com.amnapp.milimeter.ChartManager
-import com.amnapp.milimeter.R
 import com.amnapp.milimeter.UserData
 import com.amnapp.milimeter.databinding.ActivityTrainingRecordBinding
-import com.github.mikephil.charting.animation.Easing
-import com.github.mikephil.charting.components.Description
-import com.github.mikephil.charting.components.XAxis
-import com.github.mikephil.charting.data.Entry
-import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import com.google.firebase.firestore.DocumentSnapshot
@@ -44,26 +35,9 @@ class TrainingRecordActivity : AppCompatActivity() {
 
     private fun showChart() {
         val cm = ChartManager()
-        cm.loadTrainingRecordNDaysAgo(
-            UserData.getInstance(),
-            "2021.07.24",
-            7,
-            object : ChartManager.UICallBack {
-                override fun whatToDo() {
-                    return
-                }
-
-                override fun whatToDoWithLineDataSets(
-                    lineDataSets: MutableList<LineDataSet>,
-                    dateList: ArrayList<String>
-                ) {
-                    cm.makeLineChart(binding.chartLc, lineDataSets, dateList)
-                }
-
-                override fun whatToDoWithDocuments(docs: MutableList<DocumentSnapshot>) {
-                    return
-                }
-            })
+        cm.loadTrainingRecordNDaysAgo(UserData.getInstance(), cm.getCurrentDateBasedOnFormat(), 7){ docs, lineDataSets, dateList ->
+            cm.makeLineChart(binding.chartLc, lineDataSets, dateList)
+        }
     }
 
     private fun initUI() {
