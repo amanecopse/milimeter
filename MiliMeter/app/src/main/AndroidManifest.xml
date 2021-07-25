@@ -9,14 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".activities.NoticeActivity"></activity>
+        <activity android:name=".activities.TimeSettingActivity" />
         <activity android:name=".activities.HomeActivity"> <!-- 홈화면 -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <!-- 임주현 -->
+        </activity> <!-- 임주현 -->
         <activity android:name=".activities.AdminPageActivity" /> <!-- 관리자창 -->
         <activity android:name=".activities.InviteCodeIssueActivity" /> <!-- 초대코드발행창 -->
         <activity android:name=".activities.SignInActivity" /> <!-- 회원가입창 -->
@@ -33,12 +34,11 @@
         <activity android:name=".activities.SettingActivity" />
         <activity android:name=".activities.SpecialThemeSettingActivity" />
         <activity android:name=".activities.ThemeActivity" />
-        <activity android:name=".activities.UserInformationActivity" />
-        <!-- 고동현 -->
-        <activity android:name=".activities.ResultActivity" /><!-- 결과창 -->
-        <activity android:name=".activities.CircuitCurrentActivity" /><!-- 전장순환 -->
-        <activity android:name=".activities.LegtuckCurrentActivity" /><!-- 레그턱 -->
-        <activity android:name=".activities.RunningCurrentActivity" /><!-- 240m -->
+        <activity android:name=".activities.UserInformationActivity" /> <!-- 고동현 -->
+        <activity android:name=".activities.ResultActivity" /> <!-- 결과창 -->
+        <activity android:name=".activities.CircuitCurrentActivity" /> <!-- 전장순환 -->
+        <activity android:name=".activities.LegtuckCurrentActivity" /> <!-- 레그턱 -->
+        <activity android:name=".activities.RunningCurrentActivity" />
     </application>
 
 </manifest>
