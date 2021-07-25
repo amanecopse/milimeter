@@ -2,7 +2,9 @@ package com.amnapp.milimeter.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import com.amnapp.milimeter.R
 import com.amnapp.milimeter.databinding.ActivitySettingBinding
 
 class SettingActivity : AppCompatActivity() {
@@ -13,19 +15,31 @@ class SettingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        // 각 설정 창으로 이동 -> 버튼클릭시 화면 전환
-        binding.themeSettingBt.setOnClickListener {
-            val intent = Intent(this, ThemeActivity::class.java)
+        // 테마설정창 이동
+        findViewById<Button>(R.id.themeSettingBt).setOnClickListener {
+            val intentTheme = Intent(this, ThemeActivity::class.java)
+            startActivity(intentTheme)
+        }
+        // 언어설정창 이동
+        findViewById<Button>(R.id.languageSettingBt).setOnClickListener {
+            val intentLanguage = Intent(this, LanguageActivity::class.java)
+            startActivity(intentLanguage)
+        }
+        // 알림설정창 이동
+        findViewById<Button>(R.id.noticeSettingBt).setOnClickListener {
+            val intentNotice = Intent(this, NoticeActivity::class.java)
+            startActivity(intentNotice)
+        }
+        // 개인설정창 이동
+        findViewById<Button>(R.id.debugBt).setOnClickListener {//디버그 창으로 가는 코드
+            val intent = Intent(this, DebugActivity::class.java)
             startActivity(intent)
         }
-        binding.languageSettingBt.setOnClickListener {
-            val intent = Intent(this, LanguageActivity::class.java)
+        findViewById<Button>(R.id.debugBt).setOnClickListener {//디버그 창으로 가는 코드
+            val intent = Intent(this, DebugActivity::class.java)
             startActivity(intent)
         }
-//        binding.alarmSettingBt.setOnClickListener {
-//            val intent = Intent(this, AlarmActivity::class.java)
-//            startActivity(intent)
-//        }
+
         binding.privateSettingBt.setOnClickListener {
             val intent = Intent(this, PrivateAdministrationActivity::class.java)
             startActivity(intent)
@@ -51,11 +65,10 @@ class SettingActivity : AppCompatActivity() {
 //            startActivity(intent)
 //        }
         // 이다현님 프로젝트 담당 부분 - goal창(합친 뒤에 주석 없애주세요)
-        binding.goalBt.setOnClickListener {
-            val intent = Intent(this, GoalActivity::class.java)
-            startActivity(intent)
-        }
-
+//        binding.goalBt.setOnClickListener {
+//            val intent = Intent(this, GoalActivity::class.java)
+//            startActivity(intent)
+//        }
         binding.settingBt.setOnClickListener {
             val intent = Intent(this, SettingActivity::class.java)
             startActivity(intent)
