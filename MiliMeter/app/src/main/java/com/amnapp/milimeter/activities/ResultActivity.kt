@@ -1,13 +1,16 @@
 package com.amnapp.milimeter.activities
 
 import android.content.Intent
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import com.amnapp.milimeter.ChartManager
 import com.amnapp.milimeter.DataUtil
 import com.amnapp.milimeter.R
+import com.amnapp.milimeter.UserData
+import com.github.mikephil.charting.charts.LineChart
+import com.github.mikephil.charting.data.LineDataSet
 
 class ResultActivity : AppCompatActivity() {
 
@@ -15,8 +18,8 @@ class ResultActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_result)
 
-        Current_table()
-
+        current_table()
+        result_graph()
 
         //레그턱 가는 버튼
         var legButton =findViewById<Button>(R.id.legtuckbutton)
@@ -68,11 +71,18 @@ class ResultActivity : AppCompatActivity() {
         }
 
 
+
     }
     //그래프 생성
+    private fun result_graph(){
+        var linechart=findViewById<LineChart>(R.id.lineChart)
+        val cm = ChartManager()
+        cm.loadTrainingRecordNDaysAgo(UserData.getInstance(), cm.getCurrentDateBasedOnFormat(), 7){ docs, lineDataSets, dateList ->
+            cm.makeLineChart(linechart, lineDataSets, dateList)
+        }
+    }
 
-
-    fun Current_table(){//동적 데이터 입력
+    private fun current_table(){//동적 데이터 입력
 
      val xvalue=ArrayList<String>()//날짜
         xvalue.add("5월1주")
