@@ -23,8 +23,8 @@ class HomeActivity : AppCompatActivity() {
 
         // 설정 창으로 가는 코드
         findViewById<Button>(R.id.settingBt).setOnClickListener {//디버그 창으로 가는 코드
-            val settingintent = Intent(this, SettingActivity::class.java)
-            startActivity(intent)
+            val intentSetting = Intent(this, SettingActivity::class.java)
+            startActivity(intentSetting)
         }
     }
 }
