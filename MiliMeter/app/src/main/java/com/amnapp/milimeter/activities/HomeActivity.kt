@@ -27,5 +27,6 @@ class HomeActivity : AppCompatActivity() {
             val settingintent = Intent(this, SettingActivity::class.java)
             startActivity(intent)
         }
+        // 충돌 확인용
     }
 }

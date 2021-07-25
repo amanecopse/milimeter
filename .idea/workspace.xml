@@ -27,11 +27,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f76ba81a-de21-444c-8ebd-853ac538e4a2" name="Default Changelist" comment="아이콘 화면전환 수정, alarm-&gt;notice수정">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="f76ba81a-de21-444c-8ebd-853ac538e4a2" name="Default Changelist" comment="homeActivity에 설정창 화면전환 추가">
       <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/HomeActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/HomeActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/SettingActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/SettingActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_setting.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_setting.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +97,14 @@
       <option name="project" value="LOCAL" />
       <updated>1627205837064</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="homeActivity에 설정창 화면전환 추가">
+      <created>1627208547622</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1627208547623</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -120,7 +124,8 @@
     <MESSAGE value="package 수정(push확인)" />
     <MESSAGE value="languageActivity 수정, strings.xml 추가" />
     <MESSAGE value="아이콘 화면전환 수정, alarm-&gt;notice수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="아이콘 화면전환 수정, alarm-&gt;notice수정" />
+    <MESSAGE value="homeActivity에 설정창 화면전환 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="homeActivity에 설정창 화면전환 추가" />
   </component>
   <component name="WindowStateProjectService">
     <state x="2815" y="-79" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1626928676278">
@@ -143,10 +148,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="513" y="316" key="Github.CreatePullRequestDialog/0.0.1536.824@0.0.1536.824" timestamp="1626785626778" />
-    <state x="226" y="71" key="Vcs.Push.Dialog.v2" timestamp="1627206338536">
+    <state x="226" y="71" key="Vcs.Push.Dialog.v2" timestamp="1627208561630">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="226" y="71" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1627206338536" />
+    <state x="226" y="71" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1627208561630" />
     <state x="2683" y="-164" key="Vcs.Push.Dialog.v2/2400.-254.1920.1040/0.0.1536.824@2400.-254.1920.1040" timestamp="1626929397923" />
     <state x="3174" y="179" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1626927917064">
       <screen x="2400" y="-254" width="1920" height="1040" />
