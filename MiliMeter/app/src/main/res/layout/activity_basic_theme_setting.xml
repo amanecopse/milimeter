@@ -87,7 +87,8 @@
                     android:text="기본"
                     android:textColor="@color/dark_green"
                     android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:checked="true" />
 
                 <RadioButton
                     android:id="@+id/darkModeRBt"

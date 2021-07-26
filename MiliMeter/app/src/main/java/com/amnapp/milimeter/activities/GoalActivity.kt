@@ -24,11 +24,11 @@ class GoalActivity : AppCompatActivity() {
 //            val intent = Intent(this, BodyActivity::class.java)
 //            startActivity(intent)
 //        }
-        // 고동현님 프로젝트 담당 부분 - result창(합친 뒤에 주석 없애주세요)
-//        binding.resultBt.setOnClickListener {
-//            val intent = Intent(this, ResultActivity::class.java)
-//            startActivity(intent)
-//        }
+
+        binding.resultBt.setOnClickListener {
+            val intent = Intent(this, ResultActivity::class.java)
+            startActivity(intent)
+        }
 
         binding.goalBt.setOnClickListener {
             val intent = Intent(this, GoalActivity::class.java)

@@ -30,9 +30,22 @@
     <list default="true" id="f76ba81a-de21-444c-8ebd-853ac538e4a2" name="Default Changelist" comment="설정창 화면전환 추가">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/GoalActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/GoalActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/NoticeActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/NoticeActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/SettingActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/SettingActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/PrivateAdministrationActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/PrivateAdministrationActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/res/drawable-v24/ic_baseline_cancel_20_white.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_basic_theme_setting.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_basic_theme_setting.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_goal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_goal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_home.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_language.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_language.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_notice.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_notice.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_private_administration.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_private_administration.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_result.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_result.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_setting.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_setting.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_special_theme_setting.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_special_theme_setting.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_theme.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_theme.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_theme_example.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_theme_example.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_user_information.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_user_information.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,10 +188,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="344" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1626785387096" />
-    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1627015297641">
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1627278461277">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1627015297641" />
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1627278461277" />
     <state x="513" y="316" key="Github.CreatePullRequestDialog" timestamp="1626785626778">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

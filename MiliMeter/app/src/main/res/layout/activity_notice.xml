@@ -22,7 +22,7 @@
             android:gravity="center_vertical">
 
             <TextView
-                android:layout_width="340dp"
+                android:layout_width="320dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:drawableLeft="@drawable/ic_baseline_notifications_none_15_white"
@@ -39,10 +39,10 @@
                 android:id="@+id/cancelBt"
                 android:layout_width="90dp"
                 android:layout_height="match_parent"
-                android:scaleType="center"
-                android:src="@drawable/ic_baseline_cancel_20_white"
+                android:layout_gravity="center_vertical"
                 android:background="@android:color/transparent"
-                android:layout_gravity="center_vertical"/>
+                android:scaleType="center"
+                android:src="@drawable/ic_baseline_cancel_30_white" />
 
         </LinearLayout>
 

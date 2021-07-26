@@ -17,12 +17,6 @@ class PrivateAdministrationActivity :AppCompatActivity() {
             cancelBt.setOnClickListener{
                 finish()
             }
-            idCheckBt.setOnClickListener {
-                // 아이디가 맞는지 확인작업 수행
-            }
-            idSaveBt.setOnClickListener {
-                // 새로운 아이디 수정 및 저장작업 수행
-            }
             passwordCheckBt.setOnClickListener {
                 // 비밀번호가 맞는지 확인작업 수행
             }
