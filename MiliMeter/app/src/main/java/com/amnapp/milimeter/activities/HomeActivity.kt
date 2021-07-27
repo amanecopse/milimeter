@@ -42,24 +42,24 @@ class HomeActivity : AppCompatActivity() {
             val bodyintent =Intent(this,ResultActivity::class.java)
             startActivity(bodyintent)
         }
-        binding.settingBt.setOnClickListener {//디버그 창으로 가는 코드
+        binding.settingBt.setOnClickListener {//설정 창으로 가는 코드
             val settingintent = Intent(this, SettingActivity::class.java)
             startActivity(settingintent)
         }
         //Dday 날짜설정
-//        binding.DdayBt.setOnClickListener {
-//            val today = GregorianCalendar()
-//           val year: Int = today.get(Calendar.YEAR)
-//          val month: Int = today.get(Calendar.MONTH)
-//          val date: Int = today.get(Calendar.DATE)
-//
-//          val dlg = DatePickerDialog(this, object : DatePickerDialog.OnDateSetListener {
-//              override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-//
-//               }
-//         }, year, month, date)
-//        dlg.show()
-//      }
+        binding.DdayBt.setOnClickListener {
+            val today = GregorianCalendar()
+           val year: Int = today.get(Calendar.YEAR)
+          val month: Int = today.get(Calendar.MONTH)
+          val date: Int = today.get(Calendar.DATE)
+
+          val dlg = DatePickerDialog(this, object : DatePickerDialog.OnDateSetListener {
+              override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+
+              }
+         }, year, month, date)
+        dlg.show()
+      }
     }
 
     private fun autoLogin() {

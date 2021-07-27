@@ -20,10 +20,10 @@ class NoticeActivity : AppCompatActivity() {
             }
         }
 
-        binding.noticeCheckSt.setOnCheckedChangeListener {_, onSwitch ->
-            if(onSwitch) {
-                val intentNoticeSet = Intent(this, TimeSettingActivity::class.java)
-                startActivity(intentNoticeSet)
+        binding.noticeCheckSt.setOnCheckedChangeListener { buttonView, isChecked ->
+            if(isChecked == true) {
+                val intentTimeSet = Intent(this, TimeSettingActivity::class.java)
+                startActivity(intentTimeSet)
             }
         }
 
