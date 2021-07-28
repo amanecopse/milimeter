@@ -20,10 +20,10 @@ class GoalActivity : AppCompatActivity() {
             startActivity(homeintent)
         }
 
-//        binding.bodyBt.setOnClickListener {
-//            val bodyintent = Intent(this, BodyActivity::class.java)
-//            startActivity(bodyintent)
-//        }
+        binding.bodyBt.setOnClickListener {
+            val bodyintent = Intent(this, BodyActivity::class.java)
+            startActivity(bodyintent)
+        }
 
         binding.resultBt.setOnClickListener {
            val resultintent = Intent(this, ResultActivity::class.java)
