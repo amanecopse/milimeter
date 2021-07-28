@@ -38,14 +38,39 @@ class HomeActivity : AppCompatActivity() {
             val intent = Intent(this, DebugActivity::class.java)
             startActivity(intent)
         }
-        binding.resultBt.setOnClickListener {
-            val bodyintent =Intent(this,ResultActivity::class.java)
-            startActivity(bodyintent)
+        // 각 아이콘 창으로 이동 -> 아이콘 버튼 클릭시 화면 전환
+        binding.homeBt.setOnClickListener {
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
         }
+        // 담당 미정 - body창(합친 뒤에 주석 없애주세요)
+//        binding.bodyBt.setOnClickListener {
+//            val intent = Intent(this, BodyActivity::class.java)
+//            startActivity(intent)
+//        }
+
+       binding.resultBt.setOnClickListener {
+            val intent = Intent(this, ResultActivity::class.java)
+           startActivity(intent)
+       }
+
+        binding.goalBt.setOnClickListener {
+            val goalintent = Intent(this, GoalActivity::class.java)
+            startActivity(goalintent)
+        }
+<<<<<<< Updated upstream
         binding.settingBt.setOnClickListener {//설정 창으로 가는 코드
             val settingintent = Intent(this, SettingActivity::class.java)
             startActivity(settingintent)
         }
+=======
+
+        binding.settingBt.setOnClickListener {
+            val intent = Intent(this, SettingActivity::class.java)
+            startActivity(intent)
+        }
+
+>>>>>>> Stashed changes
         //Dday 날짜설정
         binding.DdayBt.setOnClickListener {
             val today = GregorianCalendar()
