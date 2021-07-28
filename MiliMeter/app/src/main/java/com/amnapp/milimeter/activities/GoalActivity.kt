@@ -16,25 +16,14 @@ class GoalActivity : AppCompatActivity() {
 
         // 각 아이콘 창으로 이동 -> 아이콘 버튼 클릭시 화면 전환
         binding.homeBt.setOnClickListener {
-            val intent = Intent(this, HomeActivity::class.java)
-            startActivity(intent)
+            val homeintent = Intent(this, HomeActivity::class.java)
+            startActivity(homeintent)
         }
-        // 담당 미정 - body창(합친 뒤에 주석 없애주세요)
-//        binding.bodyBt.setOnClickListener {
-<<<<<<< Updated upstream
-//            val intent = Intent(this, BodyActivity::class.java)
-//            startActivity(intent)
-//        }
 
-        binding.resultBt.setOnClickListener {
-            val intent = Intent(this, ResultActivity::class.java)
-            startActivity(intent)
-        }
-=======
+//        binding.bodyBt.setOnClickListener {
 //            val bodyintent = Intent(this, BodyActivity::class.java)
 //            startActivity(bodyintent)
 //        }
->>>>>>> Stashed changes
 
         binding.resultBt.setOnClickListener {
            val resultintent = Intent(this, ResultActivity::class.java)

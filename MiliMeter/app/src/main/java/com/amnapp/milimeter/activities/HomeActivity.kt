@@ -40,8 +40,8 @@ class HomeActivity : AppCompatActivity() {
         }
         // 각 아이콘 창으로 이동 -> 아이콘 버튼 클릭시 화면 전환
         binding.homeBt.setOnClickListener {
-            val intent = Intent(this, HomeActivity::class.java)
-            startActivity(intent)
+            val homeintent = Intent(this, HomeActivity::class.java)
+            startActivity(homeintent)
         }
         // 담당 미정 - body창(합친 뒤에 주석 없애주세요)
 //        binding.bodyBt.setOnClickListener {
@@ -50,33 +50,26 @@ class HomeActivity : AppCompatActivity() {
 //        }
 
        binding.resultBt.setOnClickListener {
-            val intent = Intent(this, ResultActivity::class.java)
-           startActivity(intent)
+            val resultintent = Intent(this, ResultActivity::class.java)
+           startActivity(resultintent)
        }
 
         binding.goalBt.setOnClickListener {
             val goalintent = Intent(this, GoalActivity::class.java)
             startActivity(goalintent)
         }
-<<<<<<< Updated upstream
+
         binding.settingBt.setOnClickListener {//설정 창으로 가는 코드
             val settingintent = Intent(this, SettingActivity::class.java)
             startActivity(settingintent)
         }
-=======
 
-        binding.settingBt.setOnClickListener {
-            val intent = Intent(this, SettingActivity::class.java)
-            startActivity(intent)
-        }
-
->>>>>>> Stashed changes
         //Dday 날짜설정
         binding.DdayBt.setOnClickListener {
             val today = GregorianCalendar()
-           val year: Int = today.get(Calendar.YEAR)
-          val month: Int = today.get(Calendar.MONTH)
-          val date: Int = today.get(Calendar.DATE)
+            val year: Int = today.get(Calendar.YEAR)
+            val month: Int = today.get(Calendar.MONTH)
+            val date: Int = today.get(Calendar.DATE)
 
           val dlg = DatePickerDialog(this, object : DatePickerDialog.OnDateSetListener {
               override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
