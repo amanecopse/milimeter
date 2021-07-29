@@ -1,6 +1,7 @@
 package com.amnapp.milimeter.activities
 
 import android.content.Intent
+import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.amnapp.milimeter.R
 import com.amnapp.milimeter.databinding.ActivityGoalBinding
@@ -10,8 +11,8 @@ class GoalActivity : AppCompatActivity() {
 
     val binding by lazy { ActivityGoalBinding.inflate(layoutInflater) }
 
-    override fun setContentView(layoutResID: Int) {
-        super.setContentView(R.layout.activity_goal)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
         // 각 아이콘 창으로 이동 -> 아이콘 버튼 클릭시 화면 전환
