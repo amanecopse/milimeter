@@ -27,26 +27,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f76ba81a-de21-444c-8ebd-853ac538e4a2" name="Default Changelist" comment="임지선 - body창 추가(타이머완성)">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/BasicThemeSettingActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/BasicThemeSettingActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/BodyActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/BodyActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/LanguageActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/LanguageActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/MakingThemeSettingActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/MakingThemeSettingActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/NoticeActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/NoticeActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/PrivateAdministrationActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/PrivateAdministrationActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/SpecialThemeSettingActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/SpecialThemeSettingActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/ThemeActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/ThemeActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/TimeSettingActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/TimeSettingActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/UserInformationActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/UserInformationActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_basic_theme_setting.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_basic_theme_setting.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_making_theme_setting.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_making_theme_setting.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_private_administration.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_private_administration.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_special_theme_setting.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_special_theme_setting.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_time_setting.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_time_setting.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_user_information.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_user_information.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/record_dialog.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/record_dialog.xml" afterDir="false" />
+    <list default="true" id="f76ba81a-de21-444c-8ebd-853ac538e4a2" name="Default Changelist" comment="임지선 - 비밀번호 다이얼로그 추가">
+      <change afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/passwardchange_dialog1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/passwardchange_dialog2.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,7 +147,14 @@
       <option name="project" value="LOCAL" />
       <updated>1627509684003</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="임지선 - 회원정보 수정(서버 -ing)">
+      <created>1627550218489</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1627550218491</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -190,7 +180,9 @@
     <MESSAGE value="설정창 화면전환 추가" />
     <MESSAGE value="임지선 - 프로젝트(수정)" />
     <MESSAGE value="임지선 - body창 추가(타이머완성)" />
-    <option name="LAST_COMMIT_MESSAGE" value="임지선 - body창 추가(타이머완성)" />
+    <MESSAGE value="임지선 - 회원정보 수정(서버 -ing)" />
+    <MESSAGE value="임지선 - 비밀번호 다이얼로그 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="임지선 - 비밀번호 다이얼로그 추가" />
   </component>
   <component name="WindowStateProjectService">
     <state x="2815" y="-79" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1626928676278">
