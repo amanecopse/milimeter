@@ -12,11 +12,11 @@ import androidx.appcompat.app.AppCompatActivity
 import com.amnapp.milimeter.R
 import com.amnapp.milimeter.UserData
 import com.amnapp.milimeter.UserData.Companion.getInstance
-import com.amnapp.milimeter.databinding.ActivityPrivateAdministrationBinding
+import com.amnapp.milimeter.databinding.ActivityUserPasswardBinding
 
-class PrivateAdministrationActivity :AppCompatActivity() {
+class UserPasswardActivity :AppCompatActivity() {
 
-    val binding by lazy { ActivityPrivateAdministrationBinding.inflate(layoutInflater) }
+    val binding by lazy { ActivityUserPasswardBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +40,7 @@ class PrivateAdministrationActivity :AppCompatActivity() {
                     val userPw = getInstance().pw
                     // 새로운 비밀번호로 변경
                     if (userPw == pw) {
-                        val dialog2 = PwChangeDialog(this@PrivateAdministrationActivity)
+                        val dialog2 = PwChangeDialog(this@UserPasswardActivity)
                         dialog2.recordDialog()
 
                         dialog2.RecordDialog()
@@ -49,19 +49,19 @@ class PrivateAdministrationActivity :AppCompatActivity() {
                             override fun onClicked(newPw: String) {
                                 if (userPw == newPw) {
                                    // 변경하기 전과 같으면 오류
-                                    Toast.makeText(this@PrivateAdministrationActivity, "잘못된 정보입니다", Toast.LENGTH_LONG).show()
+                                    Toast.makeText(this@UserPasswardActivity, "잘못된 정보입니다", Toast.LENGTH_LONG).show()
                                 } else {
                                     val userData = getInstance()
                                     userData.pw = newPw
                                     UserData.setInstance(userData)
                                     // 서버에도 추가해야 함 -ing
-                                    Toast.makeText(this@PrivateAdministrationActivity, "비밀번호가 변경되었습니다", Toast.LENGTH_LONG).show()
+                                    Toast.makeText(this@UserPasswardActivity, "비밀번호가 변경되었습니다", Toast.LENGTH_LONG).show()
                                 }
                             }
                         })
                     } else {
                       // 다른 비번이면 오류
-                      Toast.makeText(this@PrivateAdministrationActivity, "잘못된 정보입니다", Toast.LENGTH_LONG).show()
+                      Toast.makeText(this@UserPasswardActivity, "잘못된 정보입니다", Toast.LENGTH_LONG).show()
                     }
                 }
             })

@@ -29,7 +29,7 @@ class SettingActivity : AppCompatActivity() {
         }
         // 개인설정창 이동
         findViewById<Button>(R.id.privateSettingBt).setOnClickListener {
-            val intentPrivate = Intent(this, PrivateAdministrationActivity::class.java)
+            val intentPrivate = Intent(this, UserPasswardActivity::class.java)
             startActivity(intentPrivate)
         }
         //회원정보창 이동
