@@ -50,18 +50,281 @@
             android:orientation="vertical"
             android:background="@color/light_green">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
 
-            <Button
-                android:id="@+id/userSaveBt"
-                android:layout_width="90dp"
-                android:layout_height="40dp"
-                android:background="#98FF9C"
-                android:layout_marginTop="590dp"
-                android:text="저장하기"
-                android:textColor="@color/dark_green"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_gravity="center_horizontal" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="*이름:"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/middleText" />
+
+                    <EditText
+                        android:id="@+id/nameEt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="이름을 입력하세요"
+                        android:inputType="textPersonName" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="나이:"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/middleText" />
+
+                    <EditText
+                        android:id="@+id/ageEt"
+                        android:layout_width="20dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="number" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="세"
+                        android:textSize="@dimen/middleText" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="*키:"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/middleText" />
+
+                    <EditText
+                        android:id="@+id/heightEt"
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="number" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="cm"
+                        android:textSize="@dimen/middleText" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="*몸무게:"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/middleText" />
+
+                    <EditText
+                        android:id="@+id/weightEt"
+                        android:layout_width="20dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="number" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="kg"
+                        android:textSize="@dimen/middleText" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="목표 몸무게:"
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/middleText" />
+
+                        <EditText
+                            android:id="@+id/goalOfWeightEt"
+                            android:layout_width="10dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="number" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="kg"
+                            android:textSize="@dimen/middleText" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="전체 종목 목표 등급:"
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/middleText" />
+
+                        <Spinner
+                            android:id="@+id/goalOfTotalRankSp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:entries="@array/TrainingGrade" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="레그턱 목표 등급:"
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/middleText" />
+
+                        <Spinner
+                            android:id="@+id/goalOfLegTuckRankSp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:entries="@array/TrainingGrade" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="왕복달리기 목표 등급:"
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/middleText" />
+
+                        <Spinner
+                            android:id="@+id/goalOfShuttleRunRankSp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:entries="@array/TrainingGrade" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="전장순환훈련 목표 등급:"
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/middleText" />
+
+                        <Spinner
+                            android:id="@+id/goalOfFieldTrainingRankSp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:entries="@array/TrainingGrade" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:gravity="center">
+
+                        <Button
+                            android:id="@+id/getBt"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:text="불러 오기"
+                            android:textSize="18sp"
+                            android:textStyle="normal"
+                            android:background="#A0FF7D" />
+
+                        <Button
+                            android:id="@+id/saveBt"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:text="저장 하기"
+                            android:textSize="18sp"
+                            android:textStyle="normal"
+                            android:background="#A0FF7D"
+                            android:layout_marginLeft="30dp"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
 
         </LinearLayout>
 

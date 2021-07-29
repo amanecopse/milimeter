@@ -11,7 +11,6 @@ class SettingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_setting)
-        //setContentView(binding.root)
 
         // 테마설정창 이동
         findViewById<Button>(R.id.themeSettingBt).setOnClickListener {
@@ -45,11 +44,11 @@ class SettingActivity : AppCompatActivity() {
             val intentHome = Intent(this, HomeActivity::class.java)
             startActivity(intentHome)
         }
-       // body창으로 이동
-        //findViewById<Button>(R.id.bodyBt).setOnClickListener {
-        //    val intentBody = Intent(this, BodyActivity::class.java)
-        //    startActivity(intentBody)
-        //}
+        // body창으로 이동
+        findViewById<Button>(R.id.bodyBt).setOnClickListener {
+            val intentBody = Intent(this, BodyActivity::class.java)
+            startActivity(intentBody)
+        }
        // result화면으로 이동
         findViewById<Button>(R.id.resultBt).setOnClickListener {
             val intentResult = Intent(this, ResultActivity::class.java)
