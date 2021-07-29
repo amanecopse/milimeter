@@ -16,6 +16,7 @@ import com.amnapp.milimeter.R
 import com.amnapp.milimeter.UserData
 import com.amnapp.milimeter.databinding.ActivityHomeBinding
 import com.amnapp.milimeter.databinding.ActivitySettingBinding
+import java.text.SimpleDateFormat
 import java.util.*
 
 class HomeActivity : AppCompatActivity() {
@@ -64,6 +65,11 @@ class HomeActivity : AppCompatActivity() {
             startActivity(settingintent)
         }
 
+        //DdayBt default
+        binding.DdayBt.setText("전역일 설정")
+
+
+
         //Dday 날짜설정
         binding.DdayBt.setOnClickListener {
             val today = GregorianCalendar()
@@ -71,13 +77,32 @@ class HomeActivity : AppCompatActivity() {
             val month: Int = today.get(Calendar.MONTH)
             val date: Int = today.get(Calendar.DATE)
 
-          val dlg = DatePickerDialog(this, object : DatePickerDialog.OnDateSetListener {
-              override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+            val Tyear: Int = year*10000
+            val Tmonth: Int = (month+1)*100
+            val Tdate: Int = date
+            val Today: Int = Tyear+Tmonth+Tdate
 
-              }
-         }, year, month, date)
-        dlg.show()
-      }
+            val Dday = DatePickerDialog(this, object : DatePickerDialog.OnDateSetListener {
+
+               override fun onDateSet(view: DatePicker?, year: Int, month: Int, date: Int) {
+
+                   val Syear: Int = year*10000
+                   val Smonth: Int = (month+1)*100
+                   val Sdate: Int = date
+                   val Setday: Int = Syear+Smonth+Sdate
+                   val dday: Int = Setday-Today
+
+                   if (dday==0) {
+                       binding.DdayBt.setText("D-day")}
+                   else{
+                       binding.DdayBt.setText("D-${dday}")}
+
+                }
+
+            }, year, month, date)
+
+            Dday.show()
+        }
     }
 
     private fun autoLogin() {
@@ -135,3 +160,6 @@ class HomeActivity : AppCompatActivity() {
         mLoadingDialog = builder.create()
     }
 }
+
+
+
