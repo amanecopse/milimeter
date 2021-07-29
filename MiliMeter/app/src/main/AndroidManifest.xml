@@ -18,7 +18,8 @@
         </activity>
         <!-- 임주현 -->
         <activity android:name=".activities.AdminPageActivity" /> <!-- 관리자창 -->
-        <activity android:name=".activities.InviteCodeIssueActivity" /> <!-- 초대코드발행창 -->
+        <activity android:name=".activities.InviteSubUserActivity" />
+        <activity android:name=".activities.PublishGroupActivity" />
         <activity android:name=".activities.SignInActivity" /> <!-- 회원가입창 -->
         <activity android:name=".activities.LoginActivity" /> <!-- 로그인창 -->
         <activity android:name=".activities.ThemeExampleActivity" /> <!-- 테마예시 -->
@@ -36,9 +37,9 @@
         <activity android:name=".activities.UserInformationActivity" />
         <!-- 고동현 -->
         <activity android:name=".activities.ResultActivity" /><!-- 결과창 -->
-        <activity android:name=".activities.CircuitCurrentActivity" /><!-- 전장순환 -->
-        <activity android:name=".activities.LegtuckCurrentActivity" /><!-- 레그턱 -->
-        <activity android:name=".activities.RunningCurrentActivity" /><!-- 240m -->
+        <activity android:name=".activities.CircuitResultActivity" /><!-- 전장순환 -->
+        <activity android:name=".activities.LegtuckResultActivity" /><!-- 레그턱 -->
+        <activity android:name=".activities.RunningResultActivity" /><!-- 240m -->
     </application>
 
 </manifest>

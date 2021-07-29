@@ -3,26 +3,21 @@ package com.amnapp.milimeter.activities
 import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.*
-import android.widget.LinearLayout
-import android.widget.ProgressBar
-import android.widget.TextView
-import android.widget.Toast
+import android.view.Gravity
+import android.view.View
+import android.view.ViewGroup
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
-import com.amnapp.milimeter.AccountManager
-import com.amnapp.milimeter.PreferenceManager
-import com.amnapp.milimeter.UserData
+import com.amnapp.milimeter.*
 import com.amnapp.milimeter.databinding.ActivityLoginBinding
-import kotlinx.coroutines.*
-
+import kotlin.reflect.KClass
 
 class LoginActivity : AppCompatActivity() {
-
     lateinit var binding: ActivityLoginBinding
-    lateinit var mDialog: AlertDialog//로딩화면임. setProgressDialog()를 실행후 mDialog.show()로 시작
+    lateinit var mLoadingDialog: AlertDialog//로딩화면임. setProgressDialog()를 실행후 mDialog.show()로 시작
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,93 +25,128 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initUI()
+
+        //TODO(병합할 때 Home에서 자동로그인 문제생길 것임)
     }
 
     private fun initUI() {
         setProgressDialog() // 로딩다이얼로그 세팅
 
-        //초기상태 로그인이 되었는 지 아닌지에 따라 화면 결정
-        if(UserData.getInstance().isLogined){
-            binding.profileCiv.visibility = View.VISIBLE
-            binding.loginBoxCv.visibility = View.GONE
-            binding.loginLl.visibility = View.GONE
-            binding.signInCv.visibility = View.GONE
-            binding.logoutLl.visibility = View.VISIBLE
-            binding.issueCv.visibility = View.VISIBLE
-            binding.adminCv.visibility = if(UserData.getInstance().isAdmin) View.VISIBLE else View.GONE
-            binding.loginoutCv.setCardBackgroundColor(Color.RED)
-        }
-        else{
-            binding.profileCiv.visibility = View.GONE
-            binding.loginBoxCv.visibility = View.VISIBLE
-            binding.loginLl.visibility = View.VISIBLE
-            binding.signInCv.visibility = View.VISIBLE
-            binding.logoutLl.visibility = View.GONE
-            binding.issueCv.visibility = View.GONE
-            binding.adminCv.visibility = View.GONE
-            binding.loginoutCv.setCardBackgroundColor(Color.WHITE)
+        renewLoginUI()//로그인이 되었는 지 아닌지에 따라 화면 결정
 
-            loadLoginData()
-        }
-
-        binding.loginLl.setOnClickListener{
+        binding.loginBt.setOnClickListener {
+            binding.loginBt.isClickable = false//연타방지
+            mLoadingDialog.show()//로딩시작
             val id = binding.idEt.text.toString()
             val pw = binding.pwEt.text.toString()
-            val groupCode = binding.groupCodeEt.text.toString()
-            val pm = PreferenceManager()
-            val am = AccountManager()
-
-            mDialog.show() // 로딩화면 실행
-            am.login(id, pw, groupCode){ result ->
-                when(result){
-                    AccountManager.LOGIN_SUCCESS ->{
-                        Toast.makeText(this@LoginActivity, "로그인 성공", Toast.LENGTH_SHORT).show()
-                        binding.profileCiv.visibility = View.VISIBLE
-                        binding.loginLl.visibility = View.GONE
-                        binding.signInCv.visibility = View.GONE
-                        binding.loginBoxCv.visibility = View.GONE
-                        binding.logoutLl.visibility = View.VISIBLE
-                        binding.issueCv.visibility = View.VISIBLE
-                        binding.adminCv.visibility = if(UserData.getInstance().isAdmin) View.VISIBLE else View.GONE
-                        binding.loginoutCv.setCardBackgroundColor(Color.RED)
+            val autoLoginEnable = binding.autoLoginCb.isChecked
+            setLoginData(id, pw, autoLoginEnable)
+            AccountManager().login(id, pw){resultMessage ->
+                when(resultMessage){
+                    AccountManager.ERROR_NOT_FOUND_ID ->{
+                        showDialogMessage("존재하지 않는 아이디", "다시 입력해주세요")
                     }
-                    AccountManager.ERROR_NOT_FOUND_ID ->
-                        showDialogMessage("로그인 실패", "존재하지 않는 아이디 입니다")
-                    AccountManager.ERROR_WRONG_INFO ->
-                        showDialogMessage("로그인 실패", "비밀번호 또는 그룹코드가 다릅니다")
+                    AccountManager.ERROR_WRONG_PASSWORD ->{
+                        showDialogMessage("비밀번호 불일치", "다시 입력해주세요")
+                    }
+                    AccountManager.RESULT_SUCCESS ->{
+                        Toast.makeText(this, "로그인", Toast.LENGTH_LONG).show()
+                        renewLoginUI()
+                    }
                 }
-                mDialog.dismiss() // 로딩해제
+                mLoadingDialog.dismiss()//로딩해제
+                binding.loginBt.isClickable = true//연타방지해제
             }
-            pm.setLoginData(this, id, pw, groupCode)//로컬저장소에 로그인 데이터 저장
         }
-        binding.logoutLl.setOnClickListener {
-            binding.profileCiv.visibility = View.GONE
-            binding.loginLl.visibility = View.VISIBLE
-            binding.signInCv.visibility = View.VISIBLE
-            binding.loginBoxCv.visibility = View.VISIBLE
-            binding.logoutLl.visibility = View.GONE
-            binding.issueCv.visibility = View.GONE
-            binding.adminCv.visibility = View.GONE
-            binding.loginoutCv.setCardBackgroundColor(Color.WHITE)
-
-            val am = AccountManager()
-            am.logout()
-            loadLoginData()
+        binding.logoutBt.setOnClickListener {
+            AccountManager().logout()
+            renewLoginUI()
         }
-        binding.issueLl.setOnClickListener {
-            val intent = Intent(this, InviteCodeIssueActivity::class.java)
+        binding.publishGroupTv.setOnClickListener {
+            val intent = Intent(this, PublishGroupActivity::class.java)
             startActivity(intent)
         }
-        binding.signInLl.setOnClickListener {
+        binding.inviteSubUserTv.setOnClickListener {
+            val id = UserData.getInstance().id
+            var groupCode = AccountManager.mGroupCode
+            val hashedGroupCode = GroupMemberData.getInstance().hashedGroupCode
+            val ac = AccountManager()
+            if(ac.checkGroupCodeValid(id, groupCode, hashedGroupCode)){
+                val intent = Intent(this, InviteSubUserActivity::class.java)
+                startActivity(intent)
+            }
+            else{
+                showEditTextDialogMessage("그룹코드를 입력해주세요") { input ->
+                    groupCode = input
+                    if(ac.checkGroupCodeValid(id, groupCode, hashedGroupCode)){
+                        PreferenceManager().setGroupCode(this, groupCode!!)
+                        val intent = Intent(this, InviteSubUserActivity::class.java)
+                        startActivity(intent)
+                    }
+                }
+            }
+        }
+        binding.adminPageTv.setOnClickListener {
+            val id = UserData.getInstance().id
+            var groupCode = AccountManager.mGroupCode
+            val hashedGroupCode = GroupMemberData.getInstance().hashedGroupCode
+            val ac = AccountManager()
+            if(ac.checkGroupCodeValid(id, groupCode, hashedGroupCode)){
+                val intent = Intent(this, AdminPageActivity::class.java)
+                startActivity(intent)
+            }
+            else{
+                showEditTextDialogMessage("그룹코드를 입력해주세요") { input ->
+                    groupCode = input
+                    if(ac.checkGroupCodeValid(id, groupCode, hashedGroupCode)){
+                        PreferenceManager().setGroupCode(this, groupCode!!)
+                        val intent = Intent(this, AdminPageActivity::class.java)
+                        startActivity(intent)
+                    }
+                }
+            }
+        }
+        binding.signInCv.setOnClickListener {
             val intent = Intent(this, SignInActivity::class.java)
             startActivity(intent)
         }
-        binding.adminLl.setOnClickListener {
-            val intent = Intent(this, AdminPageActivity::class.java)
-            startActivity(intent)
-        }
-        binding.cancelLl.setOnClickListener {
+        binding.backIb.setOnClickListener {
             finish()
+        }
+        binding.cancelIb.setOnClickListener {
+            finish()
+        }
+    }
+
+    private fun setLoginData(id: String, pw: String, autoLoginEnable: Boolean) {
+        PreferenceManager().setLoginData(this, id, pw, autoLoginEnable)
+    }
+
+    private fun renewLoginUI() {
+        val userData = UserData.getInstance()
+        val groupMemberData = GroupMemberData.getInstance()
+        if (userData.login) {//이미 로그인한 상태
+            binding.afterLoginLl.visibility = View.VISIBLE
+            binding.beforeLoginLl.visibility = View.GONE
+            binding.signInCv.visibility = View.GONE
+            if(groupMemberData.indexHashCode == null){// null이면 그룹 미가입자라는 뜻
+                binding.inviteSubUserTv.visibility = View.GONE
+                binding.adminPageTv.visibility = View.GONE
+                binding.publishGroupTv.visibility = View.VISIBLE
+                binding.leaveGroupTv.visibility = View.GONE
+            }
+            else{
+                binding.inviteSubUserTv.visibility = if(groupMemberData.admin) View.VISIBLE else View.GONE
+                binding.adminPageTv.visibility = if(groupMemberData.admin) View.VISIBLE else View.GONE
+                binding.publishGroupTv.visibility = View.GONE
+                binding.leaveGroupTv.visibility = if(groupMemberData.admin) View.VISIBLE else View.GONE
+            }
+        } else {//아직 안 한 상태
+            binding.afterLoginLl.visibility = View.GONE
+            binding.beforeLoginLl.visibility = View.VISIBLE
+            binding.signInCv.visibility = View.VISIBLE
+
+            loadLoginData()
         }
     }
 
@@ -125,11 +155,7 @@ class LoginActivity : AppCompatActivity() {
         val loginDataArray = pm.getLoginData(this)// 로그인 데이터를 로컬저장소에서 로드함
         binding.idEt.setText(loginDataArray[0])
         binding.pwEt.setText(loginDataArray[1])
-        binding.groupCodeEt.setText(loginDataArray[2])
-    }
-
-    companion object {
-        const val TAG = "%%%%%LoginActivityLog%%%%%"
+        binding.autoLoginCb.isChecked = pm.isAutoLoginEnable(this)
     }
 
     fun showDialogMessage(title: String, body: String) {//다이얼로그 메시지를 띄우는 함수
@@ -137,6 +163,26 @@ class LoginActivity : AppCompatActivity() {
         builder.setTitle(title)
         builder.setMessage(body)
         builder.setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int -> }
+        builder.show()
+    }
+
+    fun showEditTextDialogMessage(title: String, callBack: (input: String) -> Unit) {//다이얼로그 메시지를 띄우는 함수
+        val editText = EditText(this)
+
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(title)
+        builder.setView(editText)
+        builder.setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int -> callBack(editText.text.toString())}
+        builder.setNegativeButton("취소") { dialogInterface: DialogInterface, i: Int -> }
+        builder.show()
+    }
+
+    fun showTwoButtonDialogMessage(title: String, body: String, callBack: (Int) -> Unit) {//다이얼로그 메시지를 띄우는 함수
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(title)
+        builder.setMessage(body)
+        builder.setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int -> callBack(i)}
+        builder.setNegativeButton("취소") { dialogInterface: DialogInterface, i: Int -> callBack(i)}
         builder.show()
     }
 
@@ -171,15 +217,18 @@ class LoginActivity : AppCompatActivity() {
         val builder = AlertDialog.Builder(this)
         builder.setCancelable(false)
         builder.setView(ll)
-        mDialog = builder.create()
-//        mDialog.show()
-//        val window: Window? = mDialog.window
-//        if (window != null) {
-//            val layoutParams = WindowManager.LayoutParams()
-//            layoutParams.copyFrom(mDialog.window!!.attributes)
-//            layoutParams.width = LinearLayout.LayoutParams.WRAP_CONTENT
-//            layoutParams.height = LinearLayout.LayoutParams.WRAP_CONTENT
-//            mDialog.window!!.attributes = layoutParams
-//        }
+        mLoadingDialog = builder.create()
+    }
+
+    companion object{
+        const val GROUP_CODE_VALID = "유효한 그룹코드"
+        const val GROUP_CODE_VALID_MASTER = "유효한 마스터 그룹코드"
+        const val GROUP_CODE_INVALID = "유효하지 않은 그룹코드"
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        renewLoginUI()
     }
 }

@@ -1,16 +1,13 @@
 package com.amnapp.milimeter
 
+import android.app.Activity
 import android.content.Context
-import android.graphics.Color
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import android.util.Log
-import android.view.View
-import android.widget.Toast
-import com.amnapp.milimeter.activities.InviteCodeIssueActivity
-import com.amnapp.milimeter.activities.SignInActivity
 import com.amnapp.milimeter.activities.LoginActivity
+import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
@@ -21,253 +18,286 @@ import java.security.MessageDigest
 
 class AccountManager {
 
-    var db = Firebase.firestore
-
-    fun signInWithoutInvite(// 그룹개설자 가입과정
-        context: Context,
-        id: String,
-        pw: String,
-        groupCode: String,
-        userName: String,
-        militaryId: Int,
-        userHeight: Int,
-        userWeight: Int,
-
-        userAge: Int? = null,
-        userBloodType: Int? = null,
-
-        goalOfWeight: Int? = null,
-        goalOfTotalRank: Int? = null,
-        goalOfLegTuckRank: Int? = null,
-        goalOfShuttleRunRank: Int? = null,
-        goalOfFieldTrainingRank: Int? = null
-    ){
-
-        val activity = context as SignInActivity
-        activity.binding.confirmLL.isClickable = false //연타방지
-
-        val confirmHashCode = hash(id+"!@#"+pw+"!@#"+groupCode)
-        val ud = UserData() //getInstance()로 얻어낼 경우 이전 로그인 객체를 불러올 위험이 있으므로 빈 객체 생성
-        var isValid: Boolean = true
-        ud.id = id
-        ud.pw = pw
-        ud.userName = userName
-        ud.userHeight = userHeight
-        ud.userWeight = userWeight
-        ud.confirmHashCode = confirmHashCode
-        ud.isAdmin = true
-
-        ud.userAge = userAge
-        ud.militaryId = militaryId
-        ud.userBloodType = userBloodType
-        ud.goalOfWeight = goalOfWeight
-        ud.goalOfTotalRank = goalOfTotalRank
-        ud.goalOfLegTuckRank = goalOfLegTuckRank
-        ud.goalOfShuttleRunRank = goalOfShuttleRunRank
-        ud.goalOfFieldTrainingRank = goalOfFieldTrainingRank
-
-        hash(id+pw+userName)?.let {
-            ud.indexHashCode = it
-            db.collection(USERS).document(it)
-                .set(ud)
-                .addOnSuccessListener {
-                    Log.d(TAG, "DocumentSnapshot successfully written!")
-                    Toast.makeText(context, "가입성공", Toast.LENGTH_SHORT).show()
-                    activity.finish()
-                }
-                .addOnFailureListener {e ->
-                    Log.w(TAG, "Error writing document", e)
-                    Toast.makeText(context, "가입실패", Toast.LENGTH_SHORT).show()
-                    activity.finish()
-                }
-        }
-    }
-
-    fun signInWithInvite(
-        context: Context,
-        id: String,
-        pw: String,
-        groupCode: String,
-        hostId: String,
-        inviteCode: String,
-        userName: String,
-        militaryId: Int,
-        userHeight: Int,
-        userWeight: Int,
-
-        userAge: Int? = null,
-        userBloodType: Int? = null,
-
-        goalOfWeight: Int? = null,
-        goalOfTotalRank: Int? = null,
-        goalOfLegTuckRank: Int? = null,
-        goalOfShuttleRunRank: Int? = null,
-        goalOfFieldTrainingRank: Int? = null
-    ) {
-
-        val activity = context as SignInActivity
-        activity.binding.confirmLL.isClickable = false //연타방지
-
-        val inviteHashCode = hash(hostId+"!@#"+inviteCode+"!@#"+groupCode)
-        val confirmHashCode = hash(id+"!@#"+pw+"!@#"+groupCode)
-        db.collection(USERS).whereEqualTo("inviteHashCode",inviteHashCode)
-            .get()
-            .addOnSuccessListener { querySnapshot ->
-
-                if(querySnapshot.isEmpty){// 초대해시코드로 못찾음 -> 초대자id,초대코드,그룹코드 3중하나 잘못입력
-                    val activity = context as SignInActivity
-                    activity.showDialogMessage("초대자 정보가 유효하지 않습니다", "초대코드, 초대자 id 또는 그룹코드가 잘못 입력 되었습니다")
-                    activity.binding.confirmLL.isClickable = true //연타방지해제
-                    return@addOnSuccessListener
-                }
-
-                val newUd = querySnapshot.documents[0].toObject<UserData>()
-                if (newUd != null) {
-                    newUd.id = id
-                    newUd.pw = pw
-                    newUd.confirmHashCode = confirmHashCode
-                    newUd.inviteHashCode = null
-                    newUd.userName = userName
-                    newUd.userHeight = userHeight
-                    newUd.userWeight = userWeight
-                    newUd.userAge = userAge
-                    newUd.militaryId = militaryId
-                    newUd.userBloodType = userBloodType
-                    newUd.goalOfWeight = goalOfWeight
-                    newUd.goalOfTotalRank = goalOfTotalRank
-                    newUd.goalOfLegTuckRank = goalOfLegTuckRank
-                    newUd.goalOfShuttleRunRank = goalOfShuttleRunRank
-                    newUd.goalOfFieldTrainingRank = goalOfFieldTrainingRank
-
-                    db.collection(USERS).document(newUd.indexHashCode.toString())
-                        .set(newUd)
-                        .addOnSuccessListener {
-                            db.collection(USERS).whereEqualTo("id",hostId)
-                                .get()
-                                .addOnSuccessListener {
-                                    val hostUd = it.documents[0].toObject<UserData>()
-                                    if (hostUd != null) {
-                                        hostUd.inviteHashCode = null //부모의 초대코드 발급 상태를 초기화시킨다
-                                        db.collection(USERS).document(hostUd.indexHashCode.toString())
-                                            .set(hostUd)
-                                            .addOnSuccessListener {
-                                                Toast.makeText(context, "가입성공", Toast.LENGTH_SHORT).show()
-                                                val activity = context as SignInActivity
-                                                activity.finish()
-                                            }
-                                    }
-                                }
-                        }
-                }
-
+    fun leaveGroup(indexHashCode: String, callBack: (resultMessage: String) -> Unit){
+        // master계정에서의 탈퇴도 구현할 것
+        val groupMemberData = hashMapOf<String, String?>(
+            "hashedGroupCode" to null,
+            "id" to null
+        )
+        Firebase.firestore.collection(GROUP_MEMBERS).document(indexHashCode)
+            .set(groupMemberData, SetOptions.merge())
+            .addOnSuccessListener {
+                callBack(RESULT_SUCCESS)
             }
-    }
-
-    fun login(id: String, pw: String, groupCode: String, callBack: (message: String)->Unit){
-        db.collection(USERS).whereEqualTo("id",id)
-            .get().addOnSuccessListener {
-                if(it.isEmpty){
-                    callBack(ERROR_NOT_FOUND_ID)
-                }
-                else{
-                    val document = it.documents[0]
-                    val ud= document.toObject<UserData>()
-                    val confirmHashCode = hash(id+"!@#"+pw+"!@#"+groupCode)
-                    if (ud != null) {
-                        if(ud.confirmHashCode==confirmHashCode){
-                            ud.isLogined = true
-                            UserData.setInstance(ud) // 서버에서 얻은 객체로 대체
-                            mGroupCode = groupCode // 그룹코드 저장
-                            ud.indexHashCode?.let {
-                                db.collection(USERS).document(it)
-                                    .set(ud, SetOptions.merge())
-                            }
-
-                            callBack(LOGIN_SUCCESS)
-                        }
-                        else{
-                            callBack(ERROR_WRONG_INFO)
-                        }
-
-                    }
-                }
-            }
-    }
-
-    fun logout(){
-        val ud = UserData.getInstance()
-        ud.isLogined = false
-        ud.indexHashCode?.let {
-            db.collection(USERS).document(it)
-                .set(ud, SetOptions.merge())
-        }
-    }
-
-    fun issueInviteCode(context: Context, inviteCode: String, isAdmin: Boolean){
-        val activity = context as InviteCodeIssueActivity
-        val myUd = UserData.getInstance()
-        val childUd = UserData() // 빈 객체 생성
-        val inviteHashCode = hash(myUd.id+"!@#"+inviteCode+"!@#"+mGroupCode)
-        val childIndexHashCode = hash(myUd.indexHashCode+"!@#"+mGroupCode+"!@#"+myUd.childCount)
-        val myIndexHashCode = myUd.indexHashCode
-
-        if (childIndexHashCode != null && inviteHashCode != null && myIndexHashCode != null) {
-            childUd.isAdmin = isAdmin
-            childUd.inviteHashCode = inviteHashCode
-            childUd.indexHashCode = childIndexHashCode
-            childUd.userName = "초대중인 계정"
-            myUd.inviteHashCode = inviteCode// 초대코드 발급중인 부모계정임을 알리면서 현재 발급중인 코드(해시가 아닌 형태)를 저장
-
-            //발급한 현재 상태를 서버에 올림
-            db.collection(USERS).document(childIndexHashCode)
-                .set(childUd)
-                .addOnSuccessListener {
-                    myUd.childCount += 1 //부모의 자식 카운트를 1늘려준다
-                    db.collection(USERS).document(myIndexHashCode)
-                        .set(myUd)
-                        .addOnSuccessListener {
-                            activity.showDialogMessage("초대코드 발급 완료", "초대할 유저에게 초대코드를 공유해 주세요")
-                        }
-                }
-        }
     }
 
     fun uploadUserData(userData: UserData, callBack: (message: String) -> Unit){
-        userData.indexHashCode?.let {
-            db.collection(USERS).document(it)
+        userData.id?.let {
+            Firebase.firestore.collection(USERS).document(it)
                 .set(userData, SetOptions.merge())
                 .addOnSuccessListener {
-                    callBack(UPLOAD_SUCCESS)
+                    callBack(RESULT_SUCCESS)
                 }
         }
     }
 
-    suspend fun findChildAccount(myIndexHashCode: String): MutableList<UserData>{
+    suspend fun findSubGroupMemberListByIndex(myIndexHashCode: String): MutableList<GroupMemberData>{
+        val myGroupMemberData = Firebase.firestore.collection(GROUP_MEMBERS).document(myIndexHashCode)
+            .get()
+            .await()
+            .toObject<GroupMemberData>()
+        val childCount = myGroupMemberData!!.childCount
+        val groupMemberList: MutableList<GroupMemberData> = mutableListOf()
+        for (i in 0 until childCount){
+            val childIndexHashCode: String? = hash(myGroupMemberData.indexHashCode+"!@#"+mGroupCode+"!@#"+i)
+            val subGroupMemberData = Firebase.firestore.collection(GROUP_MEMBERS).document(childIndexHashCode!!)
+                .get()
+                .await()
+                .toObject<GroupMemberData>()
+            groupMemberList.add(subGroupMemberData!!)
+        }
+        return groupMemberList
+    }
+
+    suspend fun findSubUserListBySubGroupMemberList(groupMemberList: MutableList<GroupMemberData>): MutableList<UserData> {
         val userList: MutableList<UserData> = mutableListOf()
-        val childCount: Int
-        val myUd = db.collection(USERS).document(myIndexHashCode).get().await().toObject<UserData>()
-        if (myUd != null) {
-            childCount = myUd.childCount
-            for (i in 0 until childCount){
-                val childUd: UserData?
-                val childIndexHashCode: String? = hash(myIndexHashCode+"!@#"+mGroupCode+"!@#"+i)
-                childUd =
-                    childIndexHashCode?.let { db.collection(USERS).document(it).get().await().toObject<UserData>() }
-                if (childUd != null) {
-                    userList.add(childUd)
+
+        for(groupMemberData in groupMemberList){
+            if(groupMemberData.id.isNullOrEmpty()){
+                userList.add(UserData())
+            }
+            else{
+                val userData = Firebase.firestore.collection(USERS).document(groupMemberData.id!!)
+                    .get()
+                    .await()
+                    .toObject<UserData>()
+                userList.add(userData!!)
+            }
+        }
+        return userList
+    }
+
+    fun checkGroupCodeValid(id: String?, groupCode: String?, hashedGroupCode: String?): Boolean{
+        if (AccountManager().hash(id + "!@#" + groupCode) == hashedGroupCode){
+            mGroupCode = groupCode
+            return true
+        }
+        else if (AccountManager().hash(id + "!@#" + groupCode + "!@#" + "master") == hashedGroupCode){
+            mGroupCode = groupCode
+            mMaster = true
+            return true
+        }
+        else
+            return false
+    }
+
+    fun inviteSubUser(subUserId: String, isAdmin: Boolean, callBack: (resultMessage: String) -> Unit){
+        findUserDataById(subUserId){ resultMessage1, querySnapShot ->
+            if(resultMessage1 == RESULT_FAILURE){//초대할 아이디 존재안함
+                callBack(ERROR_NOT_FOUND_ID)
+            }
+            else if(resultMessage1 == RESULT_SUCCESS){//아이디 있음
+
+                findGroupMemberDataById(subUserId){resultMessage2, querySnapShot ->
+                    if(resultMessage2 == RESULT_SUCCESS){
+                        callBack(ERROR_GROUPED_ID)
+                    }
+                    else if(resultMessage2 == RESULT_FAILURE){
+                        val myGroupMemberData = GroupMemberData.getInstance()
+                        val subHashedGroupCode = hash(subUserId+"!@#"+ mGroupCode)
+                        val subIndexHashCode = hash(myGroupMemberData.indexHashCode+"!@#"+mGroupCode+"!@#"+ myGroupMemberData.childCount)
+                        val subGroupMemberData = GroupMemberData()
+
+                        subGroupMemberData.id = subUserId
+                        subGroupMemberData.indexHashCode = subIndexHashCode
+                        subGroupMemberData.hashedGroupCode = subHashedGroupCode
+                        subGroupMemberData.childCount = 0
+                        subGroupMemberData.admin = isAdmin
+
+                        Firebase.firestore.runTransaction {
+                            it.set(
+                                Firebase.firestore.collection(GROUP_MEMBERS).document(subIndexHashCode!!),
+                                subGroupMemberData
+                            )
+                            it.update(
+                                Firebase.firestore.collection(GROUP_MEMBERS).document(myGroupMemberData.indexHashCode!!),
+                                "childCount",
+                                myGroupMemberData.childCount + 1
+                            )
+                        }.addOnSuccessListener {
+                            myGroupMemberData.childCount += 1
+                            callBack(RESULT_SUCCESS)
+                        }
+                    }
                 }
             }
         }
+    }
 
-        return userList
+    fun publishGroup(
+        context: Context,
+        groupCode: String,
+        callBack: (resultMessage: String) -> Unit
+    ){
+        val userData = UserData.getInstance()
+        if(!checkNetworkState(context)){
+            callBack(ERROR_NETWORK_NOT_CONNECTED)
+            return
+        }
+        val hashedMasterGroupCode = hash(userData.id+"!@#"+groupCode+"!@#"+"master")
+        val indexHashCode = hash(userData.id+"!@#"+groupCode)
+        val groupMemberData = GroupMemberData()
+
+        groupMemberData.id = userData.id
+        groupMemberData.indexHashCode = indexHashCode
+        groupMemberData.hashedGroupCode = hashedMasterGroupCode
+        groupMemberData.childCount = 0
+        groupMemberData.admin = true
+
+        Firebase.firestore.collection(GROUP_MEMBERS).document(indexHashCode!!)
+            .set(groupMemberData)
+            .addOnSuccessListener {
+
+                GroupMemberData.setInstance(groupMemberData)
+
+                callBack(RESULT_SUCCESS)
+            }
+    }
+
+    fun signIn(context: Context,userData: UserData, callBack: (resultMessage: String) -> Unit){
+        if(!checkNetworkState(context)){
+            callBack(ERROR_NETWORK_NOT_CONNECTED)
+            return
+        }
+        Firebase.firestore.collection(USERS).document(userData.id!!)
+            .set(userData)
+            .addOnSuccessListener {
+                callBack(RESULT_SUCCESS)
+            }
+    }
+
+    fun login(id: String, pw: String, callBack: (resultMessage: String) -> Unit){
+        findUserDataById(id){resultMessage, querySnapShot ->
+            if(resultMessage == RESULT_FAILURE)
+                callBack(ERROR_NOT_FOUND_ID)// 아이디가 존재하지 않음
+            else if(resultMessage == RESULT_SUCCESS){
+                val doc = querySnapShot.documents[0]
+                val userData = doc.toObject<UserData>()
+                if (userData != null) {
+                    if(userData.pw != pw){
+                        callBack(ERROR_WRONG_PASSWORD)
+                        return@findUserDataById
+                    }// 비밀번호가 달라 실패
+                    userData.login = true //접속중으로 처리
+                    UserData.setInstance(userData) // 서버에서 받은 계정정보를 등록
+                    Firebase.firestore.collection(USERS).document(userData.id!!)
+                        .set(userData) // 서버에 접속중임을 알림
+                    Firebase.firestore.collection(GROUP_MEMBERS).whereEqualTo("id",userData.id)
+                        .get()
+                        .addOnSuccessListener {
+                            if(it.isEmpty){
+                                callBack(RESULT_SUCCESS)
+                            }
+                            else{
+                                it.documents[0].toObject<GroupMemberData>()?.let { groupMemberData ->
+                                    GroupMemberData.setInstance(
+                                        groupMemberData
+                                    )
+                                }
+                                callBack(RESULT_SUCCESS)
+                            }
+                        }
+                }
+            }
+        }
+    }
+
+    fun logout(){
+        val userData = UserData.getInstance()
+        userData.login = false
+        GroupMemberData.setInstance(GroupMemberData())// 초기화
+        Firebase.firestore.collection(USERS).document(userData.id!!)
+            .set(userData) // 서버에 로그아웃함을 알림
+    }
+
+    fun autoLogin(context: Context, callBack: (resultMessage: String) -> Unit){
+        val pm = PreferenceManager()
+        if(pm.isAutoLoginEnable(context) && !UserData.getInstance().login){
+            val loginData = pm.getLoginData(context)
+            mGroupCode = pm.getGroupCode(context)
+            login(loginData[0].toString(), loginData[1].toString()){resultMessage ->
+                if(resultMessage == RESULT_SUCCESS)
+                    callBack(RESULT_SUCCESS)
+                else
+                    callBack(RESULT_FAILURE)
+            }
+        }
+        else{
+            callBack(RESULT_FAILURE)
+        }
+    }
+
+    fun checkIfIdIsDuplicate(id: String, callBack: (resultMessage: String, querySnapShot: QuerySnapshot) -> Unit){
+        findUserDataById(id){resultMessage, querySnapShot ->
+            if(resultMessage == RESULT_FAILURE){
+                callBack(RESULT_SUCCESS, querySnapShot)
+            }
+            else{
+                callBack(ERROR_DUPLICATE_ID, querySnapShot)
+            }
+        }
+    }
+
+    fun findUserDataById(id: String, callBack: (resultMessage: String, querySnapShot: QuerySnapshot) -> Unit){
+        Firebase.firestore.collection(USERS).whereEqualTo("id", id)
+            .get()
+            .addOnSuccessListener {
+                if(it.isEmpty){
+                    callBack(RESULT_FAILURE, it)
+                }
+                else{
+                    callBack(RESULT_SUCCESS, it)
+                }
+            }
+    }
+
+    fun loadGroupMemberDataById(id: String, callBack: (resultMessage: String) -> Unit){
+        findGroupMemberDataById(id){resultMessage, querySnapShot ->
+            if(resultMessage == RESULT_SUCCESS){
+                val groupMemberData = querySnapShot.documents[0].toObject<GroupMemberData>()
+
+                if (groupMemberData != null) {
+                    GroupMemberData.setInstance(groupMemberData)
+                }
+
+                callBack(RESULT_SUCCESS)
+            }else{
+                callBack(RESULT_FAILURE)
+            }
+        }
+    }
+
+    fun findGroupMemberDataById(id: String, callBack: (resultMessage: String, querySnapShot: QuerySnapshot) -> Unit){
+        Firebase.firestore.collection(GROUP_MEMBERS).whereEqualTo("id", id)
+            .get()
+            .addOnSuccessListener {
+                if(it.isEmpty){
+                    callBack(RESULT_FAILURE, it)
+                }
+                else{
+                    callBack(RESULT_SUCCESS, it)
+                }
+            }
     }
 
     fun hash(text: String): String? {
         val sha = SHA256()
         return sha.encrypt(text)
 
-        //초대해시코드는 myUd.id+"!@#"+inviteCode+"!@#"+mGroupCode
-        //자식의 인덱스 새로 만들 때는 -> myIndexHashCode+"!@#"+mGroupCode+"!@#"+i 순서유의
+//        confirmCode(hashedGroupCode): id+"!@#"+그룹코드, id+"!@#"+그룹코드+"!@#"+"master"(둘중하나면 그룹코드 유효 인정)
+//        최초인덱스해시: id+"!@#"+그룹코드
+//        그이후인덱스해시: 부모인덱스해시+"!@#"+그룹코드+"!@#"+childCount
+//        초대해시코드: 부모id+"!@#"+그룹코드+"!@#"+초대코드
     }
 
     fun checkNetworkState(context: Context): Boolean {//인터넷 상태를 확인하는 함수
@@ -289,12 +319,19 @@ class AccountManager {
 
     companion object{
         var mGroupCode: String? = null //트리순회에 필요하므로 로그인 시 정적으로 입력할 것
+        var mMaster: Boolean = false
+
         const val TAG = "AccountManager"
         const val USERS = "users"
+        const val GROUP_MEMBERS = "group members"
         const val ERROR_NOT_FOUND_ID = "아이디없는 오류"
+        const val ERROR_DUPLICATE_ID = "아이디 중복 오류"
+        const val ERROR_GROUPED_ID = "이미 그룹에 속한 아이디"
         const val ERROR_WRONG_INFO = "입력정보가 다름"
-        const val LOGIN_SUCCESS = "로그인 성공"
-        const val UPLOAD_SUCCESS = "업로드 성공"
+        const val ERROR_WRONG_PASSWORD = "비밀번호가 다름"
+        const val ERROR_NETWORK_NOT_CONNECTED = "네트워크 연결 안 됨"
+        const val RESULT_SUCCESS = "성공"
+        const val RESULT_FAILURE = "실패"
 
     }
 }
