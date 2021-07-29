@@ -1,5 +1,6 @@
 package com.amnapp.milimeter.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.amnapp.milimeter.R
@@ -11,14 +12,14 @@ class BasicThemeSettingActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_basic_theme_setting)
+        setContentView(binding.root)
 
         // 창닫기
-        with(binding) {
-            saveBt.setOnClickListener{
-                finish()
-            }
+        binding.cancelBt.setOnClickListener {
+            val intentBack = Intent(this, ThemeActivity::class.java)
+            startActivity(intentBack)
         }
+
         // 모드 종류 설정하기
         binding.modeSettingRG.setOnCheckedChangeListener { group, checkedId ->
             when (checkedId) {

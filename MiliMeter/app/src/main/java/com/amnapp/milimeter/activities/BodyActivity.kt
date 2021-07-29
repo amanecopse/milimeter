@@ -147,9 +147,6 @@ class BodyActivity : AppCompatActivity() {
             setTextSize(20f) // fontSize 20 설정
         }
         textView.text = "${lapTime / 3600}:${lapTime % 3600 / 60}:${lapTime % 60}" // 출력할 시간 설정
-
-        //lap_Layout.addView(textView,0) // layout에 추가, (View, index) 추가할 위치(0 최상단 의미)
-        //index++ // 추가된 View의 개수를 저장하는 index 변수
     }
 
 

@@ -14,10 +14,9 @@ class NoticeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // 창닫기
-        with(binding) {
-            cancelBt.setOnClickListener {
-                finish()
-            }
+        binding.cancelBt.setOnClickListener {
+            val intentBack = Intent(this, SettingActivity::class.java)
+            startActivity(intentBack)
         }
 
         binding.noticeCheckSt.setOnCheckedChangeListener { buttonView, isChecked ->
