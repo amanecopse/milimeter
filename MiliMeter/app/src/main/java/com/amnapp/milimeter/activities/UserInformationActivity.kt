@@ -4,9 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.amnapp.milimeter.UserData
-import com.amnapp.milimeter.UserData.Companion.getInstance
 import com.amnapp.milimeter.databinding.ActivityUserInformationBinding
-import com.google.common.primitives.UnsignedBytes.toInt
 
 class UserInformationActivity :AppCompatActivity() {
 
@@ -24,20 +22,20 @@ class UserInformationActivity :AppCompatActivity() {
 
         binding.getBt.setOnClickListener {
             // 기존의 회원 정보 불러오기
-            binding.nameEt.setText("${getInstance().userName}")
-            binding.ageEt.setText("${getInstance().userAge}")
-            binding.heightEt.setText("${getInstance().userHeight}")
-            binding.weightEt.setText("${getInstance().userWeight}")
-            binding.goalOfWeightEt.setText("${getInstance().goalOfWeight}")
-            getInstance().goalOfTotalRank?.let { it -> binding.goalOfTotalRankSp.setSelection(it) }
-            getInstance().goalOfLegTuckRank?.let { it1 -> binding.goalOfLegTuckRankSp.setSelection(it1) }
-            getInstance().goalOfShuttleRunRank?.let { it2 -> binding.goalOfShuttleRunRankSp.setSelection(it2) }
-            getInstance().goalOfFieldTrainingRank?.let { it3 -> binding.goalOfTotalRankSp.setSelection(it3) }
+            val userDataBring = UserData.getInstance()
+            binding.nameEt.setText("${userDataBring.userName}")
+            binding.ageEt.setText("${userDataBring.userAge}")
+            binding.heightEt.setText("${userDataBring.userHeight}")
+            binding.weightEt.setText("${userDataBring.userWeight}")
+            binding.goalOfWeightEt.setText("${userDataBring.goalOfWeight}")
+            userDataBring.goalOfTotalRank?.let { it -> binding.goalOfTotalRankSp.setSelection(it) }
+            userDataBring.goalOfLegTuckRank?.let { it1 -> binding.goalOfLegTuckRankSp.setSelection(it1) }
+            userDataBring.goalOfShuttleRunRank?.let { it2 -> binding.goalOfShuttleRunRankSp.setSelection(it2) }
+            userDataBring.goalOfFieldTrainingRank?.let { it3 -> binding.goalOfTotalRankSp.setSelection(it3) }
         }
 
         binding.saveBt.setOnClickListener {
-            lateinit var onClickedListener: PwCheckDialog.ButtonClickListener
-            val userData = getInstance()
+            val userData = UserData.getInstance()
             // 새로운 회원의 정보 저장하기
             var newName = binding.nameEt.text
             var newAge = binding.ageEt.text

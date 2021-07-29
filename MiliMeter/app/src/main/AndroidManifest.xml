@@ -30,7 +30,7 @@
         <activity android:name=".activities.BasicThemeSettingActivity" /> <!-- 기본테마설정창 -->
         <activity android:name=".activities.LanguageActivity" /> <!-- 언어설정창 -->
         <activity android:name=".activities.MakingThemeSettingActivity" /> <!-- 테마제작하기창 -->
-        <activity android:name=".activities.PrivateAdministrationActivity" /> <!-- 개인정보관리설정창 -->
+        <activity android:name=".activities.UserPasswardActivity" /> <!-- 개인정보관리설정창 -->
         <activity android:name=".activities.SettingActivity" /> <!-- 설정창 -->
         <activity android:name=".activities.SpecialThemeSettingActivity" /> <!-- 특별한테마설정창 -->
         <activity android:name=".activities.ThemeActivity" /> <!-- 테마설정창 -->
