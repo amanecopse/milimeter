@@ -28,4 +28,16 @@
         <item name="buttonTextColor">#FFFFFF</item>
     </style>
 
+    <style name="LightBlueAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- 이 모드가 되면 이 값들로 변한다-->
+        <item name="appWindowBackground">#F2F2F2</item>
+        <item name="cardBackground">@color/light_blue</item>
+        <item name="textColor">#000000</item>
+        <item name="textColorSecondary">#717171</item>
+        <item name="textColorBanner">@color/dark_blue</item>
+        <item name="iconColor">#6A6A6A</item>
+        <item name="buttonBackground">@color/dark_blue</item>
+        <item name="buttonTextColor">#FFFFFF</item>
+    </style>
+
 </resources>

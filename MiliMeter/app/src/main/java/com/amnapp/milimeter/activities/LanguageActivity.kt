@@ -1,10 +1,10 @@
 package com.amnapp.milimeter.activities
 
+import android.content.Intent
 import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
 import android.widget.Button
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.amnapp.milimeter.R
 import com.amnapp.milimeter.databinding.ActivityLanguageBinding
@@ -20,11 +20,11 @@ class LanguageActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // 창닫기
-        with(binding) {
-            cancelBt.setOnClickListener{
-                finish()
-            }
+        binding.cancelBt.setOnClickListener {
+            val intentBack = Intent(this, SettingActivity::class.java)
+            startActivity(intentBack)
         }
+
         val homeIcon = resources.getString(R.string.home)
         val bodyIcon = resources.getString(R.string.body)
         val resultIcon = resources.getString(R.string.result)

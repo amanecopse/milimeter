@@ -57,14 +57,21 @@ class ResultActivity : AppCompatActivity() {
             val homeintent = Intent(this, HomeActivity::class.java)
             startActivity(homeintent)
         }
-        /*
-        //바디버튼 //결과는 지금 이창
-        var bodyBtn =findViewById<Button>(this,)
-        bodyByn.setOnClickListner{
-               val bodyintent =Intent{this, }
-               starActivity(homeintent)
-            }
-            */
+
+        //바디버튼
+        var bodybtn = findViewById<Button>(R.id.bodyBt)
+        bodybtn.setOnClickListener {
+            val bodyintent = Intent(this, BodyActivity::class.java)
+            startActivity(bodyintent)
+        }
+
+        //결과버튼
+        var resultbtn = findViewById<Button>(R.id.resultBt)
+        resultbtn.setOnClickListener {
+            val resultintent = Intent(this, ResultActivity::class.java)
+            startActivity(resultintent)
+        }
+
         //목표버튼
         var goalBtn = findViewById<Button>(R.id.goalBt)
         goalBtn.setOnClickListener {

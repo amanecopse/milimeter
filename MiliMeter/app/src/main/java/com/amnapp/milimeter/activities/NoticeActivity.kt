@@ -3,30 +3,28 @@ package com.amnapp.milimeter.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.amnapp.milimeter.R
 import com.amnapp.milimeter.databinding.ActivityNoticeBinding
 
 class NoticeActivity : AppCompatActivity() {
+
+    val binding by lazy { ActivityNoticeBinding.inflate(layoutInflater) }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_notice)
-
-        val binding by lazy { ActivityNoticeBinding.inflate(layoutInflater) }
+        setContentView(binding.root)
 
         // 창닫기
-        with(binding) {
-            cancelBt.setOnClickListener {
-                finish()
-            }
-
+        binding.cancelBt.setOnClickListener {
+            val intentBack = Intent(this, SettingActivity::class.java)
+            startActivity(intentBack)
         }
-        binding.alarmCheckSt.setOnCheckedChangeListener {buttonView, isChecked ->
-            if(isChecked) {
-                val intentAlarm = Intent(this, TimeSettingActivity::class.java)
-                startActivity(intentAlarm)
+
+        binding.noticeCheckSt.setOnCheckedChangeListener { buttonView, isChecked ->
+            if(isChecked == true) {
+                val intentTimeSet = Intent(this, TimeSettingActivity::class.java)
+                startActivity(intentTimeSet)
             }
         }
 
     }
-
 }

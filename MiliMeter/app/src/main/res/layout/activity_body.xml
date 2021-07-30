@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.BodyActivity">
+
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent" >
+
+       <LinearLayout
+           android:id="@+id/bodyHeadLineLL"
+           android:layout_width="match_parent"
+           android:layout_height="90dp"
+           android:background="@color/green"
+           android:orientation="horizontal"
+           android:gravity="center_vertical">
+
+           <TextView
+               android:layout_width="320dp"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:drawableLeft="@drawable/ic_baseline_accessibility_20_white"
+               android:drawablePadding="15dp"
+               android:gravity="left|center_vertical"
+               android:paddingLeft="10dp"
+               android:text="신체"
+               android:textColor="@color/white"
+               android:textSize="30sp"
+               android:textStyle="bold"
+               />
+
+       </LinearLayout>
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="40dp"
+           android:layout_marginTop="100dp">
+
+           <TextView
+               android:id="@+id/weightTv"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginStart="16dp"
+               android:text="목표치까지 +/- OOkg"
+               android:textSize="20sp"
+               android:textStyle="bold" />
+
+       </LinearLayout>
+
+       <FrameLayout
+           android:id="@+id/frameLayout"
+           android:layout_width="match_parent"
+           android:layout_height="110dp"
+           android:layout_marginTop="140dp">
+
+
+           <TextView
+               android:id="@+id/stopwatchTv"
+               android:layout_width="380dp"
+               android:layout_height="100dp"
+               android:layout_gravity="center"
+               android:background="@drawable/edge"
+               android:gravity="top|center"
+               android:text="00:00:00"
+               android:textSize="40sp"
+               android:textStyle="bold" />
+
+           <ImageButton
+               android:id="@+id/startBt"
+               android:layout_width="40dp"
+               android:layout_height="40dp"
+               android:layout_marginTop="50dp"
+               android:background="@android:color/transparent"
+               android:src="@drawable/ic_baseline_play_circle_outline_30_white"
+               android:tintMode="src_in"
+               app:tint="@color/dark_green"
+               android:layout_marginLeft="30dp" />
+
+           <ImageButton
+               android:id="@+id/resetBt"
+               android:layout_width="40dp"
+               android:layout_height="40dp"
+               android:layout_marginTop="50dp"
+               android:background="@android:color/transparent"
+               android:src="@drawable/ic_baseline_replay_30_white"
+               android:tintMode="src_in"
+               app:tint="@color/dark_green"
+               android:layout_marginLeft="180dp"/>
+
+           <ImageButton
+               android:id="@+id/stopBt"
+               android:layout_width="40dp"
+               android:layout_height="40dp"
+               android:layout_marginTop="50dp"
+               android:background="@android:color/transparent"
+               android:src="@drawable/ic_baseline_pause_circle_outline_30_white"
+               android:tintMode="src_in"
+               app:tint="@color/dark_green"
+               android:layout_marginLeft="330dp"/>
+
+
+           <ImageButton
+               android:id="@+id/recordBt"
+               android:layout_width="40dp"
+               android:layout_height="40dp"
+               android:layout_marginLeft="350dp"
+               android:background="@android:color/transparent"
+               android:src="@drawable/ic_baseline_more_horiz_30_white"
+               android:tintMode="src_in"
+               app:tint="@color/dark_green" />
+
+       </FrameLayout>
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="40dp"
+           android:layout_marginTop="270dp">
+
+           <TextView
+               android:id="@+id/checkTv"
+               android:layout_width="match_parent"
+               android:layout_height="287dp"
+               android:text="확인용" />
+
+       </LinearLayout>
+
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="95dp"
+           android:layout_alignParentBottom="true"
+           android:gravity="fill_horizontal"
+           android:orientation="horizontal"
+           app:layout_constraintBottom_toBottomOf="parent"
+           android:background="@color/green">
+
+           <Button
+               android:id="@+id/homeBt"
+               android:layout_width="0dp"
+               android:layout_height="match_parent"
+               android:layout_weight="1"
+               android:background="@android:color/transparent"
+               android:drawableTop="@drawable/ic_baseline_home_20_white"
+               android:gravity="center_horizontal"
+               android:text="@string/home"
+               android:textAllCaps="false"
+               android:textColor="@color/white"
+               android:textSize="15sp" />
+
+           <Button
+               android:id="@+id/bodyBt"
+               android:layout_width="0dp"
+               android:layout_height="match_parent"
+               android:layout_weight="1"
+               android:background="@android:color/transparent"
+               android:drawableTop="@drawable/ic_baseline_accessibility_20_white"
+               android:gravity="center_horizontal"
+               android:text="@string/body"
+               android:textAllCaps="false"
+               android:textColor="@color/white"
+               android:textSize="15sp" />
+
+           <Button
+               android:id="@+id/resultBt"
+               android:layout_width="0dp"
+               android:layout_height="match_parent"
+               android:layout_weight="1"
+               android:background="@android:color/transparent"
+               android:drawableTop="@drawable/ic_baseline_insert_chart_outlined_20_white"
+               android:gravity="center_horizontal"
+               android:text="@string/result"
+               android:textAllCaps="false"
+               android:textColor="@color/white"
+               android:textSize="15sp" />
+
+           <Button
+               android:id="@+id/goalBt"
+               android:layout_width="0dp"
+               android:layout_height="match_parent"
+               android:layout_weight="1"
+               android:background="@android:color/transparent"
+               android:drawableTop="@drawable/ic_baseline_track_changes_20_white"
+               android:gravity="center_horizontal"
+               android:text="@string/goal"
+               android:textAllCaps="false"
+               android:textColor="@color/white"
+               android:textSize="15sp" />
+
+           <Button
+               android:id="@+id/settingBt"
+               android:layout_width="0dp"
+               android:layout_height="match_parent"
+               android:layout_weight="1"
+               android:background="@android:color/transparent"
+               android:drawableTop="@drawable/ic_baseline_miscellaneous_services_20_white"
+               android:gravity="center_horizontal"
+               android:text="@string/setting"
+               android:textAllCaps="false"
+               android:textColor="@color/white"
+               android:textSize="15sp" />
+
+       </LinearLayout>
+
+   </RelativeLayout>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

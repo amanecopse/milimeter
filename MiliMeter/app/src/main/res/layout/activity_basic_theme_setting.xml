@@ -21,7 +21,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="340dp"
+                android:layout_width="320dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:drawableLeft="@drawable/ic_baseline_palette_20_white"
@@ -32,6 +32,15 @@
                 android:textColor="@color/white"
                 android:textSize="30sp"
                 android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/cancelBt"
+                android:layout_width="90dp"
+                android:layout_height="match_parent"
+                android:scaleType="center"
+                android:src="@drawable/ic_baseline_cancel_30_white"
+                android:background="@android:color/transparent"
+                android:layout_gravity="center_vertical"/>
 
         </LinearLayout>
 
@@ -87,7 +96,8 @@
                     android:text="기본"
                     android:textColor="@color/dark_green"
                     android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:checked="true" />
 
                 <RadioButton
                     android:id="@+id/darkModeRBt"
