@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.amnapp.milimeter.R
 import com.amnapp.milimeter.UserData
@@ -18,10 +19,10 @@ class AdminPageRecyclerAdapter(var subUserlist: MutableList<UserData>): Recycler
     interface OnEditClickListener{
         fun onClicked(v: View, pos: Int)
     }
-    var contentListener: OnItemClickListener? = null
+    var itemListener: OnItemClickListener? = null
     var editListener: OnEditClickListener? = null
-    fun setContentOnClickListener(listener: OnItemClickListener){
-        this.contentListener = listener
+    fun setItemOnClickListener(listener: OnItemClickListener){
+        this.itemListener = listener
     }
     fun setEditOnClickListener(listener: OnEditClickListener){
         this.editListener = listener
@@ -30,13 +31,12 @@ class AdminPageRecyclerAdapter(var subUserlist: MutableList<UserData>): Recycler
     inner class ViewHolder(itemView: ViewGroup) : RecyclerView.ViewHolder(itemView) {
         val userNameTv = itemView.findViewById<TextView>(R.id.userNameTv)
         val militaryIdTv = itemView.findViewById<TextView>(R.id.militaryIdTv)
-        val contentLl = itemView.findViewById<LinearLayout>(R.id.contentLl)
+        val itemCv = itemView.findViewById<CardView>(R.id.itemCv)
         val editIb = itemView.findViewById<ImageButton>(R.id.editIb)
 
         init {//클릭이벤트 콜백 설정
-            contentLl.setOnClickListener {
-                contentListener?.onClicked(it, adapterPosition)
-                Log.d("asdAPRA","click")
+            itemCv.setOnClickListener {
+                itemListener?.onClicked(it, adapterPosition)
             }
             editIb.setOnClickListener {
                 editListener?.onClicked(it, adapterPosition)
@@ -52,7 +52,7 @@ class AdminPageRecyclerAdapter(var subUserlist: MutableList<UserData>): Recycler
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         subUserlist.get(position).let { item ->
             with(holder) {
-                userNameTv.text = item.userName
+                userNameTv.text = if(item.name == null) "탈퇴한 계정입니다" else item.name
                 militaryIdTv.text = item.militaryId.toString()
             }
         }

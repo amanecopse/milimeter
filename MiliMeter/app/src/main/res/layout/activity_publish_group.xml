@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/appWindowBackground"
-    tools:context=".activities.AdminPageActivity">
+    tools:context=".activities.PublishGroupActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/appBarCl"
@@ -31,14 +31,14 @@
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_marginRight="10dp"
-                app:srcCompat="@drawable/ic_baseline_group_add_24_black"
+                app:srcCompat="@drawable/ic_baseline_group_24_black"
                 app:tint="?attr/textColorBanner" />
 
             <TextView
                 android:id="@+id/titleTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="그룹초대"
+                android:text="그룹개설"
                 android:textColor="?attr/textColorBanner"
                 android:textSize="@dimen/largeText" />
         </LinearLayout>
@@ -79,85 +79,71 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/bodySv"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarCl">
 
         <LinearLayout
+            android:id="@+id/bodyLl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/parentNameTv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="___"
-                android:textColor="?attr/textColor"
-                android:textSize="@dimen/smallText" />
-
-            <TextView
-                android:id="@+id/textView10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="의 하위회원"
-                android:textColor="?attr/textColor"
-                android:textSize="@dimen/smallText" />
-        </LinearLayout>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            app:cardBackgroundColor="?attr/cardBackground"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="10dp">
-
-            <LinearLayout
+            <Space
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:layout_height="100dp" />
 
-                <ImageView
-                    android:id="@+id/upDirectoryIv"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="5dp"
-                    android:background="?android:attr/selectableItemBackground"
-                    android:clickable="true"
-                    app:srcCompat="@drawable/ic_baseline_arrow_upward_24_gray"
-                    app:tint="?attr/textColorSecondary" />
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:cardBackgroundColor="?attr/cardBackground">
 
-                <EditText
-                    android:id="@+id/pathEt"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:ems="10"
-                    android:focusable="false"
-                    android:inputType="textShortMessage|none"
-                    android:text="aaaaaaaaaaaaasssssssssssssssssssddddddddddddddddddddfffffffffffffffffffff" />
+                    android:layout_height="match_parent"
+                    android:layout_margin="20dp"
+                    android:orientation="vertical">
 
-            </LinearLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textColorHint="?attr/textColorSecondary"
+                        app:counterEnabled="true"
+                        app:errorEnabled="true"
+                        app:passwordToggleTint="?attr/textColorSecondary">
 
-        </androidx.cardview.widget.CardView>
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/newGroupCodeEt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="새로 개설할 그룹의 그룹코드"
+                            android:maxLength="20"
+                            android:singleLine="true"
+                            android:textColor="?attr/textColor"
+                            android:textSize="@dimen/middleText" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/subUserListRv"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </LinearLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/publishGroupBt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/buttonBackground"
+                android:text="그룹개설"
+                android:textColor="?attr/buttonTextColor"
+                android:textSize="@dimen/middleText" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

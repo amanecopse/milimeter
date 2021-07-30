@@ -1,5 +1,6 @@
 package com.amnapp.milimeter.activities
 
+import android.app.DatePickerDialog
 import android.content.DialogInterface
 import android.graphics.Color
 import android.os.Bundle
@@ -11,14 +12,18 @@ import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.amnapp.milimeter.AccountManager
+import com.amnapp.milimeter.GroupMemberData
 import com.amnapp.milimeter.UserData
 import com.amnapp.milimeter.databinding.ActivityEditSubUserInfoBinding
+import java.text.SimpleDateFormat
+import java.util.*
 
 class EditSubUserInfoActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityEditSubUserInfoBinding
     lateinit var mLoadingDialog: AlertDialog//로딩화면임. setProgressDialog()를 실행후 mLoadingDialog.show()로 시작
     lateinit var mSubUserData: UserData
+    lateinit var mSubGroupMemberData: GroupMemberData
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,20 +36,21 @@ class EditSubUserInfoActivity : AppCompatActivity() {
     private fun initUI() {
         setProgressDialog()// 로딩다이얼로그 설치
         mSubUserData = UserData.mTmpUserData!!
+        mSubGroupMemberData = GroupMemberData.mTmpGroupMemberData!!
         if (mSubUserData != null) {
-            binding.nameTv.text = mSubUserData.userName
+            binding.nameTv.text = mSubUserData.name
             binding.idTv.text = mSubUserData.id
             binding.pwEt.setText(mSubUserData.pw)
-            mSubUserData.userAge?.let { binding.ageEt.setText(it.toString()) }
+            mSubUserData.birthDate?.let { binding.birthDateTv.setText(it.toString()) }
             mSubUserData.militaryId?.let { binding.militaryIdEt.setText(it.toString()) }
-            mSubUserData.userHeight?.let { binding.heightEt.setText(it.toString()) }
-            mSubUserData.userWeight?.let { binding.weightEt.setText(it.toString()) }
-            mSubUserData.userBloodType?.let { binding.bloodTypeSp.setSelection(it) }
+            mSubUserData.height?.let { binding.heightEt.setText(it.toString()) }
+            mSubUserData.weight?.let { binding.weightEt.setText(it.toString()) }
+            mSubUserData.bloodType?.let { binding.bloodTypeSp.setSelection(it) }
             mSubUserData.goalOfWeight?.let { binding.goalOfWeightEt.setText(it.toString()) }
-            mSubUserData.goalOfTotalRank?.let { binding.goalOfTotalRankSp.setSelection(it) }
-            mSubUserData.goalOfLegTuckRank?.let { binding.goalOfLegTuckRankSp.setSelection(it) }
-            mSubUserData.goalOfShuttleRunRank?.let { binding.goalOfShuttleRunRankSp.setSelection(it) }
-            mSubUserData.goalOfFieldTrainingRank?.let { binding.goalOfFieldTrainingRankSp.setSelection(it) }
+            mSubUserData.goalOfTotalGrade?.let { binding.goalOfTotalRankSp.setSelection(it) }
+            mSubUserData.goalOfLegTuckGrade?.let { binding.goalOfLegTuckRankSp.setSelection(it) }
+            mSubUserData.goalOfShuttleRunGrade?.let { binding.goalOfShuttleRunRankSp.setSelection(it) }
+            mSubUserData.goalOfFieldTrainingGrade?.let { binding.goalOfFieldTrainingRankSp.setSelection(it) }
         }
 
         binding.confirmCv.setOnClickListener{
@@ -60,22 +66,30 @@ class EditSubUserInfoActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
             mSubUserData.pw = binding.pwEt.text.toString()
-            mSubUserData.userAge = if(binding.ageEt.text.isNullOrEmpty()) null else binding.ageEt.text.toString().toInt()
-            mSubUserData.militaryId = binding.militaryIdEt.text.toString().toInt()
-            mSubUserData.userHeight = binding.heightEt.text.toString().toInt()
-            mSubUserData.userWeight = binding.weightEt.text.toString().toInt()
-            mSubUserData.userBloodType = binding.bloodTypeSp.selectedItemPosition
-            mSubUserData.goalOfWeight = if(binding.goalOfWeightEt.text.isNullOrEmpty()) null else binding.goalOfWeightEt.text.toString().toInt()
-            mSubUserData.goalOfTotalRank = binding.goalOfTotalRankSp.selectedItemPosition
-            mSubUserData.goalOfLegTuckRank = binding.goalOfLegTuckRankSp.selectedItemPosition
-            mSubUserData.goalOfShuttleRunRank = binding.goalOfShuttleRunRankSp.selectedItemPosition
-            mSubUserData.goalOfFieldTrainingRank = binding.goalOfFieldTrainingRankSp.selectedItemPosition
+            mSubUserData.birthDate = if(binding.birthDateTv.text.isNullOrEmpty()) null else binding.birthDateTv.text.toString()
+            mSubUserData.militaryId = binding.militaryIdEt.text.toString()
+            mSubUserData.height = binding.heightEt.text.toString()
+            mSubUserData.weight = binding.weightEt.text.toString()
+            mSubUserData.bloodType = binding.bloodTypeSp.selectedItemPosition
+            mSubUserData.goalOfWeight = if(binding.goalOfWeightEt.text.isNullOrEmpty()) null else binding.goalOfWeightEt.text.toString()
+            mSubUserData.goalOfTotalGrade = binding.goalOfTotalRankSp.selectedItemPosition
+            mSubUserData.goalOfLegTuckGrade = binding.goalOfLegTuckRankSp.selectedItemPosition
+            mSubUserData.goalOfShuttleRunGrade = binding.goalOfShuttleRunRankSp.selectedItemPosition
+            mSubUserData.goalOfFieldTrainingGrade = binding.goalOfFieldTrainingRankSp.selectedItemPosition
 
             mLoadingDialog.show() //로딩시작
             AccountManager().uploadUserData(mSubUserData){message ->
-                if(message == AccountManager.UPLOAD_SUCCESS)
+                if(message == AccountManager.RESULT_SUCCESS)
                     showDialogMessage("수정 완료", "하위회원의 정보가 수정되었습니다")
                 mLoadingDialog.dismiss()
+            }
+        }
+        binding.birthDateLl.setOnClickListener {
+            showDatePickerDialog()
+        }
+        binding.withdrawBt.setOnClickListener {
+            AccountManager().leaveGroup(mSubGroupMemberData.indexHashCode!!){
+                showDialogMessage("탈퇴완료", "해당 하위유저가 탈퇴되었습니다")
             }
         }
 
@@ -128,5 +142,15 @@ class EditSubUserInfoActivity : AppCompatActivity() {
         builder.setCancelable(false)
         builder.setView(ll)
         mLoadingDialog = builder.create()
+    }
+
+    private fun showDatePickerDialog() {
+        val callBack = DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+            binding.birthDateTv.text = ""+year+"."+ String.format("%02d", month)+"."+String.format("%02d", dayOfMonth)
+        }
+        val year = SimpleDateFormat("yyyy").format(Date()).toInt()
+        val month = SimpleDateFormat("MM").format(Date()).toInt()
+        val day = SimpleDateFormat("dd").format(Date()).toInt()
+        DatePickerDialog(this, callBack,year-20,month,day).show()
     }
 }

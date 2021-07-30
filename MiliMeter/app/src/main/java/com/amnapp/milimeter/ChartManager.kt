@@ -92,7 +92,7 @@ class ChartManager {
     }
 
     fun loadTrainingRecordNDaysAgo(userData: UserData,date: String,howLongAgo: Int, callBack: UICallBack){
-        val ref = userData.indexHashCode?.let {
+        val ref = userData.id?.let {
             Firebase.firestore.collection(USERS).document(it)
                 .collection(TRAINING_RECORDS)
         }
@@ -149,7 +149,7 @@ class ChartManager {
             docs: MutableList<DocumentSnapshot>, lineDataSets: MutableList<LineDataSet>, dateList: ArrayList<String>
                 ) -> Unit
     ){
-        val ref = userData.indexHashCode?.let {
+        val ref = userData.id?.let {
             Firebase.firestore.collection(USERS).document(it)
                 .collection(TRAINING_RECORDS)
         }
@@ -199,9 +199,9 @@ class ChartManager {
     }
 
     fun updateTrainingRecord(userData: UserData, date: String, record: HashMap<String, String>, callBack: UICallBack){
-        userData.indexHashCode?.let { indexHashCode ->
+        userData.id?.let { id ->
             Firebase.firestore.collection(USERS)
-                .document(indexHashCode)
+                .document(id)
                 .collection(TRAINING_RECORDS)
                 .document(date)
                 .set(record, SetOptions.merge())

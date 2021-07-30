@@ -175,24 +175,33 @@
                             android:textSize="@dimen/middleText" />
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.google.android.material.textfield.TextInputLayout
+                    <LinearLayout
+                        android:id="@+id/birthDateLl"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:textColorHint="?attr/textColorSecondary"
-                        app:passwordToggleTint="?attr/textColorSecondary"
-                        app:suffixText="세"
-                        app:suffixTextColor="?attr/textColor">
+                        android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:gravity="center_vertical">
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/ageEt"
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            app:srcCompat="@drawable/ic_baseline_calendar_today_24_black"
+                            app:tint="?attr/textColorBanner" />
+
+                        <TextView
+                            android:id="@+id/birthDateTv"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="나이"
-                            android:singleLine="true"
+                            android:layout_weight="1"
+                            android:clickable="false"
+                            android:paddingTop="20dp"
+                            android:paddingBottom="20dp"
+                            android:text="생년월일 입력"
                             android:textColor="?attr/textColor"
                             android:textSize="@dimen/middleText" />
 
-                    </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
@@ -460,11 +469,11 @@
             </androidx.cardview.widget.CardView>
 
             <Button
-                android:id="@+id/deleteAccountBt"
+                android:id="@+id/withdrawBt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/holo_red_light"
-                android:text="해당 계정 삭제하기"
+                android:text="해당 계정 그룹에서 탈퇴시키기"
                 android:textColor="?attr/buttonTextColor"
                 android:textSize="@dimen/smallText" />
 

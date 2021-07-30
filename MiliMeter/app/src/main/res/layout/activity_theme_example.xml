@@ -28,11 +28,11 @@
 
             <ImageView
                 android:id="@+id/iconIv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:layout_marginRight="10dp"
-                android:tint="?attr/textColorBanner"
-                app:srcCompat="@drawable/ic_baseline_filter_15_white" />
+                app:srcCompat="@drawable/ic_baseline_filter_15_white"
+                app:tint="?attr/textColorBanner" />
 
             <TextView
                 android:id="@+id/titleTv"
@@ -108,6 +108,15 @@
                     android:layout_height="match_parent"
                     android:layout_margin="20dp"
                     android:orientation="vertical">
+
+                    <CheckBox
+                        android:id="@+id/changeBottomMenuCb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="?attr/textColorSecondary"
+                        android:text="하단메뉴바꾸기"
+                        android:textColor="?attr/textColor"
+                        android:textSize="@dimen/smallText" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -421,10 +430,107 @@
     </androidx.core.widget.NestedScrollView>
 
     <LinearLayout
+        android:id="@+id/menuBottomLl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="?attr/cardBackground"
+        android:gravity="fill_horizontal"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/bottomLl">
+
+        <ImageView
+            android:id="@+id/bottomBorderLineIv"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="?attr/textColorBanner"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+        </ImageView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <Button
+                android:id="@+id/settingBt"
+                android:layout_width="81dp"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:drawableTop="@drawable/ic_baseline_miscellaneous_services_20_white"
+                android:drawableTint="?attr/textColorBanner"
+                android:gravity="center_horizontal"
+                android:text="@string/setting"
+                android:textAllCaps="false"
+                android:textColor="?attr/textColorBanner"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/homeBt"
+                android:layout_width="81dp"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:drawableTop="@drawable/ic_baseline_home_20_white"
+                android:drawableTint="?attr/textColorBanner"
+                android:gravity="center_horizontal"
+                android:text="@string/home"
+                android:textAllCaps="false"
+                android:textColor="?attr/textColorBanner"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/resultBt"
+                android:layout_width="81dp"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:drawableTop="@drawable/ic_baseline_insert_chart_outlined_20_white"
+                android:drawableTint="?attr/textColorBanner"
+                android:gravity="center_horizontal"
+                android:text="@string/result"
+                android:textAllCaps="false"
+                android:textColor="?attr/textColorBanner"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/goalBt"
+                android:layout_width="81dp"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:drawableTop="@drawable/ic_baseline_track_changes_20_white"
+                android:drawableTint="?attr/textColorBanner"
+                android:gravity="center_horizontal"
+                android:text="@string/goal"
+                android:textAllCaps="false"
+                android:textColor="?attr/textColorBanner"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/bodyBt"
+                android:layout_width="81dp"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:drawableTop="@drawable/ic_baseline_accessibility_20_white"
+                android:drawableTint="?attr/textColorBanner"
+                android:gravity="center_horizontal"
+                android:text="@string/body"
+                android:textAllCaps="false"
+                android:textColor="?attr/textColorBanner"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/bottomLl"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
+        android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

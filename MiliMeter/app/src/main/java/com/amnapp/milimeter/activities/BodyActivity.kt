@@ -82,13 +82,13 @@ class BodyActivity : AppCompatActivity() {
         }
 
         // 텍스트뷰변환 - 목표몸무게
-        var userWeight = getInstance().userWeight
+        var userWeight = getInstance().weight
         var goalWeight = getInstance().goalOfWeight
         if (goalWeight != null && userWeight != null) {
             if (goalWeight < userWeight) {
-                binding.weightTv.text = "목표치보다 +${userWeight-goalWeight}kg"
+                binding.weightTv.text = "목표치보다 +${userWeight.toInt()-goalWeight.toInt()}kg"
             } else if (goalWeight > userWeight) {
-                binding.weightTv.text = "목표치보다 -${goalWeight-userWeight}kg"
+                binding.weightTv.text = "목표치보다 -${goalWeight.toInt()-userWeight.toInt()}kg"
             } else if (goalWeight == userWeight) {
                 binding.weightTv.text = "목표몸무게 도달!!"
             }

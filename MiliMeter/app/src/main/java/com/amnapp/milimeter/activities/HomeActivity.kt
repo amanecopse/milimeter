@@ -28,8 +28,13 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        test()
         initUI()
         autoLogin()
+    }
+
+    private fun test() {
+        
     }
 
     private fun initUI() {
@@ -105,22 +110,14 @@ class HomeActivity : AppCompatActivity() {
 
     private fun autoLogin() {
         mLoadingDialog.show() // 로딩화면 실행
-
-        val pm = PreferenceManager()
-        val loginDataArray = pm.getLoginData(this)// 로그인 데이터를 로컬저장소에서 로드함
-
-        if(loginDataArray[0].isNullOrEmpty()// 로그인 정보 없는 경우
-            ||loginDataArray[1].isNullOrEmpty()
-            ||loginDataArray[2].isNullOrEmpty()){
-            mLoadingDialog.dismiss()//로딩해제
-            return// 로딩해제하고 빠져나옴
-        }
-
-        AccountManager().login(loginDataArray[0]!!, loginDataArray[1]!!, loginDataArray[2]!!){result ->
-            if(result == AccountManager.LOGIN_SUCCESS){
-                Toast.makeText(this@HomeActivity, "로그인", Toast.LENGTH_SHORT).show()
+        AccountManager().autoLogin(this){resultMessage->
+            if(resultMessage == AccountManager.RESULT_SUCCESS){
+                Toast.makeText(this, "로그인", Toast.LENGTH_LONG).show()
+                mLoadingDialog.dismiss()//로딩해제
             }
-            mLoadingDialog.dismiss() // 로딩해제
+            else{
+                mLoadingDialog.dismiss()//로딩해제
+            }
         }
     }
 

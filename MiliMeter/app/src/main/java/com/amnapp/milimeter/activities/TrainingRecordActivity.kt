@@ -47,7 +47,7 @@ class TrainingRecordActivity : AppCompatActivity() {
         binding.confirmBt.setOnClickListener {
             val myUd = UserData.getInstance()
             val currDate = binding.dateTv.text.toString()
-            if(!myUd.isLogined){
+            if(!myUd.login){
                 showDialogMessage("오류", "로그인 한 뒤 기록해 주세요")
                 return@setOnClickListener
             }

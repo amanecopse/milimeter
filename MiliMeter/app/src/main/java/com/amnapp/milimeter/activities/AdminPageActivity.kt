@@ -3,6 +3,7 @@ package com.amnapp.milimeter.activities
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.amnapp.milimeter.GroupMemberData
 import com.amnapp.milimeter.UserData
 import com.amnapp.milimeter.databinding.ActivityAdminPageBinding
 import com.amnapp.milimeter.recyclerViews.AdminPageRecyclerAdapter
@@ -43,26 +45,28 @@ class AdminPageActivity : AppCompatActivity() {
         viewModel.parentName.observe(this, Observer { // 현재부모가 디렉토리 이동으로 바뀌면 그 이름으로 UI갱신
             binding.parentNameTv.text = it
         })
-        viewModel.pathList.observe(this, Observer {
+        viewModel.userPathList.observe(this, Observer {
             var path = ""
             for (i in it){
-                path += "/"+i.userName
+                path += "/"+i.name
             }
             binding.pathEt.setText(path)
         })
         viewModel.subUserList.observe(this, Observer {
+            if(it == null) return@Observer
             val adminPageRecyclerAdapter = AdminPageRecyclerAdapter(it)
             //아이템 내용 클릭 리스너 등록
-            adminPageRecyclerAdapter.setContentOnClickListener(object: AdminPageRecyclerAdapter.OnItemClickListener{
+            adminPageRecyclerAdapter.setItemOnClickListener(object: AdminPageRecyclerAdapter.OnItemClickListener{
                 override fun onClicked(v: View, pos: Int) {
                     mLoadingDialog.show() // 로딩 시작
-                    viewModel.downDirectory(it[pos])
+                    viewModel.downDirectory(it[pos], viewModel.subGroupMemberList.value!![pos])
                 }
             })
             //아이템 편집 클릭 리스너 등록
             adminPageRecyclerAdapter.setEditOnClickListener(object: AdminPageRecyclerAdapter.OnEditClickListener{
                 override fun onClicked(v: View, pos: Int) {
                     UserData.mTmpUserData = it[pos]
+                    GroupMemberData.mTmpGroupMemberData = viewModel.subGroupMemberList.value!![pos]
                     val intent = Intent(this@AdminPageActivity, EditSubUserInfoActivity::class.java)
                     startActivity(intent)
                 }
@@ -73,11 +77,14 @@ class AdminPageActivity : AppCompatActivity() {
         })
 
         binding.upDirectoryIv.setOnClickListener {
-            if (viewModel.pathList.value?.size == 1) return@setOnClickListener // 최상위 경로면 작동 안한다
+            if (viewModel.userPathList.value?.size == 1) return@setOnClickListener // 최상위 경로면 작동 안한다
             mLoadingDialog.show()//로딩 시작
             viewModel.upDirectory()
         }
-        binding.cancelLl.setOnClickListener {
+        binding.cancelIb.setOnClickListener {
+            finish()
+        }
+        binding.backIb.setOnClickListener {
             finish()
         }
     }
@@ -114,15 +121,6 @@ class AdminPageActivity : AppCompatActivity() {
         builder.setCancelable(false)
         builder.setView(ll)
         mLoadingDialog = builder.create()
-//        mLoadingDialog.show()
-//        val window: Window? = mLoadingDialog.window
-//        if (window != null) {
-//            val layoutParams = WindowManager.LayoutParams()
-//            layoutParams.copyFrom(mLoadingDialog.window!!.attributes)
-//            layoutParams.width = LinearLayout.LayoutParams.WRAP_CONTENT
-//            layoutParams.height = LinearLayout.LayoutParams.WRAP_CONTENT
-//            mLoadingDialog.window!!.attributes = layoutParams
-//        }
     }
 
     override fun onResume() {
