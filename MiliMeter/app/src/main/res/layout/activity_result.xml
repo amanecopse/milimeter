@@ -52,11 +52,12 @@
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/lineChart"
             android:layout_width="match_parent"
-            android:layout_height="221dp"></com.github.mikephil.charting.charts.LineChart>
+            android:layout_height="250dp"></com.github.mikephil.charting.charts.LineChart>
 
         <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp">
 
             <TableRow
                 android:layout_width="match_parent"
@@ -172,7 +173,7 @@
                     android:textColor="@android:color/black"/>
 
                 <TextView
-                    android:id="@+id/circutrecord2"
+                    android:id="@+id/circuitrecord2"
                     android:layout_width="103dp"
                     android:layout_height="match_parent"
                     android:textColor="@android:color/black"/>
