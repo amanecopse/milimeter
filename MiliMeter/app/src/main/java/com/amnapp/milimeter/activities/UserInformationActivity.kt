@@ -1,10 +1,13 @@
 package com.amnapp.milimeter.activities
 
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.amnapp.milimeter.UserData
 import com.amnapp.milimeter.databinding.ActivityUserInformationBinding
+import java.text.SimpleDateFormat
+import java.util.*
 
 class UserInformationActivity :AppCompatActivity() {
 
@@ -49,7 +52,7 @@ class UserInformationActivity :AppCompatActivity() {
             val newGoalTraining = binding.goalOfFieldTrainingRankSp.selectedItemPosition
 
             userData.name = newName.toString()
-            userData.birthDate = if(newAge.isNullOrEmpty()) null else newAge.toString()
+            userData.birthDate = if(newAge == "생년월일 입력") null else newAge.toString()
             userData.weight = if(newWeight.isNullOrEmpty()) null else newWeight.toString()
             userData.height = if(newHeight.isNullOrEmpty()) null else newHeight.toString()
             userData.goalOfWeight = if(newGoalWeight.isNullOrEmpty()) null else newGoalWeight.toString()
@@ -60,6 +63,29 @@ class UserInformationActivity :AppCompatActivity() {
             UserData.setInstance(userData)
         }
         // 서버에 저장해야 함
+
+        binding.birthDateLl.setOnClickListener {// 날짜선택 다이얼로그를 실행하고 선택한 날짜를 텍스트에 적용
+            showDatePickerDialog()
+        }
     }
 
+
+    private fun showDatePickerDialog() {
+        val callBack = DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+            binding.birthDateTv.text = ""+year+"."+ String.format("%02d", month)+"."+String.format("%02d", dayOfMonth)
+        }
+        val year = SimpleDateFormat("yyyy").format(Date()).toInt()
+        val month = SimpleDateFormat("MM").format(Date()).toInt()
+        val day = SimpleDateFormat("dd").format(Date()).toInt()
+
+        if(UserData.getInstance().birthDate.isNullOrEmpty())
+            DatePickerDialog(this, callBack,year-20,month,day).show()
+        else{
+            val simpleDateFormat = SimpleDateFormat("yyyy.MM.dd").parse(UserData.getInstance().birthDate)
+            val userYear = SimpleDateFormat("yyyy").format(simpleDateFormat).toInt()
+            val userMonth = SimpleDateFormat("MM").format(simpleDateFormat).toInt()
+            val userDay = SimpleDateFormat("dd").format(simpleDateFormat).toInt()
+            DatePickerDialog(this, callBack,userYear,userMonth,userDay).show()
+        }
+    }
 }
