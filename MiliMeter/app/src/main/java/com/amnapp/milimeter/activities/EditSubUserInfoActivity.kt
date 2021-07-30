@@ -151,6 +151,15 @@ class EditSubUserInfoActivity : AppCompatActivity() {
         val year = SimpleDateFormat("yyyy").format(Date()).toInt()
         val month = SimpleDateFormat("MM").format(Date()).toInt()
         val day = SimpleDateFormat("dd").format(Date()).toInt()
-        DatePickerDialog(this, callBack,year-20,month,day).show()
+
+        if(mSubUserData.birthDate.isNullOrEmpty())
+            DatePickerDialog(this, callBack,year-20,month,day).show()
+        else{
+            val simpleDateFormat = SimpleDateFormat("yyyy.MM.dd").parse(mSubUserData.birthDate)
+            val userYear = SimpleDateFormat("yyyy").format(simpleDateFormat).toInt()
+            val userMonth = SimpleDateFormat("MM").format(simpleDateFormat).toInt()
+            val userDay = SimpleDateFormat("dd").format(simpleDateFormat).toInt()
+            DatePickerDialog(this, callBack,userYear,userMonth,userDay).show()
+        }
     }
 }
