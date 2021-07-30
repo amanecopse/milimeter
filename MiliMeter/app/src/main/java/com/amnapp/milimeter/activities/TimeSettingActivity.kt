@@ -19,17 +19,15 @@ class TimeSettingActivity : AppCompatActivity() {
         binding.cancelBt.setOnClickListener {
             val intentBack = Intent(this, SettingActivity::class.java)
             startActivity(intentBack)
+            finish()
         }
 
         // 취소하기 버튼
         binding.backBt.setOnClickListener {
             val intentBack = Intent(this, NoticeActivity::class.java)
             startActivity(intentBack)
+            finish()
         }
-
-
-
-
 
     }
 }

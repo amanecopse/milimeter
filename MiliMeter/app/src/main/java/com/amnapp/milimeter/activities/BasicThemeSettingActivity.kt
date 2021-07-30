@@ -18,6 +18,7 @@ class BasicThemeSettingActivity : AppCompatActivity() {
         binding.cancelBt.setOnClickListener {
             val intentBack = Intent(this, ThemeActivity::class.java)
             startActivity(intentBack)
+            finish()
         }
 
         // 모드 종류 설정하기

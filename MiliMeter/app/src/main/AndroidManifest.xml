@@ -27,14 +27,17 @@
         <activity android:name=".activities.EditSubUserInfoActivity" /> <!-- 하위유저편집창 -->
         <activity android:name=".activities.DebugActivity" /> <!-- 디버그창, 디버그 편의상 각 화면으로 이동하는 버튼을 두었음 -->
         <!-- 임지선 -->
-        <activity android:name=".activities.BasicThemeSettingActivity" />
-        <activity android:name=".activities.LanguageActivity" />
-        <activity android:name=".activities.MakingThemeSettingActivity" />
-        <activity android:name=".activities.PrivateAdministrationActivity" />
-        <activity android:name=".activities.SettingActivity" />
-        <activity android:name=".activities.SpecialThemeSettingActivity" />
-        <activity android:name=".activities.ThemeActivity" />
-        <activity android:name=".activities.UserInformationActivity" />
+        <activity android:name=".activities.BasicThemeSettingActivity" /> <!-- 기본테마 -->
+        <activity android:name=".activities.LanguageActivity" /> <!-- 언어설정창 -->
+        <activity android:name=".activities.MakingThemeSettingActivity" /> <!-- 테마제작하기 -->
+        <activity android:name=".activities.UserPasswardActivity" /> <!-- 패스워드변경창 -->
+        <activity android:name=".activities.SettingActivity" /> <!-- 설정창 -->
+        <activity android:name=".activities.SpecialThemeSettingActivity" /> <!-- 특별한 테마 -->
+        <activity android:name=".activities.ThemeActivity" /> <!-- 테마창 -->
+        <activity android:name=".activities.UserInformationActivity" /> <!-- 사용자정보창 -->
+        <activity android:name=".activities.NoticeActivity" /> <!-- 알림창 -->
+        <activity android:name=".activities.TimeSettingActivity" /> <!-- 알림시간설정창 -->
+        <activity android:name=".activities.BodyActivity" /> <!-- 신체창 -->
         <!-- 고동현 -->
         <activity android:name=".activities.ResultActivity" /><!-- 결과창 -->
         <activity android:name=".activities.CircuitResultActivity" /><!-- 전장순환 -->

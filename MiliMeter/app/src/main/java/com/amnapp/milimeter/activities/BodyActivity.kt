@@ -86,9 +86,9 @@ class BodyActivity : AppCompatActivity() {
         var goalWeight = getInstance().goalOfWeight
         if (goalWeight != null && userWeight != null) {
             if (goalWeight < userWeight) {
-                binding.weightTv.text = "목표치보다 +${userWeight.toInt()-goalWeight.toInt()}kg"
+                binding.weightTv.text = "목표치보다 +${userWeight.toInt()-goalWeight.toInt()}kg  :  과체중"
             } else if (goalWeight > userWeight) {
-                binding.weightTv.text = "목표치보다 -${goalWeight.toInt()-userWeight.toInt()}kg"
+                binding.weightTv.text = "목표치보다 -${goalWeight.toInt()-userWeight.toInt()}kg  :  저체중"
             } else if (goalWeight == userWeight) {
                 binding.weightTv.text = "목표몸무게 도달!!"
             }
@@ -100,26 +100,31 @@ class BodyActivity : AppCompatActivity() {
         binding.homeBt.setOnClickListener {
             val intentHome = Intent(this, HomeActivity::class.java)
             startActivity(intentHome)
+            finish()
         }
         // body창으로 이동
         binding.bodyBt.setOnClickListener {
             val intentBody = Intent(this, BodyActivity::class.java)
             startActivity(intentBody)
+            finish()
         }
         // result화면으로 이동
         binding.resultBt.setOnClickListener {
             val intentResult = Intent(this, ResultActivity::class.java)
             startActivity(intentResult)
+            finish()
         }
         // goal창으로 이동
         binding.goalBt.setOnClickListener {
             val intentGoal = Intent(this, GoalActivity::class.java)
             startActivity(intentGoal)
+            finish()
         }
         // setting창으로 이동
         binding.settingBt.setOnClickListener {
             val intentSetting = Intent(this, SettingActivity::class.java)
             startActivity(intentSetting)
+            finish()
         }
 
 

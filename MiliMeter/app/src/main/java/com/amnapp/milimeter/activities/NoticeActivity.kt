@@ -17,12 +17,14 @@ class NoticeActivity : AppCompatActivity() {
         binding.cancelBt.setOnClickListener {
             val intentBack = Intent(this, SettingActivity::class.java)
             startActivity(intentBack)
+            finish()
         }
 
         binding.noticeCheckSt.setOnCheckedChangeListener { buttonView, isChecked ->
-            if(isChecked == true) {
+            if(isChecked) {
                 val intentTimeSet = Intent(this, TimeSettingActivity::class.java)
                 startActivity(intentTimeSet)
+                finish()
             }
         }
 
