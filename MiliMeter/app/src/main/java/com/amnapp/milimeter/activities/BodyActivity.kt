@@ -157,9 +157,11 @@ class BodyActivity : AppCompatActivity() {
 
 
 }
+
 // 기록 다이얼로그
 class CustomDialog(context: Context) {
     private val dialog = Dialog(context)
+
 
     fun recordDialog() {
         dialog.show()

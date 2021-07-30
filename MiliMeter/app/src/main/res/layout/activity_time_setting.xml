@@ -54,18 +54,78 @@
             android:background="@color/white"
             android:orientation="horizontal">
 
-            <TimePicker
+            <TextView
                 android:id="@+id/timeSetSp"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:timePickerMode="spinner" />
+                android:text="임시" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
-            android:layout_height="60dp">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="291dp"
+            android:orientation="vertical">
+
+            <Switch
+                android:id="@+id/firstNtSt"
+                android:layout_width="350dp"
+                android:layout_height="70dp"
+                android:layout_gravity="center"
+                android:text="00 : 00"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <Switch
+                android:id="@+id/secondNtSt"
+                android:layout_width="350dp"
+                android:layout_height="70dp"
+                android:layout_gravity="center"
+                android:text="00 : 00"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="알림 제목"
+                android:textSize="20sp"
+                android:layout_marginLeft="10dp"
+                android:gravity="center_vertical"/>
+
+            <EditText
+                android:id="@+id/ntTitleEt"
+                android:layout_width="380dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:textSize="15sp"
+                android:hint="알림 제목을 적어주세요(예시: 운동)" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="알림 내용"
+                android:textSize="20sp"
+                android:layout_marginLeft="10dp"
+                android:gravity="center_vertical"/>
+
+            <EditText
+                android:id="@+id/ntCommentEt"
+                android:layout_width="380dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:textSize="15sp"
+                android:hint="알림 내용을 적어주세요(예시: 오늘 하루도 힘내세요~)" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true" >
 
             <Button
                 android:id="@+id/backBt"
@@ -90,6 +150,8 @@
                 android:background="@color/white"/>
 
         </LinearLayout>
+
+
 
     </RelativeLayout>
 

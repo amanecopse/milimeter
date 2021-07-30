@@ -1,8 +1,10 @@
 package com.amnapp.milimeter.activities
 
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
 import com.amnapp.milimeter.databinding.ActivityNoticeBinding
 
 class NoticeActivity : AppCompatActivity() {
@@ -20,13 +22,22 @@ class NoticeActivity : AppCompatActivity() {
             finish()
         }
 
-        binding.noticeCheckSt.setOnCheckedChangeListener { buttonView, isChecked ->
-            if(isChecked) {
-                val intentTimeSet = Intent(this, TimeSettingActivity::class.java)
-                startActivity(intentTimeSet)
-                finish()
-            }
+        binding.noticeSetBt.setOnClickListener {
+            showDialogMessage("알림", "알림은 1개 설정할 수 있으며,\n알림시간은 2회 설정할 수 있습니다.")
         }
 
     }
+
+    fun showDialogMessage(title:String, body:String) {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(title)
+        builder.setMessage(body)
+        builder.setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int ->
+            val intent = Intent(this, TimeSettingActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+        builder.show()
+    }
+
 }
