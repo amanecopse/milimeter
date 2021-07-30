@@ -27,12 +27,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f76ba81a-de21-444c-8ebd-853ac538e4a2" name="Default Changelist" comment="확인용">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/HomeActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/HomeActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/SettingActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/SettingActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_notice.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_notice.xml" afterDir="false" />
-    </list>
+    <list default="true" id="f76ba81a-de21-444c-8ebd-853ac538e4a2" name="Default Changelist" comment="화면 바뀜 실수 해결" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -121,7 +116,49 @@
       <option name="project" value="LOCAL" />
       <updated>1627208931304</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="설정창 화면전환 추가">
+      <created>1627211219556</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1627211219557</updated>
+    </task>
+    <task id="LOCAL-00010" summary="설정창 화면전환 추가">
+      <created>1627211432301</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1627211432302</updated>
+    </task>
+    <task id="LOCAL-00011" summary="임지선 - 프로젝트(수정)">
+      <created>1627298951091</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1627298951093</updated>
+    </task>
+    <task id="LOCAL-00012" summary="임지선 - body창 추가(타이머완성)">
+      <created>1627509684001</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1627509684003</updated>
+    </task>
+    <task id="LOCAL-00013" summary="임지선 - 회원정보 수정(서버 -ing)">
+      <created>1627550218489</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1627550218491</updated>
+    </task>
+    <task id="LOCAL-00014" summary="화면 바뀜 실수 해결">
+      <created>1627556338351</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1627556338355</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -144,7 +181,13 @@
     <MESSAGE value="homeActivity에 설정창 화면전환 추가" />
     <MESSAGE value="샘플" />
     <MESSAGE value="확인용" />
-    <option name="LAST_COMMIT_MESSAGE" value="확인용" />
+    <MESSAGE value="설정창 화면전환 추가" />
+    <MESSAGE value="임지선 - 프로젝트(수정)" />
+    <MESSAGE value="임지선 - body창 추가(타이머완성)" />
+    <MESSAGE value="임지선 - 회원정보 수정(서버 -ing)" />
+    <MESSAGE value="임지선 - 비밀번호 다이얼로그 추가" />
+    <MESSAGE value="화면 바뀜 실수 해결" />
+    <option name="LAST_COMMIT_MESSAGE" value="화면 바뀜 실수 해결" />
   </component>
   <component name="WindowStateProjectService">
     <state x="2815" y="-79" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1626928676278">
@@ -159,30 +202,31 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="344" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1626785387096" />
-    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1627015297641">
+    <state x="216" y="154" key="FileChooserDialogImpl" timestamp="1627551416765">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1627015297641" />
+    <state x="216" y="154" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1627551416765" />
     <state x="513" y="316" key="Github.CreatePullRequestDialog" timestamp="1626785626778">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="513" y="316" key="Github.CreatePullRequestDialog/0.0.1536.824@0.0.1536.824" timestamp="1626785626778" />
-    <state x="147" y="65" key="MergeDialog" timestamp="1627209209554">
+    <state x="147" y="65" key="MergeDialog" timestamp="1627556498344">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="147" y="65" key="MergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1627209209554" />
-    <state x="406" y="173" key="MultipleFileMergeDialog" timestamp="1627209209592">
+    <state x="147" y="65" key="MergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1627556498344" />
+    <state x="406" y="173" key="MultipleFileMergeDialog" timestamp="1627556498524">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="406" y="173" key="MultipleFileMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1627209209592" />
-    <state x="226" y="71" key="Vcs.Push.Dialog.v2" timestamp="1627208938012">
+    <state x="406" y="173" key="MultipleFileMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1627556498524" />
+    <state x="226" y="71" key="Vcs.Push.Dialog.v2" timestamp="1627556350960">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="226" y="71" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1627208938012" />
+    <state x="226" y="71" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1627556350960" />
     <state x="2683" y="-164" key="Vcs.Push.Dialog.v2/2400.-254.1920.1040/0.0.1536.824@2400.-254.1920.1040" timestamp="1626929397923" />
-    <state x="3174" y="179" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1626927917064">
-      <screen x="2400" y="-254" width="1920" height="1040" />
+    <state x="619" y="343" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1627211742312">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
+    <state x="619" y="343" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1627211742312" />
     <state x="3174" y="179" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/2400.-254.1920.1040/0.0.1536.824@2400.-254.1920.1040" timestamp="1626927917064" />
   </component>
 </project>

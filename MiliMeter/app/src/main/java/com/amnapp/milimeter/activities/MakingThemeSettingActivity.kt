@@ -1,5 +1,6 @@
 package com.amnapp.milimeter.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.amnapp.milimeter.R
@@ -11,18 +12,19 @@ class MakingThemeSettingActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_making_theme_setting)
+        setContentView(binding.root)
 
-
-        with(binding) {
-            // 창닫기
-            saveBt.setOnClickListener{
-                finish()
-            }
-            // 사진 가져오기
-            photoGetBt.setOnClickListener{
-
-            }
+        // 창닫기
+        binding.cancelBt.setOnClickListener {
+            val intentBack = Intent(this, ThemeActivity::class.java)
+            startActivity(intentBack)
         }
+
+
+        // 사진 가져오기
+        binding.photoGetBt.setOnClickListener{
+
+        }
+
     }
 }

@@ -17,11 +17,11 @@ class ThemeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // 창닫기
-        with(binding) {
-            cancelBt.setOnClickListener{
-                finish()
-            }
+        binding.cancelBt.setOnClickListener {
+            val intentBack = Intent(this, SettingActivity::class.java)
+            startActivity(intentBack)
         }
+
         // 기본 테마창으로 이동
         findViewById<Button>(R.id.basicThemeBt).setOnClickListener {
             val intentBasicTheme = Intent(this, BasicThemeSettingActivity::class.java)
@@ -34,7 +34,7 @@ class ThemeActivity : AppCompatActivity() {
         }
         // 테마 제작하기창으로 이동
         findViewById<Button>(R.id.makingThemeBt).setOnClickListener {
-            val intentMakingTheme = Intent(this, BasicThemeSettingActivity::class.java)
+            val intentMakingTheme = Intent(this, MakingThemeSettingActivity::class.java)
             startActivity(intentMakingTheme)
         }
     }
