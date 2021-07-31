@@ -48,7 +48,7 @@ class AdminPageActivity : AppCompatActivity() {
         viewModel.userPathList.observe(this, Observer {
             var path = ""
             for (i in it){
-                path += "/"+i.name
+                path += "/"+if(i.name.isNullOrEmpty()) "(빈 자리)" else i.name
             }
             binding.pathEt.setText(path)
         })
@@ -92,7 +92,9 @@ class AdminPageActivity : AppCompatActivity() {
             finish()
         }
         binding.backIb.setOnClickListener {
-            finish()
+            if (viewModel.userPathList.value?.size == 1) return@setOnClickListener // 최상위 경로면 작동 안한다
+            mLoadingDialog.show()//로딩 시작
+            viewModel.upDirectory()
         }
     }
 

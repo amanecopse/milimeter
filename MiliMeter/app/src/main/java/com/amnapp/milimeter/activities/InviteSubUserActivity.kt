@@ -51,6 +51,13 @@ class InviteSubUserActivity : AppCompatActivity() {
                 binding.inviteBt.isClickable = true
             }
         }
+
+        binding.cancelIb.setOnClickListener{
+            finish()
+        }
+        binding.backIb.setOnClickListener{
+            finish()
+        }
     }
 
     fun setProgressDialog() {

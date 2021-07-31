@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.amnapp.milimeter.AccountManager
@@ -88,8 +89,16 @@ class EditSubUserInfoActivity : AppCompatActivity() {
             showDatePickerDialog()
         }
         binding.withdrawBt.setOnClickListener {
-            AccountManager().leaveGroup(mSubGroupMemberData.indexHashCode!!){
-                showDialogMessage("탈퇴완료", "해당 하위유저가 탈퇴되었습니다")
+            showTwoButtonDialogMessage("주의", "정말 삭제하시겠습니까?"){
+                if(it != -1)
+                    return@showTwoButtonDialogMessage
+
+                binding.withdrawBt.isClickable = false
+                mLoadingDialog.show()
+                AccountManager().leaveGroup(mSubGroupMemberData.indexHashCode!!){
+                    Toast.makeText(applicationContext, "해당 하위유저가 탈퇴되었습니다", Toast.LENGTH_LONG).show()
+                    finish()
+                }
             }
         }
 
@@ -107,6 +116,25 @@ class EditSubUserInfoActivity : AppCompatActivity() {
         builder.setTitle(title)
         builder.setMessage(body)
         builder.setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int -> }
+        builder.show()
+    }
+
+    fun showDialogMessage(title:String, body:String, callBack: () -> Unit) {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(title)
+        builder.setMessage(body)
+        builder.setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int ->
+            callBack()
+        }
+        builder.show()
+    }
+
+    fun showTwoButtonDialogMessage(title: String, body: String, callBack: (Int) -> Unit) {//다이얼로그 메시지를 띄우는 함수
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(title)
+        builder.setMessage(body)
+        builder.setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int -> callBack(i)}
+        builder.setNegativeButton("취소") { dialogInterface: DialogInterface, i: Int -> callBack(i)}
         builder.show()
     }
 
