@@ -2,6 +2,7 @@ package com.amnapp.milimeter.activities
 
 import android.app.Dialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,9 +10,16 @@ import android.os.Handler
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
+import androidx.appcompat.app.AlertDialog
+import com.amnapp.milimeter.ChartManager
 import com.amnapp.milimeter.R
+import com.amnapp.milimeter.UserData
 import com.amnapp.milimeter.UserData.Companion.getInstance
 import com.amnapp.milimeter.databinding.ActivityBodyBinding
+import com.github.mikephil.charting.data.LineDataSet
+import com.google.firebase.firestore.DocumentSnapshot
+import java.util.*
+import kotlin.collections.ArrayList
 
 class BodyActivity : AppCompatActivity() {
 
@@ -76,6 +84,36 @@ class BodyActivity : AppCompatActivity() {
 
             dialog.setOnClickedListener(object : CustomDialog.ButtonClickListener {
                 override fun onClicked(type: String) {
+                    val myUd = UserData.getInstance()
+                    // 오늘 날짜 -> string형태
+                    val nowDate = timeGenerator()
+                    if(!myUd.login){
+                        showDialogMessage("오류", "로그인 한 뒤 기록해 주세요")
+                    }
+                    else if(findViewById<EditText>(R.id.typeEt).text.isNullOrBlank()){
+                        showDialogMessage("오류", "공란을 입력해 주세요")
+                    }
+                    // 데이터 해쉬맵으로 저장 -> timeValue는 초형태로 string형태
+                    val record = hashMapOf(
+                        type to "${timeValue%60}",
+                        "date" to nowDate
+                    )
+                    val cm = ChartManager()
+                    cm.updateTrainingRecord(UserData.getInstance(),nowDate,record,object: ChartManager.UICallBack{
+                        override fun whatToDo() {
+                            showDialogMessage("완료", "운동 결과를 기록했습니다")
+                            // showChart()
+                        }
+
+                        override fun whatToDoWithLineDataSets(lineDataSets: MutableList<LineDataSet>, dateList: ArrayList<String>) {
+                            return
+                        }
+
+                        override fun whatToDoWithDocuments(docs: MutableList<DocumentSnapshot>) {
+                            return
+                        }
+
+                    })
                     binding.checkTv.append(type)
                 }
             })
@@ -154,7 +192,37 @@ class BodyActivity : AppCompatActivity() {
         textView.text = "${lapTime / 3600}:${lapTime % 3600 / 60}:${lapTime % 60}" // 출력할 시간 설정
     }
 
+    fun showDialogMessage(title: String, body: String) {//다이얼로그 메시지를 띄우는 함수
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(title)
+        builder.setMessage(body)
+        builder.setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int -> finish() }
+        builder.show()
+    }
 
+    fun timeGenerator() :String{
+        val instance = Calendar.getInstance()
+        val year = instance.get(Calendar.YEAR).toString()
+        var month = (instance.get(Calendar.MONTH) + 1).toString()
+        var date = instance.get(Calendar.DATE).toString()
+        if (month.toInt() < 10) {
+            month = "0${month}"
+        }
+        if (date.toInt() < 10) {
+            date = "0${date}"
+        }
+        var now = "${year}.${month}.${date}"
+        return now
+    }
+
+    /*
+    private fun showChart() {
+        val cm = ChartManager()
+        // 만드신 차트 로드해주세요
+        }
+    }
+
+     */
 
 }
 
