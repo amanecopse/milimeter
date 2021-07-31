@@ -67,8 +67,15 @@ class AdminPageActivity : AppCompatActivity() {
                 override fun onClicked(v: View, pos: Int) {
                     UserData.mTmpUserData = it[pos]
                     GroupMemberData.mTmpGroupMemberData = viewModel.subGroupMemberList.value!![pos]
-                    val intent = Intent(this@AdminPageActivity, EditSubUserInfoActivity::class.java)
-                    startActivity(intent)
+                    if(GroupMemberData.mTmpGroupMemberData!!.id.isNullOrEmpty()){
+                        val intent = Intent(this@AdminPageActivity, EditEmptyInfoActivity::class.java)
+                        startActivity(intent)
+                    }
+                    else{
+                        val intent = Intent(this@AdminPageActivity, EditSubUserInfoActivity::class.java)
+                        startActivity(intent)
+                    }
+
                 }
 
             })
