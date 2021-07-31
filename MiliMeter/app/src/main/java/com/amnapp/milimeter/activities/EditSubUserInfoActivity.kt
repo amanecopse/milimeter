@@ -89,7 +89,7 @@ class EditSubUserInfoActivity : AppCompatActivity() {
             showDatePickerDialog()
         }
         binding.withdrawBt.setOnClickListener {
-            showTwoButtonDialogMessage("주의", "정말 삭제하시겠습니까?"){
+            showTwoButtonDialogMessage("주의", "정말 탈퇴시키겠습니까?"){
                 if(it != -1)
                     return@showTwoButtonDialogMessage
 

@@ -45,9 +45,14 @@ class AccountManager {
                         "childCount",
                         parentGroupMemberData.childCount - 1 // 자리 삭제했으니 자식이 하나 줄어든다
                     )
-                }
-                    .addOnSuccessListener {
-                        callBack(RESULT_SUCCESS)
+                }.addOnSuccessListener {
+                        ref.document(GroupMemberData.getInstance().indexHashCode!!)// 혹시 자신의 하위유저가 지워진 경우 로컬에 갱신할 필요가 있음
+                            .get()
+                            .addOnSuccessListener {
+                                GroupMemberData.setInstance(it.toObject<GroupMemberData>()!!)
+                                callBack(RESULT_SUCCESS)
+                            }
+
                     }
             }
         }
