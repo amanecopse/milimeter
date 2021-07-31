@@ -53,7 +53,7 @@ class AdminPageRecyclerAdapter(var subUserlist: MutableList<UserData>): Recycler
         subUserlist.get(position).let { item ->
             with(holder) {
                 userNameTv.text = if(item.name == null) "탈퇴한 계정입니다" else item.name
-                militaryIdTv.text = item.militaryId.toString()
+                militaryIdTv.text = if(item.militaryId == null) null else item.militaryId.toString()
             }
         }
     }
