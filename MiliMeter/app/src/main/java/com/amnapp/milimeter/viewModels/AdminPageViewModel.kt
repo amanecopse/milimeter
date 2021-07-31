@@ -25,6 +25,7 @@ class AdminPageViewModel: ViewModel() {
         parentName.value = myUserData.name
         userPathList.value = mutableListOf(myUserData)
         groupMemberPathList.value = mutableListOf(myGroupMemberData)
+        GroupMemberData.mParentTmpGroupMemberData = myGroupMemberData
         CoroutineScope(Dispatchers.IO).launch{
             val am = AccountManager()
             val list = am.findSubGroupMemberListByIndex(myGroupMemberData.indexHashCode!!)
@@ -52,6 +53,8 @@ class AdminPageViewModel: ViewModel() {
             subGroupMemberList.postValue(list)
             subUserList.postValue(parsedList)
         }
+
+        GroupMemberData.mParentTmpGroupMemberData = newGroupMemberParent// 경로 내려가면 부모를 임시변수에 저장
     }
 
     fun upDirectory(){
@@ -76,6 +79,8 @@ class AdminPageViewModel: ViewModel() {
             subGroupMemberList.postValue(list)
             subUserList.postValue(parsedList)
         }
+
+        GroupMemberData.mParentTmpGroupMemberData = preGroupMemberParent// 경로 올라가면 부모를 임시변수에 저장
     }
 
     fun reloadItems(callBack: ()->Unit){

@@ -177,7 +177,7 @@
                         android:background="?android:attr/listDivider" />
 
                     <TextView
-                        android:id="@+id/deleteGroupAccountTv"
+                        android:id="@+id/deleteGroupMemberAccountTv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:clickable="true"

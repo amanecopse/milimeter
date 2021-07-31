@@ -12,11 +12,138 @@ import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import java.nio.charset.Charset
 import java.security.MessageDigest
 
 class AccountManager {
+
+    fun deleteGroupMemberAccount(
+        parentGroupMemberData: GroupMemberData,
+        targetGroupMemberData: GroupMemberData,
+        callBack: (resultMessage: String) -> Unit
+    ){
+        CoroutineScope(Dispatchers.IO).launch {
+            loadSubPathListsToDeleteGroupMemberAccount(parentGroupMemberData,targetGroupMemberData){pathLists, newPathLists ->
+                val ref = Firebase.firestore.collection(GROUP_MEMBERS)
+                Firebase.firestore.runTransaction {transaction->
+                    for(pathList in pathLists){//삭제
+                        for(data in pathList){
+                            transaction.delete(ref.document(data.indexHashCode!!))
+                        }
+                    }
+                    for(newPathList in newPathLists){//업로드
+                        for(newData in newPathList){
+                            transaction.set(ref.document(newData.indexHashCode!!), newData)
+                        }
+                    }
+                    transaction.update(
+                        ref.document(parentGroupMemberData.indexHashCode!!),
+                        "childCount",
+                        parentGroupMemberData.childCount - 1 // 자리 삭제했으니 자식이 하나 줄어든다
+                    )
+                }
+                    .addOnSuccessListener {
+                        callBack(RESULT_SUCCESS)
+                    }
+            }
+        }
+    }
+
+    private suspend fun loadSubPathListsToDeleteGroupMemberAccount(
+        parentGroupMemberData: GroupMemberData,
+        targetGroupMemberData: GroupMemberData,
+        callBack: (pathLists: MutableList<MutableList<GroupMemberData>>, newPathLists: MutableList<MutableList<GroupMemberData>>) -> Unit
+    ){
+        val pathLists = mutableListOf<MutableList<GroupMemberData>>()//   김 이 박 최
+        val newPathLists = mutableListOf<MutableList<GroupMemberData>>()//김 박 최
+        val mySubMembers = findSubGroupMemberListByIndex(parentGroupMemberData.indexHashCode!!)
+        val newMySubMembers = findSubGroupMemberListByIndex(parentGroupMemberData.indexHashCode!!)
+        newMySubMembers.remove(targetGroupMemberData)
+
+        for(i in 0 until mySubMembers.size){
+            val pathListPair = findAllSubGroupMemberData(mySubMembers[i], mGroupCode!!)
+            pathLists.add(pathListPair)
+        }
+
+        for(i in 0 until newMySubMembers.size){
+            val pathListPair = resetIndexHashCode(
+                mySubMembers[i].indexHashCode!!, newMySubMembers[i], mGroupCode!!, mGroupCode!!
+            )
+            newPathLists.add(pathListPair)
+        }
+
+        callBack(pathLists, newPathLists)
+    }
+
+    suspend fun resetIndexHashCode(
+        newHeadIndexHashCode: String,
+        head: GroupMemberData,
+        groupCode: String,
+        newGroupCode: String
+    ): MutableList<GroupMemberData>{
+        val dataList = mutableListOf<GroupMemberData>()// 김중 김소(김병)
+        val newDataList = mutableListOf<GroupMemberData>()// 김소(김병)
+        dataList.add(head)
+
+        val newHead = GroupMemberData()
+        newHead.indexHashCode = newHeadIndexHashCode
+        newHead.hashedGroupCode = head.hashedGroupCode
+        newHead.admin = head.admin
+        newHead.childCount = head.childCount
+        newHead.id = head.id
+        newDataList.add(newHead)
+
+        val db = Firebase.firestore.collection(GROUP_MEMBERS)
+        var index = 0
+        var listSize = dataList.size
+        while(listSize != index){
+            val parent = dataList[index]
+            val newParent = newDataList[index]
+            val childCount = dataList[index].childCount
+            for(i in 0 until childCount){
+                val subIndexHashCode = hash(parent.indexHashCode+"!@#"+groupCode+"!@#"+ i)
+                val subData = db.document(subIndexHashCode!!).get().await().toObject<GroupMemberData>()
+                Log.d("asdnewsubData", parent.indexHashCode+"!@#"+groupCode+"!@#"+ i)
+                dataList.add(subData!!)
+
+                val newSubData = GroupMemberData()
+                newSubData.indexHashCode = hash(newParent.indexHashCode+"!@#"+newGroupCode+"!@#"+ i)
+                newSubData.hashedGroupCode = subData.hashedGroupCode
+                newSubData.admin = subData.admin
+                newSubData.childCount = subData.childCount
+                newSubData.id = subData.id
+                newDataList.add(newSubData)
+                Log.d("asdnewnewSubData", newParent.indexHashCode+"!@#"+groupCode+"!@#"+ i)
+            }
+            index++
+            listSize = dataList.size
+        }
+        return newDataList
+    }
+
+    suspend fun findAllSubGroupMemberData(head: GroupMemberData, groupCode: String): MutableList<GroupMemberData>{
+        val dataList = mutableListOf<GroupMemberData>()
+        dataList.add(head)
+        val db = Firebase.firestore.collection(GROUP_MEMBERS)
+        var index = 0
+        var listSize = dataList.size
+        while(listSize != index){
+            val parent = dataList[index]
+            val childCount = dataList[index].childCount
+            for(i in 0 until childCount){
+                val subIndexHashCode = hash(parent.indexHashCode+"!@#"+groupCode+"!@#"+ i)
+                val subData = db.document(subIndexHashCode!!).get().await().toObject<GroupMemberData>()
+                dataList.add(subData!!)
+            }
+            index++
+            listSize = dataList.size
+        }
+        return  dataList
+    }
 
     fun leaveGroup(indexHashCode: String, callBack: (resultMessage: String) -> Unit){
         // master계정에서의 탈퇴도 구현할 것

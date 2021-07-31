@@ -55,6 +55,7 @@ data class GroupMemberData(var indexHashCode: String? = null){
     companion object{
         private var mGroupMemberData: GroupMemberData? = null
         var mTmpGroupMemberData: GroupMemberData? = null
+        var mParentTmpGroupMemberData: GroupMemberData? = null
 
         fun setInstance(groupMemberData: GroupMemberData){
             mGroupMemberData = getInstance()
