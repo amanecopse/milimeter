@@ -1,12 +1,15 @@
 package com.amnapp.milimeter.activities
 
 import android.content.DialogInterface
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
 import android.view.ViewGroup
 import android.widget.*
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import com.amnapp.milimeter.AccountManager
@@ -19,8 +22,8 @@ import com.amnapp.milimeter.viewModels.AdminPageViewModel
 class EditEmptyInfoActivity : AppCompatActivity() {
     lateinit var binding: ActivityEditEmptyInfoBinding
     lateinit var mLoadingDialog: AlertDialog//로딩화면임. setProgressDialog()를 실행후 mLoadingDialog.show()로 시작
-    lateinit var mSubUserData: UserData
-    lateinit var mSubGroupMemberData: GroupMemberData
+    lateinit var mChildGroupMemberData: GroupMemberData
+    lateinit var mParentGroupMemberData: GroupMemberData
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,12 +35,14 @@ class EditEmptyInfoActivity : AppCompatActivity() {
 
     private fun initUI() {
         setProgressDialog()
+        mChildGroupMemberData = intent.extras?.getSerializable(GroupMemberData.GROUP_MEMBER_CHILD) as GroupMemberData// 지금 이 공석인 계정
+        mParentGroupMemberData = intent.extras?.getSerializable(GroupMemberData.GROUP_MEMBER_PARENT) as GroupMemberData
 
-        mSubUserData = UserData.mTmpUserData!!
-        mSubGroupMemberData = GroupMemberData.mTmpGroupMemberData!!// 지금 이 공석인 계정
+        if(mChildGroupMemberData.admin)
+            binding.adminCb.isChecked = true
 
         binding.deleteGroupMemberAccountTv.setOnClickListener {
-            if(mSubGroupMemberData.childCount != 0){
+            if(mChildGroupMemberData.childCount != 0){
                 showDialogMessage("삭제불가", "하위유저를 가지고 있어 삭제할 수 없습니다"){}
             }else{
                 showTwoButtonDialogMessage("주의", "정말 삭제하시겠습니까?"){
@@ -47,12 +52,34 @@ class EditEmptyInfoActivity : AppCompatActivity() {
                     binding.deleteGroupMemberAccountTv.isClickable = false
                     mLoadingDialog.show()
                     AccountManager().deleteGroupMemberAccount(
-                        GroupMemberData.mParentTmpGroupMemberData!!,
-                        mSubGroupMemberData
+                        mParentGroupMemberData!!,
+                        mChildGroupMemberData
                     ){
                         Toast.makeText(this, "삭제하였습니다", Toast.LENGTH_SHORT).show()
                         finish()
                     }
+                }
+            }
+        }
+        binding.inviteSubUserTv.setOnClickListener {
+            val intent = Intent(this, InviteSubUserActivity::class.java)
+            intent.putExtra(GroupMemberData.GROUP_MEMBER_PARENT, mParentGroupMemberData)
+            intent.putExtra(GroupMemberData.GROUP_MEMBER_CHILD, mChildGroupMemberData)
+            intent.putExtra(InviteSubUserActivity.FILL_EMPTY_ACCOUNT, true)
+            startActivity(intent)
+            finish()
+        }
+        binding.confirmCv.setOnClickListener {
+            binding.deleteGroupMemberAccountTv.isClickable = false
+            mLoadingDialog.show()
+
+            mChildGroupMemberData.admin = binding.adminCb.isChecked
+
+            AccountManager().uploadGroupMemberData(mChildGroupMemberData){resultMessage->
+                if(resultMessage == AccountManager.RESULT_SUCCESS){
+                    Toast.makeText(this, "변경하였습니다", Toast.LENGTH_SHORT).show()
+                    mLoadingDialog.dismiss()
+                    binding.deleteGroupMemberAccountTv.isClickable = true
                 }
             }
         }

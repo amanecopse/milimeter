@@ -167,7 +167,7 @@
                         android:clickable="true"
                         android:foreground="?android:attr/selectableItemBackground"
                         android:padding="20dp"
-                        android:text="이 그룹계정으로 하위회원 초대"
+                        android:text="하위회원을 초대하여 이 자리에 지정"
                         android:textColor="?attr/textColor"
                         android:textSize="@dimen/smallText" />
 

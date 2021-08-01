@@ -21,8 +21,9 @@ data class UserData(
     var goalOfFieldTrainingGrade: Int? = null
 ): Serializable{
     companion object{
+        const val USER_PARENT = "parent userData"
+        const val USER_CHILD = "child userData"
         private var mUserData: UserData? = null
-        var mTmpUserData: UserData? = null
 
         fun setInstance(userData: UserData){
             mUserData = getInstance()
@@ -57,9 +58,9 @@ data class GroupMemberData(
     var id: String? = null
 ): Serializable{
     companion object{
+        const val GROUP_MEMBER_PARENT = "parent groupMemberData"
+        const val GROUP_MEMBER_CHILD = "child groupMemberData"
         private var mGroupMemberData: GroupMemberData? = null
-        var mTmpGroupMemberData: GroupMemberData? = null
-        var mParentTmpGroupMemberData: GroupMemberData? = null
 
         fun setInstance(groupMemberData: GroupMemberData){
             mGroupMemberData = getInstance()

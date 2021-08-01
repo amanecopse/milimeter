@@ -65,14 +65,20 @@ class AdminPageActivity : AppCompatActivity() {
             //아이템 편집 클릭 리스너 등록
             adminPageRecyclerAdapter.setEditOnClickListener(object: AdminPageRecyclerAdapter.OnEditClickListener{
                 override fun onClicked(v: View, pos: Int) {
-                    UserData.mTmpUserData = it[pos]
-                    GroupMemberData.mTmpGroupMemberData = viewModel.subGroupMemberList.value!![pos]
-                    if(GroupMemberData.mTmpGroupMemberData!!.id.isNullOrEmpty()){
+                    val childUserData = it[pos]
+                    val parentGroupMemberData = viewModel.groupMemberPathList.value!!.last()
+                    val childGroupMemberData = viewModel.subGroupMemberList.value!![pos]
+                    if(childGroupMemberData!!.id.isNullOrEmpty()){
                         val intent = Intent(this@AdminPageActivity, EditEmptyInfoActivity::class.java)
+                        intent.putExtra(GroupMemberData.GROUP_MEMBER_PARENT, parentGroupMemberData)
+                        intent.putExtra(GroupMemberData.GROUP_MEMBER_CHILD, childGroupMemberData)
                         startActivity(intent)
                     }
                     else{
                         val intent = Intent(this@AdminPageActivity, EditSubUserInfoActivity::class.java)
+                        intent.putExtra(UserData.USER_CHILD, childUserData)
+                        intent.putExtra(GroupMemberData.GROUP_MEMBER_PARENT, parentGroupMemberData)
+                        intent.putExtra(GroupMemberData.GROUP_MEMBER_CHILD, childGroupMemberData)
                         startActivity(intent)
                     }
 

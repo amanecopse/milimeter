@@ -73,6 +73,7 @@ class LoginActivity : AppCompatActivity() {
             val ac = AccountManager()
             if(ac.checkGroupCodeValid(id, groupCode, hashedGroupCode)){
                 val intent = Intent(this, InviteSubUserActivity::class.java)
+                intent.putExtra(GroupMemberData.GROUP_MEMBER_PARENT, GroupMemberData.getInstance())
                 startActivity(intent)
             }
             else{
@@ -81,6 +82,7 @@ class LoginActivity : AppCompatActivity() {
                     if(ac.checkGroupCodeValid(id, groupCode, hashedGroupCode)){
                         PreferenceManager().setGroupCode(this, groupCode!!)
                         val intent = Intent(this, InviteSubUserActivity::class.java)
+                        intent.putExtra(GroupMemberData.GROUP_MEMBER_PARENT, GroupMemberData.getInstance())
                         startActivity(intent)
                     }
                 }

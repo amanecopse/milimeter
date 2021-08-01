@@ -173,6 +173,16 @@ class AccountManager {
         }
     }
 
+    fun uploadGroupMemberData(groupMemberData: GroupMemberData, callBack: (message: String) -> Unit){
+        groupMemberData.indexHashCode?.let {
+            Firebase.firestore.collection(GROUP_MEMBERS).document(it)
+                .set(groupMemberData, SetOptions.merge())
+                .addOnSuccessListener {
+                    callBack(RESULT_SUCCESS)
+                }
+        }
+    }
+
     suspend fun findSubGroupMemberListByIndex(myIndexHashCode: String): MutableList<GroupMemberData>{
         val myGroupMemberData = Firebase.firestore.collection(GROUP_MEMBERS).document(myIndexHashCode)
             .get()
@@ -223,7 +233,7 @@ class AccountManager {
             return false
     }
 
-    fun inviteSubUser(subUserId: String, isAdmin: Boolean, callBack: (resultMessage: String) -> Unit){
+    fun inviteSubUser(parentGroupMemberData: GroupMemberData, subUserId: String, isAdmin: Boolean, callBack: (resultMessage: String) -> Unit){
         findUserDataById(subUserId){ resultMessage1, querySnapShot ->
             if(resultMessage1 == RESULT_FAILURE){//초대할 아이디 존재안함
                 callBack(ERROR_NOT_FOUND_ID)
@@ -235,7 +245,7 @@ class AccountManager {
                         callBack(ERROR_GROUPED_ID)
                     }
                     else if(resultMessage2 == RESULT_FAILURE){
-                        val myGroupMemberData = GroupMemberData.getInstance()
+                        val myGroupMemberData = parentGroupMemberData
                         val subHashedGroupCode = hash(subUserId+"!@#"+ mGroupCode)
                         val subIndexHashCode = hash(myGroupMemberData.indexHashCode+"!@#"+mGroupCode+"!@#"+ myGroupMemberData.childCount)
                         val subGroupMemberData = GroupMemberData()
@@ -258,6 +268,44 @@ class AccountManager {
                             )
                         }.addOnSuccessListener {
                             myGroupMemberData.childCount += 1
+                            callBack(RESULT_SUCCESS)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    fun fillEmptyAccount(
+        childGroupMemberData: GroupMemberData,
+        subUserId: String, isAdmin: Boolean,
+        callBack: (resultMessage: String) -> Unit
+    ){
+        findUserDataById(subUserId){ resultMessage1, querySnapShot ->
+            if(resultMessage1 == RESULT_FAILURE){//초대할 아이디 존재안함
+                callBack(ERROR_NOT_FOUND_ID)
+            }
+            else if(resultMessage1 == RESULT_SUCCESS){//아이디 있음
+
+                findGroupMemberDataById(subUserId){resultMessage2, querySnapShot ->
+                    if(resultMessage2 == RESULT_SUCCESS){
+                        callBack(ERROR_GROUPED_ID)
+                    }
+                    else if(resultMessage2 == RESULT_FAILURE){
+                        val subHashedGroupCode = hash(subUserId+"!@#"+ mGroupCode)
+                        val subIndexHashCode = childGroupMemberData.indexHashCode
+                        val subGroupMemberData = childGroupMemberData
+
+                        subGroupMemberData.id = subUserId
+                        subGroupMemberData.hashedGroupCode = subHashedGroupCode
+                        subGroupMemberData.admin = isAdmin
+
+                        Firebase.firestore.runTransaction {
+                            it.set(
+                                Firebase.firestore.collection(GROUP_MEMBERS).document(subIndexHashCode!!),
+                                subGroupMemberData
+                            )
+                        }.addOnSuccessListener {
                             callBack(RESULT_SUCCESS)
                         }
                     }
