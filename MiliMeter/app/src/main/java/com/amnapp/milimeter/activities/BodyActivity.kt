@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -13,9 +14,15 @@ import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import com.amnapp.milimeter.ChartManager
 import com.amnapp.milimeter.R
+import com.amnapp.milimeter.TrainingValueFormatter
 import com.amnapp.milimeter.UserData
 import com.amnapp.milimeter.UserData.Companion.getInstance
 import com.amnapp.milimeter.databinding.ActivityBodyBinding
+import com.github.mikephil.charting.animation.Easing
+import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.components.YAxis
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.google.firebase.firestore.DocumentSnapshot
 import java.util.*
@@ -165,9 +172,75 @@ class BodyActivity : AppCompatActivity() {
             finish()
         }
 
+        //그래프 만들기
+        binding.weightChart.apply {
 
 
-    }
+                val cm =ChartManager()
+                val linechart = binding.weightChart
+                cm.loadTrainingRecordNDaysAgo(
+                    UserData.getInstance(),
+                    cm.getCurrentDateBasedOnFormat(),
+                    7
+                ) { docs, lineDataSets, dateList ->
+
+                    //데이터 없을때
+                    if(dateList.size>1) {
+                        val legTuckEntry = mutableListOf<Entry>()//
+                        val datelist = ArrayList<String>() //날짜 x축값
+                        var index = 0
+
+
+                        val xAxis = linechart.xAxis
+                        xAxis.position = XAxis.XAxisPosition.BOTTOM
+                        xAxis.setDrawGridLines(false)
+                        xAxis.position = XAxis.XAxisPosition.BOTTOM
+                        xAxis.textColor = Color.BLACK//x축 색깔
+                        xAxis.valueFormatter = (TrainingValueFormatter(dateList))
+                        xAxis.granularity = 1f
+                        xAxis.isGranularityEnabled = true
+
+                        val yLAxis = linechart.axisLeft//y축
+                        yLAxis.axisMaximum = 120f //y축최대
+                        yLAxis.axisMinimum = 0f  //
+                        yLAxis.labelCount = 24
+                        linechart.axisRight.isEnabled = false
+                        for (doc in docs) {
+                            //데이터 엔트리 추가
+                            doc.data?.get(ChartManager.WEIGHT)?.let { score ->
+                                legTuckEntry.add(Entry(index.toFloat(), score.toString().toFloat()))
+                            }
+                            doc.data?.get(ChartManager.DATE)?.let { score ->
+                                datelist.add(score.toString())
+
+                            }
+                            index += 1
+                        }
+
+                        val linedataset = LineDataSet(legTuckEntry, "몸무게")
+                        linedataset.setColor(Color.BLUE)
+                        linedataset.setDrawValues(false)
+                        linedataset.setLineWidth(2F)
+                        linedataset.setCircleRadius(6F)
+                        linechart.data = LineData(linedataset)//데이터 입력
+                        linechart.axisLeft.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART)
+                        linechart.axisRight.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART)
+                        linechart.isDoubleTapToZoomEnabled = false
+                        linechart.setDrawGridBackground(false)
+
+                        linechart.animateY(2000, Easing.EaseInCubic)
+                        linechart.invalidate()
+                    }
+
+                    //아무것도 없으면 안함
+                    else{
+
+                    }
+                }
+
+            }
+        }
+
     //타이머시간 변환작업
     private fun timeToText(time: Int = 0): String? {
         return if (time < 0) {
@@ -215,14 +288,7 @@ class BodyActivity : AppCompatActivity() {
         return now
     }
 
-    /*
-    private fun showChart() {
-        val cm = ChartManager()
-        // 만드신 차트 로드해주세요
-        }
-    }
 
-     */
 
 }
 
@@ -258,6 +324,10 @@ class CustomDialog(context: Context) {
         }
 
     }
+
+
+
+
 
     interface ButtonClickListener {
         fun onClicked(type: String)

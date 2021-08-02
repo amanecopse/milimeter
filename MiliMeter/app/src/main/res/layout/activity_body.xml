@@ -50,6 +50,7 @@
 
        </LinearLayout>
 
+
        <FrameLayout
            android:id="@+id/frameLayout"
            android:layout_width="match_parent"
@@ -72,12 +73,12 @@
                android:id="@+id/startBt"
                android:layout_width="40dp"
                android:layout_height="40dp"
+               android:layout_marginLeft="30dp"
                android:layout_marginTop="50dp"
                android:background="@android:color/transparent"
                android:src="@drawable/ic_baseline_play_circle_outline_30_white"
                android:tintMode="src_in"
-               app:tint="@color/dark_green"
-               android:layout_marginLeft="30dp" />
+               app:tint="@color/dark_green" />
 
            <ImageButton
                android:id="@+id/resetBt"
@@ -94,12 +95,12 @@
                android:id="@+id/stopBt"
                android:layout_width="40dp"
                android:layout_height="40dp"
+               android:layout_marginLeft="330dp"
                android:layout_marginTop="50dp"
                android:background="@android:color/transparent"
                android:src="@drawable/ic_baseline_pause_circle_outline_30_white"
                android:tintMode="src_in"
-               app:tint="@color/dark_green"
-               android:layout_marginLeft="330dp"/>
+               app:tint="@color/dark_green" />
 
 
            <ImageButton
@@ -112,21 +113,34 @@
                android:tintMode="src_in"
                app:tint="@color/dark_green" />
 
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="match_parent">
+
+
+           </LinearLayout>
+
        </FrameLayout>
 
        <LinearLayout
            android:layout_width="match_parent"
-           android:layout_height="40dp"
-           android:layout_marginTop="270dp">
+           android:layout_height="356dp"
+           android:layout_marginTop="270dp"
+           android:orientation="vertical">
 
            <TextView
                android:id="@+id/checkTv"
                android:layout_width="match_parent"
-               android:layout_height="287dp"
+               android:layout_height="74dp"
                android:text="확인용" />
+           />
 
+           <com.github.mikephil.charting.charts.LineChart
+               android:id="@+id/weightChart"
+               android:layout_width="match_parent"
+               android:layout_height="221dp"
+               android:layout_marginTop="20dp" />
        </LinearLayout>
-
 
        <LinearLayout
            android:layout_width="match_parent"
@@ -201,6 +215,7 @@
                android:textAllCaps="false"
                android:textColor="@color/white"
                android:textSize="15sp" />
+
 
        </LinearLayout>
 
