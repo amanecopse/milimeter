@@ -243,6 +243,22 @@
                             android:background="?android:attr/listDivider" />
 
                         <TextView
+                            android:id="@+id/mergeSubGroupTv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:foreground="?android:attr/selectableItemBackground"
+                            android:padding="20dp"
+                            android:text="그룹 내 하위그룹 병합"
+                            android:textColor="?attr/textColor"
+                            android:textSize="@dimen/smallText" />
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="?android:attr/listDivider" />
+
+                        <TextView
                             android:id="@+id/adminPageTv"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

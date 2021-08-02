@@ -88,6 +88,26 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
         }
+        binding.mergeSubGroupTv.setOnClickListener {
+            val id = UserData.getInstance().id
+            var groupCode = AccountManager.mGroupCode
+            val hashedGroupCode = GroupMemberData.getInstance().hashedGroupCode
+            val ac = AccountManager()
+            if(ac.checkGroupCodeValid(applicationContext,id, groupCode, hashedGroupCode)){
+                val intent = Intent(this, MergeSubGroupActivity::class.java)
+                startActivity(intent)
+            }
+            else{
+                showEditTextDialogMessage("그룹코드를 입력해주세요") { input ->
+                    groupCode = input
+                    if(ac.checkGroupCodeValid(applicationContext,id, groupCode, hashedGroupCode)){
+                        PreferenceManager().setGroupCode(this, groupCode!!)
+                        val intent = Intent(this, MergeSubGroupActivity::class.java)
+                        startActivity(intent)
+                    }
+                }
+            }
+        }
         binding.adminPageTv.setOnClickListener {
             val id = UserData.getInstance().id
             var groupCode = AccountManager.mGroupCode
@@ -124,6 +144,14 @@ class LoginActivity : AppCompatActivity() {
                                 renewLoginUI()
                             }
                         }
+                        else if(resultMessage == AccountManager.RESULT_FAILURE){
+                            mLoadingDialog.dismiss()//로딩해제
+                            binding.leaveGroupTv.isClickable = true//연타방지해제
+                            renewLoginUI()
+                            showDialogMessage("실패", "자신의 바로 아래 하위유저 중 빈 자리가 존재하면 탈퇴할 수 없습니다"){
+                                renewLoginUI()
+                            }
+                        }
                     }
                 }
             }
@@ -153,12 +181,14 @@ class LoginActivity : AppCompatActivity() {
             binding.signInCv.visibility = View.GONE
             if(groupMemberData.indexHashCode == null){// null이면 그룹 미가입자라는 뜻
                 binding.inviteSubUserTv.visibility = View.GONE
+                binding.mergeSubGroupTv.visibility = View.GONE
                 binding.adminPageTv.visibility = View.GONE
                 binding.publishGroupTv.visibility = View.VISIBLE
                 binding.leaveGroupTv.visibility = View.GONE
             }
             else{
                 binding.inviteSubUserTv.visibility = if(groupMemberData.admin) View.VISIBLE else View.GONE
+                binding.mergeSubGroupTv.visibility = if(groupMemberData.admin) View.VISIBLE else View.GONE
                 binding.adminPageTv.visibility = if(groupMemberData.admin) View.VISIBLE else View.GONE
                 binding.publishGroupTv.visibility = View.GONE
                 binding.leaveGroupTv.visibility = if(groupMemberData.admin) View.VISIBLE else View.GONE
@@ -248,12 +278,6 @@ class LoginActivity : AppCompatActivity() {
         builder.setCancelable(false)
         builder.setView(ll)
         mLoadingDialog = builder.create()
-    }
-
-    companion object{
-        const val GROUP_CODE_VALID = "유효한 그룹코드"
-        const val GROUP_CODE_VALID_MASTER = "유효한 마스터 그룹코드"
-        const val GROUP_CODE_INVALID = "유효하지 않은 그룹코드"
     }
 
     override fun onResume() {

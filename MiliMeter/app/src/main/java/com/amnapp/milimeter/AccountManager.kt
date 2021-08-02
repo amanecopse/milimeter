@@ -5,6 +5,8 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.widget.Toast
 import com.amnapp.milimeter.activities.LoginActivity
@@ -22,8 +24,75 @@ import java.security.MessageDigest
 
 class AccountManager {
 
-    fun mergeSubGroup(subId: String, subPw: String, subGroupCode: String){
+    fun mergeSubGroup(context: Context, subId: String, subPw: String, subGroupCode: String, callBack: (resultMessage: String) -> Unit){
 
+        if(!checkNetworkState(context)){
+            callBack(ERROR_NETWORK_NOT_CONNECTED)
+            return
+        }
+        CoroutineScope(Dispatchers.IO).launch {
+            var valid = true
+            val myGroupMemberData = GroupMemberData.getInstance()
+            val groupMemberDocs =
+                Firebase.firestore.collection(GROUP_MEMBERS).whereEqualTo("id", subId)
+                    .get()
+                    .addOnSuccessListener {
+                        if(it.isEmpty){
+                            callBack(ERROR_NOT_FOUND_ID)// 그룹 가입한 아이디 존재하지않음, 혹은 아이디 자체가 없음
+                            valid = false
+                        }
+                    }
+                    .await()
+            if(!valid) return@launch
+            val headGroupMemberData = groupMemberDocs.documents[0].toObject<GroupMemberData>()
+            Firebase.firestore.collection(USERS).document(subId)
+                .get()
+                .addOnSuccessListener {
+                    val headUserData = it.toObject<UserData>()
+                    if(headGroupMemberData == null || it.toObject<UserData>() == null){
+                        callBack(ERROR_NOT_FOUND_ID)// 그룹 가입한 아이디 존재하지않음, 혹은 아이디 자체가 없음
+                        valid = false
+                    }
+                    else if(headUserData!!.pw != subPw){//서브의 비밀번호 불일치
+                        callBack(ERROR_WRONG_PASSWORD)
+                        valid = false
+                    }
+                    else if(headGroupMemberData.hashedGroupCode != hash(headGroupMemberData.id+"!@#"+ subGroupCode +"!@#"+"master")){
+                        callBack(ERROR_WRONG_INFO)// 서브그룹코드가 다르거나 Master가 아님
+                        valid = false
+                    }
+                }
+                .await()
+                .toObject<UserData>()
+            if(!valid) return@launch
+            val oldSubGroupMemberList = findAllSubGroupMemberData(headGroupMemberData!!, subGroupCode)
+            val newSubGroupMemberList = resetIndexHashCode(
+                hash(myGroupMemberData.indexHashCode+"!@#"+ mGroupCode+"!@#"+myGroupMemberData.childCount)!!,
+                headGroupMemberData,
+                subGroupCode,
+                mGroupCode!!,
+                false
+            )
+            val ref = Firebase.firestore.collection(GROUP_MEMBERS)
+            Firebase.firestore.runTransaction { transaction->
+                for(oldSubGroupMemberData in oldSubGroupMemberList){//삭제
+                    transaction.delete(ref.document(oldSubGroupMemberData.indexHashCode!!))
+                }
+                for(newSubGroupMemberData in newSubGroupMemberList){//업로드
+                    transaction.set(ref.document(newSubGroupMemberData.indexHashCode!!), newSubGroupMemberData)
+                }
+                transaction.update(
+                    ref.document(myGroupMemberData.indexHashCode!!),
+                    "childCount",
+                    myGroupMemberData.childCount + 1 // 서브그룹의 그룹장이 하위로 추가됐으니 1증가
+                )
+            }.addOnSuccessListener {
+                myGroupMemberData.childCount += 1 //로컬에 갱신
+                callBack(RESULT_SUCCESS)
+            }.addOnFailureListener{
+                callBack(RESULT_FAILURE)
+            }
+        }
     }
 
     fun deleteGroupMemberAccount(// loadSubPathListsToDeleteGroupMemberAccount에서 변화전과 변화후의 리스트를 로드하면 이 함수에서 삭제,업로드 작업을 진행한다
@@ -165,9 +234,24 @@ class AccountManager {
     fun leaveGroup(myIndexHashCode: String, master: Boolean, callBack: (resultMessage: String) -> Unit){
         if(master){//master권한자의 그룹탈퇴, 공석없이 자리까지 없어지며 master권한을 바로 밑 하위유저에게 위임
             CoroutineScope(Dispatchers.IO).launch {
-                val subGroupMemberDatas = findSubGroupMemberListByIndex(myIndexHashCode)
 
+                var valid = true
+                val subGroupMemberDatas = findSubGroupMemberListByIndex(myIndexHashCode)
                 val ref = Firebase.firestore.collection(GROUP_MEMBERS)
+
+                ref.document(myIndexHashCode)// 코투틴에서 다이얼로그콜백을 못써서 사용하는 의미없는 쿼리
+                    .get()
+                    .addOnSuccessListener {
+                        for(subGroupMemberData in subGroupMemberDatas){// 바로 밑 하위유저중 공란이 있는지 확인, 있으면 탈퇴불가
+                            if(subGroupMemberData.id == null) {
+                                valid = false
+                                callBack(RESULT_FAILURE)
+                            }
+                        }
+                    }
+                    .await()
+                if(!valid) return@launch
+
                 Firebase.firestore.runTransaction { transaction ->
                     for(subGroupMemberData in subGroupMemberDatas){
                         val newHashedMasterGroupCode = hash(subGroupMemberData.id+"!@#"+ mGroupCode +"!@#"+"master")
@@ -371,7 +455,7 @@ class AccountManager {
             return
         }
         val hashedMasterGroupCode = hash(userData.id+"!@#"+groupCode+"!@#"+"master")
-        val indexHashCode = hash(userData.id+"!@#"+groupCode)
+        val indexHashCode = hash(userData.id+"!@#"+groupCode+"!@#"+Math.random().toString())
         val groupMemberData = GroupMemberData()
 
         groupMemberData.id = userData.id
@@ -521,7 +605,7 @@ class AccountManager {
         return sha.encrypt(text)
 
 //        confirmCode(hashedGroupCode): id+"!@#"+그룹코드, id+"!@#"+그룹코드+"!@#"+"master"(둘중하나면 그룹코드 유효 인정)
-//        최초인덱스해시: id+"!@#"+그룹코드
+//        최초인덱스해시: id+"!@#"+그룹코드+"!@#"+난수
 //        그이후인덱스해시: 부모인덱스해시+"!@#"+그룹코드+"!@#"+childCount
 //        초대해시코드: 부모id+"!@#"+그룹코드+"!@#"+초대코드
     }
