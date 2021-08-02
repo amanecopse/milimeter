@@ -78,15 +78,14 @@ class ChartManager {
         yLAxis.textColor = Color.BLACK
         //yLAxis.textSize = R.dimen.smallText.toFloat()
 
-        val description = Description()
-        description.text = "일주일 전부터의 기록"
-        description.textSize = R.dimen.smallText.toFloat()
+
+
 
         lineChart.axisLeft.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART)
         lineChart.axisRight.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART)
         lineChart.isDoubleTapToZoomEnabled = false
         lineChart.setDrawGridBackground(false)
-        lineChart.description = description
+
         lineChart.animateY(2000, Easing.EaseInCubic)
         lineChart.invalidate()
     }

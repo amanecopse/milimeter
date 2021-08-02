@@ -95,7 +95,15 @@ class ResultActivity : AppCompatActivity() {
         val cm = ChartManager()
         cm.loadTrainingRecordNDaysAgo(UserData.getInstance(),cm.getCurrentDateBasedOnFormat(),7)
         { docs, lineDataSets, dateList ->
-            cm.makeLineChart(linechart, lineDataSets, dateList)
+
+            //데이터 있으면
+            if(dateList.size>1) {
+                cm.makeLineChart(linechart, lineDataSets, dateList)
+            }
+            //데이터 아무것도 없을때
+            else{
+
+            }
         }
     }
 
