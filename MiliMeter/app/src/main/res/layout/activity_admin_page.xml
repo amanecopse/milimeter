@@ -31,14 +31,14 @@
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_marginRight="10dp"
-                app:srcCompat="@drawable/ic_baseline_group_add_24_black"
+                app:srcCompat="@drawable/ic_baseline_settings_40_gray"
                 app:tint="?attr/textColorBanner" />
 
             <TextView
                 android:id="@+id/titleTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="그룹초대"
+                android:text="관리자 페이지"
                 android:textColor="?attr/textColorBanner"
                 android:textSize="@dimen/largeText" />
         </LinearLayout>
