@@ -22,6 +22,10 @@ import java.security.MessageDigest
 
 class AccountManager {
 
+    fun mergeSubGroup(subId: String, subPw: String, subGroupCode: String){
+
+    }
+
     fun deleteGroupMemberAccount(// loadSubPathListsToDeleteGroupMemberAccount에서 변화전과 변화후의 리스트를 로드하면 이 함수에서 삭제,업로드 작업을 진행한다
         parentGroupMemberData: GroupMemberData,
         targetGroupMemberData: GroupMemberData,
@@ -77,7 +81,7 @@ class AccountManager {
 
         for(i in 0 until newMySubMembers.size){
             val pathListPair = resetIndexHashCode(
-                mySubMembers[i].indexHashCode!!, newMySubMembers[i], mGroupCode!!, mGroupCode!!
+                mySubMembers[i].indexHashCode!!, newMySubMembers[i], mGroupCode!!, mGroupCode!!, false
             )
             newPathLists.add(pathListPair)
         }
@@ -85,11 +89,12 @@ class AccountManager {
         callBack(pathLists, newPathLists)
     }
 
-    private suspend fun resetIndexHashCode(//그룹의 그룹코드나 그룹장의 인덱스해시코드를 재설정하는 함수
+    private suspend fun resetIndexHashCode(//그룹의 그룹코드나 그룹장의 인덱스해시코드를 재설정하는 함수 Master여부를 받아야함
         newHeadIndexHashCode: String,// 그룹장의 새로운 인덱스해시코드
         head: GroupMemberData,//그룹장의 기존 데이터
         groupCode: String,//기존 그룹코드
-        newGroupCode: String//새 그룹코드
+        newGroupCode: String,//새 그룹코드
+        master: Boolean
     ): MutableList<GroupMemberData>{
         val dataList = mutableListOf<GroupMemberData>()// 기존 트리의 리스트화
         val newDataList = mutableListOf<GroupMemberData>()// 변화가 적용된 트리의 리스트화
@@ -97,7 +102,9 @@ class AccountManager {
 
         val newHead = GroupMemberData()
         newHead.indexHashCode = newHeadIndexHashCode
-        newHead.hashedGroupCode = head.hashedGroupCode
+        newHead.hashedGroupCode =
+            if(master) hash(head.id+"!@#"+ newGroupCode +"!@#"+"master")
+            else hash(head.id+"!@#"+ newGroupCode)
         newHead.admin = head.admin
         newHead.childCount = head.childCount
         newHead.id = head.id
@@ -113,7 +120,6 @@ class AccountManager {
             for(i in 0 until childCount){
                 val subIndexHashCode = hash(parent.indexHashCode+"!@#"+groupCode+"!@#"+ i)
                 val subData = db.document(subIndexHashCode!!).get().await().toObject<GroupMemberData>()
-                Log.d("asdnewsubData", parent.indexHashCode+"!@#"+groupCode+"!@#"+ i)
                 if (subData != null) {
                     dataList.add(subData)
                 }
@@ -122,12 +128,11 @@ class AccountManager {
 
                 val newSubData = GroupMemberData()
                 newSubData.indexHashCode = hash(newParent.indexHashCode+"!@#"+newGroupCode+"!@#"+ i)
-                newSubData.hashedGroupCode = subData.hashedGroupCode
+                newSubData.hashedGroupCode = hash(subData.id+"!@#"+ newGroupCode)
                 newSubData.admin = subData.admin
                 newSubData.childCount = subData.childCount
                 newSubData.id = subData.id
                 newDataList.add(newSubData)
-                Log.d("asdnewnewSubData", newParent.indexHashCode+"!@#"+groupCode+"!@#"+ i)
             }
             index++
             listSize = dataList.size
@@ -190,8 +195,13 @@ class AccountManager {
             Firebase.firestore.collection(GROUP_MEMBERS).document(myIndexHashCode)
                 .set(groupMemberData, SetOptions.merge())
                 .addOnSuccessListener {
-                    GroupMemberData.setInstance(GroupMemberData())// 탈퇴했으니 로컬에서 그룹정보 초기화
-                    callBack(RESULT_SUCCESS)
+                    if(myIndexHashCode == GroupMemberData.getInstance().indexHashCode){// 본인탈퇴인 경우
+                        GroupMemberData.setInstance(GroupMemberData())// 탈퇴했으니 로컬에서 그룹정보 초기화
+                        callBack(RESULT_SUCCESS)
+                    }
+                    else{// 관리자창에서 다른 하위유저를 탈퇴시키는 경우
+                        callBack(RESULT_SUCCESS)
+                    }
                 }
         }
     }

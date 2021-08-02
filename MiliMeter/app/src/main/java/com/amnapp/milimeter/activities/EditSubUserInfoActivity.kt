@@ -69,6 +69,8 @@ class EditSubUserInfoActivity : AppCompatActivity() {
                 mLoadingDialog.show()
                 AccountManager().leaveGroup(mChildGroupMemberData.indexHashCode!!, false){
                     Toast.makeText(applicationContext, "해당 하위유저가 탈퇴되었습니다", Toast.LENGTH_LONG).show()
+                    binding.withdrawBt.isClickable = true
+                    mLoadingDialog.dismiss()
                     finish()
                 }
             }

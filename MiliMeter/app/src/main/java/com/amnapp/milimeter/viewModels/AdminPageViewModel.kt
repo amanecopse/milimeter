@@ -82,7 +82,7 @@ class AdminPageViewModel: ViewModel() {
         CoroutineScope(Dispatchers.IO).launch{
             val am = AccountManager()
 
-            val list = am.findSubGroupMemberListByIndex(groupMemberPathList.value?.last()?.indexHashCode!!)
+            val list = am.findSubGroupMemberListByIndex(groupMemberPathList.value!!.last().indexHashCode!!)
             val parsedList = am.findSubUserListBySubGroupMemberList(list)
             subGroupMemberList.postValue(list)
             subUserList.postValue(parsedList)
