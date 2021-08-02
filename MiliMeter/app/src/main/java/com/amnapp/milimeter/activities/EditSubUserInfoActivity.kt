@@ -67,9 +67,20 @@ class EditSubUserInfoActivity : AppCompatActivity() {
 
                 binding.withdrawBt.isClickable = false
                 mLoadingDialog.show()
-                AccountManager().leaveGroup(mChildGroupMemberData.indexHashCode!!, false){
-                    Toast.makeText(applicationContext, "해당 하위유저가 탈퇴되었습니다", Toast.LENGTH_LONG).show()
-                    finish()
+                AccountManager().leaveGroup(applicationContext, mChildGroupMemberData.indexHashCode!!, false){resultMessage ->
+                    when(resultMessage){
+                        AccountManager.ERROR_NETWORK_NOT_CONNECTED ->{
+                            showDialogMessage("오류", "네트워크 연결을 확인해주세요"){
+                                finish()
+                            }
+                        }
+                        AccountManager.RESULT_SUCCESS ->{
+                            Toast.makeText(applicationContext, "해당 하위유저가 탈퇴되었습니다", Toast.LENGTH_LONG).show()
+                            binding.withdrawBt.isClickable = true
+                            mLoadingDialog.dismiss()
+                            finish()
+                        }
+                    }
                 }
             }
         }

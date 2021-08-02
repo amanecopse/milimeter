@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/appWindowBackground"
-    tools:context=".activities.InviteSubUserActivity">
+    tools:context=".activities.MergeSubGroupActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/appBarCl"
@@ -38,7 +38,7 @@
                 android:id="@+id/titleTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="그룹초대"
+                android:text="그룹병합"
                 android:textColor="?attr/textColorBanner"
                 android:textSize="@dimen/largeText" />
         </LinearLayout>
@@ -114,20 +114,45 @@
                         android:id="@+id/textView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="초대하고 싶은 유저의 아이디를 입력하여 그 유저를 자신의 하위그룹멤버로서 초대합니다. 그룹에 속하지 않은 유저만 초대할 수 있습니다."
+                        android:text="하위그룹으로 병합시키고 싶은 그룹의 그룹코드와 그 그룹장의 아이디, 비밀번호를 입력하여 병합합니다."
                         android:textColor="?attr/textColor"
                         android:textSize="@dimen/smallText" />
 
-                    <CheckBox
-                        android:id="@+id/adminCb"
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_weight="1"
-                        android:buttonTint="?attr/textColorSecondary"
-                        android:text="초대받는 유저를 관리자로 지정"
-                        android:textColor="?attr/textColor"
-                        android:textSize="@dimen/smallText" />
+                        android:layout_height="match_parent"
+                        android:textColorHint="?attr/textColorSecondary"
+                        app:passwordToggleTint="?attr/textColorSecondary">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/idEt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="하위그룹 그룹장의 아이디"
+                            android:singleLine="true"
+                            android:textColor="?attr/textColor"
+                            android:textSize="@dimen/middleText" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textColorHint="?attr/textColorSecondary"
+                        app:passwordToggleEnabled="true"
+                        app:passwordToggleTint="?attr/textColorSecondary">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/pwEt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="하위그룹 그룹장의 비밀번호"
+                            android:password="true"
+                            android:singleLine="true"
+                            android:textColor="?attr/textColor"
+                            android:textSize="@dimen/middleText" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
@@ -138,10 +163,10 @@
                         app:passwordToggleTint="?attr/textColorSecondary">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/subUserIdEt"
+                            android:id="@+id/subGroupCodeEt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="초대받는 유저의 아이디"
+                            android:hint="하위그룹의 원래 그룹코드"
                             android:maxLength="20"
                             android:singleLine="true"
                             android:textColor="?attr/textColor"
@@ -154,11 +179,11 @@
             </androidx.cardview.widget.CardView>
 
             <Button
-                android:id="@+id/inviteBt"
+                android:id="@+id/mergeBt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?attr/buttonBackground"
-                android:text="그룹초대"
+                android:text="그룹병합"
                 android:textColor="?attr/buttonTextColor"
                 android:textSize="@dimen/middleText" />
 
