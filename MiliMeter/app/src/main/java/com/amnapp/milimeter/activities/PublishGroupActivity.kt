@@ -46,6 +46,13 @@ class PublishGroupActivity : AppCompatActivity() {
                 binding.publishGroupBt.isClickable = true
             }
         }
+
+        binding.backIb.setOnClickListener {
+            finish()
+        }
+        binding.cancelIb.setOnClickListener {
+            finish()
+        }
     }
     fun showDialogMessage(title: String, body: String, callBack: ()-> Unit) {//다이얼로그 메시지를 띄우는 함수
         val builder = AlertDialog.Builder(this)
