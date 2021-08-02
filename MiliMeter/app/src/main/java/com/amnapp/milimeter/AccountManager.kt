@@ -21,7 +21,7 @@ import java.security.MessageDigest
 
 class AccountManager {
 
-    fun deleteGroupMemberAccount(
+    fun deleteGroupMemberAccount(// loadSubPathListsToDeleteGroupMemberAccount에서 변화전과 변화후의 리스트를 로드하면 이 함수에서 삭제,업로드 작업을 진행한다
         parentGroupMemberData: GroupMemberData,
         targetGroupMemberData: GroupMemberData,
         callBack: (resultMessage: String) -> Unit
@@ -46,7 +46,7 @@ class AccountManager {
                         parentGroupMemberData.childCount - 1 // 자리 삭제했으니 자식이 하나 줄어든다
                     )
                 }.addOnSuccessListener {
-                        ref.document(GroupMemberData.getInstance().indexHashCode!!)// 혹시 자신의 하위유저가 지워진 경우 로컬에 갱신할 필요가 있음
+                        ref.document(GroupMemberData.getInstance().indexHashCode!!)// 혹시 로그인한 자신의 하위유저가 지워진 경우 바로 로컬에 갱신할 필요가 있음
                             .get()
                             .addOnSuccessListener {
                                 GroupMemberData.setInstance(it.toObject<GroupMemberData>()!!)
@@ -58,16 +58,16 @@ class AccountManager {
         }
     }
 
-    private suspend fun loadSubPathListsToDeleteGroupMemberAccount(
-        parentGroupMemberData: GroupMemberData,
-        targetGroupMemberData: GroupMemberData,
+    private suspend fun loadSubPathListsToDeleteGroupMemberAccount(// 공석을 삭제하기 위해 기존 트리데이터와 삭제후 트리데이터를 로드하는 함수
+        parentGroupMemberData: GroupMemberData,// 공석의 부모인 그룹멤버데이터
+        targetGroupMemberData: GroupMemberData,// 공석의 그룹멤버데이터
         callBack: (pathLists: MutableList<MutableList<GroupMemberData>>, newPathLists: MutableList<MutableList<GroupMemberData>>) -> Unit
     ){
-        val pathLists = mutableListOf<MutableList<GroupMemberData>>()//   김 이 박 최
-        val newPathLists = mutableListOf<MutableList<GroupMemberData>>()//김 박 최
-        val mySubMembers = findSubGroupMemberListByIndex(parentGroupMemberData.indexHashCode!!)
-        val newMySubMembers = findSubGroupMemberListByIndex(parentGroupMemberData.indexHashCode!!)
-        newMySubMembers.remove(targetGroupMemberData)
+        val pathLists = mutableListOf<MutableList<GroupMemberData>>()//기존 트리가 리스트화된 것, 후에 순차적으로 삭제됨
+        val newPathLists = mutableListOf<MutableList<GroupMemberData>>()//변화가 적용된 새 트리가 리스트화된 것, 후에 순차적으로 업로드됨
+        val mySubMembers = findSubGroupMemberListByIndex(parentGroupMemberData.indexHashCode!!)// 부모의 바로아래 하위유저들
+        val newMySubMembers = findSubGroupMemberListByIndex(parentGroupMemberData.indexHashCode!!)// 부모의 공석을 제외한 바로아래 하위유저들(아래코드에서 제거됨)
+        newMySubMembers.remove(targetGroupMemberData)// 공석을 제외
 
         for(i in 0 until mySubMembers.size){
             val pathListPair = findAllSubGroupMemberData(mySubMembers[i], mGroupCode!!)
@@ -84,14 +84,14 @@ class AccountManager {
         callBack(pathLists, newPathLists)
     }
 
-    suspend fun resetIndexHashCode(
-        newHeadIndexHashCode: String,
-        head: GroupMemberData,
-        groupCode: String,
-        newGroupCode: String
+    private suspend fun resetIndexHashCode(//그룹의 그룹코드나 그룹장의 인덱스해시코드를 재설정하는 함수
+        newHeadIndexHashCode: String,// 그룹장의 새로운 인덱스해시코드
+        head: GroupMemberData,//그룹장의 기존 데이터
+        groupCode: String,//기존 그룹코드
+        newGroupCode: String//새 그룹코드
     ): MutableList<GroupMemberData>{
-        val dataList = mutableListOf<GroupMemberData>()// 김중 김소(김병)
-        val newDataList = mutableListOf<GroupMemberData>()// 김소(김병)
+        val dataList = mutableListOf<GroupMemberData>()// 기존 트리의 리스트화
+        val newDataList = mutableListOf<GroupMemberData>()// 변화가 적용된 트리의 리스트화
         dataList.add(head)
 
         val newHead = GroupMemberData()
@@ -130,7 +130,7 @@ class AccountManager {
         return newDataList
     }
 
-    suspend fun findAllSubGroupMemberData(head: GroupMemberData, groupCode: String): MutableList<GroupMemberData>{
+    suspend fun findAllSubGroupMemberData(head: GroupMemberData, groupCode: String): MutableList<GroupMemberData>{//head를 포함하는 모든 트리 구성원을 리스트화하여 리턴
         val dataList = mutableListOf<GroupMemberData>()
         dataList.add(head)
         val db = Firebase.firestore.collection(GROUP_MEMBERS)
@@ -183,7 +183,7 @@ class AccountManager {
         }
     }
 
-    suspend fun findSubGroupMemberListByIndex(myIndexHashCode: String): MutableList<GroupMemberData>{
+    suspend fun findSubGroupMemberListByIndex(myIndexHashCode: String): MutableList<GroupMemberData>{//부모인덱스해시코드로 자식그룹멤버데이터를 찾음
         val myGroupMemberData = Firebase.firestore.collection(GROUP_MEMBERS).document(myIndexHashCode)
             .get()
             .await()
@@ -201,7 +201,7 @@ class AccountManager {
         return groupMemberList
     }
 
-    suspend fun findSubUserListBySubGroupMemberList(groupMemberList: MutableList<GroupMemberData>): MutableList<UserData> {
+    suspend fun findSubUserListBySubGroupMemberList(groupMemberList: MutableList<GroupMemberData>): MutableList<UserData> {// 그룹멤버리스트를 유저리스트로 변환
         val userList: MutableList<UserData> = mutableListOf()
 
         for(groupMemberData in groupMemberList){
