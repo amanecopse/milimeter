@@ -133,10 +133,17 @@ class AccountManager {
     }
 
     fun deleteGroupMemberAccount(// loadSubPathListsToDeleteGroupMemberAccount에서 변화전과 변화후의 리스트를 로드하면 이 함수에서 삭제,업로드 작업을 진행한다
+        context: Context,
         parentGroupMemberData: GroupMemberData,
         targetGroupMemberData: GroupMemberData,
         callBack: (resultMessage: String) -> Unit
     ){
+
+        if(!checkNetworkState(context)){
+            callBack(ERROR_NETWORK_NOT_CONNECTED)
+            return
+        }
+
         CoroutineScope(Dispatchers.IO).launch {
             loadSubPathListsToDeleteGroupMemberAccount(parentGroupMemberData,targetGroupMemberData){pathLists, newPathLists ->
                 val ref = Firebase.firestore.collection(GROUP_MEMBERS)
@@ -268,7 +275,13 @@ class AccountManager {
         return  dataList
     }
 
-    fun leaveGroup(myIndexHashCode: String, master: Boolean, callBack: (resultMessage: String) -> Unit){
+    fun leaveGroup(context: Context, myIndexHashCode: String, master: Boolean, callBack: (resultMessage: String) -> Unit){
+
+        if(!checkNetworkState(context)){
+            callBack(ERROR_NETWORK_NOT_CONNECTED)
+            return
+        }
+
         if(master){//master권한자의 그룹탈퇴, 공석없이 자리까지 없어지며 master권한을 바로 밑 하위유저에게 위임
             CoroutineScope(Dispatchers.IO).launch {
 
@@ -401,7 +414,13 @@ class AccountManager {
             return false
     }
 
-    fun inviteSubUser(parentGroupMemberData: GroupMemberData, subUserId: String, isAdmin: Boolean, callBack: (resultMessage: String) -> Unit){
+    fun inviteSubUser(context: Context, parentGroupMemberData: GroupMemberData, subUserId: String, isAdmin: Boolean, callBack: (resultMessage: String) -> Unit){
+
+        if(!checkNetworkState(context)){
+            callBack(ERROR_NETWORK_NOT_CONNECTED)
+            return
+        }
+
         findUserDataById(subUserId){ resultMessage1, querySnapShot ->
             if(resultMessage1 == RESULT_FAILURE){//초대할 아이디 존재안함
                 callBack(ERROR_NOT_FOUND_ID)
@@ -445,10 +464,17 @@ class AccountManager {
     }
 
     fun fillEmptyAccount(
+        context: Context,
         childGroupMemberData: GroupMemberData,
         subUserId: String, isAdmin: Boolean,
         callBack: (resultMessage: String) -> Unit
     ){
+
+        if(!checkNetworkState(context)){
+            callBack(ERROR_NETWORK_NOT_CONNECTED)
+            return
+        }
+
         findUserDataById(subUserId){ resultMessage1, querySnapShot ->
             if(resultMessage1 == RESULT_FAILURE){//초대할 아이디 존재안함
                 callBack(ERROR_NOT_FOUND_ID)
@@ -585,8 +611,15 @@ class AccountManager {
         }
     }
 
-    fun checkIfIdIsDuplicate(id: String, callBack: (resultMessage: String, querySnapShot: QuerySnapshot) -> Unit){
+    fun checkIfIdIsDuplicate(context: Context, id: String, callBack: (resultMessage: String, querySnapShot: QuerySnapshot) -> Unit){
+
         findUserDataById(id){resultMessage, querySnapShot ->
+
+            if(!checkNetworkState(context)){
+                callBack(ERROR_NETWORK_NOT_CONNECTED, querySnapShot)
+                return@findUserDataById
+            }
+
             if(resultMessage == RESULT_FAILURE){
                 callBack(RESULT_SUCCESS, querySnapShot)
             }

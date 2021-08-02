@@ -45,19 +45,23 @@ class InviteSubUserActivity : AppCompatActivity() {
 
             if(fillEmpty){
                 AccountManager().fillEmptyAccount(
+                    applicationContext,
                     mChildGroupMemberData!!,
                     binding.subUserIdEt.text.toString(),
                     binding.adminCb.isChecked
                 ){resultMessage ->
                     when(resultMessage){
+                        AccountManager.ERROR_NETWORK_NOT_CONNECTED->{
+                            showDialogMessage("오류", "네트워크 연결을 학인해 주세요"){}
+                        }
                         AccountManager.ERROR_NOT_FOUND_ID->{
-                            showDialogMessage("존재하지 않는 아이디", "해당 아이디가 존재하지 않습니다"){}
+                            showDialogMessage("오류", "해당 아이디가 존재하지 않습니다"){}
                         }
                         AccountManager.ERROR_GROUPED_ID->{
-                            showDialogMessage("이미 그룹에 가입된 아이디", "해당 아이디가 이미 그룹에 가입되어 있습니다"){}
+                            showDialogMessage("오류", "해당 아이디가 이미 그룹에 가입되어 있습니다"){}
                         }
                         AccountManager.RESULT_SUCCESS->{
-                            showDialogMessage("하위유저 가입성공", "하위유저가 그룹에 가입되었습니다"){}
+                            showDialogMessage("성공", "하위유저가 그룹에 가입되었습니다"){}
                         }
                     }
                     mLoadingDialog.dismiss()
@@ -66,19 +70,23 @@ class InviteSubUserActivity : AppCompatActivity() {
             }
             else{
                 AccountManager().inviteSubUser(
+                    applicationContext,
                     mParentGroupMemberData,
                     binding.subUserIdEt.text.toString(),
                     binding.adminCb.isChecked
                 ){resultMessage ->
                     when(resultMessage){
+                        AccountManager.ERROR_NETWORK_NOT_CONNECTED->{
+                            showDialogMessage("오류", "네트워크 연결을 학인해 주세요"){}
+                        }
                         AccountManager.ERROR_NOT_FOUND_ID->{
-                            showDialogMessage("존재하지 않는 아이디", "해당 아이디가 존재하지 않습니다"){}
+                            showDialogMessage("오류", "해당 아이디가 존재하지 않습니다"){}
                         }
                         AccountManager.ERROR_GROUPED_ID->{
-                            showDialogMessage("이미 그룹에 가입된 아이디", "해당 아이디가 이미 그룹에 가입되어 있습니다"){}
+                            showDialogMessage("오류", "해당 아이디가 이미 그룹에 가입되어 있습니다"){}
                         }
                         AccountManager.RESULT_SUCCESS->{
-                            showDialogMessage("하위유저 가입성공", "하위유저가 그룹에 가입되었습니다"){}
+                            showDialogMessage("성공", "하위유저가 그룹에 가입되었습니다"){}
                         }
                     }
                     mLoadingDialog.dismiss()

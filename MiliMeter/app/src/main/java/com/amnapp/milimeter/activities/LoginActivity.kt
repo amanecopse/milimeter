@@ -134,21 +134,29 @@ class LoginActivity : AppCompatActivity() {
                     binding.leaveGroupTv.isClickable = false//연타방지
                     mLoadingDialog.show()//로딩시작
                     val groupMemberData = GroupMemberData.getInstance()
-                    AccountManager().leaveGroup(groupMemberData.indexHashCode!!, AccountManager.mMaster){resultMessage ->
-                        if(resultMessage == AccountManager.RESULT_SUCCESS){
-                            mLoadingDialog.dismiss()//로딩해제
-                            binding.leaveGroupTv.isClickable = true//연타방지해제
-                            renewLoginUI()
-                            showDialogMessage("탈퇴완료", "그룹을 탈퇴하였습니다"){
-                                renewLoginUI()
+                    AccountManager().leaveGroup(applicationContext, groupMemberData.indexHashCode!!, AccountManager.mMaster){resultMessage ->
+
+                        when(resultMessage){
+                            AccountManager.ERROR_NETWORK_NOT_CONNECTED ->{
+                                showDialogMessage("오류", "네트워크 연결을 확인해주세요"){}
+                                mLoadingDialog.dismiss()//로딩해제
+                                binding.leaveGroupTv.isClickable = true//연타방지해제
                             }
-                        }
-                        else if(resultMessage == AccountManager.RESULT_FAILURE){
-                            mLoadingDialog.dismiss()//로딩해제
-                            binding.leaveGroupTv.isClickable = true//연타방지해제
-                            renewLoginUI()
-                            showDialogMessage("실패", "자신의 바로 아래 하위유저 중 빈 자리가 존재하면 탈퇴할 수 없습니다"){
+                            AccountManager.RESULT_SUCCESS ->{
+                                mLoadingDialog.dismiss()//로딩해제
+                                binding.leaveGroupTv.isClickable = true//연타방지해제
                                 renewLoginUI()
+                                showDialogMessage("탈퇴완료", "그룹을 탈퇴하였습니다"){
+                                    renewLoginUI()
+                                }
+                            }
+                            AccountManager.RESULT_FAILURE ->{
+                                mLoadingDialog.dismiss()//로딩해제
+                                binding.leaveGroupTv.isClickable = true//연타방지해제
+                                renewLoginUI()
+                                showDialogMessage("실패", "자신의 바로 아래 하위유저 중 빈 자리가 존재하면 탈퇴할 수 없습니다"){
+                                    renewLoginUI()
+                                }
                             }
                         }
                     }

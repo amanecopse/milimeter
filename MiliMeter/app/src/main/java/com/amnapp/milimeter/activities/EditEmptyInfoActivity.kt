@@ -52,11 +52,23 @@ class EditEmptyInfoActivity : AppCompatActivity() {
                     binding.deleteGroupMemberAccountTv.isClickable = false
                     mLoadingDialog.show()
                     AccountManager().deleteGroupMemberAccount(
+                        applicationContext,
                         mParentGroupMemberData!!,
                         mChildGroupMemberData
-                    ){
-                        Toast.makeText(this, "삭제하였습니다", Toast.LENGTH_SHORT).show()
-                        finish()
+                    ){resultMessage ->
+                        when(resultMessage){
+                            AccountManager.ERROR_NETWORK_NOT_CONNECTED ->{
+                                showDialogMessage("오류", "네트워크 연결을 확인해주세요"){
+                                    mLoadingDialog.dismiss()
+                                    finish()
+                                }
+                            }
+                            AccountManager.RESULT_SUCCESS ->{
+                                Toast.makeText(this, "삭제하였습니다", Toast.LENGTH_SHORT).show()
+                                mLoadingDialog.dismiss()
+                                finish()
+                            }
+                        }
                     }
                 }
             }
