@@ -19,7 +19,7 @@ class InviteSubUserActivity : AppCompatActivity() {
     lateinit var binding: ActivityInviteSubUserBinding
     lateinit var mLoadingDialog: AlertDialog//로딩화면임. setProgressDialog()를 실행후 mDialog.show()로 시작
     lateinit var mParentGroupMemberData: GroupMemberData
-    lateinit var mChildGroupMemberData: GroupMemberData
+    var mChildGroupMemberData: GroupMemberData? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +33,7 @@ class InviteSubUserActivity : AppCompatActivity() {
         setProgressDialog()
 
         mParentGroupMemberData = intent.extras!!.getSerializable(GroupMemberData.GROUP_MEMBER_PARENT) as GroupMemberData
-        mChildGroupMemberData = intent.extras!!.getSerializable(GroupMemberData.GROUP_MEMBER_CHILD) as GroupMemberData
+        mChildGroupMemberData = intent.extras!!.getSerializable(GroupMemberData.GROUP_MEMBER_CHILD) as GroupMemberData?
 
         val fillEmpty = intent.extras!!.getBoolean(FILL_EMPTY_ACCOUNT, false)
 
@@ -43,7 +43,7 @@ class InviteSubUserActivity : AppCompatActivity() {
 
             if(fillEmpty){
                 AccountManager().fillEmptyAccount(
-                    mChildGroupMemberData,
+                    mChildGroupMemberData!!,
                     binding.subUserIdEt.text.toString(),
                     binding.adminCb.isChecked
                 ){resultMessage ->
