@@ -113,7 +113,11 @@ class AccountManager {
                 val subIndexHashCode = hash(parent.indexHashCode+"!@#"+groupCode+"!@#"+ i)
                 val subData = db.document(subIndexHashCode!!).get().await().toObject<GroupMemberData>()
                 Log.d("asdnewsubData", parent.indexHashCode+"!@#"+groupCode+"!@#"+ i)
-                dataList.add(subData!!)
+                if (subData != null) {
+                    dataList.add(subData)
+                }
+                else
+                    break
 
                 val newSubData = GroupMemberData()
                 newSubData.indexHashCode = hash(newParent.indexHashCode+"!@#"+newGroupCode+"!@#"+ i)
@@ -142,7 +146,9 @@ class AccountManager {
             for(i in 0 until childCount){
                 val subIndexHashCode = hash(parent.indexHashCode+"!@#"+groupCode+"!@#"+ i)
                 val subData = db.document(subIndexHashCode!!).get().await().toObject<GroupMemberData>()
-                dataList.add(subData!!)
+                if (subData != null) {
+                    dataList.add(subData)
+                }
             }
             index++
             listSize = dataList.size
@@ -150,17 +156,21 @@ class AccountManager {
         return  dataList
     }
 
-    fun leaveGroup(indexHashCode: String, callBack: (resultMessage: String) -> Unit){
-        // master계정에서의 탈퇴도 구현할 것
-        val groupMemberData = hashMapOf<String, String?>(
-            "hashedGroupCode" to null,
-            "id" to null
-        )
-        Firebase.firestore.collection(GROUP_MEMBERS).document(indexHashCode)
-            .set(groupMemberData, SetOptions.merge())
-            .addOnSuccessListener {
-                callBack(RESULT_SUCCESS)
-            }
+    fun leaveGroup(indexHashCode: String, master: Boolean, callBack: (resultMessage: String) -> Unit){
+        if(master){//master권한자의 그룹탈퇴, 공석없이 자리까지 없어지며 master권한을 바로 밑 하위유저에게 위임
+
+        }
+        else{// 관리자나 일반일 경우
+            val groupMemberData = hashMapOf<String, String?>(
+                "hashedGroupCode" to null,
+                "id" to null
+            )
+            Firebase.firestore.collection(GROUP_MEMBERS).document(indexHashCode)
+                .set(groupMemberData, SetOptions.merge())
+                .addOnSuccessListener {
+                    callBack(RESULT_SUCCESS)
+                }
+        }
     }
 
     fun uploadUserData(userData: UserData, callBack: (message: String) -> Unit){
@@ -196,7 +206,9 @@ class AccountManager {
                 .get()
                 .await()
                 .toObject<GroupMemberData>()
-            groupMemberList.add(subGroupMemberData!!)
+            if (subGroupMemberData != null) {
+                groupMemberList.add(subGroupMemberData)
+            }
         }
         return groupMemberList
     }

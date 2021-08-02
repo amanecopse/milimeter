@@ -37,6 +37,8 @@ class InviteSubUserActivity : AppCompatActivity() {
 
         val fillEmpty = intent.extras!!.getBoolean(FILL_EMPTY_ACCOUNT, false)
 
+        binding.adminCb.isChecked = mChildGroupMemberData?.admin ?: false
+
         binding.inviteBt.setOnClickListener {
             binding.inviteBt.isClickable = false
             mLoadingDialog.show()
