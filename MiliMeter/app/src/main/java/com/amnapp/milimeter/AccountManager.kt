@@ -6,29 +6,194 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import android.util.Log
+import android.widget.Toast
 import com.amnapp.milimeter.activities.LoginActivity
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import java.nio.charset.Charset
 import java.security.MessageDigest
 
 class AccountManager {
 
-    fun leaveGroup(indexHashCode: String, callBack: (resultMessage: String) -> Unit){
-        // master계정에서의 탈퇴도 구현할 것
-        val groupMemberData = hashMapOf<String, String?>(
-            "hashedGroupCode" to null,
-            "id" to null
-        )
-        Firebase.firestore.collection(GROUP_MEMBERS).document(indexHashCode)
-            .set(groupMemberData, SetOptions.merge())
-            .addOnSuccessListener {
-                callBack(RESULT_SUCCESS)
+    fun deleteGroupMemberAccount(// loadSubPathListsToDeleteGroupMemberAccount에서 변화전과 변화후의 리스트를 로드하면 이 함수에서 삭제,업로드 작업을 진행한다
+        parentGroupMemberData: GroupMemberData,
+        targetGroupMemberData: GroupMemberData,
+        callBack: (resultMessage: String) -> Unit
+    ){
+        CoroutineScope(Dispatchers.IO).launch {
+            loadSubPathListsToDeleteGroupMemberAccount(parentGroupMemberData,targetGroupMemberData){pathLists, newPathLists ->
+                val ref = Firebase.firestore.collection(GROUP_MEMBERS)
+                Firebase.firestore.runTransaction {transaction->
+                    for(pathList in pathLists){//삭제
+                        for(data in pathList){
+                            transaction.delete(ref.document(data.indexHashCode!!))
+                        }
+                    }
+                    for(newPathList in newPathLists){//업로드
+                        for(newData in newPathList){
+                            transaction.set(ref.document(newData.indexHashCode!!), newData)
+                        }
+                    }
+                    transaction.update(
+                        ref.document(parentGroupMemberData.indexHashCode!!),
+                        "childCount",
+                        parentGroupMemberData.childCount - 1 // 자리 삭제했으니 자식이 하나 줄어든다
+                    )
+                }.addOnSuccessListener {
+                        ref.document(GroupMemberData.getInstance().indexHashCode!!)// 혹시 로그인한 자신의 하위유저가 지워진 경우 바로 로컬에 갱신할 필요가 있음
+                            .get()
+                            .addOnSuccessListener {
+                                GroupMemberData.setInstance(it.toObject<GroupMemberData>()!!)
+                                callBack(RESULT_SUCCESS)
+                            }
+
+                    }
             }
+        }
+    }
+
+    private suspend fun loadSubPathListsToDeleteGroupMemberAccount(// 공석을 삭제하기 위해 기존 트리데이터와 삭제후 트리데이터를 로드하는 함수
+        parentGroupMemberData: GroupMemberData,// 공석의 부모인 그룹멤버데이터
+        targetGroupMemberData: GroupMemberData,// 공석의 그룹멤버데이터
+        callBack: (pathLists: MutableList<MutableList<GroupMemberData>>, newPathLists: MutableList<MutableList<GroupMemberData>>) -> Unit
+    ){
+        val pathLists = mutableListOf<MutableList<GroupMemberData>>()//기존 트리가 리스트화된 것, 후에 순차적으로 삭제됨
+        val newPathLists = mutableListOf<MutableList<GroupMemberData>>()//변화가 적용된 새 트리가 리스트화된 것, 후에 순차적으로 업로드됨
+        val mySubMembers = findSubGroupMemberListByIndex(parentGroupMemberData.indexHashCode!!)// 부모의 바로아래 하위유저들
+        val newMySubMembers = findSubGroupMemberListByIndex(parentGroupMemberData.indexHashCode!!)// 부모의 공석을 제외한 바로아래 하위유저들(아래코드에서 제거됨)
+        newMySubMembers.remove(targetGroupMemberData)// 공석을 제외
+
+        for(i in 0 until mySubMembers.size){
+            val pathListPair = findAllSubGroupMemberData(mySubMembers[i], mGroupCode!!)
+            pathLists.add(pathListPair)
+        }
+
+        for(i in 0 until newMySubMembers.size){
+            val pathListPair = resetIndexHashCode(
+                mySubMembers[i].indexHashCode!!, newMySubMembers[i], mGroupCode!!, mGroupCode!!
+            )
+            newPathLists.add(pathListPair)
+        }
+
+        callBack(pathLists, newPathLists)
+    }
+
+    private suspend fun resetIndexHashCode(//그룹의 그룹코드나 그룹장의 인덱스해시코드를 재설정하는 함수
+        newHeadIndexHashCode: String,// 그룹장의 새로운 인덱스해시코드
+        head: GroupMemberData,//그룹장의 기존 데이터
+        groupCode: String,//기존 그룹코드
+        newGroupCode: String//새 그룹코드
+    ): MutableList<GroupMemberData>{
+        val dataList = mutableListOf<GroupMemberData>()// 기존 트리의 리스트화
+        val newDataList = mutableListOf<GroupMemberData>()// 변화가 적용된 트리의 리스트화
+        dataList.add(head)
+
+        val newHead = GroupMemberData()
+        newHead.indexHashCode = newHeadIndexHashCode
+        newHead.hashedGroupCode = head.hashedGroupCode
+        newHead.admin = head.admin
+        newHead.childCount = head.childCount
+        newHead.id = head.id
+        newDataList.add(newHead)
+
+        val db = Firebase.firestore.collection(GROUP_MEMBERS)
+        var index = 0
+        var listSize = dataList.size
+        while(listSize != index){
+            val parent = dataList[index]
+            val newParent = newDataList[index]
+            val childCount = dataList[index].childCount
+            for(i in 0 until childCount){
+                val subIndexHashCode = hash(parent.indexHashCode+"!@#"+groupCode+"!@#"+ i)
+                val subData = db.document(subIndexHashCode!!).get().await().toObject<GroupMemberData>()
+                Log.d("asdnewsubData", parent.indexHashCode+"!@#"+groupCode+"!@#"+ i)
+                if (subData != null) {
+                    dataList.add(subData)
+                }
+                else
+                    break
+
+                val newSubData = GroupMemberData()
+                newSubData.indexHashCode = hash(newParent.indexHashCode+"!@#"+newGroupCode+"!@#"+ i)
+                newSubData.hashedGroupCode = subData.hashedGroupCode
+                newSubData.admin = subData.admin
+                newSubData.childCount = subData.childCount
+                newSubData.id = subData.id
+                newDataList.add(newSubData)
+                Log.d("asdnewnewSubData", newParent.indexHashCode+"!@#"+groupCode+"!@#"+ i)
+            }
+            index++
+            listSize = dataList.size
+        }
+        return newDataList
+    }
+
+    suspend fun findAllSubGroupMemberData(head: GroupMemberData, groupCode: String): MutableList<GroupMemberData>{//head를 포함하는 모든 트리 구성원을 리스트화하여 리턴
+        val dataList = mutableListOf<GroupMemberData>()
+        dataList.add(head)
+        val db = Firebase.firestore.collection(GROUP_MEMBERS)
+        var index = 0
+        var listSize = dataList.size
+        while(listSize != index){
+            val parent = dataList[index]
+            val childCount = dataList[index].childCount
+            for(i in 0 until childCount){
+                val subIndexHashCode = hash(parent.indexHashCode+"!@#"+groupCode+"!@#"+ i)
+                val subData = db.document(subIndexHashCode!!).get().await().toObject<GroupMemberData>()
+                if (subData != null) {
+                    dataList.add(subData)
+                }
+            }
+            index++
+            listSize = dataList.size
+        }
+        return  dataList
+    }
+
+    fun leaveGroup(myIndexHashCode: String, master: Boolean, callBack: (resultMessage: String) -> Unit){
+        if(master){//master권한자의 그룹탈퇴, 공석없이 자리까지 없어지며 master권한을 바로 밑 하위유저에게 위임
+            CoroutineScope(Dispatchers.IO).launch {
+                val subGroupMemberDatas = findSubGroupMemberListByIndex(myIndexHashCode)
+
+                val ref = Firebase.firestore.collection(GROUP_MEMBERS)
+                Firebase.firestore.runTransaction { transaction ->
+                    for(subGroupMemberData in subGroupMemberDatas){
+                        val newHashedMasterGroupCode = hash(subGroupMemberData.id+"!@#"+ mGroupCode +"!@#"+"master")
+                        transaction.update(
+                            ref.document(subGroupMemberData.indexHashCode!!),
+                            "hashedGroupCode",
+                            newHashedMasterGroupCode)
+                        transaction.update(
+                            ref.document(subGroupMemberData.indexHashCode!!),
+                            "admin",
+                            true)
+                    }
+                    transaction.delete(ref.document(myIndexHashCode))
+                }.addOnSuccessListener {
+                    GroupMemberData.setInstance(GroupMemberData())// 탈퇴했으니 로컬에서 그룹정보 초기화
+                    callBack(RESULT_SUCCESS)
+                }
+            }
+        }
+        else{// 관리자나 일반일 경우
+            val groupMemberData = hashMapOf<String, String?>(
+                "hashedGroupCode" to null,
+                "id" to null
+            )
+            Firebase.firestore.collection(GROUP_MEMBERS).document(myIndexHashCode)
+                .set(groupMemberData, SetOptions.merge())
+                .addOnSuccessListener {
+                    GroupMemberData.setInstance(GroupMemberData())// 탈퇴했으니 로컬에서 그룹정보 초기화
+                    callBack(RESULT_SUCCESS)
+                }
+        }
     }
 
     fun uploadUserData(userData: UserData, callBack: (message: String) -> Unit){
@@ -41,7 +206,17 @@ class AccountManager {
         }
     }
 
-    suspend fun findSubGroupMemberListByIndex(myIndexHashCode: String): MutableList<GroupMemberData>{
+    fun uploadGroupMemberData(groupMemberData: GroupMemberData, callBack: (message: String) -> Unit){
+        groupMemberData.indexHashCode?.let {
+            Firebase.firestore.collection(GROUP_MEMBERS).document(it)
+                .set(groupMemberData, SetOptions.merge())
+                .addOnSuccessListener {
+                    callBack(RESULT_SUCCESS)
+                }
+        }
+    }
+
+    suspend fun findSubGroupMemberListByIndex(myIndexHashCode: String): MutableList<GroupMemberData>{//부모인덱스해시코드로 자식그룹멤버데이터를 찾음
         val myGroupMemberData = Firebase.firestore.collection(GROUP_MEMBERS).document(myIndexHashCode)
             .get()
             .await()
@@ -54,12 +229,14 @@ class AccountManager {
                 .get()
                 .await()
                 .toObject<GroupMemberData>()
-            groupMemberList.add(subGroupMemberData!!)
+            if (subGroupMemberData != null) {
+                groupMemberList.add(subGroupMemberData)
+            }
         }
         return groupMemberList
     }
 
-    suspend fun findSubUserListBySubGroupMemberList(groupMemberList: MutableList<GroupMemberData>): MutableList<UserData> {
+    suspend fun findSubUserListBySubGroupMemberList(groupMemberList: MutableList<GroupMemberData>): MutableList<UserData> {// 그룹멤버리스트를 유저리스트로 변환
         val userList: MutableList<UserData> = mutableListOf()
 
         for(groupMemberData in groupMemberList){
@@ -77,7 +254,7 @@ class AccountManager {
         return userList
     }
 
-    fun checkGroupCodeValid(id: String?, groupCode: String?, hashedGroupCode: String?): Boolean{
+    fun checkGroupCodeValid(context: Context, id: String?, groupCode: String?, hashedGroupCode: String?): Boolean{
         if (AccountManager().hash(id + "!@#" + groupCode) == hashedGroupCode){
             mGroupCode = groupCode
             return true
@@ -85,13 +262,14 @@ class AccountManager {
         else if (AccountManager().hash(id + "!@#" + groupCode + "!@#" + "master") == hashedGroupCode){
             mGroupCode = groupCode
             mMaster = true
+            Toast.makeText(context, "Master 권한 계정입니다", Toast.LENGTH_LONG).show()
             return true
         }
         else
             return false
     }
 
-    fun inviteSubUser(subUserId: String, isAdmin: Boolean, callBack: (resultMessage: String) -> Unit){
+    fun inviteSubUser(parentGroupMemberData: GroupMemberData, subUserId: String, isAdmin: Boolean, callBack: (resultMessage: String) -> Unit){
         findUserDataById(subUserId){ resultMessage1, querySnapShot ->
             if(resultMessage1 == RESULT_FAILURE){//초대할 아이디 존재안함
                 callBack(ERROR_NOT_FOUND_ID)
@@ -103,7 +281,7 @@ class AccountManager {
                         callBack(ERROR_GROUPED_ID)
                     }
                     else if(resultMessage2 == RESULT_FAILURE){
-                        val myGroupMemberData = GroupMemberData.getInstance()
+                        val myGroupMemberData = parentGroupMemberData
                         val subHashedGroupCode = hash(subUserId+"!@#"+ mGroupCode)
                         val subIndexHashCode = hash(myGroupMemberData.indexHashCode+"!@#"+mGroupCode+"!@#"+ myGroupMemberData.childCount)
                         val subGroupMemberData = GroupMemberData()
@@ -126,6 +304,44 @@ class AccountManager {
                             )
                         }.addOnSuccessListener {
                             myGroupMemberData.childCount += 1
+                            callBack(RESULT_SUCCESS)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    fun fillEmptyAccount(
+        childGroupMemberData: GroupMemberData,
+        subUserId: String, isAdmin: Boolean,
+        callBack: (resultMessage: String) -> Unit
+    ){
+        findUserDataById(subUserId){ resultMessage1, querySnapShot ->
+            if(resultMessage1 == RESULT_FAILURE){//초대할 아이디 존재안함
+                callBack(ERROR_NOT_FOUND_ID)
+            }
+            else if(resultMessage1 == RESULT_SUCCESS){//아이디 있음
+
+                findGroupMemberDataById(subUserId){resultMessage2, querySnapShot ->
+                    if(resultMessage2 == RESULT_SUCCESS){
+                        callBack(ERROR_GROUPED_ID)
+                    }
+                    else if(resultMessage2 == RESULT_FAILURE){
+                        val subHashedGroupCode = hash(subUserId+"!@#"+ mGroupCode)
+                        val subIndexHashCode = childGroupMemberData.indexHashCode
+                        val subGroupMemberData = childGroupMemberData
+
+                        subGroupMemberData.id = subUserId
+                        subGroupMemberData.hashedGroupCode = subHashedGroupCode
+                        subGroupMemberData.admin = isAdmin
+
+                        Firebase.firestore.runTransaction {
+                            it.set(
+                                Firebase.firestore.collection(GROUP_MEMBERS).document(subIndexHashCode!!),
+                                subGroupMemberData
+                            )
+                        }.addOnSuccessListener {
                             callBack(RESULT_SUCCESS)
                         }
                     }

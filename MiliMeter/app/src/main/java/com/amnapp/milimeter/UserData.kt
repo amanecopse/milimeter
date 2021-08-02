@@ -1,25 +1,29 @@
 package com.amnapp.milimeter
 
-data class UserData(var id: String? = null){
-    var pw: String? = null
-    var login: Boolean = false
-    //아래는 프로필 정보
-    var name: String? = null
-    var birthDate: String? = null
-    var militaryId: String? = null // 입력받을 때 군번에서 '-'없이 입력받을 것
-    var height: String? = null
-    var weight: String? = null
-    var bloodType: Int? = null
-    //목표 정보
-    var goalOfWeight: String? = null
-    var goalOfTotalGrade: Int? = null
-    var goalOfLegTuckGrade: Int? = null
-    var goalOfShuttleRunGrade: Int? = null
-    var goalOfFieldTrainingGrade: Int? = null
+import java.io.Serializable
 
+data class UserData(
+    var id: String? = null,
+    var pw: String? = null,
+    var login: Boolean = false,
+    //아래는 프로필 정보
+    var name: String? = null,
+    var birthDate: String? = null,
+    var militaryId: String? = null, // 입력받을 때 군번에서 '-'없이 입력받을 것
+    var height: String? = null,
+    var weight: String? = null,
+    var bloodType: Int? = null,
+    //목표 정보
+    var goalOfWeight: String? = null,
+    var goalOfTotalGrade: Int? = null,
+    var goalOfLegTuckGrade: Int? = null,
+    var goalOfShuttleRunGrade: Int? = null,
+    var goalOfFieldTrainingGrade: Int? = null
+): Serializable{
     companion object{
+        const val USER_PARENT = "parent userData"
+        const val USER_CHILD = "child userData"
         private var mUserData: UserData? = null
-        var mTmpUserData: UserData? = null
 
         fun setInstance(userData: UserData){
             mUserData = getInstance()
@@ -46,15 +50,17 @@ data class UserData(var id: String? = null){
     }
 }
 
-data class GroupMemberData(var indexHashCode: String? = null){
-    var hashedGroupCode: String? = null
-    var admin: Boolean = false
-    var childCount: Int = 0
+data class GroupMemberData(
+    var indexHashCode: String? = null,
+    var hashedGroupCode: String? = null,
+    var admin: Boolean = false,
+    var childCount: Int = 0,
     var id: String? = null
-
+): Serializable{
     companion object{
+        const val GROUP_MEMBER_PARENT = "parent groupMemberData"
+        const val GROUP_MEMBER_CHILD = "child groupMemberData"
         private var mGroupMemberData: GroupMemberData? = null
-        var mTmpGroupMemberData: GroupMemberData? = null
 
         fun setInstance(groupMemberData: GroupMemberData){
             mGroupMemberData = getInstance()

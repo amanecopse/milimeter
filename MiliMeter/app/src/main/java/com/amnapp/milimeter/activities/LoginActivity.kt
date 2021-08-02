@@ -71,16 +71,18 @@ class LoginActivity : AppCompatActivity() {
             var groupCode = AccountManager.mGroupCode
             val hashedGroupCode = GroupMemberData.getInstance().hashedGroupCode
             val ac = AccountManager()
-            if(ac.checkGroupCodeValid(id, groupCode, hashedGroupCode)){
+            if(ac.checkGroupCodeValid(applicationContext,id, groupCode, hashedGroupCode)){
                 val intent = Intent(this, InviteSubUserActivity::class.java)
+                intent.putExtra(GroupMemberData.GROUP_MEMBER_PARENT, GroupMemberData.getInstance())
                 startActivity(intent)
             }
             else{
                 showEditTextDialogMessage("그룹코드를 입력해주세요") { input ->
                     groupCode = input
-                    if(ac.checkGroupCodeValid(id, groupCode, hashedGroupCode)){
+                    if(ac.checkGroupCodeValid(applicationContext,id, groupCode, hashedGroupCode)){
                         PreferenceManager().setGroupCode(this, groupCode!!)
                         val intent = Intent(this, InviteSubUserActivity::class.java)
+                        intent.putExtra(GroupMemberData.GROUP_MEMBER_PARENT, GroupMemberData.getInstance())
                         startActivity(intent)
                     }
                 }
@@ -91,17 +93,37 @@ class LoginActivity : AppCompatActivity() {
             var groupCode = AccountManager.mGroupCode
             val hashedGroupCode = GroupMemberData.getInstance().hashedGroupCode
             val ac = AccountManager()
-            if(ac.checkGroupCodeValid(id, groupCode, hashedGroupCode)){
+            if(ac.checkGroupCodeValid(applicationContext, id, groupCode, hashedGroupCode)){
                 val intent = Intent(this, AdminPageActivity::class.java)
                 startActivity(intent)
             }
             else{
                 showEditTextDialogMessage("그룹코드를 입력해주세요") { input ->
                     groupCode = input
-                    if(ac.checkGroupCodeValid(id, groupCode, hashedGroupCode)){
+                    if(ac.checkGroupCodeValid(applicationContext,id, groupCode, hashedGroupCode)){
                         PreferenceManager().setGroupCode(this, groupCode!!)
                         val intent = Intent(this, AdminPageActivity::class.java)
                         startActivity(intent)
+                    }
+                }
+            }
+        }
+        binding.leaveGroupTv.setOnClickListener {
+            showTwoButtonDialogMessage("주의", "정말 그룹을 탈퇴하시겠습니까?"){
+                if(it == -1){
+
+                    binding.leaveGroupTv.isClickable = false//연타방지
+                    mLoadingDialog.show()//로딩시작
+                    val groupMemberData = GroupMemberData.getInstance()
+                    AccountManager().leaveGroup(groupMemberData.indexHashCode!!, AccountManager.mMaster){resultMessage ->
+                        if(resultMessage == AccountManager.RESULT_SUCCESS){
+                            mLoadingDialog.dismiss()//로딩해제
+                            binding.leaveGroupTv.isClickable = true//연타방지해제
+                            renewLoginUI()
+                            showDialogMessage("탈퇴완료", "그룹을 탈퇴하였습니다"){
+                                renewLoginUI()
+                            }
+                        }
                     }
                 }
             }
@@ -163,6 +185,14 @@ class LoginActivity : AppCompatActivity() {
         builder.setTitle(title)
         builder.setMessage(body)
         builder.setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int -> }
+        builder.show()
+    }
+
+    fun showDialogMessage(title: String, body: String, callBack: () -> Unit) {//다이얼로그 메시지를 띄우는 함수
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(title)
+        builder.setMessage(body)
+        builder.setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int -> callBack}
         builder.show()
     }
 

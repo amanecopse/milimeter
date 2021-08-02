@@ -83,12 +83,12 @@
                android:id="@+id/resetBt"
                android:layout_width="40dp"
                android:layout_height="40dp"
-               android:layout_marginTop="50dp"
+               android:layout_marginLeft="185dp"
+               android:layout_marginTop="55dp"
                android:background="@android:color/transparent"
                android:src="@drawable/ic_baseline_replay_30_white"
                android:tintMode="src_in"
-               app:tint="@color/dark_green"
-               android:layout_marginLeft="180dp"/>
+               app:tint="@color/dark_green" />
 
            <ImageButton
                android:id="@+id/stopBt"

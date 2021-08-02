@@ -11,12 +11,15 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import com.amnapp.milimeter.AccountManager
+import com.amnapp.milimeter.GroupMemberData
 import com.amnapp.milimeter.R
 import com.amnapp.milimeter.databinding.ActivityInviteSubUserBinding
 
 class InviteSubUserActivity : AppCompatActivity() {
     lateinit var binding: ActivityInviteSubUserBinding
     lateinit var mLoadingDialog: AlertDialog//로딩화면임. setProgressDialog()를 실행후 mDialog.show()로 시작
+    lateinit var mParentGroupMemberData: GroupMemberData
+    var mChildGroupMemberData: GroupMemberData? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,27 +32,66 @@ class InviteSubUserActivity : AppCompatActivity() {
     private fun initUI() {
         setProgressDialog()
 
+        mParentGroupMemberData = intent.extras!!.getSerializable(GroupMemberData.GROUP_MEMBER_PARENT) as GroupMemberData
+        mChildGroupMemberData = intent.extras!!.getSerializable(GroupMemberData.GROUP_MEMBER_CHILD) as GroupMemberData?
+
+        val fillEmpty = intent.extras!!.getBoolean(FILL_EMPTY_ACCOUNT, false)
+
+        binding.adminCb.isChecked = mChildGroupMemberData?.admin ?: false
+
         binding.inviteBt.setOnClickListener {
             binding.inviteBt.isClickable = false
             mLoadingDialog.show()
-            AccountManager().inviteSubUser(
-                binding.subUserIdEt.text.toString(),
-                binding.adminCb.isChecked
-            ){resultMessage ->
-                when(resultMessage){
-                    AccountManager.ERROR_NOT_FOUND_ID->{
-                        showDialogMessage("존재하지 않는 아이디", "해당 아이디가 존재하지 않습니다"){}
+
+            if(fillEmpty){
+                AccountManager().fillEmptyAccount(
+                    mChildGroupMemberData!!,
+                    binding.subUserIdEt.text.toString(),
+                    binding.adminCb.isChecked
+                ){resultMessage ->
+                    when(resultMessage){
+                        AccountManager.ERROR_NOT_FOUND_ID->{
+                            showDialogMessage("존재하지 않는 아이디", "해당 아이디가 존재하지 않습니다"){}
+                        }
+                        AccountManager.ERROR_GROUPED_ID->{
+                            showDialogMessage("이미 그룹에 가입된 아이디", "해당 아이디가 이미 그룹에 가입되어 있습니다"){}
+                        }
+                        AccountManager.RESULT_SUCCESS->{
+                            showDialogMessage("하위유저 가입성공", "하위유저가 그룹에 가입되었습니다"){}
+                        }
                     }
-                    AccountManager.ERROR_GROUPED_ID->{
-                        showDialogMessage("이미 그룹에 가입된 아이디", "해당 아이디가 이미 그룹에 가입되어 있습니다"){}
-                    }
-                    AccountManager.RESULT_SUCCESS->{
-                        showDialogMessage("하위유저 가입성공", "하위유저가 그룹에 가입되었습니다"){}
-                    }
+                    mLoadingDialog.dismiss()
+                    binding.inviteBt.isClickable = true
                 }
-                mLoadingDialog.dismiss()
-                binding.inviteBt.isClickable = true
             }
+            else{
+                AccountManager().inviteSubUser(
+                    mParentGroupMemberData,
+                    binding.subUserIdEt.text.toString(),
+                    binding.adminCb.isChecked
+                ){resultMessage ->
+                    when(resultMessage){
+                        AccountManager.ERROR_NOT_FOUND_ID->{
+                            showDialogMessage("존재하지 않는 아이디", "해당 아이디가 존재하지 않습니다"){}
+                        }
+                        AccountManager.ERROR_GROUPED_ID->{
+                            showDialogMessage("이미 그룹에 가입된 아이디", "해당 아이디가 이미 그룹에 가입되어 있습니다"){}
+                        }
+                        AccountManager.RESULT_SUCCESS->{
+                            showDialogMessage("하위유저 가입성공", "하위유저가 그룹에 가입되었습니다"){}
+                        }
+                    }
+                    mLoadingDialog.dismiss()
+                    binding.inviteBt.isClickable = true
+                }
+            }
+        }
+
+        binding.cancelIb.setOnClickListener{
+            finish()
+        }
+        binding.backIb.setOnClickListener{
+            finish()
         }
     }
 
@@ -95,5 +137,9 @@ class InviteSubUserActivity : AppCompatActivity() {
             callBack()
         }
         builder.show()
+    }
+
+    companion object{
+        const val FILL_EMPTY_ACCOUNT = "fill empty account"
     }
 }
