@@ -12,10 +12,13 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.core.widget.addTextChangedListener
 import com.amnapp.milimeter.AccountManager
 import com.amnapp.milimeter.GroupMemberData
 import com.amnapp.milimeter.UserData
 import com.amnapp.milimeter.databinding.ActivityEditSubUserInfoBinding
+import com.google.android.material.R
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -36,54 +39,23 @@ class EditSubUserInfoActivity : AppCompatActivity() {
 
     private fun initUI() {
         setProgressDialog()// 로딩다이얼로그 설치
-        mChildUserData = intent.extras?.getSerializable(UserData.USER_CHILD) as UserData
-        mChildGroupMemberData = intent.extras?.getSerializable(GroupMemberData.GROUP_MEMBER_CHILD) as GroupMemberData
-        if (mChildUserData != null) {
-            binding.nameTv.text = mChildUserData.name
-            binding.idTv.text = mChildUserData.id
-            binding.pwEt.setText(mChildUserData.pw)
-            mChildUserData.birthDate?.let { binding.birthDateTv.setText(it.toString()) }
-            mChildUserData.militaryId?.let { binding.militaryIdEt.setText(it.toString()) }
-            mChildUserData.height?.let { binding.heightEt.setText(it.toString()) }
-            mChildUserData.weight?.let { binding.weightEt.setText(it.toString()) }
-            mChildUserData.bloodType?.let { binding.bloodTypeSp.setSelection(it) }
-            mChildUserData.goalOfWeight?.let { binding.goalOfWeightEt.setText(it.toString()) }
-            mChildUserData.goalOfTotalGrade?.let { binding.goalOfTotalRankSp.setSelection(it) }
-            mChildUserData.goalOfLegTuckGrade?.let { binding.goalOfLegTuckRankSp.setSelection(it) }
-            mChildUserData.goalOfShuttleRunGrade?.let { binding.goalOfShuttleRunRankSp.setSelection(it) }
-            mChildUserData.goalOfFieldTrainingGrade?.let { binding.goalOfFieldTrainingRankSp.setSelection(it) }
+        loadUserData()
+
+        binding.pwEt.addTextChangedListener {
+            checkEditTextError()
+        }
+        binding.militaryIdEt.addTextChangedListener {
+            checkEditTextError()
+        }
+        binding.heightEt.addTextChangedListener {
+            checkEditTextError()
+        }
+        binding.weightEt.addTextChangedListener {
+            checkEditTextError()
         }
 
         binding.confirmCv.setOnClickListener{
-            if(
-                binding.nameTv.text.isNullOrEmpty()
-                ||binding.pwEt.text.isNullOrEmpty()
-                ||binding.militaryIdEt.text.isNullOrEmpty()
-                ||binding.heightEt.text.isNullOrEmpty()
-                ||binding.weightEt.text.isNullOrEmpty()
-                ||binding.pwEt.text.isNullOrEmpty()
-            ){
-                showDialogMessage("입력 오류", "필수 입력란이 비어있습니다")
-                return@setOnClickListener
-            }
-            mChildUserData.pw = binding.pwEt.text.toString()
-            mChildUserData.birthDate = if(binding.birthDateTv.text.isNullOrEmpty()) null else binding.birthDateTv.text.toString()
-            mChildUserData.militaryId = binding.militaryIdEt.text.toString()
-            mChildUserData.height = binding.heightEt.text.toString()
-            mChildUserData.weight = binding.weightEt.text.toString()
-            mChildUserData.bloodType = binding.bloodTypeSp.selectedItemPosition
-            mChildUserData.goalOfWeight = if(binding.goalOfWeightEt.text.isNullOrEmpty()) null else binding.goalOfWeightEt.text.toString()
-            mChildUserData.goalOfTotalGrade = binding.goalOfTotalRankSp.selectedItemPosition
-            mChildUserData.goalOfLegTuckGrade = binding.goalOfLegTuckRankSp.selectedItemPosition
-            mChildUserData.goalOfShuttleRunGrade = binding.goalOfShuttleRunRankSp.selectedItemPosition
-            mChildUserData.goalOfFieldTrainingGrade = binding.goalOfFieldTrainingRankSp.selectedItemPosition
-
-            mLoadingDialog.show() //로딩시작
-            AccountManager().uploadUserData(mChildUserData){message ->
-                if(message == AccountManager.RESULT_SUCCESS)
-                    showDialogMessage("수정 완료", "하위회원의 정보가 수정되었습니다")
-                mLoadingDialog.dismiss()
-            }
+            uploadEditedUserData()
         }
         binding.birthDateLl.setOnClickListener {
             showDatePickerDialog()
@@ -109,6 +81,119 @@ class EditSubUserInfoActivity : AppCompatActivity() {
             finish()
         }
 
+    }
+
+    private fun uploadEditedUserData() {
+        if (!checkEditTextError()) {
+            showDialogMessage("필수입력란 미기입", "비어있는 필수입력란을 기입해주세요") {}
+            return
+        } else if (!AccountManager().checkNetworkState(this)) {
+            showDialogMessage("네트워크 오류", "네트워크에 연결되어 있는 지 확인해주세요") {}
+            return
+        }
+        mChildUserData.pw = binding.pwEt.text.toString()
+        mChildUserData.birthDate =
+            if (binding.birthDateTv.text.isNullOrEmpty()) null else binding.birthDateTv.text.toString()
+        mChildUserData.militaryId = binding.militaryIdEt.text.toString()
+        mChildUserData.height = binding.heightEt.text.toString()
+        mChildUserData.weight = binding.weightEt.text.toString()
+        mChildUserData.bloodType = binding.bloodTypeSp.selectedItemPosition
+        mChildUserData.goalOfWeight =
+            if (binding.goalOfWeightEt.text.isNullOrEmpty()) null else binding.goalOfWeightEt.text.toString()
+        mChildUserData.goalOfTotalGrade = binding.goalOfTotalRankSp.selectedItemPosition
+        mChildUserData.goalOfLegTuckGrade = binding.goalOfLegTuckRankSp.selectedItemPosition
+        mChildUserData.goalOfShuttleRunGrade = binding.goalOfShuttleRunRankSp.selectedItemPosition
+        mChildUserData.goalOfFieldTrainingGrade =
+            binding.goalOfFieldTrainingRankSp.selectedItemPosition
+
+        mLoadingDialog.show() //로딩시작
+        AccountManager().uploadUserData(mChildUserData) { message ->
+            if (message == AccountManager.RESULT_SUCCESS)
+                showDialogMessage("수정 완료", "하위회원의 정보가 수정되었습니다")
+            mLoadingDialog.dismiss()
+        }
+    }
+
+    private fun loadUserData() {
+        mChildUserData = intent.extras?.getSerializable(UserData.USER_CHILD) as UserData
+        mChildGroupMemberData =
+            intent.extras?.getSerializable(GroupMemberData.GROUP_MEMBER_CHILD) as GroupMemberData
+        if (mChildUserData != null) {
+            binding.nameTv.text = mChildUserData.name
+            binding.idTv.text = mChildUserData.id
+            binding.pwEt.setText(mChildUserData.pw)
+            mChildUserData.birthDate?.let { binding.birthDateTv.setText(it.toString()) }
+            mChildUserData.militaryId?.let { binding.militaryIdEt.setText(it.toString()) }
+            mChildUserData.height?.let { binding.heightEt.setText(it.toString()) }
+            mChildUserData.weight?.let { binding.weightEt.setText(it.toString()) }
+            mChildUserData.bloodType?.let { binding.bloodTypeSp.setSelection(it) }
+            mChildUserData.goalOfWeight?.let { binding.goalOfWeightEt.setText(it.toString()) }
+            mChildUserData.goalOfTotalGrade?.let { binding.goalOfTotalRankSp.setSelection(it) }
+            mChildUserData.goalOfLegTuckGrade?.let { binding.goalOfLegTuckRankSp.setSelection(it) }
+            mChildUserData.goalOfShuttleRunGrade?.let {
+                binding.goalOfShuttleRunRankSp.setSelection(
+                    it
+                )
+            }
+            mChildUserData.goalOfFieldTrainingGrade?.let {
+                binding.goalOfFieldTrainingRankSp.setSelection(
+                    it
+                )
+            }
+        }
+    }
+
+    private fun checkEditTextError(): Boolean{
+
+        var valid = true
+
+        if (binding.pwEt.text.isNullOrEmpty()
+            ||binding.pwEt.text!!.length < 5
+            ||binding.pwEt.text!!.length > 20){
+            binding.pwEt.setError("5~20자리 글자로 작성해주세요",
+                ContextCompat.getDrawable(this, R.drawable.mtrl_ic_error))
+            binding.pwTl.helperText = binding.pwEt.error
+            valid = false
+        }
+        else{
+            binding.pwEt.error = null
+            binding.pwTl.helperText = null
+        }
+
+        if (binding.militaryIdEt.text.isNullOrEmpty()){
+            binding.militaryIdEt.setError("필수입력란 입니다",
+                ContextCompat.getDrawable(this, R.drawable.mtrl_ic_error))
+            binding.militaryIdTl.helperText = binding.militaryIdEt.error
+            valid = false
+        }
+        else{
+            binding.militaryIdEt.error = null
+            binding.militaryIdTl.helperText = null
+        }
+
+        if (binding.heightEt.text.isNullOrEmpty()){
+            binding.heightEt.setError("필수입력란 입니다",
+                ContextCompat.getDrawable(this, R.drawable.mtrl_ic_error))
+            binding.heightTl.helperText = binding.heightEt.error
+            valid = false
+        }
+        else{
+            binding.heightEt.error = null
+            binding.heightTl.helperText = null
+        }
+
+        if (binding.weightEt.text.isNullOrEmpty()){
+            binding.weightEt.setError("필수입력란 입니다",
+                ContextCompat.getDrawable(this, R.drawable.mtrl_ic_error))
+            binding.weightTl.helperText = binding.weightEt.error
+            valid = false
+        }
+        else{
+            binding.weightEt.error = null
+            binding.weightTl.helperText = null
+        }
+
+        return valid
     }
 
     fun showDialogMessage(title:String, body:String) {

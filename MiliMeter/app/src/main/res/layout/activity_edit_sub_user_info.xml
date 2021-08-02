@@ -158,9 +158,15 @@
                     android:orientation="vertical">
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/pwTl"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:textColorHint="?attr/textColorSecondary"
+                        app:counterEnabled="true"
+                        app:counterMaxLength="20"
+                        app:errorEnabled="true"
+                        app:helperTextTextColor="@android:color/holo_red_dark"
                         app:passwordToggleEnabled="true"
                         app:passwordToggleTint="?attr/textColorSecondary">
 
@@ -168,7 +174,7 @@
                             android:id="@+id/pwEt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="비밀번호"
+                            android:hint="*비밀번호"
                             android:password="true"
                             android:singleLine="true"
                             android:textColor="?attr/textColor"
@@ -204,18 +210,21 @@
                     </LinearLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/militaryIdTl"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:textColorHint="?attr/textColorSecondary"
+                        app:helperTextTextColor="@android:color/holo_red_dark"
                         app:passwordToggleTint="?attr/textColorSecondary"
-                        app:suffixText='"-"없이 숫자로'
-                        app:suffixTextColor="?attr/textColor">
+                        app:suffixText='"-" 없이 숫자만 입력'>
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/militaryIdEt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="군번"
+                            android:hint="*군번"
+                            android:inputType="number"
+                            android:maxLength="20"
                             android:singleLine="true"
                             android:textColor="?attr/textColor"
                             android:textSize="@dimen/middleText" />
@@ -223,18 +232,21 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/heightTl"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:textColorHint="?attr/textColorSecondary"
+                        app:helperTextTextColor="@android:color/holo_red_dark"
                         app:passwordToggleTint="?attr/textColorSecondary"
-                        app:suffixText="cm"
-                        app:suffixTextColor="?attr/textColor">
+                        app:suffixText="cm">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/heightEt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="키"
+                            android:hint="*키"
+                            android:inputType="number"
+                            android:maxLength="3"
                             android:singleLine="true"
                             android:textColor="?attr/textColor"
                             android:textSize="@dimen/middleText" />
@@ -242,18 +254,21 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/weightTl"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:textColorHint="?attr/textColorSecondary"
+                        app:helperTextTextColor="@android:color/holo_red_dark"
                         app:passwordToggleTint="?attr/textColorSecondary"
-                        app:suffixText="kg"
-                        app:suffixTextColor="?attr/textColor">
+                        app:suffixText="kg">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/weightEt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="몸무게"
+                            android:hint="*몸무게"
+                            android:inputType="number"
+                            android:maxLength="3"
                             android:singleLine="true"
                             android:textColor="?attr/textColor"
                             android:textSize="@dimen/middleText" />
