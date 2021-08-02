@@ -24,6 +24,43 @@ import java.security.MessageDigest
 
 class AccountManager {
 
+    fun resetGroupCode(context: Context, newGroupCode: String, callBack: (resultMessage: String) -> Unit){
+        val myGroupMemberData = GroupMemberData.getInstance()
+
+        if(!checkNetworkState(context)){
+            callBack(ERROR_NETWORK_NOT_CONNECTED)
+            return
+        }
+        CoroutineScope(Dispatchers.IO).launch {
+            val newGroupMemberDataList = resetIndexHashCode(
+                myGroupMemberData.indexHashCode!!,
+                myGroupMemberData,
+                mGroupCode!!,
+                newGroupCode,
+                true
+            )
+            val oldGroupMemberDataList = findAllSubGroupMemberData(myGroupMemberData, mGroupCode!!)
+
+            val ref = Firebase.firestore.collection(GROUP_MEMBERS)
+            Firebase.firestore.runTransaction { transaction->
+                for(oldSubGroupMemberData in oldGroupMemberDataList){//삭제
+                    transaction.delete(ref.document(oldSubGroupMemberData.indexHashCode!!))
+                }
+                for(newSubGroupMemberData in newGroupMemberDataList){//업로드
+                    transaction.set(ref.document(newSubGroupMemberData.indexHashCode!!), newSubGroupMemberData)
+                }
+            }.addOnSuccessListener {
+                Firebase.firestore.collection(GROUP_MEMBERS).document(GroupMemberData.getInstance().indexHashCode!!)
+                    .get()
+                    .addOnSuccessListener {
+                        GroupMemberData.setInstance(it.toObject<GroupMemberData>()!!)
+                        mGroupCode = newGroupCode
+                        callBack(RESULT_SUCCESS)
+                    }
+            }
+        }
+    }
+
     fun mergeSubGroup(context: Context, subId: String, subPw: String, subGroupCode: String, callBack: (resultMessage: String) -> Unit){
 
         if(!checkNetworkState(context)){
@@ -348,9 +385,10 @@ class AccountManager {
         return userList
     }
 
-    fun checkGroupCodeValid(context: Context, id: String?, groupCode: String?, hashedGroupCode: String?): Boolean{
+    fun checkGroupCodeValid(context: Context, id: String?, groupCode: String?, hashedGroupCode: String?): Boolean{//그룹코드 유효성을 체크하고 여부를 리턴, Master권한 여부에 따라 mMaster 설정
         if (AccountManager().hash(id + "!@#" + groupCode) == hashedGroupCode){
             mGroupCode = groupCode
+            mMaster = false
             return true
         }
         else if (AccountManager().hash(id + "!@#" + groupCode + "!@#" + "master") == hashedGroupCode){

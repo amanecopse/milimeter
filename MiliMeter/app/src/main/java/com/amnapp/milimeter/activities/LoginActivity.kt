@@ -26,7 +26,6 @@ class LoginActivity : AppCompatActivity() {
 
         initUI()
 
-        //TODO(병합할 때 Home에서 자동로그인 문제생길 것임)
     }
 
     private fun initUI() {
