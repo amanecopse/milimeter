@@ -6,6 +6,7 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import android.util.Log
+import android.widget.Toast
 import com.amnapp.milimeter.activities.LoginActivity
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.SetOptions
@@ -156,18 +157,40 @@ class AccountManager {
         return  dataList
     }
 
-    fun leaveGroup(indexHashCode: String, master: Boolean, callBack: (resultMessage: String) -> Unit){
+    fun leaveGroup(myIndexHashCode: String, master: Boolean, callBack: (resultMessage: String) -> Unit){
         if(master){//master권한자의 그룹탈퇴, 공석없이 자리까지 없어지며 master권한을 바로 밑 하위유저에게 위임
+            CoroutineScope(Dispatchers.IO).launch {
+                val subGroupMemberDatas = findSubGroupMemberListByIndex(myIndexHashCode)
 
+                val ref = Firebase.firestore.collection(GROUP_MEMBERS)
+                Firebase.firestore.runTransaction { transaction ->
+                    for(subGroupMemberData in subGroupMemberDatas){
+                        val newHashedMasterGroupCode = hash(subGroupMemberData.id+"!@#"+ mGroupCode +"!@#"+"master")
+                        transaction.update(
+                            ref.document(subGroupMemberData.indexHashCode!!),
+                            "hashedGroupCode",
+                            newHashedMasterGroupCode)
+                        transaction.update(
+                            ref.document(subGroupMemberData.indexHashCode!!),
+                            "admin",
+                            true)
+                    }
+                    transaction.delete(ref.document(myIndexHashCode))
+                }.addOnSuccessListener {
+                    GroupMemberData.setInstance(GroupMemberData())// 탈퇴했으니 로컬에서 그룹정보 초기화
+                    callBack(RESULT_SUCCESS)
+                }
+            }
         }
         else{// 관리자나 일반일 경우
             val groupMemberData = hashMapOf<String, String?>(
                 "hashedGroupCode" to null,
                 "id" to null
             )
-            Firebase.firestore.collection(GROUP_MEMBERS).document(indexHashCode)
+            Firebase.firestore.collection(GROUP_MEMBERS).document(myIndexHashCode)
                 .set(groupMemberData, SetOptions.merge())
                 .addOnSuccessListener {
+                    GroupMemberData.setInstance(GroupMemberData())// 탈퇴했으니 로컬에서 그룹정보 초기화
                     callBack(RESULT_SUCCESS)
                 }
         }
@@ -231,7 +254,7 @@ class AccountManager {
         return userList
     }
 
-    fun checkGroupCodeValid(id: String?, groupCode: String?, hashedGroupCode: String?): Boolean{
+    fun checkGroupCodeValid(context: Context, id: String?, groupCode: String?, hashedGroupCode: String?): Boolean{
         if (AccountManager().hash(id + "!@#" + groupCode) == hashedGroupCode){
             mGroupCode = groupCode
             return true
@@ -239,6 +262,7 @@ class AccountManager {
         else if (AccountManager().hash(id + "!@#" + groupCode + "!@#" + "master") == hashedGroupCode){
             mGroupCode = groupCode
             mMaster = true
+            Toast.makeText(context, "Master 권한 계정입니다", Toast.LENGTH_LONG).show()
             return true
         }
         else
