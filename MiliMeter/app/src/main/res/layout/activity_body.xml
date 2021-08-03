@@ -128,13 +128,6 @@
            android:layout_marginTop="270dp"
            android:orientation="vertical">
 
-           <TextView
-               android:id="@+id/checkTv"
-               android:layout_width="match_parent"
-               android:layout_height="74dp"
-               android:text="확인용" />
-           />
-
            <com.github.mikephil.charting.charts.LineChart
                android:id="@+id/weightChart"
                android:layout_width="match_parent"

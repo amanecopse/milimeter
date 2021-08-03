@@ -36,31 +36,78 @@ class TimeSettingActivity : AppCompatActivity() {
             finish()
         }
 
+        // 첫번째 알림 시간 설정
         binding.firstNtSt.setOnCheckedChangeListener { buttonView, isChecked ->
             if(isChecked) {
-                var calendar = Calendar.getInstance()
-                var hour = calendar.get(Calendar.HOUR_OF_DAY)
-                var minute = calendar.get(Calendar.MINUTE)
-                var am_pm = calendar.get(Calendar.AM_PM)
-                var day = " "
-                // am pm 오류 (계속 pm만 나옴)
-                if (am_pm == Calendar.AM) {
-                    day = "AM"
-                } else if (am_pm == Calendar.PM) {
-                    day = "PM"
-                }
-                // 24시간 표현을 12시간 표현으로 바꿀 것
-                // 분이 일의 자리 수면 앞에 0 붙이기
-                var listener = TimePickerDialog.OnTimeSetListener { timePicker, i, i2 ->
-                    if (i < 10) {
-                        binding.firstNtSt.text = "${day} 0${i%12} : ${i2}"
+                var calendar1 = Calendar.getInstance()
+                var hour1 = calendar1.get(Calendar.HOUR_OF_DAY)
+                var minute1 = calendar1.get(Calendar.MINUTE)
+                var day1 = " "
+
+                var listener1 = TimePickerDialog.OnTimeSetListener { timePicker, i, i2 ->
+                    // i => 0 ~ 23
+                    if (i < 12) {
+                        day1 = "AM"
+                    } else {
+                        day1 = "PM"
+                    }
+
+                    if (i2 < 10) {
+                        if (i%12 == 0) {
+                            binding.firstNtSt.text = "${day1} 12 : 0${i2}"
+                        } else {
+                            binding.firstNtSt.text = "${day1} ${i%12} : 0${i2}"
+                        }
+
                     }
                     else {
-                        binding.firstNtSt.text = "${day} ${i} : ${i2}"
+                        if (i%12 == 0) {
+                            binding.firstNtSt.text = "${day1} 12 : ${i2}"
+                        } else {
+                            binding.firstNtSt.text = "${day1} ${i%12} : ${i2}"
+                        }
                     }
                 }
 
-                var picker = TimePickerDialog(this, listener, hour, minute, false ) // true하면 24시간 제
+                var picker = TimePickerDialog(this, listener1, hour1, minute1, false ) // true하면 24시간 제
+                picker.show()
+            }
+        }
+
+        // 두번째 알림 시간 설정
+        binding.secondNtSt.setOnCheckedChangeListener { buttonView, isChecked ->
+            if(isChecked) {
+                var calendar2 = Calendar.getInstance()
+                var hour2 = calendar2.get(Calendar.HOUR_OF_DAY)
+                var minute2 = calendar2.get(Calendar.MINUTE)
+                var day2 = " "
+
+                var listener2 = TimePickerDialog.OnTimeSetListener { timePicker, j, j2 ->
+                    // j => 0 ~ 23
+                    if (j < 12) {
+                        day2 = "AM"
+                    } else {
+                        day2 = "PM"
+                    }
+
+                    if (j2 < 10) {
+                        if (j%12 == 0) {
+                            binding.secondNtSt.text = "${day2} 12 : 0${j2}"
+                        } else {
+                            binding.secondNtSt.text = "${day2} ${j%12} : 0${j2}"
+                        }
+
+                    }
+                    else {
+                        if (j%12 == 0) {
+                            binding.firstNtSt.text = "${day2} 12 : ${j2}"
+                        } else {
+                            binding.firstNtSt.text = "${day2} ${j%12} : ${j2}"
+                        }
+                    }
+                }
+
+                var picker = TimePickerDialog(this, listener2, hour2, minute2, false ) // true하면 24시간 제
                 picker.show()
             }
         }

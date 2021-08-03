@@ -82,7 +82,8 @@ class BodyActivity : AppCompatActivity() {
         }
 
         binding.recordBt.setOnClickListener{
-            recordTime()
+            // recordTime 함수는 운동시간 기록을 00:00:00 로 나타내는 함수
+            //recordTime()
             // 기록 다이얼로그 창
             val dialog = CustomDialog(this)
             dialog.recordDialog()
@@ -94,34 +95,42 @@ class BodyActivity : AppCompatActivity() {
                     val myUd = UserData.getInstance()
                     // 오늘 날짜 -> string형태
                     val nowDate = timeGenerator()
-                    if(!myUd.login){
+                    if (!myUd.login) {
                         showDialogMessage("오류", "로그인 한 뒤 기록해 주세요")
-                    }
-                    else if(findViewById<EditText>(R.id.typeEt).text.isNullOrBlank()){
+                    } else if (type.isNullOrBlank()) {
                         showDialogMessage("오류", "공란을 입력해 주세요")
+                    } else {
+                        // 데이터 해쉬맵으로 저장 -> timeValue는 초형태로 string형태
+                        val record = hashMapOf(
+                            type to "${timeValue % 60}",
+                            "date" to nowDate
+                        )
+                        val cm = ChartManager()
+                        cm.updateTrainingRecord(
+                            UserData.getInstance(),
+                            nowDate,
+                            record,
+                            object : ChartManager.UICallBack {
+                                override fun whatToDo() {
+                                    showDialogMessage("완료", "운동 결과를 기록했습니다")
+                                    // showChart()
+                                }
+
+                                override fun whatToDoWithLineDataSets(
+                                    lineDataSets: MutableList<LineDataSet>,
+                                    dateList: ArrayList<String>
+                                ) {
+                                    return
+                                }
+
+                                override fun whatToDoWithDocuments(docs: MutableList<DocumentSnapshot>) {
+                                    return
+                                }
+
+                            })
+                        // 운동명 이름은 -> type
+                        //binding.checkTv.append(type)
                     }
-                    // 데이터 해쉬맵으로 저장 -> timeValue는 초형태로 string형태
-                    val record = hashMapOf(
-                        type to "${timeValue%60}",
-                        "date" to nowDate
-                    )
-                    val cm = ChartManager()
-                    cm.updateTrainingRecord(UserData.getInstance(),nowDate,record,object: ChartManager.UICallBack{
-                        override fun whatToDo() {
-                            showDialogMessage("완료", "운동 결과를 기록했습니다")
-                            // showChart()
-                        }
-
-                        override fun whatToDoWithLineDataSets(lineDataSets: MutableList<LineDataSet>, dateList: ArrayList<String>) {
-                            return
-                        }
-
-                        override fun whatToDoWithDocuments(docs: MutableList<DocumentSnapshot>) {
-                            return
-                        }
-
-                    })
-                    binding.checkTv.append(type)
                 }
             })
         }
@@ -255,6 +264,8 @@ class BodyActivity : AppCompatActivity() {
         }
     }
     // 타이머기록저장
+    /*
+
     private fun recordTime() {
         val lapTime = timeValue // 함수 호출 시 시간(time) 저장
 
@@ -264,6 +275,8 @@ class BodyActivity : AppCompatActivity() {
         }
         textView.text = "${lapTime / 3600}:${lapTime % 3600 / 60}:${lapTime % 60}" // 출력할 시간 설정
     }
+
+     */
 
     fun showDialogMessage(title: String, body: String) {//다이얼로그 메시지를 띄우는 함수
         val builder = AlertDialog.Builder(this)

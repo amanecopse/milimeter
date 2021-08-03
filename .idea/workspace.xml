@@ -27,7 +27,14 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f76ba81a-de21-444c-8ebd-853ac538e4a2" name="Default Changelist" comment="각 종목 결과창 구현 레그턱 100프로 화살표 이미지 추가필요 분초 단위 다시 나눠보기" />
+    <list default="true" id="f76ba81a-de21-444c-8ebd-853ac538e4a2" name="Default Changelist" comment="각 종목 결과창 구현 레그턱 100프로 화살표 이미지 추가필요 분초 단위 다시 나눠보기">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiliMeter/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/BodyActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/BodyActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/TimeSettingActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/java/com/amnapp/milimeter/activities/TimeSettingActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_body.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/activity_body.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/record_dialog.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MiliMeter/app/src/main/res/layout/record_dialog.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -162,10 +169,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="344" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1626785387096" />
-    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1627917902319">
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1627953081735">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1627747373882" />
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1627953081735" />
     <state x="549" y="167" key="FileChooserDialogImpl/2400.-254.1920.1040/0.0.1536.824@0.0.1536.824" timestamp="1627917902319" />
     <state x="3086" y="-43" key="FileChooserDialogImpl/2400.-254.1920.1040/0.0.1536.824@2400.-254.1920.1040" timestamp="1627211349656" />
     <state x="513" y="316" key="Github.CreatePullRequestDialog" timestamp="1626785626778">
