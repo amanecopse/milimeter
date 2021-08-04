@@ -458,19 +458,6 @@
             android:paddingBottom="5dp">
 
             <Button
-                android:id="@+id/settingBt"
-                android:layout_width="81dp"
-                android:layout_height="wrap_content"
-                android:background="?android:attr/selectableItemBackgroundBorderless"
-                android:drawableTop="@drawable/ic_baseline_miscellaneous_services_20_white"
-                android:drawableTint="?attr/textColorBanner"
-                android:gravity="center_horizontal"
-                android:text="@string/setting"
-                android:textAllCaps="false"
-                android:textColor="?attr/textColorBanner"
-                android:textSize="15sp" />
-
-            <Button
                 android:id="@+id/homeBt"
                 android:layout_width="81dp"
                 android:layout_height="wrap_content"
@@ -479,6 +466,19 @@
                 android:drawableTint="?attr/textColorBanner"
                 android:gravity="center_horizontal"
                 android:text="@string/home"
+                android:textAllCaps="false"
+                android:textColor="?attr/textColorBanner"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/bodyBt"
+                android:layout_width="81dp"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:drawableTop="@drawable/ic_baseline_accessibility_20_white"
+                android:drawableTint="?attr/textColorBanner"
+                android:gravity="center_horizontal"
+                android:text="@string/body"
                 android:textAllCaps="false"
                 android:textColor="?attr/textColorBanner"
                 android:textSize="15sp" />
@@ -510,14 +510,14 @@
                 android:textSize="15sp" />
 
             <Button
-                android:id="@+id/bodyBt"
+                android:id="@+id/settingBt"
                 android:layout_width="81dp"
                 android:layout_height="wrap_content"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
-                android:drawableTop="@drawable/ic_baseline_accessibility_20_white"
+                android:drawableTop="@drawable/ic_baseline_miscellaneous_services_20_white"
                 android:drawableTint="?attr/textColorBanner"
                 android:gravity="center_horizontal"
-                android:text="@string/body"
+                android:text="@string/setting"
                 android:textAllCaps="false"
                 android:textColor="?attr/textColorBanner"
                 android:textSize="15sp" />

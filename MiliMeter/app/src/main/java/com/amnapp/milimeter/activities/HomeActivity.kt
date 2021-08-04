@@ -31,6 +31,7 @@ class HomeActivity : AppCompatActivity() {
         test()
         initUI()
         autoLogin()
+        loadProfile()
     }
 
     private fun test() {
@@ -70,11 +71,16 @@ class HomeActivity : AppCompatActivity() {
             startActivity(settingintent)
         }
 
+        binding.loginBt.setOnClickListener {//설정 창으로 가는 코드
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+        }
+
         //DdayBt default
-        binding.DdayBt.setText("전역일 설정")
+        binding.dDayBt.setText("전역일 설정")
 
         //Dday 날짜설정
-        binding.DdayBt.setOnClickListener {
+        binding.dDayBt.setOnClickListener {
             val today = GregorianCalendar()
             val year: Int = today.get(Calendar.YEAR)
             val month: Int = today.get(Calendar.MONTH)
@@ -96,9 +102,9 @@ class HomeActivity : AppCompatActivity() {
                    val dday: Int = Setday-Today
 
                    if (dday==0) {
-                       binding.DdayBt.setText("D-day")}
+                       binding.dDayBt.setText("D-day")}
                    else{
-                       binding.DdayBt.setText("D-${dday}")}
+                       binding.dDayBt.setText("D-${dday}")}
 
                 }
 
@@ -108,12 +114,20 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
+    private fun loadProfile(){
+        val userData = UserData.getInstance()
+        binding.nameTv.text = userData.name
+        binding.militaryIdTv.text = userData.militaryId
+        binding.groupCodeTv.text = AccountManager.mGroupCode
+    }
+
     private fun autoLogin() {
         mLoadingDialog.show() // 로딩화면 실행
         AccountManager().autoLogin(this){resultMessage->
             if(resultMessage == AccountManager.RESULT_SUCCESS){
                 Toast.makeText(this, "로그인", Toast.LENGTH_LONG).show()
                 mLoadingDialog.dismiss()//로딩해제
+                loadProfile()
             }
             else{
                 mLoadingDialog.dismiss()//로딩해제
@@ -153,6 +167,12 @@ class HomeActivity : AppCompatActivity() {
         builder.setCancelable(false)
         builder.setView(ll)
         mLoadingDialog = builder.create()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        loadProfile()
     }
 }
 

@@ -196,7 +196,7 @@
                     android:layout_height="200dp"
                     android:layout_marginBottom="16dp"
                     android:elevation="20dp"
-                    android:src="@drawable/ic_launcher_background"
+                    android:src="@drawable/face"
                     app:civ_border_overlay="false" />
 
                 <androidx.cardview.widget.CardView
