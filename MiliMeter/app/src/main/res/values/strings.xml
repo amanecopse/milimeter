@@ -7,5 +7,7 @@
     <string name="result">result</string>
     <string name="goal">goal</string>
     <string name="setting">setting</string>
+    <string name="lang1">한국어</string>
+    <string name="lang2">영어</string>
 
 </resources>

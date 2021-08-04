@@ -45,6 +45,7 @@ class TimeSettingActivity : AppCompatActivity() {
                 var day1 = " "
 
                 var listener1 = TimePickerDialog.OnTimeSetListener { timePicker, i, i2 ->
+
                     // i => 0 ~ 23
                     if (i < 12) {
                         day1 = "AM"
@@ -111,6 +112,8 @@ class TimeSettingActivity : AppCompatActivity() {
                 picker.show()
             }
         }
+
+
 
     }
 }

@@ -53,41 +53,30 @@
             android:background="@color/light_green">
 
             <RadioButton
-                android:id="@+id/basicIconRBt"
-                android:layout_width="250dp"
-                android:layout_height="80dp"
-                android:text="기본"
-                android:textSize="30sp"
-                android:textStyle="bold"
-                android:textColor="@color/dark_green"
-                android:layout_marginTop="50dp"
-                android:drawableRight="@drawable/basic_icon_sample_black"
-                android:layout_gravity="center" />
-
-            <RadioButton
                 android:id="@+id/koreaIconRBt"
                 android:layout_width="250dp"
                 android:layout_height="80dp"
-                android:text="한국어"
+                android:text="@string/lang1"
                 android:textSize="30sp"
                 android:textStyle="bold"
                 android:textColor="@color/dark_green"
                 android:layout_marginTop="50dp"
                 android:drawableRight="@drawable/korea_icon_sample_black"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                />
 
             <RadioButton
                 android:id="@+id/englishIconRBt"
                 android:layout_width="250dp"
                 android:layout_height="80dp"
-                android:text="영어"
+                android:text="@string/lang2"
                 android:textSize="30sp"
                 android:textStyle="bold"
                 android:textColor="@color/dark_green"
                 android:layout_marginTop="50dp"
                 android:drawableRight="@drawable/english_icon_sample_black"
                 android:layout_gravity="center"
-                android:checked="true" />
+                android:checked="true"/>
 
 
         </RadioGroup>

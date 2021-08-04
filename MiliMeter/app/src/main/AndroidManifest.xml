@@ -9,7 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.MergeSubGroupActivity"></activity>
+        <receiver
+            android:name=".activities.Notification"
+            android:enabled="true"
+            android:exported="true"></receiver>
+
+        <activity android:name=".activities.MergeSubGroupActivity" />
         <activity android:name=".activities.EditEmptyInfoActivity" />
         <activity android:name=".activities.HomeActivity"> <!-- 홈화면 -->
             <intent-filter>
@@ -45,7 +50,7 @@
         <activity android:name=".activities.LegtuckResultActivity" /> <!-- 레그턱 -->
         <activity android:name=".activities.RunningResultActivity" /> <!-- 240m -->
         <!-- 이다현 -->
-        <activity android:name=".activities.GoalActivity" /> <!-- 목표창 -->
+        <activity android:name=".activities.GoalActivity" />
     </application>
 
 </manifest>
