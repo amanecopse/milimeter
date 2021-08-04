@@ -44,42 +44,42 @@
 
         </LinearLayout>
 
-        <RadioGroup
-            android:id="@+id/languageRG"
+       <Spinner
+           android:id="@+id/languageSp"
+           android:layout_width="match_parent"
+           android:layout_height="100dp"
+           android:layout_marginTop="100dp"
+           android:spinnerMode="dropdown" />
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="640dp"
-            android:layout_alignParentBottom="true"
-            android:orientation="vertical"
-            android:background="@color/light_green">
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true" >
 
-            <RadioButton
-                android:id="@+id/koreaIconRBt"
-                android:layout_width="250dp"
-                android:layout_height="80dp"
-                android:text="@string/lang1"
-                android:textSize="30sp"
-                android:textStyle="bold"
+            <Button
+                android:id="@+id/backBt"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="취소하기"
+                android:textSize="20sp"
                 android:textColor="@color/dark_green"
-                android:layout_marginTop="50dp"
-                android:drawableRight="@drawable/korea_icon_sample_black"
-                android:layout_gravity="center"
-                />
-
-            <RadioButton
-                android:id="@+id/englishIconRBt"
-                android:layout_width="250dp"
-                android:layout_height="80dp"
-                android:text="@string/lang2"
-                android:textSize="30sp"
                 android:textStyle="bold"
+                android:background="@color/white"/>
+
+            <Button
+                android:id="@+id/saveBt"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="저장하기"
+                android:textSize="20sp"
                 android:textColor="@color/dark_green"
-                android:layout_marginTop="50dp"
-                android:drawableRight="@drawable/english_icon_sample_black"
-                android:layout_gravity="center"
-                android:checked="true"/>
+                android:textStyle="bold"
+                android:background="@color/white"/>
 
-
-        </RadioGroup>
+        </LinearLayout>
 
     </RelativeLayout>
 

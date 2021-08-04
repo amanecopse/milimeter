@@ -11,10 +11,6 @@
     <color name="green">#FF008A63</color>
     <color name="dark_green">#122C13</color>
 
-    // blue색상
-    <color name="light_blue">#FF88C0E4</color>
-    <color name="blue">#FF1169A1</color>
-    <color name="dark_blue">#FF06154C</color>
-    <color name="cobalt_blue">#FF5F74BD</color>
+
 
 </resources>

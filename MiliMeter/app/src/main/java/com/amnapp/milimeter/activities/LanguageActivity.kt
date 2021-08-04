@@ -20,34 +20,29 @@ class LanguageActivity : AppCompatActivity() {
 
         // 창닫기
         binding.cancelBt.setOnClickListener {
+            val intentcancel = Intent(this, SettingActivity::class.java)
+            startActivity(intentcancel)
+            finish()
+        }
+
+        binding.backBt.setOnClickListener {
             val intentBack = Intent(this, SettingActivity::class.java)
             startActivity(intentBack)
             finish()
         }
 
-        // 언어 선택했을 때 (라디오 버튼)
-        binding.languageRG.setOnCheckedChangeListener { group, checkedId ->
-            when (checkedId) {
-                // 한국어 아이콘
-                R.id.koreaIconRBt -> {
-                    changeLanguage("ko")
-                    wrap(this)
-                }
-                //영어 아이콘
-                R.id.englishIconRBt -> {
-                    changeLanguage("en")
-                    wrap(this)
-                }
-            }
 
-
+        binding.saveBt.setOnClickListener {
+            recreate()
+            finish()
         }
+
 
 
     }
 
     // locale을 통한 언어 설정 sLocale에 Locale형태로 언어 넣기(default일때 한국어로 설정)
-    private var sLocale: Locale? = Locale("ko")
+    var sLocale: Locale? = Locale("ko")
 
     fun wrap(base: Context?) : Context {
         val res: Resources = base!!.getResources()

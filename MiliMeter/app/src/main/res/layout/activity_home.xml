@@ -216,7 +216,7 @@
 
             <Button
                 android:id="@+id/homeBt"
-                android:layout_width="81dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
                 android:drawableTop="@drawable/ic_baseline_home_20_white"
@@ -225,11 +225,12 @@
                 android:text="@string/home"
                 android:textAllCaps="false"
                 android:textColor="?attr/textColorBanner"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:layout_weight="1" />
 
             <Button
                 android:id="@+id/bodyBt"
-                android:layout_width="81dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
                 android:drawableTop="@drawable/ic_baseline_accessibility_20_white"
@@ -238,11 +239,12 @@
                 android:text="@string/body"
                 android:textAllCaps="false"
                 android:textColor="?attr/textColorBanner"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:layout_weight="1" />
 
             <Button
                 android:id="@+id/resultBt"
-                android:layout_width="81dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
                 android:drawableTop="@drawable/ic_baseline_insert_chart_outlined_20_white"
@@ -251,11 +253,12 @@
                 android:text="@string/result"
                 android:textAllCaps="false"
                 android:textColor="?attr/textColorBanner"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:layout_weight="1" />
 
             <Button
                 android:id="@+id/goalBt"
-                android:layout_width="81dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
                 android:drawableTop="@drawable/ic_baseline_track_changes_20_white"
@@ -264,11 +267,12 @@
                 android:text="@string/goal"
                 android:textAllCaps="false"
                 android:textColor="?attr/textColorBanner"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:layout_weight="1" />
 
             <Button
                 android:id="@+id/settingBt"
-                android:layout_width="81dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
                 android:drawableTop="@drawable/ic_baseline_miscellaneous_services_20_white"
@@ -277,7 +281,8 @@
                 android:text="@string/setting"
                 android:textAllCaps="false"
                 android:textColor="?attr/textColorBanner"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:layout_weight="1" />
         </LinearLayout>
 
     </LinearLayout>
