@@ -1,4 +1,4 @@
-package com.amnapp.milimeter.activities
+package com.amnapp.milimeter
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -10,16 +10,15 @@ import android.graphics.Color
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import com.amnapp.milimeter.R
-import com.amnapp.milimeter.activities.Constant.Companion.CHANNEL_ID
-import com.amnapp.milimeter.activities.Constant.Companion.NOTIFICATION_ID
+import com.amnapp.milimeter.Constant.Companion.CHANNEL_ID
+import com.amnapp.milimeter.Constant.Companion.NOTIFICATION_ID
+import com.amnapp.milimeter.activities.TimeSettingActivity
 
 class Notification : BroadcastReceiver() {
 
     lateinit var notificationManager: NotificationManager
 
     override fun onReceive(context: Context, intent: Intent) {
-        // This method is called when the BroadcastReceiver is receiving an Intent broadcast.
-        TODO("Notification.onReceive() is not implemented")
 
         notificationManager = context.getSystemService(
             Context.NOTIFICATION_SERVICE) as NotificationManager
