@@ -27,6 +27,7 @@ import com.github.mikephil.charting.data.LineDataSet
 import com.google.firebase.firestore.DocumentSnapshot
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.system.exitProcess
 
 class BodyActivity : AppCompatActivity() {
 
@@ -301,7 +302,25 @@ class BodyActivity : AppCompatActivity() {
         return now
     }
 
+    fun showTwoButtonDialogMessage(title: String, body: String, callBack: (Int) -> Unit) {//다이얼로그 메시지를 띄우는 함수
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(title)
+        builder.setMessage(body)
+        builder.setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int -> callBack(i)}
+        builder.setNegativeButton("취소") { dialogInterface: DialogInterface, i: Int -> callBack(i)}
+        builder.show()
+    }
 
+    override fun onBackPressed() {
+        showTwoButtonDialogMessage("알림", "Mili Meter를 종료하시겠습니까?"){
+            when(it){
+                -1 -> {
+                    finishAffinity()
+                    exitProcess(0)
+                }
+            }
+        }
+    }
 
 }
 
