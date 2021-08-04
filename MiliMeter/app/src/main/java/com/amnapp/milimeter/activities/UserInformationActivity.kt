@@ -24,6 +24,12 @@ class UserInformationActivity :AppCompatActivity() {
 
         // 창 닫기
         binding.cancelBt.setOnClickListener {
+            val intentCancel = Intent(this, SettingActivity::class.java)
+            startActivity(intentCancel)
+            finish()
+        }
+
+        binding.backBt.setOnClickListener {
             val intentBack = Intent(this, SettingActivity::class.java)
             startActivity(intentBack)
             finish()

@@ -168,7 +168,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="330dp"
                     android:layout_margin="10dp"
                     android:orientation="vertical">
 
@@ -204,7 +204,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="0dp"
                         android:layout_weight="1"
                         android:orientation="horizontal">
 
@@ -227,7 +227,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="0dp"
                         android:layout_weight="1"
                         android:orientation="horizontal">
 
@@ -250,7 +250,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="0dp"
                         android:layout_weight="1"
                         android:orientation="horizontal">
 
@@ -273,8 +273,9 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:layout_height="0dp"
+                        android:orientation="horizontal"
+                        android:layout_weight="1">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -292,35 +293,36 @@
                             android:entries="@array/TrainingGrade" />
 
                     </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:gravity="center">
-
-                        <Button
-                            android:id="@+id/getBt"
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:text="불러 오기"
-                            android:textSize="18sp"
-                            android:textStyle="normal"
-                            android:background="#A0FF7D" />
-
-                        <Button
-                            android:id="@+id/saveBt"
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:text="저장 하기"
-                            android:textSize="18sp"
-                            android:textStyle="normal"
-                            android:background="#A0FF7D"
-                            android:layout_marginLeft="30dp"/>
-
-                    </LinearLayout>
                 </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:orientation="horizontal"
+                    android:layout_alignParentBottom="true" >
 
+                    <Button
+                        android:id="@+id/backBt"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        android:text="취소하기"
+                        android:textSize="20sp"
+                        android:textColor="@color/dark_green"
+                        android:textStyle="bold"
+                        android:background="@color/white"/>
+
+                    <Button
+                        android:id="@+id/saveBt"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        android:text="저장하기"
+                        android:textSize="20sp"
+                        android:textColor="@color/dark_green"
+                        android:textStyle="bold"
+                        android:background="@color/white"/>
+
+                </LinearLayout>
             </LinearLayout>
 
 

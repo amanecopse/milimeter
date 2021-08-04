@@ -4,6 +4,10 @@ import android.content.Context
 import android.content.Intent
 import android.content.res.Resources
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.amnapp.milimeter.R
 import com.amnapp.milimeter.databinding.ActivityLanguageBinding
@@ -31,6 +35,26 @@ class LanguageActivity : AppCompatActivity() {
             finish()
         }
 
+        val itemList = listOf("선택하세요", "한국어", "영어")
+        val adapter = ArrayAdapter(this, R.layout.activity_language, itemList)
+        binding.languageSp.adapter = adapter
+        binding.languageSp.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if(position == 1) {
+                    setLocale("ko")
+                } else if (position == 2) {
+                    setLocale("en")
+                } else {
+                    binding.saveBt.setOnClickListener {
+                        Toast.makeText(this@LanguageActivity, "두 언어중에서 선택해주세요", Toast.LENGTH_LONG).show()
+                        finish()
+                    }
+
+                }
+            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+        }
 
         binding.saveBt.setOnClickListener {
             recreate()
