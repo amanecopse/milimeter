@@ -1,10 +1,12 @@
 package com.amnapp.milimeter.activities
 
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import com.amnapp.milimeter.ChartManager
 import com.amnapp.milimeter.DataUtil
 import com.amnapp.milimeter.R
@@ -19,6 +21,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.coroutines.EmptyCoroutineContext
+import kotlin.system.exitProcess
 
 
 class ResultActivity : AppCompatActivity() {
@@ -307,6 +310,25 @@ class ResultActivity : AppCompatActivity() {
                         fieldTrainingList.get(fieldTrainingList.size - 1) % 60
                     )
                 )
+            }
+        }
+    }
+    fun showTwoButtonDialogMessage(title: String, body: String, callBack: (Int) -> Unit) {//다이얼로그 메시지를 띄우는 함수
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(title)
+        builder.setMessage(body)
+        builder.setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int -> callBack(i)}
+        builder.setNegativeButton("취소") { dialogInterface: DialogInterface, i: Int -> callBack(i)}
+        builder.show()
+    }
+
+    override fun onBackPressed() {
+        showTwoButtonDialogMessage("알림", "Mili Meter를 종료하시겠습니까?"){
+            when(it){
+                -1 -> {
+                    finishAffinity()
+                    exitProcess(0)
+                }
             }
         }
     }
