@@ -11,6 +11,8 @@ class PreferenceManager {
     private val LOGIN_DATA_GC = "gc"
     private val LOGIN_DATA_AUTO_LOGIN_ENABLE = "auto login"
     private val SETTINGS_DATA_THEME = "theme"
+    private val LANGUAGE_PREFERENCE = "language preference"
+    private val LANGUAGE_ON_OFF = "lang"
 
     companion object{
         val THEME_DARK = "dark theme"
@@ -75,5 +77,22 @@ class PreferenceManager {
         val theme = prefs?.getString(SETTINGS_DATA_THEME, "")
         return theme
     }
+
+    private fun getLanguagePreference(context: Context): SharedPreferences? {
+        return context.getSharedPreferences(LANGUAGE_PREFERENCE, Context.MODE_PRIVATE)
+    }
+
+    fun getOnOff(context: Context): String? {
+        val prefs = getLanguagePreference(context)
+        val onoff = prefs?.getString(LANGUAGE_ON_OFF,"")
+        return onoff
+    }
+    fun setOnOff(context: Context, onoff: String) {
+        val prefs = getLanguagePreference(context)
+        val editor = prefs?.edit()
+        editor?.putString(LANGUAGE_ON_OFF,onoff)
+        editor?.apply()
+    }
+
 
 }

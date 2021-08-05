@@ -44,12 +44,35 @@
 
         </LinearLayout>
 
-       <Spinner
-           android:id="@+id/languageSp"
+       <RadioGroup
+           android:id="@+id/languageRG"
            android:layout_width="match_parent"
-           android:layout_height="100dp"
+           android:layout_height="300dp"
            android:layout_marginTop="100dp"
-           android:spinnerMode="dropdown" />
+           android:checkedButton="@id/koreaRBt">
+
+           <RadioButton
+               android:id="@+id/koreaRBt"
+               android:layout_width="300dp"
+               android:layout_height="70dp"
+               android:paddingLeft="15dp"
+               android:layout_marginTop="10dp"
+               android:layout_marginLeft="20dp"
+               android:gravity="left|center"
+               android:text="@string/lang1"
+               android:textSize="30sp" />
+
+           <RadioButton
+               android:id="@+id/englishRBt"
+               android:layout_width="300dp"
+               android:layout_height="70dp"
+               android:paddingLeft="15dp"
+               android:layout_marginTop="10dp"
+               android:layout_marginLeft="20dp"
+               android:text="@string/lang2"
+               android:textSize="30sp" />
+
+       </RadioGroup>
 
         <LinearLayout
             android:layout_width="match_parent"

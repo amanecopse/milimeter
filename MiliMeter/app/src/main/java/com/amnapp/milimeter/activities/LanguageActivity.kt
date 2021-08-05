@@ -2,16 +2,17 @@ package com.amnapp.milimeter.activities
 
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.content.res.Resources
 import android.os.Bundle
-import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Toast
+import android.view.ContextThemeWrapper
+import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity
+import com.amnapp.milimeter.PreferenceManager
 import com.amnapp.milimeter.R
 import com.amnapp.milimeter.databinding.ActivityLanguageBinding
 import java.util.*
+
 
 
 class LanguageActivity : AppCompatActivity() {
@@ -19,8 +20,17 @@ class LanguageActivity : AppCompatActivity() {
     val binding by lazy { ActivityLanguageBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        // 0일때 한국어, 1일때 영어로 상태값 저장
+        if (PreferenceManager().getOnOff(this).toString() == "en") {
+            binding.englishRBt.setChecked(true)
+        } else if (PreferenceManager().getOnOff(this).toString() == "ko"){
+            binding.koreaRBt.setChecked(true)
+        }
+
 
         // 창닫기
         binding.cancelBt.setOnClickListener {
@@ -35,29 +45,21 @@ class LanguageActivity : AppCompatActivity() {
             finish()
         }
 
-        val itemList = listOf("선택하세요", "한국어", "영어")
-        val adapter = ArrayAdapter(this, R.layout.activity_language, itemList)
-        binding.languageSp.adapter = adapter
-        binding.languageSp.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                if(position == 1) {
-                    setLocale("ko")
-                } else if (position == 2) {
-                    setLocale("en")
-                } else {
-                    binding.saveBt.setOnClickListener {
-                        Toast.makeText(this@LanguageActivity, "두 언어중에서 선택해주세요", Toast.LENGTH_LONG).show()
-                        finish()
-                    }
-
-                }
-            }
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-            }
+        binding.languageRG.setOnCheckedChangeListener { group, checkedId ->
+           when(checkedId) {
+               R.id.koreaRBt -> {
+                   PreferenceManager().setOnOff(this,"ko").toString()
+               }
+               R.id.englishRBt -> {
+                   PreferenceManager().setOnOff(this,"en").toString()
+               }
+           }
         }
 
+
         binding.saveBt.setOnClickListener {
-            recreate()
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
             finish()
         }
 
@@ -81,7 +83,7 @@ class LanguageActivity : AppCompatActivity() {
 
     fun changeLanguage(lang: String?) {
         setLocale(lang)
-        recreate()
+        //recreate()
     }
 
     override fun attachBaseContext(newBase: Context?) {
@@ -89,4 +91,22 @@ class LanguageActivity : AppCompatActivity() {
     }
 
 }
+
+open class BaseActivity : AppCompatActivity() {
+    companion object {
+        public var dLocale: Locale? = null
+    }
+    init {
+        updateConfig(this)
+    }
+    fun updateConfig(wrapper: ContextThemeWrapper) {
+        if(dLocale==Locale("") ) // Do nothing if dLocale is null
+            return
+        Locale.setDefault(dLocale)
+        val configuration = Configuration()
+        configuration.setLocale(dLocale)
+        wrapper.applyOverrideConfiguration(configuration)
+    }
+}
+
 

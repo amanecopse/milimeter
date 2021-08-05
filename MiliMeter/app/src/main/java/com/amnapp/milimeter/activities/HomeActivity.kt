@@ -30,6 +30,9 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        BaseActivity.dLocale = Locale(PreferenceManager().getOnOff(this).toString()) //언어설정
+
+
         test()
         initUI()
         autoLogin()

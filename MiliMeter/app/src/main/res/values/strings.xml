@@ -1,12 +1,12 @@
 <resources>
     <string name="app_name">MiliMeter</string>
 
-    // english version icon
-    <string name="home">home</string>
-    <string name="body">body</string>
-    <string name="result">result</string>
-    <string name="goal">goal</string>
-    <string name="setting">setting</string>
+    // korea version icon
+    <string name="home">홈</string>
+    <string name="body">신체</string>
+    <string name="result">결과</string>
+    <string name="goal">목표</string>
+    <string name="setting">설정</string>
     <string name="lang1">한국어</string>
     <string name="lang2">영어</string>
 
