@@ -1,6 +1,7 @@
 package com.amnapp.milimeter.activities
 
 import android.app.DatePickerDialog
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
@@ -11,10 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
-import com.amnapp.milimeter.AccountManager
-import com.amnapp.milimeter.PreferenceManager
-import com.amnapp.milimeter.R
-import com.amnapp.milimeter.UserData
+import com.amnapp.milimeter.*
 import com.amnapp.milimeter.databinding.ActivityHomeBinding
 import com.amnapp.milimeter.databinding.ActivitySettingBinding
 import java.text.SimpleDateFormat
@@ -30,17 +28,9 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        BaseActivity.dLocale = Locale(PreferenceManager().getOnOff(this).toString()) //언어설정
-
-
-        test()
         initUI()
         autoLogin()
         loadProfile()
-    }
-
-    private fun test() {
-        
     }
 
     private fun initUI() {
@@ -198,6 +188,11 @@ class HomeActivity : AppCompatActivity() {
         super.onResume()
 
         loadProfile()
+    }
+
+    override fun attachBaseContext(newBase: Context?) {
+        LocaleWrapper.setLocale(newBase?.let { PreferenceManager().getLanguageData(it).toString() })
+        super.attachBaseContext(newBase?.let { LocaleWrapper.wrap(it) })
     }
 }
 

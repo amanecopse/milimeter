@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.ContextThemeWrapper
 import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity
+import com.amnapp.milimeter.LocaleWrapper
 import com.amnapp.milimeter.PreferenceManager
 import com.amnapp.milimeter.R
 import com.amnapp.milimeter.databinding.ActivityLanguageBinding
@@ -25,9 +26,9 @@ class LanguageActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // 0일때 한국어, 1일때 영어로 상태값 저장
-        if (PreferenceManager().getOnOff(this).toString() == "en") {
+        if (PreferenceManager().getLanguageData(this).toString() == "en") {
             binding.englishRBt.setChecked(true)
-        } else if (PreferenceManager().getOnOff(this).toString() == "ko"){
+        } else if (PreferenceManager().getLanguageData(this).toString() == "ko"){
             binding.koreaRBt.setChecked(true)
         }
 
@@ -48,65 +49,29 @@ class LanguageActivity : AppCompatActivity() {
         binding.languageRG.setOnCheckedChangeListener { group, checkedId ->
            when(checkedId) {
                R.id.koreaRBt -> {
-                   PreferenceManager().setOnOff(this,"ko").toString()
+                   PreferenceManager().setLanguageData(this,"ko").toString()
                }
                R.id.englishRBt -> {
-                   PreferenceManager().setOnOff(this,"en").toString()
+                   PreferenceManager().setLanguageData(this,"en").toString()
                }
            }
         }
 
 
         binding.saveBt.setOnClickListener {
-            val intent = Intent(this, HomeActivity::class.java)
-            startActivity(intent)
-            finish()
+            changeLanguage(PreferenceManager().getLanguageData(this).toString())
         }
-
-
-
-    }
-
-    // locale을 통한 언어 설정 sLocale에 Locale형태로 언어 넣기(default일때 한국어로 설정)
-    var sLocale: Locale? = Locale("ko")
-
-    fun wrap(base: Context?) : Context {
-        val res: Resources = base!!.getResources()
-        val config = res.configuration
-        config.setLocale(sLocale)
-        return base.createConfigurationContext(config)
-    }
-
-    fun setLocale(lang: String?) {
-        sLocale = Locale(lang)
     }
 
     fun changeLanguage(lang: String?) {
-        setLocale(lang)
-        //recreate()
+        LocaleWrapper.setLocale(lang)
+        recreate()
     }
 
     override fun attachBaseContext(newBase: Context?) {
-        super.attachBaseContext(wrap(newBase))
+        super.attachBaseContext(newBase?.let { LocaleWrapper.wrap(it) })
     }
 
-}
-
-open class BaseActivity : AppCompatActivity() {
-    companion object {
-        public var dLocale: Locale? = null
-    }
-    init {
-        updateConfig(this)
-    }
-    fun updateConfig(wrapper: ContextThemeWrapper) {
-        if(dLocale==Locale("") ) // Do nothing if dLocale is null
-            return
-        Locale.setDefault(dLocale)
-        val configuration = Configuration()
-        configuration.setLocale(dLocale)
-        wrapper.applyOverrideConfiguration(configuration)
-    }
 }
 
 
