@@ -38,9 +38,11 @@ class RunningResultActivity: AppCompatActivity() {
             val circuitintent = Intent(this, CircuitResultActivity::class.java)
             startActivity(circuitintent)
         }
-
+        findViewById<LineChart>(R.id.runChart).apply {
+            graph()
+        }
         showGrade()
-        graph()
+
     }
 
     private fun showGrade() {

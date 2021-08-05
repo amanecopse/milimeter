@@ -131,9 +131,27 @@
            <com.github.mikephil.charting.charts.LineChart
                android:id="@+id/weightChart"
                android:layout_width="match_parent"
-               android:layout_height="221dp"
+               android:layout_height="155dp"
                android:layout_marginTop="20dp" />
+
+           <com.github.mikephil.charting.charts.PieChart
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:id="@+id/exercisechart">
+
+           </com.github.mikephil.charting.charts.PieChart>
+
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="356dp"
+               android:layout_marginTop="270dp"
+               android:orientation="vertical">
+
+
+           </LinearLayout>
        </LinearLayout>
+
 
        <LinearLayout
            android:layout_width="match_parent"

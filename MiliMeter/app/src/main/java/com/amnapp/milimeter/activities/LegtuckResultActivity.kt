@@ -48,7 +48,10 @@ class LegtuckResultActivity: AppCompatActivity() {
 
         //등급하고 그래프 표시
         showGrade()
-        graph()
+
+        //그래프 적용
+        findViewById<LineChart>(R.id.legChart).apply{
+            graph()}
     }
 
     private fun showGrade() {
