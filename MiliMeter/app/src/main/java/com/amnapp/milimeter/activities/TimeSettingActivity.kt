@@ -1,16 +1,14 @@
 package com.amnapp.milimeter.activities
 
-import android.app.DatePickerDialog
-import android.app.Dialog
-import android.app.TimePickerDialog
-import android.content.Context
+import android.app.*
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.WindowManager
-import android.widget.Button
-import android.widget.EditText
-import com.amnapp.milimeter.R
+import android.os.SystemClock
+import android.util.Log
+import android.widget.CompoundButton
+import android.widget.Toast
+import com.amnapp.milimeter.Notification.Companion.TAG
 import com.amnapp.milimeter.databinding.ActivityTimeSettingBinding
 import java.util.*
 
@@ -35,6 +33,31 @@ class TimeSettingActivity : AppCompatActivity() {
             startActivity(intentBack)
             finish()
         }
+
+        val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
+
+        val intent = Intent(this, Notification::class.java)
+        /*val pendingIntent = PendingIntent.getBroadcast(
+            this, Notification.NOTIFICATION_ID, intent,
+            PendingIntent.FLAG_UPDATE_CURRENT)*/
+
+        binding.firstNtSt.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { _, isChecked ->
+            val toastMessage1 = if (isChecked) {
+                val triggerTime1 = (SystemClock.elapsedRealtime()
+                        + 60 * 1000)
+                /*alarmManager.setExact(
+                    AlarmManager.ELAPSED_REALTIME,
+                    triggerTime1,
+                    pendingIntent
+                )*/
+                "Onetime Alarm On"
+            } else {
+                //alarmManager.cancel(pendingIntent)
+                "Onetime Alarm Off"
+            }
+            Log.d(TAG, toastMessage1)
+            Toast.makeText(this, toastMessage1  ,Toast.LENGTH_SHORT).show()
+        })
 
         // 첫번째 알림 시간 설정
         binding.firstNtSt.setOnCheckedChangeListener { buttonView, isChecked ->

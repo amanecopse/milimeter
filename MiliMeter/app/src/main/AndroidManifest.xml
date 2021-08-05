@@ -10,9 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <receiver
-            android:name=".activities.Notification"
-            android:enabled="true"
-            android:exported="true"></receiver>
+            android:name=".Notification"
+            android:exported="false"></receiver>
 
         <activity android:name=".activities.MergeSubGroupActivity" />
         <activity android:name=".activities.EditEmptyInfoActivity" />

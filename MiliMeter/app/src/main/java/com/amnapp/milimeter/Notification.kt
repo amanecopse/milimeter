@@ -8,6 +8,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Build
+import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.amnapp.milimeter.R
 import com.amnapp.milimeter.Constant.Companion.CHANNEL_ID
@@ -16,69 +17,59 @@ import com.amnapp.milimeter.activities.TimeSettingActivity
 
 class Notification : BroadcastReceiver() {
 
+    companion object {
+        const val TAG = "AlarmReceiver"
+        const val NOTIFICATION_ID = 0
+        const val PRIMARY_CHANNEL_ID = "primary_notification_channel"
+    }
+
     lateinit var notificationManager: NotificationManager
 
     override fun onReceive(context: Context, intent: Intent) {
-
+        Log.d(TAG, "Received intent : $intent")
         notificationManager = context.getSystemService(
             Context.NOTIFICATION_SERVICE) as NotificationManager
 
         createNotificationChannel()
         deliverNotification(context)
-
     }
 
-    // Notification 을 띄우기 위한 Channel 등록
-    fun createNotificationChannel(){
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val notificationChannel = NotificationChannel(
-                CHANNEL_ID, // 채널의 아이디
-                "channel1", // 채널의 이름
-                NotificationManager.IMPORTANCE_HIGH
-                /*
-                1. IMPORTANCE_HIGH = 알림음이 울리고 헤드업 알림으로 표시
-                2. IMPORTANCE_DEFAULT = 알림음 울림
-                3. IMPORTANCE_LOW = 알림음 없음
-                4. IMPORTANCE_MIN = 알림음 없고 상태줄 표시 X
-                 */
-            )
-            notificationChannel.enableLights(true) // 불빛
-            notificationChannel.lightColor = Color.RED // 색상
-            notificationChannel.enableVibration(true) // 진동 여부
-            notificationChannel.description = "notification1_channel1" // 채널 정보
-            notificationManager.createNotificationChannel(
-                notificationChannel)
-        }
-    }
-
-    // Notification 등록
-    private fun deliverNotification(context: Context){
+    private fun deliverNotification(context: Context) {
         val contentIntent = Intent(context, TimeSettingActivity::class.java)
         val contentPendingIntent = PendingIntent.getActivity(
             context,
-            NOTIFICATION_ID, // requestCode
-            contentIntent, // 알림 클릭 시 이동할 인텐트
+            NOTIFICATION_ID,
+            contentIntent,
             PendingIntent.FLAG_UPDATE_CURRENT
-            /*
-            1. FLAG_UPDATE_CURRENT : 현재 PendingIntent를 유지하고, 대신 인텐트의 extra data는 새로 전달된 Intent로 교체
-            2. FLAG_CANCEL_CURRENT : 현재 인텐트가 이미 등록되어있다면 삭제, 다시 등록
-            3. FLAG_NO_CREATE : 이미 등록된 인텐트가 있다면, null
-            4. FLAG_ONE_SHOT : 한번 사용되면, 그 다음에 다시 사용하지 않음
-             */
         )
-
-        val builder = NotificationCompat.Builder(context, CHANNEL_ID)
-            .setSmallIcon(R.drawable.ic_baseline_notifications_none_15_white) // 아이콘
-            .setContentTitle(R.id.ntTitleEt.toString()) // 제목
-            .setContentText(R.id.ntCommentEt.toString()) // 내용
-            .setContentIntent(contentPendingIntent)
-            .setPriority(NotificationCompat.PRIORITY_HIGH)
-            .setAutoCancel(true)
-            .setDefaults(NotificationCompat.DEFAULT_ALL)
+        val builder =
+            NotificationCompat.Builder(context, PRIMARY_CHANNEL_ID)
+                .setSmallIcon(R.drawable.ic_baseline_notifications_none_15_white)
+                .setContentTitle(R.id.ntTitleEt.toString())
+                .setContentText(R.id.ntCommentEt.toString())
+                .setContentIntent(contentPendingIntent)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setAutoCancel(true)
+                .setDefaults(NotificationCompat.DEFAULT_ALL)
 
         notificationManager.notify(NOTIFICATION_ID, builder.build())
     }
 
+    fun createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val notificationChannel = NotificationChannel(
+                PRIMARY_CHANNEL_ID,
+                "Stand up notification",
+                NotificationManager.IMPORTANCE_HIGH
+            )
+            notificationChannel.enableLights(true)
+            notificationChannel.lightColor = Color.RED
+            notificationChannel.enableVibration(true)
+            notificationChannel.description = "NotificationManager"
+            notificationManager.createNotificationChannel(
+                notificationChannel)
+        }
+    }
 }
 
 class Constant {

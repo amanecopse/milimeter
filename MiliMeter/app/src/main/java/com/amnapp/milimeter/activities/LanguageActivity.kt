@@ -25,7 +25,6 @@ class LanguageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        // 0일때 한국어, 1일때 영어로 상태값 저장
         if (PreferenceManager().getLanguageData(this).toString() == "en") {
             binding.englishRBt.setChecked(true)
         } else if (PreferenceManager().getLanguageData(this).toString() == "ko"){
@@ -60,6 +59,9 @@ class LanguageActivity : AppCompatActivity() {
 
         binding.saveBt.setOnClickListener {
             changeLanguage(PreferenceManager().getLanguageData(this).toString())
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 
