@@ -10,9 +10,6 @@ import android.graphics.Color
 import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
-import com.amnapp.milimeter.R
-import com.amnapp.milimeter.Constant.Companion.CHANNEL_ID
-import com.amnapp.milimeter.Constant.Companion.NOTIFICATION_ID
 import com.amnapp.milimeter.activities.TimeSettingActivity
 
 class Notification : BroadcastReceiver() {
@@ -45,8 +42,8 @@ class Notification : BroadcastReceiver() {
         val builder =
             NotificationCompat.Builder(context, PRIMARY_CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_baseline_notifications_none_15_white)
-                .setContentTitle(R.id.ntTitleEt.toString())
-                .setContentText(R.id.ntCommentEt.toString())
+                .setContentTitle("운동")
+                .setContentText("운동하세요")
                 .setContentIntent(contentPendingIntent)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setAutoCancel(true)
@@ -55,7 +52,7 @@ class Notification : BroadcastReceiver() {
         notificationManager.notify(NOTIFICATION_ID, builder.build())
     }
 
-    fun createNotificationChannel() {
+    private fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val notificationChannel = NotificationChannel(
                 PRIMARY_CHANNEL_ID,
@@ -69,13 +66,5 @@ class Notification : BroadcastReceiver() {
             notificationManager.createNotificationChannel(
                 notificationChannel)
         }
-    }
-}
-
-class Constant {
-    companion object {
-        // 아이디 선언
-        const val NOTIFICATION_ID = 0
-        const val CHANNEL_ID = "notification_channel"
     }
 }
