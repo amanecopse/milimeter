@@ -33,9 +33,6 @@
         <item>RH- AB형</item>
     </string-array>
 
-    <string-array name="language">
-        <item>@string/lang1</item>
-        <item>@string/lang2</item>
-    </string-array>
+
 
 </resources>

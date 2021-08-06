@@ -23,10 +23,9 @@
             <TextView
                 android:layout_width="320dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
                 android:drawableLeft="@drawable/ic_baseline_palette_20_white"
                 android:drawablePadding="10dp"
-                android:gravity="left|center_vertical"
+                android:gravity="center_vertical"
                 android:paddingLeft="10dp"
                 android:text="기본 테마"
                 android:textColor="@color/white"
@@ -47,30 +46,30 @@
         <LinearLayout
             android:id="@+id/basicThemeImageLL"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="710dp"
             android:layout_marginTop="90dp"
             android:background="@color/light_green"
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="90dp"
+                android:layout_width="0dp"
                 android:layout_height="150dp"
-                android:layout_marginLeft="40dp"
                 android:layout_marginTop="10dp"
-                android:background="@mipmap/ic_launcher_48_green" />
+                android:background="@mipmap/ic_launcher_48_green"
+                android:layout_weight="1"/>
 
             <ImageView
-                android:layout_width="90dp"
+                android:layout_width="0dp"
                 android:layout_height="150dp"
-                android:layout_marginLeft="30dp"
                 android:layout_marginTop="10dp"
+                android:layout_weight="1"
                 android:background="@mipmap/ic_launcher_48_black" />
 
             <ImageView
-                android:layout_width="90dp"
+                android:layout_width="0dp"
                 android:layout_height="150dp"
-                android:layout_marginLeft="30dp"
                 android:layout_marginTop="10dp"
+                android:layout_weight="1"
                 android:background="@mipmap/ic_launcher_48_white" />
 
         </LinearLayout>
@@ -90,20 +89,22 @@
 
                 <RadioButton
                     android:id="@+id/basicModeRBt"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="45dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_weight="1"
+                    android:checked="true"
                     android:text="기본"
                     android:textColor="@color/dark_green"
                     android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:checked="true" />
+                    android:textStyle="bold" />
 
                 <RadioButton
                     android:id="@+id/darkModeRBt"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="55dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
                     android:text="다크"
                     android:textColor="@color/dark_green"
                     android:textSize="20sp"
@@ -111,26 +112,29 @@
 
                 <RadioButton
                     android:id="@+id/colorModeRBt"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
                     android:text="색상"
                     android:textColor="@color/dark_green"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
             </RadioGroup>
+
         </LinearLayout>
 
         <TableLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="350dp">
+            android:layout_marginBottom="100dp"
+            android:layout_alignParentBottom="true">
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:gravity="center">
 
                 <Button
                     android:id="@+id/creamBt"
@@ -160,7 +164,8 @@
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:gravity="center">
 
                 <Button
                     android:id="@+id/lightPinkOrangeBt"
@@ -190,7 +195,8 @@
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:gravity="center">
 
                 <Button
                     android:id="@+id/pinkBt"
@@ -219,7 +225,8 @@
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:gravity="center">
 
                 <Button
                     android:id="@+id/lightGreenBt"
@@ -249,7 +256,8 @@
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:gravity="center">
 
                 <Button
                     android:id="@+id/lightBlueGreenBt"
@@ -280,19 +288,20 @@
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <Button
-                    android:id="@+id/ivoryBt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="#FFF6EF" />
+                android:layout_height="match_parent"
+                android:gravity="center">
 
                 <Button
                     android:id="@+id/beigeBt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="#FFDF93" />
+
+                <Button
+                    android:id="@+id/beigeBrownBt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#AA907C" />
 
                 <Button
                     android:id="@+id/lightGrayBt"
@@ -339,26 +348,5 @@
         </LinearLayout>
 
     </RelativeLayout>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="20dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="20dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="20dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
