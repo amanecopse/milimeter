@@ -53,13 +53,13 @@
             android:background="@color/light_green"
             android:orientation="vertical">
 
-            <Switch
-                android:id="@+id/noticeCheckSt"
+            <Button
+                android:id="@+id/noticeSetBt"
                 android:layout_width="match_parent"
                 android:layout_height="90dp"
                 android:layout_alignParentTop="true"
                 android:background="@color/white"
-                android:text="알림허용"
+                android:text="알림설정"
                 android:gravity="center_vertical"
                 android:paddingLeft="10dp"
                 android:textColor="@color/dark_green"

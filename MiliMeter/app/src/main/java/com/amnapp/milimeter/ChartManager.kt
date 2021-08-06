@@ -1,6 +1,7 @@
 package com.amnapp.milimeter
 
 import android.graphics.Color
+import com.dinuscxj.progressbar.CircleProgressBar
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.AxisBase
@@ -20,12 +21,47 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
+import kotlin.math.max
+import kotlin.math.min
 
 class ChartManager {
     interface UICallBack{
         fun whatToDo()
         fun whatToDoWithLineDataSets(lineDataSets: MutableList<LineDataSet>, dateList: ArrayList<String>)
         fun whatToDoWithDocuments(docs: MutableList<DocumentSnapshot>)
+    }
+
+    fun findMinInDocs(docs: MutableList<DocumentSnapshot>, course: String): Int {
+        var minValue = Int.MAX_VALUE
+        for(doc in docs){
+            val value = doc.data?.get(course).toString()
+            if(!value.isEmpty() && value != "null"){
+                minValue = min(minValue, value.toInt())
+            }
+        }
+
+        return if(minValue == Int.MAX_VALUE) -1 else minValue
+    }
+
+    fun findMaxInDocs(docs: MutableList<DocumentSnapshot>, course: String): Int {
+        var maxValue = Int.MIN_VALUE
+        for(doc in docs){
+            val value = doc.data?.get(course).toString()
+            if(!value.isEmpty() && value != "null"){
+                maxValue = max(maxValue, value.toInt())
+            }
+        }
+
+        return if(maxValue == Int.MAX_VALUE) -1 else maxValue
+    }
+
+    fun makeCircleProgressBar(circleProgressBar: CircleProgressBar, progress: Int, max: Int){
+        circleProgressBar.setProgressFormatter(){ progressValue: Int, maxValue: Int ->
+            val percent = (progressValue.toFloat())/(maxValue.toFloat())*100
+            return@setProgressFormatter String.format("%d%%", percent.toInt())
+        }
+        circleProgressBar.progress = progress
+        circleProgressBar.max = max
     }
 
     fun makeLineChart(lineChart: LineChart, lineDataSets: MutableList<LineDataSet>, dateList: ArrayList<String>){
@@ -78,15 +114,14 @@ class ChartManager {
         yLAxis.textColor = Color.BLACK
         //yLAxis.textSize = R.dimen.smallText.toFloat()
 
-        val description = Description()
-        description.text = "일주일 전부터의 기록"
-        description.textSize = R.dimen.smallText.toFloat()
+
+
 
         lineChart.axisLeft.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART)
         lineChart.axisRight.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART)
         lineChart.isDoubleTapToZoomEnabled = false
         lineChart.setDrawGridBackground(false)
-        lineChart.description = description
+
         lineChart.animateY(2000, Easing.EaseInCubic)
         lineChart.invalidate()
     }
@@ -219,6 +254,95 @@ class ChartManager {
         return SimpleDateFormat("yyyy.MM.dd").format(calendar.time)
     }
 
+    fun calculateBoundaryScore(grade: Int, course: String): Int{// grade는 1부터 특급, 10이 9급. 9급은 최하등급이라 기준점이 없어 -1리턴
+        if(course == LEG_TUCK){
+            return when(grade){
+                1-> 20
+                2-> 18
+                3-> 16
+                4-> 14
+                5-> 12
+                6-> 10
+                7-> 8
+                8-> 5
+                9-> 3
+                10-> -1
+                else -> -1
+            }
+        }
+        else if(course == SHUTTLE_RUN){
+
+            return when(grade){
+                1-> 62
+                2-> 68
+                3-> 74
+                4-> 80
+                5-> 86
+                6-> 92
+                7-> 98
+                8-> 104
+                9-> 110
+                10-> -1
+                else -> -1
+            }
+        }
+        else{//전장순환훈련
+
+            return when(grade){
+                1-> 135
+                2-> 156
+                3-> 177
+                4-> 198
+                5-> 219
+                6-> 240
+                7-> 261
+                8-> 282
+                9-> 303
+                10-> -1
+                else -> -1
+            }
+        }
+    }
+
+    fun calculateGradeIndex(score: Int, course: String): Int{
+        if(course == LEG_TUCK){
+            if (score<3) return 10 //9등급
+            else if (score<5) return 9 //8등급
+            else if (score<8) return 8 //7등급
+            else if (score<10) return 7 //6등급
+            else if (score<12) return 6 //5등급
+            else if (score<14) return 5 //4등급
+            else if (score<16) return 4 //3등급
+            else if (score<18) return 3 //2등급
+            else if (score<20) return 2 //1등급
+            else return 1 //특급
+        }
+        else if(course == SHUTTLE_RUN){
+            if (score>110) return 10 //9등급
+            else if (score>104) return 9 //8등급
+            else if (score>98) return 8 //7등급
+            else if (score>92) return 7 //6등급
+            else if (score>86) return 6 //5등급
+            else if (score>80) return 5 //4등급
+            else if (score>74) return 4 //3등급
+            else if (score>68) return 3 //2등급
+            else if (score>62) return 2 //1등급
+            else return 1 //특급
+        }
+        else{//전장순환훈련
+            if (score>303) return 10 //9등급
+            else if (score>282) return 9 //8등급
+            else if (score>261) return 8 //7등급
+            else if (score>240) return 7 //6등급
+            else if (score>219) return 6 //5등급
+            else if (score>198) return 5 //4등급
+            else if (score>177) return 4 //3등급
+            else if (score>156) return 3 //2등급
+            else if (score>135) return 2 //1등급
+            else return 1 //특급
+        }
+    }
+
     fun calculateGrade(score: Int, course: String): Float{
         if(course == LEG_TUCK){
             if (score<3) return 1f //9등급
@@ -255,6 +379,22 @@ class ChartManager {
             else if (score>156) return 8f //2등급
             else if (score>135) return 9f //1등급
             else return 10f //특급
+        }
+    }
+
+    fun convertIndexToGrade(index: Int): String{
+        return when(index){
+            1-> "특급"
+            2-> "1급"
+            3-> "2급"
+            4-> "3급"
+            5-> "4급"
+            6-> "5급"
+            7-> "6급"
+            8-> "7급"
+            9-> "8급"
+            10-> "9급"
+            else -> ""
         }
     }
 

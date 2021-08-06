@@ -452,28 +452,16 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="horizontal"
             android:paddingTop="5dp"
             android:paddingBottom="5dp">
 
             <Button
-                android:id="@+id/settingBt"
-                android:layout_width="81dp"
-                android:layout_height="wrap_content"
-                android:background="?android:attr/selectableItemBackgroundBorderless"
-                android:drawableTop="@drawable/ic_baseline_miscellaneous_services_20_white"
-                android:drawableTint="?attr/textColorBanner"
-                android:gravity="center_horizontal"
-                android:text="@string/setting"
-                android:textAllCaps="false"
-                android:textColor="?attr/textColorBanner"
-                android:textSize="15sp" />
-
-            <Button
                 android:id="@+id/homeBt"
-                android:layout_width="81dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
                 android:drawableTop="@drawable/ic_baseline_home_20_white"
                 android:drawableTint="?attr/textColorBanner"
@@ -484,9 +472,24 @@
                 android:textSize="15sp" />
 
             <Button
-                android:id="@+id/resultBt"
-                android:layout_width="81dp"
+                android:id="@+id/bodyBt"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:drawableTop="@drawable/ic_baseline_accessibility_20_white"
+                android:drawableTint="?attr/textColorBanner"
+                android:gravity="center_horizontal"
+                android:text="@string/body"
+                android:textAllCaps="false"
+                android:textColor="?attr/textColorBanner"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/resultBt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
                 android:drawableTop="@drawable/ic_baseline_insert_chart_outlined_20_white"
                 android:drawableTint="?attr/textColorBanner"
@@ -498,8 +501,9 @@
 
             <Button
                 android:id="@+id/goalBt"
-                android:layout_width="81dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
                 android:drawableTop="@drawable/ic_baseline_track_changes_20_white"
                 android:drawableTint="?attr/textColorBanner"
@@ -510,14 +514,15 @@
                 android:textSize="15sp" />
 
             <Button
-                android:id="@+id/bodyBt"
-                android:layout_width="81dp"
+                android:id="@+id/settingBt"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
-                android:drawableTop="@drawable/ic_baseline_accessibility_20_white"
+                android:drawableTop="@drawable/ic_baseline_miscellaneous_services_20_white"
                 android:drawableTint="?attr/textColorBanner"
                 android:gravity="center_horizontal"
-                android:text="@string/body"
+                android:text="@string/setting"
                 android:textAllCaps="false"
                 android:textColor="?attr/textColorBanner"
                 android:textSize="15sp" />

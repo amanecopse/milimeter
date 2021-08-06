@@ -9,9 +9,9 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.amnapp.milimeter.AccountManager
 import com.amnapp.milimeter.R
 import com.amnapp.milimeter.UserData
-import com.amnapp.milimeter.UserData.Companion.getInstance
 import com.amnapp.milimeter.databinding.ActivityUserPasswardBinding
 
 class UserPasswardActivity :AppCompatActivity() {
@@ -22,13 +22,17 @@ class UserPasswardActivity :AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        val user = UserData.getInstance()
+
         // 창닫기
         binding.cancelBt.setOnClickListener {
             val intentBack = Intent(this, SettingActivity::class.java)
             startActivity(intentBack)
+            finish()
         }
 
         binding.changePwBt.setOnClickListener {
+
             // 현재 비밀번호 확인 다이얼로그 창
             val dialog1 = PwCheckDialog(this)
             dialog1.recordDialog()
@@ -37,9 +41,9 @@ class UserPasswardActivity :AppCompatActivity() {
 
             dialog1.setOnClickedListener(object : PwCheckDialog.ButtonClickListener {
                 override fun onClicked(pw: String) {
-                    val userPw = getInstance().pw
+
                     // 새로운 비밀번호로 변경
-                    if (userPw == pw) {
+                    if (user.pw == pw) {
                         val dialog2 = PwChangeDialog(this@UserPasswardActivity)
                         dialog2.recordDialog()
 
@@ -47,15 +51,20 @@ class UserPasswardActivity :AppCompatActivity() {
 
                         dialog2.setOnClickedListener(object : PwChangeDialog.ButtonClickListener {
                             override fun onClicked(newPw: String) {
-                                if (userPw == newPw) {
+                                if (user.pw == newPw) {
                                    // 변경하기 전과 같으면 오류
                                     Toast.makeText(this@UserPasswardActivity, "잘못된 정보입니다", Toast.LENGTH_LONG).show()
+                                } else if (newPw.isNullOrEmpty() ||newPw.length < 5 ||newPw.length > 20) {
+                                    Toast.makeText(this@UserPasswardActivity, "잘못된 정보입니다", Toast.LENGTH_LONG).show()
                                 } else {
-                                    val userData = getInstance()
-                                    userData.pw = newPw
-                                    UserData.setInstance(userData)
-                                    // 서버에도 추가해야 함 -ing
-                                    Toast.makeText(this@UserPasswardActivity, "비밀번호가 변경되었습니다", Toast.LENGTH_LONG).show()
+                                    user.pw = newPw
+                                    UserData.setInstance(user)
+                                    // 서버에 저장
+                                    AccountManager().uploadUserData(user){ message ->
+                                        if(message == AccountManager.RESULT_SUCCESS)
+                                            Toast.makeText(this@UserPasswardActivity, "비밀번호가 변경되었습니다", Toast.LENGTH_LONG).show()
+                                    }
+
                                 }
                             }
                         })
@@ -87,7 +96,7 @@ class PwCheckDialog(context: Context) {
         dialog.setCancelable(true)
 
         // 다이얼로그 버튼 클릭시 이벤트처리
-        val edit = dialog.findViewById<EditText>(R.id.passwardEt)
+        val edit = dialog.findViewById<EditText>(R.id.nowPasswardEt)
         val btDone = dialog.findViewById<Button>(R.id.checkBt)
         val btCancel = dialog.findViewById<Button>(R.id.cancelBt)
 
@@ -134,7 +143,7 @@ class PwChangeDialog(context: Context) {
         dialog.setCancelable(true)
 
         // 다이얼로그 버튼 클릭시 이벤트처리
-        val edit = dialog.findViewById<EditText>(R.id.passwardEt)
+        val edit = dialog.findViewById<EditText>(R.id.newPasswardEt)
         val btDone = dialog.findViewById<Button>(R.id.saveBt)
         val btCancel = dialog.findViewById<Button>(R.id.cancelBt)
 

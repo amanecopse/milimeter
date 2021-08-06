@@ -29,13 +29,13 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:layout_marginTop="10dp"
-                android:text="*이전과 다른 비밀번호로 설정해주세요"
+                android:text="*이전과 다른 비밀번호로 설정해주세요\n*비밀번호는 5~20자리 내로 설정해주세요"
                 android:textSize="15sp"
                 android:textStyle="bold"
                 android:textColor="#DF0B0B"/>
 
             <EditText
-                android:id="@+id/passwardEt"
+                android:id="@+id/newPasswardEt"
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"/>

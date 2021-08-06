@@ -2,6 +2,7 @@ package com.amnapp.milimeter
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.util.Log
 
 class PreferenceManager {
     private val PREFERENCE_NAME_LOGIN = "login preference"
@@ -11,6 +12,7 @@ class PreferenceManager {
     private val LOGIN_DATA_GC = "gc"
     private val LOGIN_DATA_AUTO_LOGIN_ENABLE = "auto login"
     private val SETTINGS_DATA_THEME = "theme"
+    private val SETTINGS_DATA_LANGUAGE = "language"
 
     companion object{
         val THEME_DARK = "dark theme"
@@ -49,6 +51,13 @@ class PreferenceManager {
         editor?.apply()
     }
 
+    fun setLanguageData(context: Context, language: String) {
+        val prefs = getSettingsPreference(context)
+        val editor = prefs?.edit()
+        editor?.putString(SETTINGS_DATA_LANGUAGE,language)
+        editor?.apply()
+    }
+
     fun getLoginData(context: Context): Array<String?> {
         val prefs = getLoginPreference(context)
         val id = prefs?.getString(LOGIN_DATA_ID, "")
@@ -76,4 +85,9 @@ class PreferenceManager {
         return theme
     }
 
+    fun getLanguageData(context: Context): String? {
+        val prefs = getSettingsPreference(context)
+        val language = prefs?.getString(SETTINGS_DATA_LANGUAGE,"")
+        return language
+    }
 }

@@ -18,6 +18,7 @@ class SpecialThemeSettingActivity : AppCompatActivity() {
         binding.cancelBt.setOnClickListener {
             val intentBack = Intent(this, ThemeActivity::class.java)
             startActivity(intentBack)
+            finish()
         }
 
     }

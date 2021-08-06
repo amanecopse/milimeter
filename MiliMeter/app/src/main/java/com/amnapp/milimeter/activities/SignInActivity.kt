@@ -49,13 +49,19 @@ class SignInActivity : AppCompatActivity() {
             }
             binding.checkUniqueBt.isClickable = false//연타방지
             mLoadingDialog.show()//로딩시작
-            AccountManager().checkIfIdIsDuplicate(binding.idEt.text.toString()){ resultMessage: String, querySnapshot: QuerySnapshot ->
-                if(resultMessage == AccountManager.ERROR_DUPLICATE_ID){
-                    showDialogMessage("아이디 중복", "이미 가입된 아이디입니다"){}
-                }
-                else{
-                    showDialogMessage("사용가능 아이디", "이 아이디로 가입하실 수 있습니다"){}
-                    binding.checkUniqueBt.text = "사용가능"
+            AccountManager().checkIfIdIsDuplicate(applicationContext, binding.idEt.text.toString()){ resultMessage: String, querySnapshot: QuerySnapshot ->
+
+                when(resultMessage){
+                    AccountManager.ERROR_NETWORK_NOT_CONNECTED ->{
+                        showDialogMessage("오류", "네트워크 연결을 확인해주세요"){}
+                    }
+                    AccountManager.ERROR_DUPLICATE_ID ->{
+                        showDialogMessage("아이디 중복", "이미 가입된 아이디입니다"){}
+                    }
+                    AccountManager.RESULT_SUCCESS ->{
+                        showDialogMessage("사용가능 아이디", "이 아이디로 가입하실 수 있습니다"){}
+                        binding.checkUniqueBt.text = "사용가능"
+                    }
                 }
                 mLoadingDialog.dismiss()//로딩완료
                 binding.checkUniqueBt.isClickable = true//연타방지해제

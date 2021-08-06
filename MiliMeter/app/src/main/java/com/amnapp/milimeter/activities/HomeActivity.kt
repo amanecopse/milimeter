@@ -1,6 +1,8 @@
 package com.amnapp.milimeter.activities
 
 import android.app.DatePickerDialog
+import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
@@ -10,14 +12,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
-import com.amnapp.milimeter.AccountManager
-import com.amnapp.milimeter.PreferenceManager
-import com.amnapp.milimeter.R
-import com.amnapp.milimeter.UserData
+import com.amnapp.milimeter.*
 import com.amnapp.milimeter.databinding.ActivityHomeBinding
 import com.amnapp.milimeter.databinding.ActivitySettingBinding
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.system.exitProcess
 
 class HomeActivity : AppCompatActivity() {
 
@@ -28,13 +28,9 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        test()
         initUI()
         autoLogin()
-    }
-
-    private fun test() {
-        
+        loadProfile()
     }
 
     private fun initUI() {
@@ -70,11 +66,16 @@ class HomeActivity : AppCompatActivity() {
             startActivity(settingintent)
         }
 
+        binding.loginBt.setOnClickListener {//설정 창으로 가는 코드
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+        }
+
         //DdayBt default
-        binding.DdayBt.setText("전역일 설정")
+        binding.dDayBt.setText("전역일 설정")
 
         //Dday 날짜설정
-        binding.DdayBt.setOnClickListener {
+        binding.dDayBt.setOnClickListener {
             val today = GregorianCalendar()
             val year: Int = today.get(Calendar.YEAR)
             val month: Int = today.get(Calendar.MONTH)
@@ -96,9 +97,9 @@ class HomeActivity : AppCompatActivity() {
                    val dday: Int = Setday-Today
 
                    if (dday==0) {
-                       binding.DdayBt.setText("D-day")}
+                       binding.dDayBt.setText("D-day")}
                    else{
-                       binding.DdayBt.setText("D-${dday}")}
+                       binding.dDayBt.setText("D-${dday}")}
 
                 }
 
@@ -108,12 +109,20 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
+    private fun loadProfile(){
+        val userData = UserData.getInstance()
+        binding.nameTv.text = userData.name
+        binding.militaryIdTv.text = userData.militaryId
+        binding.groupCodeTv.text = AccountManager.mGroupCode
+    }
+
     private fun autoLogin() {
         mLoadingDialog.show() // 로딩화면 실행
         AccountManager().autoLogin(this){resultMessage->
             if(resultMessage == AccountManager.RESULT_SUCCESS){
                 Toast.makeText(this, "로그인", Toast.LENGTH_LONG).show()
                 mLoadingDialog.dismiss()//로딩해제
+                loadProfile()
             }
             else{
                 mLoadingDialog.dismiss()//로딩해제
@@ -153,6 +162,37 @@ class HomeActivity : AppCompatActivity() {
         builder.setCancelable(false)
         builder.setView(ll)
         mLoadingDialog = builder.create()
+    }
+
+    fun showTwoButtonDialogMessage(title: String, body: String, callBack: (Int) -> Unit) {//다이얼로그 메시지를 띄우는 함수
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(title)
+        builder.setMessage(body)
+        builder.setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int -> callBack(i)}
+        builder.setNegativeButton("취소") { dialogInterface: DialogInterface, i: Int -> callBack(i)}
+        builder.show()
+    }
+
+    override fun onBackPressed() {
+        showTwoButtonDialogMessage("알림", "Mili Meter를 종료하시겠습니까?"){
+            when(it){
+                -1 -> {
+                    finishAffinity()
+                    exitProcess(0)
+                }
+            }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        loadProfile()
+    }
+
+    override fun attachBaseContext(newBase: Context?) {
+        LocaleWrapper.setLocale(newBase?.let { PreferenceManager().getLanguageData(it).toString() })
+        super.attachBaseContext(newBase?.let { LocaleWrapper.wrap(it) })
     }
 }
 

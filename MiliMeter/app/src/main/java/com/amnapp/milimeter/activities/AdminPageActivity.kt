@@ -1,5 +1,6 @@
 package com.amnapp.milimeter.activities
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -7,6 +8,7 @@ import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -15,6 +17,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.amnapp.milimeter.AccountManager
 import com.amnapp.milimeter.GroupMemberData
 import com.amnapp.milimeter.UserData
 import com.amnapp.milimeter.databinding.ActivityAdminPageBinding
@@ -38,6 +41,7 @@ class AdminPageActivity : AppCompatActivity() {
     private fun initUI() {
         setProgressDialog()// 로딩다이얼로그 세팅
         mLoadingDialog.show()//로딩 시작
+        renewUI()// Master 권한 여부에 따라 화면 변환
 
         binding.pathEt.setSelection(binding.pathEt.length())//항상 마지막 경로로 커서가 오도록 설정
         binding.subUserListRv.layoutManager = LinearLayoutManager(this)// 리사이클러뷰 리스트에 레이아웃 매니저를 설정
@@ -48,7 +52,7 @@ class AdminPageActivity : AppCompatActivity() {
         viewModel.userPathList.observe(this, Observer {
             var path = ""
             for (i in it){
-                path += "/"+i.name
+                path += "/"+if(i.name.isNullOrEmpty()) "(빈 자리)" else i.name
             }
             binding.pathEt.setText(path)
         })
@@ -65,10 +69,23 @@ class AdminPageActivity : AppCompatActivity() {
             //아이템 편집 클릭 리스너 등록
             adminPageRecyclerAdapter.setEditOnClickListener(object: AdminPageRecyclerAdapter.OnEditClickListener{
                 override fun onClicked(v: View, pos: Int) {
-                    UserData.mTmpUserData = it[pos]
-                    GroupMemberData.mTmpGroupMemberData = viewModel.subGroupMemberList.value!![pos]
-                    val intent = Intent(this@AdminPageActivity, EditSubUserInfoActivity::class.java)
-                    startActivity(intent)
+                    val childUserData = it[pos]
+                    val parentGroupMemberData = viewModel.groupMemberPathList.value!!.last()
+                    val childGroupMemberData = viewModel.subGroupMemberList.value!![pos]
+                    if(childGroupMemberData!!.id.isNullOrEmpty()){
+                        val intent = Intent(this@AdminPageActivity, EditEmptyInfoActivity::class.java)
+                        intent.putExtra(GroupMemberData.GROUP_MEMBER_PARENT, parentGroupMemberData)
+                        intent.putExtra(GroupMemberData.GROUP_MEMBER_CHILD, childGroupMemberData)
+                        startActivity(intent)
+                    }
+                    else{
+                        val intent = Intent(this@AdminPageActivity, EditSubUserInfoActivity::class.java)
+                        intent.putExtra(UserData.USER_CHILD, childUserData)
+                        intent.putExtra(GroupMemberData.GROUP_MEMBER_PARENT, parentGroupMemberData)
+                        intent.putExtra(GroupMemberData.GROUP_MEMBER_CHILD, childGroupMemberData)
+                        startActivity(intent)
+                    }
+
                 }
 
             })
@@ -81,12 +98,41 @@ class AdminPageActivity : AppCompatActivity() {
             mLoadingDialog.show()//로딩 시작
             viewModel.upDirectory()
         }
+        binding.chageGroupCodeBt.setOnClickListener {
+            showEditTextDialogMessage("새로운 그룹코드를 입력해주세요"){input ->
+                if(input.isNullOrEmpty()){
+                    showDialogMessage("오류", "값이 비어있습니다")
+                    return@showEditTextDialogMessage
+                }
+                binding.chageGroupCodeBt.isClickable = false
+                mLoadingDialog.show()
+                AccountManager().resetGroupCode(applicationContext, input){resultMessage ->
+                    when(resultMessage){
+                        AccountManager.ERROR_NETWORK_NOT_CONNECTED ->{
+                            showDialogMessage("오류", "네트워크 연결을 확인해주세요")
+                        }
+                        AccountManager.RESULT_SUCCESS ->{
+                            showDialogMessage("성공", "그룹코드를 변경했습니다")
+                            onResume()
+                        }
+                    }
+                    mLoadingDialog.dismiss()
+                    binding.chageGroupCodeBt.isClickable = true
+                }
+            }
+        }
         binding.cancelIb.setOnClickListener {
             finish()
         }
         binding.backIb.setOnClickListener {
-            finish()
+            if (viewModel.userPathList.value?.size == 1) return@setOnClickListener // 최상위 경로면 작동 안한다
+            mLoadingDialog.show()//로딩 시작
+            viewModel.upDirectory()
         }
+    }
+
+    private fun renewUI(){
+        binding.chageGroupCodeBt.visibility = if(AccountManager.mMaster) View.VISIBLE else View.GONE
     }
 
     fun setProgressDialog() {
@@ -123,9 +169,45 @@ class AdminPageActivity : AppCompatActivity() {
         mLoadingDialog = builder.create()
     }
 
+    fun showDialogMessage(title: String, body: String) {//다이얼로그 메시지를 띄우는 함수
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(title)
+        builder.setMessage(body)
+        builder.setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int -> }
+        builder.show()
+    }
+
+    fun showDialogMessage(title: String, body: String, callBack: () -> Unit) {//다이얼로그 메시지를 띄우는 함수
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(title)
+        builder.setMessage(body)
+        builder.setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int -> callBack}
+        builder.show()
+    }
+    fun showEditTextDialogMessage(title: String, callBack: (input: String) -> Unit) {//다이얼로그 메시지를 띄우는 함수
+        val editText = EditText(this)
+
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(title)
+        builder.setView(editText)
+        builder.setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int -> callBack(editText.text.toString())}
+        builder.setNegativeButton("취소") { dialogInterface: DialogInterface, i: Int -> }
+        builder.show()
+    }
+
+    fun showTwoButtonDialogMessage(title: String, body: String, callBack: (Int) -> Unit) {//다이얼로그 메시지를 띄우는 함수
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(title)
+        builder.setMessage(body)
+        builder.setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int -> callBack(i)}
+        builder.setNegativeButton("취소") { dialogInterface: DialogInterface, i: Int -> callBack(i)}
+        builder.show()
+    }
+
     override fun onResume() {
         super.onResume()
 
+        renewUI()
         mLoadingDialog.show()
         viewModel.reloadItems{
             mLoadingDialog.dismiss()

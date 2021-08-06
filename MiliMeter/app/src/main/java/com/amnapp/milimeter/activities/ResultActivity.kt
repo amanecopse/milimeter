@@ -1,10 +1,12 @@
 package com.amnapp.milimeter.activities
 
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import com.amnapp.milimeter.ChartManager
 import com.amnapp.milimeter.DataUtil
 import com.amnapp.milimeter.R
@@ -19,6 +21,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.coroutines.EmptyCoroutineContext
+import kotlin.system.exitProcess
 
 
 class ResultActivity : AppCompatActivity() {
@@ -95,24 +98,37 @@ class ResultActivity : AppCompatActivity() {
         val cm = ChartManager()
         cm.loadTrainingRecordNDaysAgo(UserData.getInstance(),cm.getCurrentDateBasedOnFormat(),7)
         { docs, lineDataSets, dateList ->
-            cm.makeLineChart(linechart, lineDataSets, dateList)
+
+            //데이터 있으면
+            if(dateList.size>1) {
+                cm.makeLineChart(linechart, lineDataSets, dateList)
+            }
+            //데이터 아무것도 없을때
+            else{
+
+            }
         }
     }
 
 
 
     private fun getTabelData() {
-       var cm =ChartManager()
-        cm.loadTrainingRecordNDaysAgo(UserData.getInstance(),cm.getCurrentDateBasedOnFormat(),7) { docs, lineDataSets, dateList ->
+        var cm = ChartManager()
+        cm.loadTrainingRecordNDaysAgo(
+            UserData.getInstance(),
+            cm.getCurrentDateBasedOnFormat(),
+            7
+        ) { docs, lineDataSets, dateList ->
 
             val datelist = ArrayList<String>()
             val legTuckList = mutableListOf<Int>()
             val shuttleRunList = mutableListOf<Int>()
             val fieldTrainingList = mutableListOf<Int>()
-            for(doc in docs){doc.data?.get(ChartManager.LEG_TUCK)?.let { score ->
-                legTuckList.add(score.toString().toInt())
+            for (doc in docs) {
+                doc.data?.get(ChartManager.LEG_TUCK)?.let { score ->
+                    legTuckList.add(score.toString().toInt())
 
-            }
+                }
                 doc.data?.get(ChartManager.DATE)?.let { score ->
                     datelist.add(score.toString())
 
@@ -121,54 +137,208 @@ class ResultActivity : AppCompatActivity() {
                     legTuckList.add(score.toString().toInt())
 
                 }
-                doc.data?.get(ChartManager.SHUTTLE_RUN)?.let { score->
-                   shuttleRunList.add(score.toString().toInt())
+                doc.data?.get(ChartManager.SHUTTLE_RUN)?.let { score ->
+                    shuttleRunList.add(score.toString().toInt())
                 }
-                doc.data?.get(ChartManager.FIELD_TRAINING)?.let { score->
+                doc.data?.get(ChartManager.FIELD_TRAINING)?.let { score ->
                     fieldTrainingList.add(score.toString().toInt())
                 }
             }
+            //다 차있을때
+            if (datelist.size >= 3) {
+                var date1 = findViewById<TextView>(R.id.date1)
+                date1.setText(datelist.get(datelist.size - 3))
+                var date2 = findViewById<TextView>(R.id.date2)
+                date2.setText(datelist.get(datelist.size - 2))
+                var date3 = findViewById<TextView>(R.id.date3)
+                date3.setText(datelist.get(datelist.size - 1))
 
+            }
 
-            var date1 =findViewById<TextView>(R.id.date1)
-            date1.setText(datelist.get(datelist.size-3))
-            var date2 =findViewById<TextView>(R.id.date2)
-            date2.setText(datelist.get(datelist.size-2))
-            var date3 =findViewById<TextView>(R.id.date3)
-            date3.setText(datelist.get(datelist.size-1))
-            //레그턱
-            var leg1 =findViewById<TextView>(R.id.legrecord1)
-            leg1.setText(legTuckList.get(legTuckList.size-3).toString())
-            var leg2 =findViewById<TextView>(R.id.legrecord2)
-            leg2.setText(legTuckList.get(legTuckList.size-2).toString())
-            var leg3 =findViewById<TextView>(R.id.legrecord3)
-            leg3.setText(legTuckList.get(legTuckList.size-1).toString())
+            if (legTuckList.size >= 3) {
+                //레그턱
+                var leg1 = findViewById<TextView>(R.id.legrecord1)
+                leg1.setText(legTuckList.get(legTuckList.size - 3).toString())
+                var leg2 = findViewById<TextView>(R.id.legrecord2)
+                leg2.setText(legTuckList.get(legTuckList.size - 2).toString())
+                var leg3 = findViewById<TextView>(R.id.legrecord3)
+                leg3.setText(legTuckList.get(legTuckList.size - 1).toString())
+            }
 
-            //달리기
-            var run1 =findViewById<TextView>(R.id.runrecord1)
-            run1.setText(String.format("%d분 %d초",shuttleRunList.get(shuttleRunList.size-3)/60,shuttleRunList.get(shuttleRunList.size-3)%60))
-            var run2 =findViewById<TextView>(R.id.runrecord2)
-            run2.setText(String.format("%d분 %d초",shuttleRunList.get(shuttleRunList.size-2)/60,shuttleRunList.get(shuttleRunList.size-2)%60))
-            var run3 =findViewById<TextView>(R.id.runrecord3)
-            run3.setText(String.format("%d분 %d초",shuttleRunList.get(shuttleRunList.size-1)/60,shuttleRunList.get(shuttleRunList.size-1)%60))
-
+            if (shuttleRunList.size >= 3) {
+                //달리기
+                var run1 = findViewById<TextView>(R.id.runrecord1)
+                run1.setText(
+                    String.format(
+                        "%d분 %d초",
+                        shuttleRunList.get(shuttleRunList.size - 3) / 60,
+                        shuttleRunList.get(shuttleRunList.size - 3) % 60
+                    )
+                )
+                var run2 = findViewById<TextView>(R.id.runrecord2)
+                run2.setText(
+                    String.format(
+                        "%d분 %d초",
+                        shuttleRunList.get(shuttleRunList.size - 2) / 60,
+                        shuttleRunList.get(shuttleRunList.size - 2) % 60
+                    )
+                )
+                var run3 = findViewById<TextView>(R.id.runrecord3)
+                run3.setText(
+                    String.format(
+                        "%d분 %d초",
+                        shuttleRunList.get(shuttleRunList.size - 1) / 60,
+                        shuttleRunList.get(shuttleRunList.size - 1) % 60
+                    )
+                )
+            }
             //전장순환
 
-            var circuit1 =findViewById<TextView>(R.id.circuitrecord1)
-            circuit1.setText(String.format("%d분 %d초",fieldTrainingList.get(fieldTrainingList.size-3)/60,fieldTrainingList.get(fieldTrainingList.size-3)%60))
-            var circuit2 =findViewById<TextView>(R.id.circuitrecord2)
-            circuit2.setText(String.format("%d분 %d초",fieldTrainingList.get(fieldTrainingList.size-2)/60,fieldTrainingList.get(fieldTrainingList.size-2)%60))
-            var circuit3 =findViewById<TextView>(R.id.circuitrecord3)
-            circuit3.setText(String.format("%d분 %d초",fieldTrainingList.get(fieldTrainingList.size-1)/60,fieldTrainingList.get(fieldTrainingList.size-1)%60))
+            if (fieldTrainingList.size >= 3) {
+                var circuit1 = findViewById<TextView>(R.id.circuitrecord1)
+                circuit1.setText(
+                    String.format(
+                        "%d분 %d초",
+                        fieldTrainingList.get(fieldTrainingList.size - 3) / 60,
+                        fieldTrainingList.get(fieldTrainingList.size - 3) % 60
+                    )
+                )
+                var circuit2 = findViewById<TextView>(R.id.circuitrecord2)
+                circuit2.setText(
+                    String.format(
+                        "%d분 %d초",
+                        fieldTrainingList.get(fieldTrainingList.size - 2) / 60,
+                        fieldTrainingList.get(fieldTrainingList.size - 2) % 60
+                    )
+                )
+                var circuit3 = findViewById<TextView>(R.id.circuitrecord3)
+                circuit3.setText(
+                    String.format(
+                        "%d분 %d초",
+                        fieldTrainingList.get(fieldTrainingList.size - 1) / 60,
+                        fieldTrainingList.get(fieldTrainingList.size - 1) % 60
+                    )
+                )
+            }
 
+            //2개만
+            if (datelist.size == 2) {
+                var date1 = findViewById<TextView>(R.id.date1)
+                date1.setText(datelist.get(datelist.size - 2))
+                var date2 = findViewById<TextView>(R.id.date2)
+                date2.setText(datelist.get(datelist.size - 1))
+            }
+
+            if (legTuckList.size == 2) {
+                //레그턱
+                var leg1 = findViewById<TextView>(R.id.legrecord1)
+                leg1.setText(legTuckList.get(legTuckList.size - 2).toString())
+                var leg2 = findViewById<TextView>(R.id.legrecord2)
+                leg2.setText(legTuckList.get(legTuckList.size - 1).toString())
+            }
+
+            if (shuttleRunList.size == 2) {
+                //달리기
+                var run1 = findViewById<TextView>(R.id.runrecord1)
+                run1.setText(
+                    String.format(
+                        "%d분 %d초",
+                        shuttleRunList.get(shuttleRunList.size - 2) / 60,
+                        shuttleRunList.get(shuttleRunList.size - 2) % 60
+                    )
+                )
+                var run2 = findViewById<TextView>(R.id.runrecord2)
+                run2.setText(
+                    String.format(
+                        "%d분 %d초",
+                        shuttleRunList.get(shuttleRunList.size - 1) / 60,
+                        shuttleRunList.get(shuttleRunList.size - 1) % 60
+                    )
+                )
+
+            }
+            //전장순환
+            if (fieldTrainingList.size == 2) {
+                var circuit1 = findViewById<TextView>(R.id.circuitrecord1)
+                circuit1.setText(
+                    String.format(
+                        "%d분 %d초",
+                        fieldTrainingList.get(fieldTrainingList.size - 2) / 60,
+                        fieldTrainingList.get(fieldTrainingList.size - 2) % 60
+                    )
+                )
+                var circuit2 = findViewById<TextView>(R.id.circuitrecord2)
+                circuit2.setText(
+                    String.format(
+                        "%d분 %d초",
+                        fieldTrainingList.get(fieldTrainingList.size - 1) / 60,
+                        fieldTrainingList.get(fieldTrainingList.size - 1) % 60
+                    )
+                )
+            }
+            if (datelist.size == 1) {
+
+                var date1 = findViewById<TextView>(R.id.date1)
+                date1.setText(datelist.get(datelist.size - 3))
+            }
+
+            if(legTuckList.size==1) {
+                //레그턱
+                var leg1 = findViewById<TextView>(R.id.legrecord1)
+                leg1.setText(legTuckList.get(legTuckList.size - 1).toString())
+            }
+
+            if(shuttleRunList.size==1) {
+                //달리기
+                var run1 = findViewById<TextView>(R.id.runrecord1)
+                run1.setText(
+                    String.format(
+                        "%d분 %d초",
+                        shuttleRunList.get(shuttleRunList.size - 1) / 60,
+                        shuttleRunList.get(shuttleRunList.size - 1) % 60
+                    )
+                )
+            }
+
+            if(fieldTrainingList.size==1) {
+                //전장순환
+                var circuit1 = findViewById<TextView>(R.id.circuitrecord1)
+                circuit1.setText(
+                    String.format(
+                        "%d분 %d초",
+                        fieldTrainingList.get(fieldTrainingList.size - 1) / 60,
+                        fieldTrainingList.get(fieldTrainingList.size - 1) % 60
+                    )
+                )
+            }
         }
+    }
+    fun showTwoButtonDialogMessage(title: String, body: String, callBack: (Int) -> Unit) {//다이얼로그 메시지를 띄우는 함수
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(title)
+        builder.setMessage(body)
+        builder.setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int -> callBack(i)}
+        builder.setNegativeButton("취소") { dialogInterface: DialogInterface, i: Int -> callBack(i)}
+        builder.show()
+    }
 
-
-
+    override fun onBackPressed() {
+        showTwoButtonDialogMessage("알림", "Mili Meter를 종료하시겠습니까?"){
+            when(it){
+                -1 -> {
+                    finishAffinity()
+                    exitProcess(0)
+                }
+            }
         }
-
-
+    }
 }
+
+
+
+
+
+
 
 
 

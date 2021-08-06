@@ -23,10 +23,9 @@
             <TextView
                 android:layout_width="320dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
                 android:drawableLeft="@drawable/ic_baseline_palette_20_white"
                 android:drawablePadding="10dp"
-                android:gravity="left|center_vertical"
+                android:gravity="center_vertical"
                 android:paddingLeft="10dp"
                 android:text="기본 테마"
                 android:textColor="@color/white"
@@ -47,30 +46,30 @@
         <LinearLayout
             android:id="@+id/basicThemeImageLL"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="710dp"
             android:layout_marginTop="90dp"
             android:background="@color/light_green"
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="90dp"
+                android:layout_width="0dp"
                 android:layout_height="150dp"
-                android:layout_marginLeft="40dp"
                 android:layout_marginTop="10dp"
-                android:background="@mipmap/ic_launcher_48_green" />
+                android:background="@mipmap/ic_launcher_48_green"
+                android:layout_weight="1"/>
 
             <ImageView
-                android:layout_width="90dp"
+                android:layout_width="0dp"
                 android:layout_height="150dp"
-                android:layout_marginLeft="30dp"
                 android:layout_marginTop="10dp"
+                android:layout_weight="1"
                 android:background="@mipmap/ic_launcher_48_black" />
 
             <ImageView
-                android:layout_width="90dp"
+                android:layout_width="0dp"
                 android:layout_height="150dp"
-                android:layout_marginLeft="30dp"
                 android:layout_marginTop="10dp"
+                android:layout_weight="1"
                 android:background="@mipmap/ic_launcher_48_white" />
 
         </LinearLayout>
@@ -90,20 +89,22 @@
 
                 <RadioButton
                     android:id="@+id/basicModeRBt"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="45dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_weight="1"
+                    android:checked="true"
                     android:text="기본"
                     android:textColor="@color/dark_green"
                     android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:checked="true" />
+                    android:textStyle="bold" />
 
                 <RadioButton
                     android:id="@+id/darkModeRBt"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="55dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
                     android:text="다크"
                     android:textColor="@color/dark_green"
                     android:textSize="20sp"
@@ -111,255 +112,241 @@
 
                 <RadioButton
                     android:id="@+id/colorModeRBt"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
                     android:text="색상"
                     android:textColor="@color/dark_green"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
             </RadioGroup>
+
         </LinearLayout>
 
         <TableLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="350dp">
+            android:layout_marginBottom="100dp"
+            android:layout_alignParentBottom="true">
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:gravity="center">
 
                 <Button
+                    android:id="@+id/creamBt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/black"
-                    android:text="미정"
-                    android:textColor="@color/white" />
+                    android:background="#FFF8DF" />
 
                 <Button
+                    android:id="@+id/vanilaYellowBt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:text="미정"
-                    android:textColor="@color/black" />
+                    android:background="#FFFAB7" />
 
                 <Button
+                    android:id="@+id/lightYellowBt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/black"
-                    android:text="미정"
-                    android:textColor="@color/white" />
+                    android:background="#FFFB00" />
+
 
                 <Button
+                    android:id="@+id/mustardYellowBt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:text="미정"
-                    android:textColor="@color/black" />
+                    android:background="#F4E910" />
             </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:gravity="center">
 
                 <Button
+                    android:id="@+id/lightPinkOrangeBt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:text="미정"
-                    android:textColor="@color/black" />
+                    android:background="#FF9E8D" />
 
                 <Button
+                    android:id="@+id/orangeBt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/black"
-                    android:text="미정"
-                    android:textColor="@color/white" />
+                    android:background="#FF855B" />
 
                 <Button
+                    android:id="@+id/darkGoldenYellowBt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:text="미정"
-                    android:textColor="@color/black" />
+                    android:background="#DCA706" />
 
                 <Button
+                    android:id="@+id/lightBrownBt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/black"
-                    android:text="미정"
-                    android:textColor="@color/white" />
+                    android:background="#D33C02" />
+
             </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:gravity="center">
 
                 <Button
+                    android:id="@+id/pinkBt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/black"
-                    android:text="미정"
-                    android:textColor="@color/white" />
+                    android:background="#FB7AE6" />
 
                 <Button
+                    android:id="@+id/redBt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:text="미정"
-                    android:textColor="@color/black" />
+                    android:background="#FF0404" />
 
                 <Button
+                    android:id="@+id/redWineBt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/black"
-                    android:text="미정"
-                    android:textColor="@color/white" />
+                    android:background="#FF5C1F12" />
 
                 <Button
+                    android:id="@+id/purpleBt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:text="미정"
-                    android:textColor="@color/black" />
+                    android:background="#CD93FF" />
             </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:gravity="center">
 
                 <Button
+                    android:id="@+id/lightGreenBt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:text="미정"
-                    android:textColor="@color/black" />
+                    android:background="#B7FD90" />
 
                 <Button
+                    android:id="@+id/lightLimeBt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/black"
-                    android:text="미정"
-                    android:textColor="@color/white" />
+                    android:background="#7AFF90" />
 
                 <Button
+                    android:id="@+id/mintBt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:text="미정"
-                    android:textColor="@color/black" />
+                    android:background="#3CFFBB" />
 
                 <Button
+                    android:id="@+id/grayGreenBt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/black"
-                    android:text="미정"
-                    android:textColor="@color/white" />
+                    android:background="#257814" />
+
             </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:gravity="center">
 
                 <Button
+                    android:id="@+id/lightBlueGreenBt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/black"
-                    android:text="미정"
-                    android:textColor="@color/white" />
+                    android:background="#88FDE2" />
 
                 <Button
+                    android:id="@+id/lightBlueBt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:text="미정"
-                    android:textColor="@color/black" />
+                    android:background="#6FC8FF" />
 
                 <Button
+                    android:id="@+id/cobaltBt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/black"
-                    android:text="미정"
-                    android:textColor="@color/white" />
+                    android:background="#FF6062B1" />
 
                 <Button
+                    android:id="@+id/darkBlackBlueBt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:text="미정"
-                    android:textColor="@color/black" />
+                    android:background="#FF101433" />
+
+
             </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:gravity="center">
 
                 <Button
+                    android:id="@+id/beigeBt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:text="미정"
-                    android:textColor="@color/black" />
+                    android:background="#FFDF93" />
 
                 <Button
+                    android:id="@+id/beigeBrownBt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/black"
-                    android:text="미정"
-                    android:textColor="@color/white" />
+                    android:background="#AA907C" />
 
                 <Button
+                    android:id="@+id/lightGrayBt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:text="미정"
-                    android:textColor="@color/black" />
+                    android:background="#D6D7D8" />
 
                 <Button
+                    android:id="@+id/grayBt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/black"
-                    android:text="미정"
-                    android:textColor="@color/white" />
+                    android:background="#FF656565" />
             </TableRow>
         </TableLayout>
 
-        <Button
-            android:id="@+id/saveBt"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_marginLeft="165dp"
-            android:layout_marginTop="660dp"
-            android:background="#98FF9C"
-            android:text="설정하기"
-            android:textColor="@color/dark_green"
-            android:textSize="17sp"
-            android:textStyle="bold" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true" >
+
+            <Button
+                android:id="@+id/backBt"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="취소하기"
+                android:textSize="20sp"
+                android:textColor="@color/dark_green"
+                android:textStyle="bold"
+                android:background="@color/white"/>
+
+            <Button
+                android:id="@+id/saveBt"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="저장하기"
+                android:textSize="20sp"
+                android:textColor="@color/dark_green"
+                android:textStyle="bold"
+                android:background="@color/white"/>
+
+        </LinearLayout>
 
     </RelativeLayout>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="20dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="20dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="20dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

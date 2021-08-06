@@ -9,17 +9,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <receiver
+            android:name=".Notification"
+            android:exported="false"></receiver>
+
+        <activity android:name=".activities.MergeSubGroupActivity" />
+        <activity android:name=".activities.EditEmptyInfoActivity" />
         <activity android:name=".activities.HomeActivity"> <!-- 홈화면 -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <!-- 임주현 -->
+        </activity> <!-- 임주현 -->
         <activity android:name=".activities.AdminPageActivity" /> <!-- 관리자창 -->
-        <activity android:name=".activities.InviteSubUserActivity" />
-        <activity android:name=".activities.PublishGroupActivity" />
+        <activity android:name=".activities.InviteSubUserActivity" /> <!-- 회원초대창 -->
+        <activity android:name=".activities.PublishGroupActivity" /> <!-- 그룹개설창 -->
         <activity android:name=".activities.SignInActivity" /> <!-- 회원가입창 -->
         <activity android:name=".activities.LoginActivity" /> <!-- 로그인창 -->
         <activity android:name=".activities.ThemeExampleActivity" /> <!-- 테마예시 -->
@@ -27,19 +32,24 @@
         <activity android:name=".activities.EditSubUserInfoActivity" /> <!-- 하위유저편집창 -->
         <activity android:name=".activities.DebugActivity" /> <!-- 디버그창, 디버그 편의상 각 화면으로 이동하는 버튼을 두었음 -->
         <!-- 임지선 -->
-        <activity android:name=".activities.BasicThemeSettingActivity" />
-        <activity android:name=".activities.LanguageActivity" />
-        <activity android:name=".activities.MakingThemeSettingActivity" />
-        <activity android:name=".activities.PrivateAdministrationActivity" />
-        <activity android:name=".activities.SettingActivity" />
-        <activity android:name=".activities.SpecialThemeSettingActivity" />
-        <activity android:name=".activities.ThemeActivity" />
-        <activity android:name=".activities.UserInformationActivity" />
+        <activity android:name=".activities.BasicThemeSettingActivity" /> <!-- 기본테마 -->
+        <activity android:name=".activities.LanguageActivity" /> <!-- 언어설정창 -->
+        <activity android:name=".activities.MakingThemeSettingActivity" /> <!-- 테마제작하기 -->
+        <activity android:name=".activities.UserPasswardActivity" /> <!-- 패스워드변경창 -->
+        <activity android:name=".activities.SettingActivity" /> <!-- 설정창 -->
+        <activity android:name=".activities.SpecialThemeSettingActivity" /> <!-- 특별한 테마 -->
+        <activity android:name=".activities.ThemeActivity" /> <!-- 테마창 -->
+        <activity android:name=".activities.UserInformationActivity" /> <!-- 사용자정보창 -->
+        <activity android:name=".activities.NoticeActivity" /> <!-- 알림창 -->
+        <activity android:name=".activities.TimeSettingActivity" /> <!-- 알림시간설정창 -->
+        <activity android:name=".activities.BodyActivity" /> <!-- 신체창 -->
         <!-- 고동현 -->
-        <activity android:name=".activities.ResultActivity" /><!-- 결과창 -->
-        <activity android:name=".activities.CircuitResultActivity" /><!-- 전장순환 -->
-        <activity android:name=".activities.LegtuckResultActivity" /><!-- 레그턱 -->
-        <activity android:name=".activities.RunningResultActivity" /><!-- 240m -->
+        <activity android:name=".activities.ResultActivity" /> <!-- 결과창 -->
+        <activity android:name=".activities.CircuitResultActivity" /> <!-- 전장순환 -->
+        <activity android:name=".activities.LegtuckResultActivity" /> <!-- 레그턱 -->
+        <activity android:name=".activities.RunningResultActivity" /> <!-- 240m -->
+        <!-- 이다현 -->
+        <activity android:name=".activities.GoalActivity" />
     </application>
 
 </manifest>
