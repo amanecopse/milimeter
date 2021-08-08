@@ -22,10 +22,5 @@ class MakingThemeSettingActivity : AppCompatActivity() {
         }
 
 
-        // 사진 가져오기
-        binding.photoGetBt.setOnClickListener{
-
-        }
-
     }
 }

@@ -1,16 +1,15 @@
 package com.amnapp.milimeter.activities
 
-import android.app.DatePickerDialog
-import android.app.Dialog
-import android.app.TimePickerDialog
-import android.content.Context
+import android.app.*
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.WindowManager
-import android.widget.Button
-import android.widget.EditText
-import com.amnapp.milimeter.R
+import android.os.SystemClock
+import android.util.Log
+import android.widget.CompoundButton
+import android.widget.Toast
+import com.amnapp.milimeter.Notification
+import com.amnapp.milimeter.Notification.Companion.TAG
 import com.amnapp.milimeter.databinding.ActivityTimeSettingBinding
 import java.util.*
 
@@ -36,8 +35,21 @@ class TimeSettingActivity : AppCompatActivity() {
             finish()
         }
 
+
+        var time1 = 0    // 첫번째 설정 시간을 밀리세크로 나타냄
+        var time2 = 0    // 두번째 설정 시간을 밀리세크로 나타냄
+
+
         // 첫번째 알림 시간 설정
-        binding.firstNtSt.setOnCheckedChangeListener { buttonView, isChecked ->
+        val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
+
+        val intent = Intent(this, Notification::class.java)
+        val pendingIntent = PendingIntent.getBroadcast(
+            this, Notification.NOTIFICATION_ID, intent,
+            PendingIntent.FLAG_UPDATE_CURRENT)
+        var toastMessage1 = ""
+
+        binding.firstNtSt.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { _, isChecked ->
             if(isChecked) {
                 var calendar1 = Calendar.getInstance()
                 var hour1 = calendar1.get(Calendar.HOUR_OF_DAY)
@@ -68,11 +80,31 @@ class TimeSettingActivity : AppCompatActivity() {
                             binding.firstNtSt.text = "${day1} ${i%12} : ${i2}"
                         }
                     }
+                    time1 = (i2*60*1000)+(i*60*60*1000)
                 }
-
                 var picker = TimePickerDialog(this, listener1, hour1, minute1, false ) // true하면 24시간 제
                 picker.show()
             }
+
+            val repeatInterval: Long = AlarmManager.INTERVAL_FIFTEEN_MINUTES
+            toastMessage1 = if (isChecked) {
+                val triggerTime = ( time1 - SystemClock.elapsedRealtime() + repeatInterval)
+                alarmManager.setExact(
+                    AlarmManager.ELAPSED_REALTIME,
+                    triggerTime,
+                    pendingIntent
+                )
+                "알림설정"
+            } else {
+                alarmManager.cancel(pendingIntent)
+                "알림취소"
+            }
+        })
+
+        binding.saveBt.setOnClickListener {
+            Log.d(TAG, toastMessage1)
+            Toast.makeText(this, toastMessage1, Toast.LENGTH_LONG).show()
+            finish()
         }
 
         // 두번째 알림 시간 설정
@@ -106,6 +138,7 @@ class TimeSettingActivity : AppCompatActivity() {
                             binding.firstNtSt.text = "${day2} ${j%12} : ${j2}"
                         }
                     }
+                    time2 = (j2*60*1000)+(j*60*60*1000)
                 }
 
                 var picker = TimePickerDialog(this, listener2, hour2, minute2, false ) // true하면 24시간 제
