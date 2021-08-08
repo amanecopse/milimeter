@@ -19,11 +19,13 @@ import com.amnapp.milimeter.UserData
 import com.amnapp.milimeter.UserData.Companion.getInstance
 import com.amnapp.milimeter.databinding.ActivityBodyBinding
 import com.github.mikephil.charting.animation.Easing
+import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
+import com.github.mikephil.charting.data.PieEntry
 import com.google.firebase.firestore.DocumentSnapshot
 import java.util.*
 import kotlin.collections.ArrayList
@@ -58,10 +60,10 @@ class BodyActivity : AppCompatActivity() {
         //타이머 버튼 이벤트 처리 - 시작, 일시정지, 리셋, 기록
         var check = false // 같은버튼을 또 클릭할 때 중복되는 활동을 하지 않기 위함
         binding.startBt.setOnClickListener {
-           if (check == false) {
-               check = true
-               handler.post(runnable)
-           }
+            if (check == false) {
+                check = true
+                handler.post(runnable)
+            }
         }
 
         binding.stopBt.setOnClickListener {
@@ -82,7 +84,7 @@ class BodyActivity : AppCompatActivity() {
             }
         }
 
-        binding.recordBt.setOnClickListener{
+        binding.recordBt.setOnClickListener {
             // recordTime 함수는 운동시간 기록을 00:00:00 로 나타내는 함수
             //recordTime()
             // 기록 다이얼로그 창
@@ -103,8 +105,7 @@ class BodyActivity : AppCompatActivity() {
                     } else {
                         // 데이터 해쉬맵으로 저장 -> timeValue는 초형태로 string형태
                         val record = hashMapOf(
-                            type to "${timeValue % 60}",
-                            "date" to nowDate
+                            type to "${timeValue % 60}"
                         )
                         val cm = ChartManager()
                         cm.updateTrainingRecord(
@@ -141,9 +142,11 @@ class BodyActivity : AppCompatActivity() {
         var goalWeight = getInstance().goalOfWeight
         if (goalWeight != null && userWeight != null) {
             if (goalWeight < userWeight) {
-                binding.weightTv.text = "목표치보다 +${userWeight.toInt()-goalWeight.toInt()}kg  :  과체중"
+                binding.weightTv.text =
+                    "목표치보다 +${userWeight.toInt() - goalWeight.toInt()}kg  :  과체중"
             } else if (goalWeight > userWeight) {
-                binding.weightTv.text = "목표치보다 -${goalWeight.toInt()-userWeight.toInt()}kg  :  저체중"
+                binding.weightTv.text =
+                    "목표치보다 -${goalWeight.toInt() - userWeight.toInt()}kg  :  저체중"
             } else if (goalWeight == userWeight) {
                 binding.weightTv.text = "목표몸무게 도달!!"
             }
@@ -186,71 +189,98 @@ class BodyActivity : AppCompatActivity() {
         binding.weightChart.apply {
 
 
-                val cm =ChartManager()
-                val linechart = binding.weightChart
-                cm.loadTrainingRecordNDaysAgo(
-                    UserData.getInstance(),
-                    cm.getCurrentDateBasedOnFormat(),
-                    7
-                ) { docs, lineDataSets, dateList ->
+            val cm = ChartManager()
+            val linechart = binding.weightChart
+            cm.loadTrainingRecordNDaysAgo(
+                UserData.getInstance(),
+                cm.getCurrentDateBasedOnFormat(),
+                7
+            ) { docs, lineDataSets, dateList ->
 
-                    //데이터 없을때
-                    if(dateList.size>1) {
-                        val legTuckEntry = mutableListOf<Entry>()//
-                        val datelist = ArrayList<String>() //날짜 x축값
-                        var index = 0
+                //데이터 없을때
+                if (dateList.size > 1) {
+                    val legTuckEntry = mutableListOf<Entry>()//
+                    val datelist = ArrayList<String>() //날짜 x축값
+                    var index = 0
 
 
-                        val xAxis = linechart.xAxis
-                        xAxis.position = XAxis.XAxisPosition.BOTTOM
-                        xAxis.setDrawGridLines(false)
-                        xAxis.position = XAxis.XAxisPosition.BOTTOM
-                        xAxis.textColor = Color.BLACK//x축 색깔
-                        xAxis.valueFormatter = (TrainingValueFormatter(dateList))
-                        xAxis.granularity = 1f
-                        xAxis.isGranularityEnabled = true
+                    val xAxis = linechart.xAxis
+                    xAxis.position = XAxis.XAxisPosition.BOTTOM
+                    xAxis.setDrawGridLines(false)
+                    xAxis.position = XAxis.XAxisPosition.BOTTOM
+                    xAxis.textColor = Color.BLACK//x축 색깔
+                    xAxis.valueFormatter = (TrainingValueFormatter(dateList))
+                    xAxis.granularity = 1f
+                    xAxis.isGranularityEnabled = true
 
-                        val yLAxis = linechart.axisLeft//y축
-                        yLAxis.axisMaximum = 120f //y축최대
-                        yLAxis.axisMinimum = 0f  //
-                        yLAxis.labelCount = 24
-                        linechart.axisRight.isEnabled = false
-                        for (doc in docs) {
-                            //데이터 엔트리 추가
-                            doc.data?.get(ChartManager.WEIGHT)?.let { score ->
-                                legTuckEntry.add(Entry(index.toFloat(), score.toString().toFloat()))
-                            }
-                            doc.data?.get(ChartManager.DATE)?.let { score ->
-                                datelist.add(score.toString())
-
-                            }
-                            index += 1
+                    val yLAxis = linechart.axisLeft//y축
+                    yLAxis.axisMaximum = 120f //y축최대
+                    yLAxis.axisMinimum = 0f  //
+                    yLAxis.labelCount = 24
+                    linechart.axisRight.isEnabled = false
+                    for (doc in docs) {
+                        //데이터 엔트리 추가
+                        doc.data?.get(ChartManager.WEIGHT)?.let { score ->
+                            legTuckEntry.add(Entry(index.toFloat(), score.toString().toFloat()))
                         }
+                        doc.data?.get(ChartManager.DATE)?.let { score ->
+                            datelist.add(score.toString())
 
-                        val linedataset = LineDataSet(legTuckEntry, "몸무게")
-                        linedataset.setColor(Color.BLUE)
-                        linedataset.setDrawValues(false)
-                        linedataset.setLineWidth(2F)
-                        linedataset.setCircleRadius(6F)
-                        linechart.data = LineData(linedataset)//데이터 입력
-                        linechart.axisLeft.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART)
-                        linechart.axisRight.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART)
-                        linechart.isDoubleTapToZoomEnabled = false
-                        linechart.setDrawGridBackground(false)
-
-                        linechart.animateY(2000, Easing.EaseInCubic)
-                        linechart.invalidate()
+                        }
+                        index += 1
                     }
 
-                    //아무것도 없으면 안함
-                    else{
+                    val linedataset = LineDataSet(legTuckEntry, "몸무게")
+                    linedataset.setColor(Color.BLUE)
+                    linedataset.setDrawValues(false)
+                    linedataset.setLineWidth(2F)
+                    linedataset.setCircleRadius(6F)
+                    linechart.data = LineData(linedataset)//데이터 입력
+                    linechart.axisLeft.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART)
+                    linechart.axisRight.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART)
+                    linechart.isDoubleTapToZoomEnabled = false
+                    linechart.setDrawGridBackground(false)
 
-                    }
+                    linechart.animateY(2000, Easing.EaseInCubic)
+                    linechart.invalidate()
                 }
 
+                //아무것도 없으면 안함
+                else {
+
+                }
             }
+
         }
 
+
+        //운동 원형차트트
+        binding.exercisechart.apply {
+            val cm = ChartManager()
+            val piechart = findViewById<PieChart>(R.id.exercisechart)
+            var piedata = ArrayList<PieEntry>()
+            var datamap = mapOf<String, Float>()
+
+            cm.loadTrainingRecordNDaysAgo(
+                UserData.getInstance(),
+                cm.getCurrentDateBasedOnFormat(),
+                1
+            ) { docs, lineDataSets, dateList ->
+                for (doc in docs) {
+                    doc.data?.get(ChartManager.TRAINING_RECORDS)?.let { data ->
+
+
+                    }
+
+
+                }
+
+
+            }
+
+        }
+
+    }
     //타이머시간 변환작업
     private fun timeToText(time: Int = 0): String? {
         return if (time < 0) {

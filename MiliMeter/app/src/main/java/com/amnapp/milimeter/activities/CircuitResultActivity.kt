@@ -44,7 +44,11 @@ class CircuitResultActivity:AppCompatActivity() {
 
         }
         showGrade()
-        graph()
+
+
+        //그래프 적용
+        findViewById<LineChart>(R.id.circuitChart).apply{
+            graph()}
 
     }
     private fun showGrade() {

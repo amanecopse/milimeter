@@ -30,7 +30,7 @@ class ResultActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_result)
         //그래프
-        result_graph()
+
 
         //테이블
         getTabelData()
@@ -53,6 +53,10 @@ class ResultActivity : AppCompatActivity() {
             startActivity(circuitintent)
         }
 
+        //그래프 적용
+        findViewById<LineChart>(R.id.lineChart).apply {
+            result_graph()
+        }
 
         //홈버튼
         var homebtn = findViewById<Button>(R.id.homeBt)
@@ -88,6 +92,7 @@ class ResultActivity : AppCompatActivity() {
             val optionintent = Intent(this, SettingActivity::class.java)
             startActivity(optionintent)
         }
+
 
 
     }
