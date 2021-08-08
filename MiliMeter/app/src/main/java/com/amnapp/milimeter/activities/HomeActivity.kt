@@ -1,12 +1,15 @@
 package com.amnapp.milimeter.activities
 
+import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
@@ -24,6 +27,8 @@ class HomeActivity : AppCompatActivity() {
     val binding by lazy { ActivityHomeBinding.inflate(layoutInflater) }
     lateinit var mLoadingDialog: AlertDialog//로딩화면임. setProgressDialog()를 실행후 mLoadingDialog.show()로 시작
 
+    private val GALLERY = 1
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -31,6 +36,34 @@ class HomeActivity : AppCompatActivity() {
         initUI()
         autoLogin()
         loadProfile()
+
+        binding.profilechangeBt.setOnClickListener{
+            val intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
+            intent.setType("image/*")
+            startActivityForResult(intent,GALLERY) }
+
+    }
+
+    @Override
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if( resultCode == Activity.RESULT_OK){
+            if( requestCode ==  GALLERY){
+                var ImnageData: Uri? = data?.data
+                Toast.makeText(this,ImnageData.toString(), Toast.LENGTH_SHORT ).show()
+                try {
+                    val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, ImnageData)
+                    binding.profileCiv.setImageBitmap(bitmap)
+                }
+                catch (e:Exception){
+                    e.printStackTrace()
+
+                }
+            }
+
+        }
+
     }
 
     private fun initUI() {

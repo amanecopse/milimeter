@@ -76,6 +76,12 @@
                 android:src="@drawable/face"
                 app:civ_border_overlay="false" />
 
+            <Button
+                android:id="@+id/profilechangeBt"
+                android:backgroundTint="@color/black"
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/defaultCv"
                 android:layout_width="match_parent"
