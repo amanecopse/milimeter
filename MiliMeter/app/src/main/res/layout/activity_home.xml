@@ -20,6 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:background="?attr/cardBackground"
+        android:elevation="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -40,7 +41,9 @@
             android:layout_height="3dp"
             android:background="?attr/textColorBanner"
             android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
         </ImageView>
 
