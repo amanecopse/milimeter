@@ -8,75 +8,69 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.amnapp.milimeter.PreferenceManager
 import com.amnapp.milimeter.R
+import com.amnapp.milimeter.databinding.ActivityInviteSubUserBinding
+import com.amnapp.milimeter.databinding.ActivitySettingBinding
 import kotlin.system.exitProcess
 
 class SettingActivity : AppCompatActivity() {
+    lateinit var binding: ActivitySettingBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_setting)
+        binding = ActivitySettingBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         // 테마설정창 이동
-        findViewById<Button>(R.id.themeSettingBt).setOnClickListener {
+        binding.themeSettingBt.setOnClickListener {
             val intentTheme = Intent(this, ThemeActivity::class.java)
             startActivity(intentTheme)
-            finish()
         }
         // 언어설정창 이동
-        findViewById<Button>(R.id.languageSettingBt).setOnClickListener {
+        binding.languageSettingBt.setOnClickListener {
             val intentLanguage = Intent(this, LanguageActivity::class.java)
             startActivity(intentLanguage)
-            finish()
         }
         // 알림설정창 이동
-        findViewById<Button>(R.id.noticeSettingBt).setOnClickListener {
+        binding.noticeSettingBt.setOnClickListener {
             val intentNotice = Intent(this, NoticeActivity::class.java)
             startActivity(intentNotice)
-            finish()
         }
         // 회원정보창 이동(비밀번호변경)
-        findViewById<Button>(R.id.privateSettingBt).setOnClickListener {
+        binding.privateSettingBt.setOnClickListener {
             val intentPrivate = Intent(this, UserPasswardActivity::class.java)
             startActivity(intentPrivate)
-            finish()
         }
         //개인정보관리창 이동(사용자정보)
-        findViewById<Button>(R.id.userSettingBt).setOnClickListener {
+        binding.userSettingBt.setOnClickListener {
             val intentUser = Intent(this, UserInformationActivity::class.java)
             startActivity(intentUser)
-            finish()
         }
 
 
        // home창으로 이동
-        findViewById<Button>(R.id.homeBt).setOnClickListener {
+        binding.homeBt.setOnClickListener {
             val intentHome = Intent(this, HomeActivity::class.java)
             startActivity(intentHome)
-            finish()
         }
         // body창으로 이동
-        findViewById<Button>(R.id.bodyBt).setOnClickListener {
+        binding.bodyBt.setOnClickListener {
             val intentBody = Intent(this, BodyActivity::class.java)
             startActivity(intentBody)
-            finish()
         }
        // result화면으로 이동
-        findViewById<Button>(R.id.resultBt).setOnClickListener {
+        binding.resultBt.setOnClickListener {
             val intentResult = Intent(this, ResultActivity::class.java)
             startActivity(intentResult)
-            finish()
         }
        // goal창으로 이동
-        findViewById<Button>(R.id.goalBt).setOnClickListener {
+        binding.goalBt.setOnClickListener {
             val intentGoal = Intent(this, GoalActivity::class.java)
             startActivity(intentGoal)
-            finish()
         }
        // setting창으로 이동
-        findViewById<Button>(R.id.settingBt).setOnClickListener {
+        binding.settingBt.setOnClickListener {
             val intentSetting = Intent(this, SettingActivity::class.java)
             startActivity(intentSetting)
-            finish()
         }
 
     }
