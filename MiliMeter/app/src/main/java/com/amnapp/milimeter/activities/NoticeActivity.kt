@@ -16,13 +16,14 @@ class NoticeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // 창닫기
-        binding.cancelBt.setOnClickListener {
-            val intentBack = Intent(this, SettingActivity::class.java)
-            startActivity(intentBack)
+        binding.cancelIb.setOnClickListener {
+            finish()
+        }
+        binding.backIb.setOnClickListener {
             finish()
         }
 
-        binding.noticeSetBt.setOnClickListener {
+        binding.noticeSetLl.setOnClickListener {
             showDialogMessage("알림", "알림은 1개 설정할 수 있으며,\n알림시간은 2회 설정할 수 있습니다.")
         }
 
@@ -35,7 +36,6 @@ class NoticeActivity : AppCompatActivity() {
         builder.setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int ->
             val intent = Intent(this, TimeSettingActivity::class.java)
             startActivity(intent)
-            finish()
         }
         builder.show()
     }

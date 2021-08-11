@@ -4,102 +4,201 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/appWindowBackground"
     tools:context=".activities.ThemeActivity">
 
-    <RelativeLayout
-        android:id="@+id/themeRL"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/appBarCl"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical" >
+        android:layout_height="55dp"
+        android:background="?attr/cardBackground"
+        android:elevation="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:id="@+id/themeHeadLineLL"
+            android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:background="@color/green"
+            android:layout_height="match_parent"
+            android:gravity="center"
             android:orientation="horizontal"
-            android:gravity="center_vertical">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/iconIv"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginRight="10dp"
+                app:srcCompat="@drawable/ic_baseline_filter_15_white"
+                app:tint="?attr/textColorBanner" />
 
             <TextView
-                android:layout_width="320dp"
+                android:id="@+id/titleTv"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:drawableLeft="@drawable/ic_baseline_filter_15_white"
-                android:drawablePadding="15dp"
-                android:gravity="left|center_vertical"
-                android:paddingLeft="10dp"
                 android:text="테마"
-                android:textColor="@color/white"
-                android:textSize="30sp"
-                android:textStyle="bold" />
-
-            <ImageButton
-                android:id="@+id/cancelBt"
-                android:layout_width="90dp"
-                android:layout_height="match_parent"
-                android:scaleType="center"
-                android:src="@drawable/ic_baseline_cancel_30_white"
-                android:background="@android:color/transparent"
-                android:layout_gravity="center_vertical"/>
-
+                android:textColor="?attr/textColorBanner"
+                android:textSize="@dimen/largeText" />
         </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/backIb"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="5dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_arrow_back_24_cyan" />
+
+        <ImageButton
+            android:id="@+id/cancelIb"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="10dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_cancel_24_cyan" />
+
+        <ImageView
+            android:id="@+id/borderLineIv"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="?attr/textColorBanner"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+        </ImageView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/bodySv"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarCl">
 
         <LinearLayout
+            android:id="@+id/bodyLl"
             android:layout_width="match_parent"
-            android:layout_height="640dp"
-            android:layout_alignParentBottom="true"
-            android:orientation="vertical"
-            android:background="@color/green">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/basicThemeBt"
-            android:layout_width="match_parent"
-            android:layout_height="210dp"
-            android:background="@color/light_green"
-            android:text="기본 테마"
-            android:gravity="left|center_vertical"
-            android:paddingLeft="120dp"
-            android:drawablePadding="9dp"
-            android:drawableLeft="@drawable/ic_baseline_palette_20_white"
-            android:drawableTint="@color/dark_green"
-            android:textColor="@color/dark_green"
-            android:textSize="30sp"
-            android:textStyle="bold" />
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                app:cardBackgroundColor="?attr/cardBackground">
 
-        <Button
-            android:id="@+id/specialThemeBt"
-            android:layout_width="match_parent"
-            android:layout_height="210dp"
-            android:background="@color/light_green"
-            android:text="특별한 테마"
-            android:gravity="left|center_vertical"
-            android:paddingLeft="100dp"
-            android:drawablePadding="9dp"
-            android:drawableLeft="@drawable/ic_baseline_military_tech_20_white"
-            android:drawableTint="@color/dark_green"
-            android:textColor="@color/dark_green"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            android:layout_marginTop="2dp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-        <Button
-            android:id="@+id/makingThemeBt"
-            android:layout_width="match_parent"
-            android:layout_height="210dp"
-            android:background="@color/light_green"
-            android:text="테마 제작하기"
-            android:gravity="left|center_vertical"
-            android:paddingLeft="90dp"
-            android:drawablePadding="9dp"
-            android:drawableLeft="@drawable/ic_baseline_engineering_20_white"
-            android:drawableTint="@color/dark_green"
-            android:textColor="@color/dark_green"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            android:layout_marginTop="2dp"/>
+                    <LinearLayout
+                        android:id="@+id/basicThemeLl"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:gravity="center_vertical"
+                        android:padding="20dp">
 
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            app:srcCompat="@drawable/ic_baseline_palette_20_white"
+                            app:tint="?attr/textColor" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="기본 테마"
+                            android:textColor="?attr/textColor"
+                            android:textSize="@dimen/middleText" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/listDivider" />
+
+                    <LinearLayout
+                        android:id="@+id/specialThemeLl"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:gravity="center_vertical"
+                        android:padding="20dp">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            app:srcCompat="@drawable/ic_baseline_military_tech_20_white"
+                            app:tint="?attr/textColor" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="특별한 테마"
+                            android:textColor="?attr/textColor"
+                            android:textSize="@dimen/middleText" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/listDivider" />
+
+                    <LinearLayout
+                        android:id="@+id/makingThemeLl"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:gravity="center_vertical"
+                        android:padding="20dp">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            app:srcCompat="@drawable/ic_baseline_engineering_20_white"
+                            app:tint="?attr/textColor" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="테마 제작하기"
+                            android:textColor="?attr/textColor"
+                            android:textSize="@dimen/middleText" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
         </LinearLayout>
-
-    </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,109 +1,200 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:background="?attr/appWindowBackground"
     tools:context=".activities.LanguageActivity">
 
-    <RelativeLayout
-        android:id="@+id/languageRL"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/appBarCl"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical" >
+        android:layout_height="55dp"
+        android:background="?attr/cardBackground"
+        android:elevation="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:id="@+id/languageHeadLineLL"
+            android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:background="@color/green"
+            android:layout_height="match_parent"
+            android:gravity="center"
             android:orientation="horizontal"
-            android:gravity="center_vertical">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/iconIv"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginRight="10dp"
+                app:srcCompat="@drawable/ic_baseline_translate_15_white"
+                app:tint="?attr/textColorBanner" />
 
             <TextView
-                android:layout_width="320dp"
+                android:id="@+id/titleTv"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:drawableLeft="@drawable/ic_baseline_translate_15_white"
-                android:drawablePadding="15dp"
-                android:gravity="left|center_vertical"
-                android:paddingLeft="10dp"
                 android:text="언어"
-                android:textColor="@color/white"
-                android:textSize="30sp"
-                android:textStyle="bold"
-                />
-
-            <ImageButton
-                android:id="@+id/cancelBt"
-                android:layout_width="90dp"
-                android:layout_height="match_parent"
-                android:scaleType="center"
-                android:src="@drawable/ic_baseline_cancel_30_white"
-                android:background="@android:color/transparent"
-                android:layout_gravity="center_vertical"/>
-
+                android:textColor="?attr/textColorBanner"
+                android:textSize="@dimen/largeText" />
         </LinearLayout>
 
-       <RadioGroup
-           android:id="@+id/languageRG"
-           android:layout_width="match_parent"
-           android:layout_height="300dp"
-           android:layout_marginTop="100dp"
-           android:checkedButton="@id/koreaRBt">
+        <ImageButton
+            android:id="@+id/backIb"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="5dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_arrow_back_24_cyan" />
 
-           <RadioButton
-               android:id="@+id/koreaRBt"
-               android:layout_width="300dp"
-               android:layout_height="70dp"
-               android:paddingLeft="15dp"
-               android:layout_marginTop="10dp"
-               android:layout_marginLeft="20dp"
-               android:gravity="left|center"
-               android:text="@string/lang1"
-               android:textSize="30sp" />
+        <ImageButton
+            android:id="@+id/cancelIb"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="10dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_cancel_24_cyan" />
 
-           <RadioButton
-               android:id="@+id/englishRBt"
-               android:layout_width="300dp"
-               android:layout_height="70dp"
-               android:paddingLeft="15dp"
-               android:layout_marginTop="10dp"
-               android:layout_marginLeft="20dp"
-               android:text="@string/lang2"
-               android:textSize="30sp" />
+        <ImageView
+            android:id="@+id/borderLineIv"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="?attr/textColorBanner"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
-       </RadioGroup>
+        </ImageView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/bodySv"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/bottomLl"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarCl"
+        app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
+            android:id="@+id/bodyLl"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:orientation="horizontal"
-            android:layout_alignParentBottom="true" >
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <Button
-                android:id="@+id/backBt"
-                android:layout_width="0dp"
-                android:layout_height="60dp"
-                android:layout_weight="1"
-                android:text="취소하기"
-                android:textSize="20sp"
-                android:textColor="@color/dark_green"
-                android:textStyle="bold"
-                android:background="@color/white"/>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                app:cardBackgroundColor="?attr/cardBackground">
 
-            <Button
-                android:id="@+id/saveBt"
-                android:layout_width="0dp"
-                android:layout_height="60dp"
-                android:layout_weight="1"
-                android:text="저장하기"
-                android:textSize="20sp"
-                android:textColor="@color/dark_green"
-                android:textStyle="bold"
-                android:background="@color/white"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="20dp"
+                    android:orientation="vertical">
+
+                    <RadioGroup
+                        android:id="@+id/languageRG"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:checkedButton="@id/koreaRBt">
+
+                        <RadioButton
+                            android:id="@+id/koreaRBt"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="10dp"
+                            android:gravity="left|center"
+                            android:text="@string/lang1"
+                            android:textColor="?attr/textColor"
+                            android:textSize="@dimen/middleText" />
+
+                        <ImageView
+                            android:id="@+id/imageView9"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:background="?android:attr/listDivider" />
+
+                        <RadioButton
+                            android:id="@+id/englishRBt"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="@string/lang2"
+                            android:textColor="?attr/textColor"
+                            android:textSize="@dimen/middleText" />
+
+                    </RadioGroup>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="100dp" />
 
         </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
-    </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/bottomLl"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/saveCv"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:clickable="true"
+            android:focusableInTouchMode="false"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardBackgroundColor="?attr/cardBackground"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="10dp"
+                    android:text="저장"
+                    android:textColor="?attr/textColorBanner"
+                    android:textSize="@dimen/middleText" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

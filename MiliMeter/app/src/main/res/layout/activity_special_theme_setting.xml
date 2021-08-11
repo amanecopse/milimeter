@@ -4,193 +4,289 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/appWindowBackground"
     tools:context=".activities.SpecialThemeSettingActivity">
 
-    <RelativeLayout
-        android:id="@+id/themeRL"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/appBarCl"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/light_green"
-        android:orientation="vertical" >
+        android:layout_height="55dp"
+        android:background="?attr/cardBackground"
+        android:elevation="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:id="@+id/specialThemeHeadLineLL"
+            android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:background="@color/green"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/iconIv"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginRight="10dp"
+                app:srcCompat="@drawable/ic_baseline_military_tech_20_white"
+                app:tint="?attr/textColorBanner" />
 
             <TextView
-                android:layout_width="320dp"
+                android:id="@+id/titleTv"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:gravity="left|center_vertical"
-                android:paddingLeft="10dp"
-                android:drawableLeft="@drawable/ic_baseline_military_tech_20_white"
-                android:drawablePadding="10dp"
                 android:text="특별한 테마"
-                android:textColor="@color/white"
-                android:textSize="30sp"
-                android:textStyle="bold" />
-
-            <ImageButton
-                android:id="@+id/cancelBt"
-                android:layout_width="90dp"
-                android:layout_height="match_parent"
-                android:scaleType="center"
-                android:src="@drawable/ic_baseline_cancel_30_white"
-                android:background="@android:color/transparent"
-                android:layout_gravity="center_vertical"/>
-
+                android:textColor="?attr/textColorBanner"
+                android:textSize="@dimen/largeText" />
         </LinearLayout>
 
-        <LinearLayout
+        <ImageButton
+            android:id="@+id/backIb"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="5dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_arrow_back_24_cyan" />
+
+        <ImageButton
+            android:id="@+id/cancelIb"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="10dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_cancel_24_cyan" />
+
+        <ImageView
+            android:id="@+id/borderLineIv"
             android:layout_width="match_parent"
-            android:layout_height="340dp"
-            android:layout_marginTop="90dp"
+            android:layout_height="3dp"
+            android:background="?attr/textColorBanner"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+        </ImageView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/bodySv"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/bottomLl"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarCl"
+        app:layout_constraintVertical_bias="0.0">
+
+        <LinearLayout
+            android:id="@+id/bodyLl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="20dp"
-                android:text="테마 아이콘"
-                android:textColor="@color/dark_green"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:gravity="center|left"
-                android:paddingLeft="10dp" />
-
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/armyicon" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_marginTop="20dp"
-                android:text="* 이 테마는 아이콘 그림이 다음과 같이 적용됩니다."
-                android:paddingLeft="20dp"
-                android:textSize="15sp"
-                android:textColor="#CC0000" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="20dp"
-                android:gravity="center|left"
-                android:paddingLeft="10dp"
-                android:text="테마 색상"
-                android:textColor="@color/dark_green"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="430dp"
-            android:orientation="horizontal" >
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:background="#B7FD90" />
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:background="#7AFF90" />
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:background="#257814" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="480dp"
-            android:orientation="horizontal" >
-
-            <RadioGroup
-                android:id="@+id/themeColorRG"
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_margin="10dp"
+                app:cardBackgroundColor="?attr/cardBackground">
 
-                <RadioButton
-                    android:id="@+id/lightGreenRBt"
-                    android:layout_width="0dp"
-                    android:layout_height="30dp"
-                    android:layout_weight="1"
-                    android:text="light green"
-                    android:gravity="center"
-                    android:paddingRight="30dp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="20dp"
+                    android:orientation="vertical">
 
-                <RadioButton
-                    android:id="@+id/greenRBt"
-                    android:layout_width="0dp"
-                    android:layout_height="30dp"
-                    android:layout_weight="1"
-                    android:text="green"
-                    android:gravity="center"
-                    android:paddingRight="30dp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:gravity="center|left"
+                        android:text="테마 아이콘"
+                        android:textColor="?attr/textColor"
+                        android:textSize="@dimen/middleText" />
 
-                <RadioButton
-                    android:id="@+id/darkGreenRBt"
-                    android:layout_width="0dp"
-                    android:layout_height="30dp"
-                    android:layout_weight="1"
-                    android:text="dark green"
-                    android:gravity="center"
-                    android:paddingRight="30dp" />
+                    <ImageView
+                        android:id="@+id/imageView5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/armyicon" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginTop="20dp"
+                        android:text="* 이 테마는 아이콘 그림이 다음과 같이 적용됩니다."
+                        android:textColor="#CC0000"
+                        android:textSize="@dimen/smallText" />
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                app:cardBackgroundColor="?attr/cardBackground">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:gravity="center|left"
+                        android:text="테마 색상"
+                        android:textColor="?attr/textColor"
+                        android:textSize="@dimen/middleText" />
+
+                    <TableLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:id="@+id/imageView6"
+                                android:layout_width="0dp"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:background="#B7FD90" />
+
+                            <ImageView
+                                android:id="@+id/imageView7"
+                                android:layout_width="0dp"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:background="#7AFF90" />
+
+                            <ImageView
+                                android:id="@+id/imageView8"
+                                android:layout_width="0dp"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:background="#257814" />
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center">
+
+                            <RadioGroup
+                                android:id="@+id/themeColorRG"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <RadioButton
+                                    android:id="@+id/lightGreenRBt"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:paddingRight="30dp"
+                                    android:text="light green"
+                                    android:textColor="?attr/textColor" />
+
+                                <RadioButton
+                                    android:id="@+id/greenRBt"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:paddingRight="30dp"
+                                    android:text="green"
+                                    android:textColor="?attr/textColor" />
+
+                                <RadioButton
+                                    android:id="@+id/darkGreenRBt"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:paddingRight="30dp"
+                                    android:text="dark green"
+                                    android:textColor="?attr/textColor" />
 
 
-            </RadioGroup>
+                            </RadioGroup>
+                        </TableRow>
+
+                    </TableLayout>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="100dp" />
+
         </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
+    <LinearLayout
+        android:id="@+id/bottomLl"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:orientation="horizontal"
-            android:layout_alignParentBottom="true" >
+        <androidx.cardview.widget.CardView
+            android:id="@+id/saveCv"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:clickable="true"
+            android:focusableInTouchMode="false"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardBackgroundColor="?attr/cardBackground"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="20dp">
 
-            <Button
-                android:id="@+id/backBt"
-                android:layout_width="0dp"
-                android:layout_height="60dp"
-                android:layout_weight="1"
-                android:text="취소하기"
-                android:textSize="20sp"
-                android:textColor="@color/dark_green"
-                android:textStyle="bold"
-                android:background="@color/white"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            <Button
-                android:id="@+id/saveBt"
-                android:layout_width="0dp"
-                android:layout_height="60dp"
-                android:layout_weight="1"
-                android:text="저장하기"
-                android:textSize="20sp"
-                android:textColor="@color/dark_green"
-                android:textStyle="bold"
-                android:background="@color/white"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="10dp"
+                    android:text="저장"
+                    android:textColor="?attr/textColorBanner"
+                    android:textSize="@dimen/middleText" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
-        </LinearLayout>
-
-    </RelativeLayout>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
