@@ -7,6 +7,34 @@
     <string name="result">result</string>
     <string name="goal">goal</string>
     <string name="setting">setting</string>
+
+    // 홈
+    <string name="name">name: </string>
+    <string name="military_number">military number: </string>
+    <string name="group_code">group code: </string>
+    <string name="Dday_setting">date setting</string>
+    <string name="login_user">login and user</string>
+
+    // 신체
+
+    // 목표
+    <string name="goal_grade">target rating: </string>
+    <string name="now_grade">current rating: </string>
+    <string name="week_top_grade">(weekly highest rating)</string>
+
+    // 결과
+    <string name="total">total</string>
+    <string name="legtuk">legtuk</string>
+    <string name="running">240m</string>
+    <string name="circuit">circuit</string>
+    <string name="type_date">type/date</string>
+
+    // 설정
+    <string name="theme">theme</string>
+    <string name="language">language</string>
+    <string name="alarm">notification</string>
+    <string name="passward">user information</string>
+    <string name="user_information">personal information management</string>
     <string name="lang1">korea</string>
     <string name="lang2">english</string>
 
