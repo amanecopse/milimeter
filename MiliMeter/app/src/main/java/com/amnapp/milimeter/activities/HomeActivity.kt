@@ -105,7 +105,7 @@ class HomeActivity : AppCompatActivity() {
         }
 
         //DdayBt default
-        binding.dDayBt.setText("전역일 설정")
+//        binding.dDayBt.setText("전역일 설정")
 
         //Dday 날짜설정
         binding.dDayBt.setOnClickListener {
@@ -130,9 +130,9 @@ class HomeActivity : AppCompatActivity() {
                    val dday: Int = Setday-Today
 
                    if (dday==0) {
-                       binding.dDayBt.setText("D-day")}
+                       binding.dDayBt.text=("D-day")}
                    else{
-                       binding.dDayBt.setText("D-${dday}")}
+                       binding.dDayBt.text=("D-${dday}")}
 
                 }
 

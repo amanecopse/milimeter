@@ -76,11 +76,13 @@
                 android:src="@drawable/face"
                 app:civ_border_overlay="false" />
 
+
             <Button
                 android:id="@+id/profilechangeBt"
-                android:backgroundTint="@color/black"
-                android:layout_width="30dp"
-                android:layout_height="30dp" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/black" />
+
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/defaultCv"
@@ -189,6 +191,7 @@
         android:background="@drawable/header_button_background_cyan"
         android:textColor="?attr/buttonTextColor"
         android:textSize="@dimen/smallText"
+        android:text="전역일 설정"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarCl" />
 
