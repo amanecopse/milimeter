@@ -164,7 +164,8 @@
                         android:textColorHint="?attr/textColorSecondary"
                         app:helperTextTextColor="@android:color/holo_red_dark"
                         app:passwordToggleTint="?attr/textColorSecondary"
-                        app:suffixText='"-" 없이 숫자만 입력'>
+                        app:suffixText='"-" 없이 숫자만 입력'
+                        app:suffixTextColor="?attr/textColor">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/militaryIdEt"
@@ -186,7 +187,8 @@
                         android:textColorHint="?attr/textColorSecondary"
                         app:helperTextTextColor="@android:color/holo_red_dark"
                         app:passwordToggleTint="?attr/textColorSecondary"
-                        app:suffixText="cm">
+                        app:suffixText="cm"
+                        app:suffixTextColor="?attr/textColor" >
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/heightEt"
@@ -208,7 +210,8 @@
                         android:textColorHint="?attr/textColorSecondary"
                         app:helperTextTextColor="@android:color/holo_red_dark"
                         app:passwordToggleTint="?attr/textColorSecondary"
-                        app:suffixText="kg">
+                        app:suffixText="kg"
+                        app:suffixTextColor="?attr/textColor" >
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/weightEt"
@@ -279,7 +282,8 @@
                         android:layout_height="match_parent"
                         android:textColorHint="?attr/textColorSecondary"
                         app:passwordToggleTint="?attr/textColorSecondary"
-                        app:suffixText="kg">
+                        app:suffixText="kg"
+                        app:suffixTextColor="?attr/textColor" >
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/goalOfWeightEt"

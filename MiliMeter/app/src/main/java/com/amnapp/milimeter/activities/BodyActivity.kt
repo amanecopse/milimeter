@@ -312,13 +312,6 @@ class BodyActivity : CustomThemeActivity() {
 
      */
 
-    fun showDialogMessage(title: String, body: String) {//다이얼로그 메시지를 띄우는 함수
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle(title)
-        builder.setMessage(body)
-        builder.setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int -> finish() }
-        builder.show()
-    }
 
     fun timeGenerator() :String{
         val instance = Calendar.getInstance()

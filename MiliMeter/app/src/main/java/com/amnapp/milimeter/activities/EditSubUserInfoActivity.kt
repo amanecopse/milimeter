@@ -209,14 +209,6 @@ class EditSubUserInfoActivity : CustomThemeActivity() {
         return valid
     }
 
-    fun showDialogMessage(title:String, body:String) {
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle(title)
-        builder.setMessage(body)
-        builder.setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int -> }
-        builder.show()
-    }
-
     fun showDialogMessage(title:String, body:String, callBack: () -> Unit) {
         val builder = AlertDialog.Builder(this)
         builder.setTitle(title)

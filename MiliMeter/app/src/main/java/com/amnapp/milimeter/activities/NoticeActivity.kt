@@ -27,12 +27,12 @@ class NoticeActivity : CustomThemeActivity() {
         }
 
         binding.noticeSetLl.setOnClickListener {
-            showDialogMessage("알림", "알림은 1개 설정할 수 있으며,\n알림시간은 2회 설정할 수 있습니다.")
+            showDialogMessageAndTimeSet("알림", "알림은 1개 설정할 수 있으며,\n알림시간은 2회 설정할 수 있습니다.")
         }
 
     }
 
-    fun showDialogMessage(title:String, body:String) {
+    fun showDialogMessageAndTimeSet(title:String, body:String) {
         val builder = AlertDialog.Builder(this)
         builder.setTitle(title)
         builder.setMessage(body)

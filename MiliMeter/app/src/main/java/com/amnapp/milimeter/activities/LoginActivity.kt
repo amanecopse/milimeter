@@ -219,14 +219,6 @@ class LoginActivity : CustomThemeActivity() {
         binding.autoLoginCb.isChecked = pm.isAutoLoginEnable(this)
     }
 
-    fun showDialogMessage(title: String, body: String) {//다이얼로그 메시지를 띄우는 함수
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle(title)
-        builder.setMessage(body)
-        builder.setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int -> }
-        builder.show()
-    }
-
     fun showDialogMessage(title: String, body: String, callBack: () -> Unit) {//다이얼로그 메시지를 띄우는 함수
         val builder = AlertDialog.Builder(this)
         builder.setTitle(title)

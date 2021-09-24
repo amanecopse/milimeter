@@ -91,11 +91,4 @@ class TrainingRecordActivity : CustomThemeActivity() {
         DatePickerDialog(this, callBack,year,month,day).show()
     }
 
-    fun showDialogMessage(title: String, body: String) {//다이얼로그 메시지를 띄우는 함수
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle(title)
-        builder.setMessage(body)
-        builder.setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int -> }
-        builder.show()
-    }
 }

@@ -160,7 +160,8 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:hint="알림 내용을 적어주세요(예시: 오늘 하루도 힘내세요~)"
-                        android:textColor="?attr/textColorSecondary"
+                        android:textColor="?attr/textColor"
+                        android:textColorHint="?attr/textColor"
                         android:textSize="15sp" />
 
                     <ImageView
@@ -184,7 +185,8 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:hint="알림 제목을 적어주세요(예시: 운동)"
-                        android:textColor="?attr/textColorSecondary"
+                        android:textColor="?attr/textColor"
+                        android:textColorHint="?attr/textColor"
                         android:textSize="15sp" />
 
                 </LinearLayout>

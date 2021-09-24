@@ -132,7 +132,7 @@
                         android:layout_height="30dp"
                         android:layout_marginTop="20dp"
                         android:text="* 이 테마는 아이콘 그림이 다음과 같이 적용됩니다."
-                        android:textColor="#CC0000"
+                        android:textColor="?attr/textColor"
                         android:textSize="@dimen/smallText" />
                 </LinearLayout>
 

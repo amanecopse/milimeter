@@ -15,8 +15,33 @@ class PreferenceManager {
     private val SETTINGS_DATA_LANGUAGE = "language"
 
     companion object{
-        val THEME_DARK = "dark theme"
         val THEME_DEFAULT = "default theme"
+        val THEME_DARK = "dark theme"
+        val THEME_CREAM = "cream theme"
+        val THEME_VANILAYELLOW = "vanilayellow theme"
+        val THEME_LIGHTYELLOW = "lightyellow theme"
+        val THEME_MUSTARDYELLOW = "mustardyellow theme"
+        val THEME_LIGHTPINKORANGE = "lightpinkorange theme"
+        val THEME_ORANGE = "orange theme"
+        val THEME_DARKGOLDENYELLOW = "darkgoldenyellow theme"
+        val THEME_LIGHTBROWN = "lightbrown theme"
+        val THEME_PINK = "pink theme"
+        val THEME_RED = "red theme"
+        val THEME_REDWINE = "redwine theme"
+        val THEME_PURPLE = "purple theme"
+        val THEME_LIGHTGREEN = "lightgreen theme"
+        val THEME_LIGHTLIME = "lightlime theme"
+        val THEME_MINT = "mint theme"
+        val THEME_GRAYGREEN = "graygreen theme"
+        val THEME_LIGHTBLUEGREEN = "lightbluegreen theme"
+        val THEME_LIGHTBLUE = "lightblue theme"
+        val THEME_COBALT = "cobalt theme"
+        val THEME_DARKBLACKBLUE = "darkblackblue theme"
+        val THEME_BEIGE = "beige theme"
+        val THEME_BEIGEBROWN = "beigebrown theme"
+        val THEME_LIGHTGRAY = "lightgray theme"
+        val THEME_GRAY = "gray theme"
+
     }
 
 

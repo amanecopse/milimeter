@@ -214,188 +214,266 @@
                         android:layout_alignParentBottom="true">
 
                         <TableRow
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:gravity="center">
+                            android:gravity="center"
+                            android:layout_weight="1">
 
                             <Button
                                 android:id="@+id/creamBt"
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:background="#FFF8DF" />
+                                android:background="#FFF8DF"
+                                android:textStyle="bold"
+                                android:textColor="#000000"
+                                android:layout_weight="1"/>
 
                             <Button
                                 android:id="@+id/vanilaYellowBt"
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:background="#FFFAB7" />
+                                android:background="#FFFAB7"
+                                android:textStyle="bold"
+                                android:textColor="#0027FF"
+                                android:layout_weight="1"/>
 
                             <Button
                                 android:id="@+id/lightYellowBt"
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:background="#FFFB00" />
+                                android:background="#FFFB00"
+                                android:textStyle="bold"
+                                android:textColor="#FF0000"
+                                android:layout_weight="1"/>
 
 
                             <Button
                                 android:id="@+id/mustardYellowBt"
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:background="#F4E910" />
+                                android:background="#F4E910"
+                                android:textStyle="bold"
+                                android:textColor="#FFFFFF"
+                                android:layout_weight="1"/>
                         </TableRow>
 
                         <TableRow
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:gravity="center">
+                            android:gravity="center"
+                            android:layout_weight="1">
 
                             <Button
                                 android:id="@+id/lightPinkOrangeBt"
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:background="#FF9E8D" />
+                                android:background="#FF9E8D"
+                                android:textStyle="bold"
+                                android:textColor="#000000"
+                                android:layout_weight="1"/>
 
                             <Button
                                 android:id="@+id/orangeBt"
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:background="#FF855B" />
+                                android:background="#FF855B"
+                                android:textStyle="bold"
+                                android:textColor="#0027FF"
+                                android:layout_weight="1"/>
 
                             <Button
                                 android:id="@+id/darkGoldenYellowBt"
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:background="#DCA706" />
+                                android:background="#DCA706"
+                                android:textStyle="bold"
+                                android:textColor="#FF0000"
+                                android:layout_weight="1"/>
 
                             <Button
                                 android:id="@+id/lightBrownBt"
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:background="#D33C02" />
+                                android:background="#D33C02"
+                                android:textStyle="bold"
+                                android:textColor="#FFFFFF"
+                                android:layout_weight="1"/>
 
                         </TableRow>
 
                         <TableRow
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:gravity="center">
+                            android:gravity="center"
+                            android:layout_weight="1">
 
                             <Button
                                 android:id="@+id/pinkBt"
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:background="#FB7AE6" />
+                                android:background="#FB7AE6"
+                                android:textStyle="bold"
+                                android:textColor="#000000"
+                                android:layout_weight="1"/>
 
                             <Button
                                 android:id="@+id/redBt"
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:background="#FF0404" />
+                                android:background="#FF0404"
+                                android:textStyle="bold"
+                                android:textColor="#0027FF"
+                                android:layout_weight="1"/>
 
                             <Button
                                 android:id="@+id/redWineBt"
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:background="#FF5C1F12" />
+                                android:background="#FF5C1F12"
+                                android:textStyle="bold"
+                                android:textColor="#FF0000"
+                                android:layout_weight="1"/>
 
                             <Button
                                 android:id="@+id/purpleBt"
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:background="#CD93FF" />
+                                android:background="#CD93FF"
+                                android:textStyle="bold"
+                                android:textColor="#FFFFFF"
+                                android:layout_weight="1"/>
                         </TableRow>
 
                         <TableRow
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:gravity="center">
+                            android:gravity="center"
+                            android:layout_weight="1">
 
                             <Button
                                 android:id="@+id/lightGreenBt"
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:background="#B7FD90" />
+                                android:background="#B7FD90"
+                                android:textStyle="bold"
+                                android:textColor="#000000"
+                                android:layout_weight="1"/>
 
                             <Button
                                 android:id="@+id/lightLimeBt"
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:background="#7AFF90" />
+                                android:background="#7AFF90"
+                                android:textStyle="bold"
+                                android:textColor="#0027FF"
+                                android:layout_weight="1"/>
 
                             <Button
                                 android:id="@+id/mintBt"
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:background="#3CFFBB" />
+                                android:background="#3CFFBB"
+                                android:textStyle="bold"
+                                android:textColor="#FF0000"
+                                android:layout_weight="1"/>
 
                             <Button
                                 android:id="@+id/grayGreenBt"
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:background="#257814" />
+                                android:background="#257814"
+                                android:textStyle="bold"
+                                android:textColor="#FFFFFF"
+                                android:layout_weight="1"/>
 
                         </TableRow>
 
                         <TableRow
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:gravity="center">
+                            android:gravity="center"
+                            android:layout_weight="1">
 
                             <Button
                                 android:id="@+id/lightBlueGreenBt"
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:background="#88FDE2" />
+                                android:background="#88FDE2"
+                                android:textStyle="bold"
+                                android:textColor="#000000"
+                                android:layout_weight="1"/>
 
                             <Button
                                 android:id="@+id/lightBlueBt"
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:background="#6FC8FF" />
+                                android:background="#6FC8FF"
+                                android:textStyle="bold"
+                                android:textColor="#0027FF"
+                                android:layout_weight="1"/>
 
                             <Button
                                 android:id="@+id/cobaltBt"
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:background="#FF6062B1" />
+                                android:background="#FF6062B1"
+                                android:textStyle="bold"
+                                android:textColor="#FF0000"
+                                android:layout_weight="1"/>
 
                             <Button
                                 android:id="@+id/darkBlackBlueBt"
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:background="#FF101433" />
+                                android:background="#FF101433"
+                                android:textStyle="bold"
+                                android:textColor="#FFFFFF"
+                                android:layout_weight="1"/>
 
 
                         </TableRow>
 
                         <TableRow
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:gravity="center">
+                            android:gravity="center"
+                            android:layout_weight="1">
 
                             <Button
                                 android:id="@+id/beigeBt"
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:background="#FFDF93" />
+                                android:background="#FFDF93"
+                                android:textStyle="bold"
+                                android:textColor="#000000"
+                                android:layout_weight="1"/>
 
                             <Button
                                 android:id="@+id/beigeBrownBt"
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:background="#AA907C" />
+                                android:background="#AA907C"
+                                android:textStyle="bold"
+                                android:textColor="#0027FF"
+                                android:layout_weight="1"/>
 
                             <Button
                                 android:id="@+id/lightGrayBt"
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:background="#D6D7D8" />
+                                android:background="#D6D7D8"
+                                android:textStyle="bold"
+                                android:textColor="#FF0000"
+                                android:layout_weight="1"/>
 
                             <Button
                                 android:id="@+id/grayBt"
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:background="#FF656565" />
+                                android:background="#FF656565"
+                                android:textStyle="bold"
+                                android:textColor="#FFFFFF"
+                                android:layout_weight="1"/>
                         </TableRow>
                     </TableLayout>
                 </LinearLayout>
