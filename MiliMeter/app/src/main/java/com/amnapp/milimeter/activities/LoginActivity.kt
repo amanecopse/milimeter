@@ -65,6 +65,10 @@ class LoginActivity : AppCompatActivity() {
             val intent = Intent(this, PublishGroupActivity::class.java)
             startActivity(intent)
         }
+        binding.myInfoTv.setOnClickListener {
+            val intent = Intent(this, UserInformationActivity::class.java)
+            startActivity(intent)
+        }
         binding.inviteSubUserTv.setOnClickListener {
             val id = UserData.getInstance().id
             var groupCode = AccountManager.mGroupCode
