@@ -13,6 +13,7 @@
     <string name="group_code">그룹코드: </string>
     <string name="Dday_setting">전역일 설정</string>
     <string name="login_user">로그인 및 계정</string>
+    <string name="ch_profile" translatable="false">프로필 변경</string>
 
     // 신체
 

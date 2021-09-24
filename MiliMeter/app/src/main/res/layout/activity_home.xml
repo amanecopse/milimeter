@@ -15,6 +15,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/appBarCl"
         android:layout_width="match_parent"
@@ -81,9 +82,14 @@
 
             <Button
                 android:id="@+id/profilechangeBt"
-                android:backgroundTint="@color/black"
-                android:layout_width="30dp"
-                android:layout_height="30dp" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bottom_button_background_cyan"
+                android:textColor="?attr/buttonTextColor"
+                android:textSize="@dimen/smallText"
+                android:text="프로필 사진 변경"/>
+
+
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/defaultCv"
@@ -172,18 +178,20 @@
             </androidx.cardview.widget.CardView>
 
         </LinearLayout>
+
     </androidx.core.widget.NestedScrollView>
 
     <Button
-        android:id="@+id/loginBt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bottom_button_background_cyan"
-        android:elevation="10dp"
-        android:text="@string/login_user"
-        android:textColor="?attr/buttonTextColor"
-        android:textSize="@dimen/smallText"
-        app:layout_constraintBottom_toBottomOf="@+id/bodySv" />
+            android:id="@+id/loginBt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bottom_button_background_cyan"
+            android:elevation="10dp"
+            android:text="@string/login_user"
+            android:textColor="?attr/buttonTextColor"
+            android:textSize="@dimen/smallText"
+            app:layout_constraintBottom_toBottomOf="@+id/bodySv" />
+
 
     <Button
         android:id="@+id/dDayBt"
@@ -192,6 +200,7 @@
         android:background="@drawable/header_button_background_cyan"
         android:textColor="?attr/buttonTextColor"
         android:textSize="@dimen/smallText"
+        android:text="전역일 설정"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarCl" />
 
