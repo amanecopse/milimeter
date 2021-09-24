@@ -20,6 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:background="?attr/cardBackground"
+        android:elevation="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -40,7 +41,9 @@
             android:layout_height="3dp"
             android:background="?attr/textColorBanner"
             android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
         </ImageView>
 
@@ -112,7 +115,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="이름: "
+                                android:text="@string/name"
                                 android:textColor="?attr/textColor"
                                 android:textSize="@dimen/middleText" />
 
@@ -133,7 +136,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="군번: "
+                                android:text="@string/military_number"
                                 android:textColor="?attr/textColor"
                                 android:textSize="@dimen/middleText" />
 
@@ -152,7 +155,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="그룹코드: "
+                                android:text="@string/group_code"
                                 android:textColor="?attr/textColor"
                                 android:textSize="@dimen/middleText" />
 
@@ -179,7 +182,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/bottom_button_background_cyan"
         android:elevation="10dp"
-        android:text="로그인 및 계정"
+        android:text="@string/login_user"
         android:textColor="?attr/buttonTextColor"
         android:textSize="@dimen/smallText"
         app:layout_constraintBottom_toBottomOf="@+id/bodySv" />

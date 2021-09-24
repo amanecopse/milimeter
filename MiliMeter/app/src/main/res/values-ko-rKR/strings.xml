@@ -1,12 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">밀리미터</string>
-    // korea version icon
+
     <string name="home">홈</string>
     <string name="body">신체</string>
     <string name="result">결과</string>
     <string name="goal">목표</string>
     <string name="setting">설정</string>
+
+    // 홈
+    <string name="name">이름: </string>
+    <string name="military_number">군번: </string>
+    <string name="group_code">그룹코드: </string>
+    <string name="Dday_setting">전역일 설정</string>
+    <string name="login_user">로그인 및 계정</string>
+
+    // 신체
+
+    // 결과
+    <string name="total">전 종목</string>
+    <string name="legtuk">레그턱</string>
+    <string name="running">240M 왕복달리기</string>
+    <string name="circuit">전장순환운동</string>
+    <string name="type_date">종목/날짜</string>
+
+    // 목표
+    <string name="goal_grade">목표등급: </string>
+    <string name="now_grade">현재등급: </string>
+    <string name="week_top_grade">(주간 최고 등급)</string>
+
+    // 설정
+    <string name="theme">테마</string>
+    <string name="language">언어</string>
+    <string name="alarm">알림</string>
+    <string name="passward">회원정보</string>
+    <string name="user_information">개인정보관리</string>
+
     <string name="lang1">한국어</string>
     <string name="lang2">영어</string>
 </resources>

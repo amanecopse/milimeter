@@ -4,360 +4,445 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#7A8B6F"
-    >
+    android:background="?attr/appWindowBackground"
+    tools:context=".activities.GoalActivity">
 
-
-    <TableLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/appBarCl"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        android:layout_height="55dp"
+        android:background="?attr/cardBackground"
+        android:elevation="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TableRow
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <com.dinuscxj.progressbar.CircleProgressBar
-                android:id="@+id/legTuckCpb"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:layout_weight="3"
-                app:progress_end_color="#E91E63"
-                app:progress_start_color="#FFEB3B"
-                app:progress_stroke_width="10dp"
-                app:progress_text_size="@dimen/largeText"
-                app:style="solid_line" />
+            <ImageView
+                android:id="@+id/iconIv"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginRight="10dp"
+                app:srcCompat="@drawable/ic_baseline_track_changes_20_white"
+                app:tint="?attr/textColorBanner" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
+            <TextView
+                android:id="@+id/titleTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="목표"
+                android:textColor="?attr/textColorBanner"
+                android:textSize="@dimen/largeText" />
+        </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:text="레그턱"
-                    android:textColor="#FF1F4C21"
-                    android:textSize="@dimen/middleText" />
-
-                <TableLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp">
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="목표등급: "
-                            android:textColor="#FF1F4C21"
-                            android:textSize="@dimen/smallText" />
-
-                        <TextView
-                            android:id="@+id/goalOfLegTuckGradeTv"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textColor="#FF1F4C21"
-                            android:textSize="@dimen/smallText" />
-                    </TableRow>
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="현재등급: "
-                            android:textColor="#FF1F4C21"
-                            android:textSize="@dimen/smallText" />
-
-                        <TextView
-                            android:id="@+id/legTuckGradeTv"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textColor="#FF1F4C21"
-                            android:textSize="@dimen/smallText" />
-
-                    </TableRow>
-
-                </TableLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="(주간 최고 등급)"
-                    android:textColor="#FF1F4C21"
-                    android:textSize="@dimen/smallText" />
-
-            </LinearLayout>
-        </TableRow>
-
-        <TableRow
+        <ImageView
+            android:id="@+id/borderLineIv"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_height="3dp"
+            android:background="?attr/textColorBanner"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
-            <com.dinuscxj.progressbar.CircleProgressBar
-                android:id="@+id/shuttleRunCpb"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:layout_weight="3"
-                app:progress_end_color="#E91E63"
-                app:progress_start_color="#4CAF50"
-                app:progress_stroke_width="10dp"
-                app:progress_text_size="@dimen/largeText"
-                app:style="solid_line" />
+        </ImageView>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:text="240m달리기"
-                    android:textColor="#FF1F4C21"
-                    android:textSize="@dimen/middleText" />
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        app:cardBackgroundColor="?attr/cardBackground"
+        app:layout_constraintBottom_toTopOf="@+id/menuBottomLl"
+        app:layout_constraintTop_toBottomOf="@+id/appBarCl"
+        tools:layout_editor_absoluteX="10dp">
 
-                <TableLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp">
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:text="목표등급: "
-                            android:textColor="#FF1F4C21"
-                            android:textSize="@dimen/smallText" />
-
-                        <TextView
-                            android:id="@+id/goalOfShuttleRunGradeTv"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textColor="#FF1F4C21"
-                            android:textSize="@dimen/smallText" />
-                    </TableRow>
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="현재등급:"
-                            android:textColor="#FF1F4C21"
-                            android:textSize="@dimen/smallText" />
-
-                        <TextView
-                            android:id="@+id/shuttleRunGradeTv"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textColor="#FF1F4C21"
-                            android:textSize="@dimen/smallText" />
-
-                    </TableRow>
-
-                </TableLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="(주간 최고 등급)"
-                    android:textColor="#FF1F4C21"
-                    android:textSize="@dimen/smallText" />
-            </LinearLayout>
-        </TableRow>
-
-        <TableRow
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:orientation="vertical">
 
-            <com.dinuscxj.progressbar.CircleProgressBar
-                android:id="@+id/fieldTrainingCpb"
+            <TableLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:layout_weight="3"
-                app:progress_end_color="#E91E63"
-                app:progress_start_color="#2196F3"
-                app:progress_stroke_width="10dp"
-                app:progress_text_size="@dimen/largeText"
-                app:style="solid_line" />
+                android:layout_height="match_parent">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:text="전장순환운동"
-                    android:textColor="#FF1F4C21"
-                    android:textSize="@dimen/middleText" />
-
-                <TableLayout
+                <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp">
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
 
-                    <TableRow
+                    <com.dinuscxj.progressbar.CircleProgressBar
+                        android:id="@+id/legTuckCpb"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:layout_weight="3"
+                        app:progress_end_color="#E91E63"
+                        app:progress_start_color="#FFEB3B"
+                        app:progress_stroke_width="10dp"
+                        app:progress_text_size="@dimen/largeText"
+                        app:style="solid_line" />
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="목표등급: "
-                            android:textColor="#FF1F4C21"
-                            android:textSize="@dimen/smallText" />
-
-                        <TextView
-                            android:id="@+id/goalOfFieldTrainingGradeTv"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textColor="#FF1F4C21"
-                            android:textSize="@dimen/smallText" />
-                    </TableRow>
-
-                    <TableRow
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:text="레그턱"
+                            android:textColor="?attr/textColor"
+                            android:textSize="@dimen/middleText" />
+
+                        <TableLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp">
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="목표등급: "
+                                    android:textColor="?attr/textColorSecondary"
+                                    android:textSize="@dimen/smallText" />
+
+                                <TextView
+                                    android:id="@+id/goalOfLegTuckGradeTv"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="?attr/textColor"
+                                    android:textSize="@dimen/smallText" />
+                            </TableRow>
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="현재등급: "
+                                    android:textColor="?attr/textColorSecondary"
+                                    android:textSize="@dimen/smallText" />
+
+                                <TextView
+                                    android:id="@+id/legTuckGradeTv"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="?attr/textColor"
+                                    android:textSize="@dimen/smallText" />
+
+                            </TableRow>
+
+                        </TableLayout>
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="현재등급: "
-                            android:textColor="#FF1F4C21"
+                            android:layout_marginStart="10dp"
+                            android:text="(주간 최고 등급)"
+                            android:textColor="?attr/textColorSecondary"
                             android:textSize="@dimen/smallText" />
 
-                        <TextView
-                            android:id="@+id/fieldTrainingGradeTv"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textColor="#FF1F4C21"
-                            android:textSize="@dimen/smallText" />
+                    </LinearLayout>
+                </TableRow>
 
-                    </TableRow>
-
-                </TableLayout>
-
-                <TextView
+                <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="(주간 최고 등급)"
-                    android:textColor="#FF1F4C21"
-                    android:textSize="@dimen/smallText" />
-            </LinearLayout>
-        </TableRow>
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
 
-    </TableLayout>
+                    <com.dinuscxj.progressbar.CircleProgressBar
+                        android:id="@+id/shuttleRunCpb"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:layout_weight="3"
+                        app:progress_end_color="#E91E63"
+                        app:progress_start_color="#4CAF50"
+                        app:progress_stroke_width="10dp"
+                        app:progress_text_size="@dimen/largeText"
+                        app:style="solid_line" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:text="240m달리기"
+                            android:textColor="?attr/textColor"
+                            android:textSize="@dimen/middleText" />
+
+                        <TableLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp">
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:text="목표등급: "
+                                    android:textColor="?attr/textColorSecondary"
+                                    android:textSize="@dimen/smallText" />
+
+                                <TextView
+                                    android:id="@+id/goalOfShuttleRunGradeTv"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="?attr/textColor"
+                                    android:textSize="@dimen/smallText" />
+                            </TableRow>
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="현재등급:"
+                                    android:textColor="?attr/textColorSecondary"
+                                    android:textSize="@dimen/smallText" />
+
+                                <TextView
+                                    android:id="@+id/shuttleRunGradeTv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="?attr/textColor"
+                                    android:textSize="@dimen/smallText" />
+
+                            </TableRow>
+
+                        </TableLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:text="(주간 최고 등급)"
+                            android:textColor="?attr/textColorSecondary"
+                            android:textSize="@dimen/smallText" />
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <com.dinuscxj.progressbar.CircleProgressBar
+                        android:id="@+id/fieldTrainingCpb"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:layout_weight="3"
+                        app:progress_end_color="#E91E63"
+                        app:progress_start_color="#2196F3"
+                        app:progress_stroke_width="10dp"
+                        app:progress_text_size="@dimen/largeText"
+                        app:style="solid_line" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:text="전장순환운동"
+                            android:textColor="?attr/textColor"
+                            android:textSize="@dimen/middleText" />
+
+                        <TableLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp">
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="목표등급: "
+                                    android:textColor="?attr/textColorSecondary"
+                                    android:textSize="@dimen/smallText" />
+
+                                <TextView
+                                    android:id="@+id/goalOfFieldTrainingGradeTv"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="?attr/textColor"
+                                    android:textSize="@dimen/smallText" />
+                            </TableRow>
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="현재등급: "
+                                    android:textColor="?attr/textColorSecondary"
+                                    android:textSize="@dimen/smallText" />
+
+                                <TextView
+                                    android:id="@+id/fieldTrainingGradeTv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:textColor="?attr/textColor"
+                                    android:textSize="@dimen/smallText" />
+
+                            </TableRow>
+
+                        </TableLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:text="(주간 최고 등급)"
+                            android:textColor="?attr/textColorSecondary"
+                            android:textSize="@dimen/smallText" />
+                    </LinearLayout>
+                </TableRow>
+
+            </TableLayout>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 
     <LinearLayout
-        android:id="@+id/linearLayout2"
+        android:id="@+id/menuBottomLl"
         android:layout_width="match_parent"
-        android:layout_height="95dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:background="?attr/cardBackground"
         android:gravity="fill_horizontal"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints">
+        android:orientation="vertical"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent">
 
-        <Button
-            android:id="@+id/homeBt"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:drawableTop="@drawable/ic_baseline_home_20_white"
-            android:gravity="center_horizontal"
-            android:text="@string/home"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="15sp" />
+        <ImageView
+            android:id="@+id/bottomBorderLineIv"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="?attr/textColorBanner"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent">
 
-        <Button
-            android:id="@+id/bodyBt"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:drawableTop="@drawable/ic_baseline_accessibility_20_white"
-            android:gravity="center_horizontal"
-            android:text="@string/body"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="15sp" />
+        </ImageView>
 
-        <Button
-            android:id="@+id/resultBt"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:drawableTop="@drawable/ic_baseline_insert_chart_outlined_20_white"
-            android:gravity="center_horizontal"
-            android:text="@string/result"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="15sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
 
-        <Button
-            android:id="@+id/goalBt"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:drawableTop="@drawable/ic_baseline_track_changes_20_white"
-            android:gravity="center_horizontal"
-            android:text="@string/goal"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="15sp" />
+            <Button
+                android:id="@+id/homeBt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:drawableTop="@drawable/ic_baseline_home_20_white"
+                android:drawableTint="?attr/textColorBanner"
+                android:gravity="center_horizontal"
+                android:text="@string/home"
+                android:textAllCaps="false"
+                android:textColor="?attr/textColorBanner"
+                android:textSize="15sp" />
 
-        <Button
-            android:id="@+id/settingBt"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:drawableTop="@drawable/ic_baseline_miscellaneous_services_20_white"
-            android:gravity="center_horizontal"
-            android:text="@string/setting"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="15sp" />
+            <Button
+                android:id="@+id/bodyBt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:drawableTop="@drawable/ic_baseline_accessibility_20_white"
+                android:drawableTint="?attr/textColorBanner"
+                android:gravity="center_horizontal"
+                android:text="@string/body"
+                android:textAllCaps="false"
+                android:textColor="?attr/textColorBanner"
+                android:textSize="15sp" />
 
+            <Button
+                android:id="@+id/resultBt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:drawableTop="@drawable/ic_baseline_insert_chart_outlined_20_white"
+                android:drawableTint="?attr/textColorBanner"
+                android:gravity="center_horizontal"
+                android:text="@string/result"
+                android:textAllCaps="false"
+                android:textColor="?attr/textColorBanner"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/goalBt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:drawableTop="@drawable/ic_baseline_track_changes_20_white"
+                android:drawableTint="?attr/textColorBanner"
+                android:gravity="center_horizontal"
+                android:text="@string/goal"
+                android:textAllCaps="false"
+                android:textColor="?attr/textColorBanner"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/settingBt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:drawableTop="@drawable/ic_baseline_miscellaneous_services_20_white"
+                android:drawableTint="?attr/textColorBanner"
+                android:gravity="center_horizontal"
+                android:text="@string/setting"
+                android:textAllCaps="false"
+                android:textColor="?attr/textColorBanner"
+                android:textSize="15sp" />
+        </LinearLayout>
 
     </LinearLayout>
-    
 
 </androidx.constraintlayout.widget.ConstraintLayout>

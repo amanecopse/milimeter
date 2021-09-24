@@ -33,15 +33,10 @@ class LanguageActivity : AppCompatActivity() {
 
 
         // 창닫기
-        binding.cancelBt.setOnClickListener {
-            val intentcancel = Intent(this, SettingActivity::class.java)
-            startActivity(intentcancel)
+        binding.cancelIb.setOnClickListener {
             finish()
         }
-
-        binding.backBt.setOnClickListener {
-            val intentBack = Intent(this, SettingActivity::class.java)
-            startActivity(intentBack)
+        binding.backIb.setOnClickListener {
             finish()
         }
 
@@ -57,7 +52,7 @@ class LanguageActivity : AppCompatActivity() {
         }
 
 
-        binding.saveBt.setOnClickListener {
+        binding.saveCv.setOnClickListener {
             changeLanguage(PreferenceManager().getLanguageData(this).toString())
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)

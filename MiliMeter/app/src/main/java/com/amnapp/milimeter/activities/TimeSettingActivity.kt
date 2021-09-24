@@ -22,16 +22,13 @@ class TimeSettingActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // 창닫기
-        binding.cancelBt.setOnClickListener {
+        binding.cancelIb.setOnClickListener {
             val intentBack = Intent(this, SettingActivity::class.java)
             startActivity(intentBack)
-            finish()
         }
 
         // 취소하기 버튼
-        binding.backBt.setOnClickListener {
-            val intentBack = Intent(this, NoticeActivity::class.java)
-            startActivity(intentBack)
+        binding.backIb.setOnClickListener {
             finish()
         }
 
@@ -101,7 +98,7 @@ class TimeSettingActivity : AppCompatActivity() {
             }
         })
 
-        binding.saveBt.setOnClickListener {
+        binding.saveCv.setOnClickListener {
             Log.d(TAG, toastMessage1)
             Toast.makeText(this, toastMessage1, Toast.LENGTH_LONG).show()
             finish()

@@ -25,13 +25,14 @@ class UserPasswardActivity :AppCompatActivity() {
         val user = UserData.getInstance()
 
         // 창닫기
-        binding.cancelBt.setOnClickListener {
-            val intentBack = Intent(this, SettingActivity::class.java)
-            startActivity(intentBack)
+        binding.cancelIb.setOnClickListener {
+            finish()
+        }
+        binding.backIb.setOnClickListener {
             finish()
         }
 
-        binding.changePwBt.setOnClickListener {
+        binding.changePwLl.setOnClickListener {
 
             // 현재 비밀번호 확인 다이얼로그 창
             val dialog1 = PwCheckDialog(this)
@@ -74,6 +75,11 @@ class UserPasswardActivity :AppCompatActivity() {
                     }
                 }
             })
+        }
+
+        binding.groupAccountLl.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
         }
     }
 

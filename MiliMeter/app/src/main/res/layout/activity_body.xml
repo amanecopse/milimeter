@@ -4,248 +4,323 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/appWindowBackground"
     tools:context=".activities.BodyActivity">
 
-   <RelativeLayout
-       android:layout_width="match_parent"
-       android:layout_height="match_parent" >
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/appBarCl"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="?attr/cardBackground"
+        android:elevation="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-       <LinearLayout
-           android:id="@+id/bodyHeadLineLL"
-           android:layout_width="match_parent"
-           android:layout_height="90dp"
-           android:background="@color/green"
-           android:orientation="horizontal"
-           android:gravity="center_vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-           <TextView
-               android:layout_width="320dp"
-               android:layout_height="wrap_content"
-               android:layout_alignParentTop="true"
-               android:drawableLeft="@drawable/ic_baseline_accessibility_20_white"
-               android:drawablePadding="15dp"
-               android:gravity="left|center_vertical"
-               android:paddingLeft="10dp"
-               android:text="신체"
-               android:textColor="@color/white"
-               android:textSize="30sp"
-               android:textStyle="bold"
-               />
+            <ImageView
+                android:id="@+id/iconIv"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginRight="10dp"
+                app:srcCompat="@drawable/ic_baseline_accessibility_20_white"
+                app:tint="?attr/textColorBanner" />
 
-       </LinearLayout>
+            <TextView
+                android:id="@+id/titleTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="신체"
+                android:textColor="?attr/textColorBanner"
+                android:textSize="@dimen/largeText" />
+        </LinearLayout>
 
-       <LinearLayout
-           android:layout_width="match_parent"
-           android:layout_height="40dp"
-           android:layout_marginTop="100dp">
+        <ImageView
+            android:id="@+id/borderLineIv"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="?attr/textColorBanner"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
-           <TextView
-               android:id="@+id/weightTv"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_marginStart="16dp"
-               android:text="목표치까지 +/- OOkg"
-               android:textSize="20sp"
-               android:textStyle="bold" />
+        </ImageView>
 
-       </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/bodySv"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/menuBottomLl"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarCl">
 
-       <FrameLayout
-           android:id="@+id/frameLayout"
-           android:layout_width="match_parent"
-           android:layout_height="110dp"
-           android:layout_marginTop="140dp">
+        <LinearLayout
+            android:id="@+id/bodyLl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:cardBackgroundColor="?attr/cardBackground">
 
-           <TextView
-               android:id="@+id/stopwatchTv"
-               android:layout_width="380dp"
-               android:layout_height="100dp"
-               android:layout_gravity="center"
-               android:background="@drawable/edge"
-               android:gravity="top|center"
-               android:text="00:00:00"
-               android:textSize="40sp"
-               android:textStyle="bold" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:orientation="vertical">
 
-           <ImageButton
-               android:id="@+id/startBt"
-               android:layout_width="40dp"
-               android:layout_height="40dp"
-               android:layout_marginLeft="30dp"
-               android:layout_marginTop="50dp"
-               android:background="@android:color/transparent"
-               android:src="@drawable/ic_baseline_play_circle_outline_30_white"
-               android:tintMode="src_in"
-               app:tint="@color/dark_green" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-           <ImageButton
-               android:id="@+id/resetBt"
-               android:layout_width="40dp"
-               android:layout_height="40dp"
-               android:layout_marginLeft="185dp"
-               android:layout_marginTop="55dp"
-               android:background="@android:color/transparent"
-               android:src="@drawable/ic_baseline_replay_30_white"
-               android:tintMode="src_in"
-               app:tint="@color/dark_green" />
+                        <TextView
+                            android:id="@+id/weightTv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:text="목표치까지 +/- OOkg"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
 
-           <ImageButton
-               android:id="@+id/stopBt"
-               android:layout_width="40dp"
-               android:layout_height="40dp"
-               android:layout_marginLeft="330dp"
-               android:layout_marginTop="50dp"
-               android:background="@android:color/transparent"
-               android:src="@drawable/ic_baseline_pause_circle_outline_30_white"
-               android:tintMode="src_in"
-               app:tint="@color/dark_green" />
+                    </LinearLayout>
 
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp">
 
-           <ImageButton
-               android:id="@+id/recordBt"
-               android:layout_width="40dp"
-               android:layout_height="40dp"
-               android:layout_marginLeft="350dp"
-               android:background="@android:color/transparent"
-               android:src="@drawable/ic_baseline_more_horiz_30_white"
-               android:tintMode="src_in"
-               app:tint="@color/dark_green" />
+                        <TextView
+                            android:id="@+id/stopwatchTv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:background="@drawable/edge"
+                            android:gravity="top|center"
+                            android:text="00:00:00"
+                            android:textSize="40sp"
+                            android:textStyle="bold"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-           <LinearLayout
-               android:layout_width="match_parent"
-               android:layout_height="match_parent">
+                        <ImageButton
+                            android:id="@+id/startBt"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="10dp"
+                            android:background="?android:attr/selectableItemBackgroundBorderless"
+                            android:src="@drawable/ic_baseline_play_circle_outline_30_white"
+                            android:tintMode="src_in"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/stopwatchTv"
+                            app:tint="@color/dark_green" />
 
+                        <ImageButton
+                            android:id="@+id/resetBt"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="10dp"
+                            android:background="?android:attr/selectableItemBackgroundBorderless"
+                            android:src="@drawable/ic_baseline_replay_30_white"
+                            android:tintMode="src_in"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/stopwatchTv"
+                            app:tint="@color/dark_green" />
 
-           </LinearLayout>
+                        <ImageButton
+                            android:id="@+id/stopBt"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:background="?android:attr/selectableItemBackgroundBorderless"
+                            android:src="@drawable/ic_baseline_pause_circle_outline_30_white"
+                            android:tintMode="src_in"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/stopwatchTv"
+                            app:tint="@color/dark_green" />
 
-       </FrameLayout>
+                        <ImageButton
+                            android:id="@+id/recordBt"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginEnd="10dp"
+                            android:background="?android:attr/selectableItemBackgroundBorderless"
+                            android:src="@drawable/ic_baseline_more_horiz_30_white"
+                            android:tintMode="src_in"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/dark_green" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
-       <LinearLayout
-           android:layout_width="match_parent"
-           android:layout_height="356dp"
-           android:layout_marginTop="270dp"
-           android:orientation="vertical">
+                </LinearLayout>
 
-           <com.github.mikephil.charting.charts.LineChart
-               android:id="@+id/weightChart"
-               android:layout_width="match_parent"
-               android:layout_height="155dp"
-               android:layout_marginTop="20dp" />
+            </androidx.cardview.widget.CardView>
 
-           <LinearLayout
-               android:layout_width="match_parent"
-               android:layout_height="match_parent"
-               android:orientation="horizontal">
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                app:cardBackgroundColor="?attr/cardBackground">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:orientation="vertical">
 
-               <com.github.mikephil.charting.charts.PieChart
-                   android:id="@+id/exercisechart"
-                   android:layout_width="205dp"
-                   android:layout_height="match_parent">
-
-               </com.github.mikephil.charting.charts.PieChart>
-
-               <com.github.mikephil.charting.charts.PieChart
-                   android:id="@+id/weeklyexercisechart"
-                   android:layout_width="201dp"
-                   android:layout_height="match_parent">
-
-               </com.github.mikephil.charting.charts.PieChart>
-           </LinearLayout>
-
-           <LinearLayout
-               android:layout_width="match_parent"
-               android:layout_height="356dp"
-               android:layout_marginTop="270dp"
-               android:orientation="vertical">
-
-
-           </LinearLayout>
-       </LinearLayout>
-
-
-       <LinearLayout
-           android:layout_width="match_parent"
-           android:layout_height="95dp"
-           android:layout_alignParentBottom="true"
-           android:gravity="fill_horizontal"
-           android:orientation="horizontal"
-           app:layout_constraintBottom_toBottomOf="parent"
-           android:background="@color/green">
-
-           <Button
-               android:id="@+id/homeBt"
-               android:layout_width="0dp"
-               android:layout_height="match_parent"
-               android:layout_weight="1"
-               android:background="@android:color/transparent"
-               android:drawableTop="@drawable/ic_baseline_home_20_white"
-               android:gravity="center_horizontal"
-               android:text="@string/home"
-               android:textAllCaps="false"
-               android:textColor="@color/white"
-               android:textSize="15sp" />
-
-           <Button
-               android:id="@+id/bodyBt"
-               android:layout_width="0dp"
-               android:layout_height="match_parent"
-               android:layout_weight="1"
-               android:background="@android:color/transparent"
-               android:drawableTop="@drawable/ic_baseline_accessibility_20_white"
-               android:gravity="center_horizontal"
-               android:text="@string/body"
-               android:textAllCaps="false"
-               android:textColor="@color/white"
-               android:textSize="15sp" />
-
-           <Button
-               android:id="@+id/resultBt"
-               android:layout_width="0dp"
-               android:layout_height="match_parent"
-               android:layout_weight="1"
-               android:background="@android:color/transparent"
-               android:drawableTop="@drawable/ic_baseline_insert_chart_outlined_20_white"
-               android:gravity="center_horizontal"
-               android:text="@string/result"
-               android:textAllCaps="false"
-               android:textColor="@color/white"
-               android:textSize="15sp" />
-
-           <Button
-               android:id="@+id/goalBt"
-               android:layout_width="0dp"
-               android:layout_height="match_parent"
-               android:layout_weight="1"
-               android:background="@android:color/transparent"
-               android:drawableTop="@drawable/ic_baseline_track_changes_20_white"
-               android:gravity="center_horizontal"
-               android:text="@string/goal"
-               android:textAllCaps="false"
-               android:textColor="@color/white"
-               android:textSize="15sp" />
-
-           <Button
-               android:id="@+id/settingBt"
-               android:layout_width="0dp"
-               android:layout_height="match_parent"
-               android:layout_weight="1"
-               android:background="@android:color/transparent"
-               android:drawableTop="@drawable/ic_baseline_miscellaneous_services_20_white"
-               android:gravity="center_horizontal"
-               android:text="@string/setting"
-               android:textAllCaps="false"
-               android:textColor="@color/white"
-               android:textSize="15sp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
 
-       </LinearLayout>
+                        <com.github.mikephil.charting.charts.PieChart
+                            android:id="@+id/exercisechart"
+                            android:layout_width="match_parent"
+                            android:layout_height="155dp"
+                            android:layout_weight="1">
 
-   </RelativeLayout>
+                        </com.github.mikephil.charting.charts.PieChart>
 
+                        <com.github.mikephil.charting.charts.PieChart
+                            android:id="@+id/weeklyexercisechart"
+                            android:layout_width="match_parent"
+                            android:layout_height="155dp"
+                            android:layout_weight="1">
 
+                        </com.github.mikephil.charting.charts.PieChart>
+                    </LinearLayout>
 
+                    <com.github.mikephil.charting.charts.LineChart
+                        android:id="@+id/weightChart"
+                        android:layout_width="match_parent"
+                        android:layout_height="400dp"
+                        android:layout_marginTop="20dp" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:id="@+id/menuBottomLl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="?attr/cardBackground"
+        android:gravity="fill_horizontal"
+        android:orientation="vertical"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageView
+            android:id="@+id/bottomBorderLineIv"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="?attr/textColorBanner"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+        </ImageView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <Button
+                android:id="@+id/homeBt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:drawableTop="@drawable/ic_baseline_home_20_white"
+                android:drawableTint="?attr/textColorBanner"
+                android:gravity="center_horizontal"
+                android:text="@string/home"
+                android:textAllCaps="false"
+                android:textColor="?attr/textColorBanner"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/bodyBt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:drawableTop="@drawable/ic_baseline_accessibility_20_white"
+                android:drawableTint="?attr/textColorBanner"
+                android:gravity="center_horizontal"
+                android:text="@string/body"
+                android:textAllCaps="false"
+                android:textColor="?attr/textColorBanner"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/resultBt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:drawableTop="@drawable/ic_baseline_insert_chart_outlined_20_white"
+                android:drawableTint="?attr/textColorBanner"
+                android:gravity="center_horizontal"
+                android:text="@string/result"
+                android:textAllCaps="false"
+                android:textColor="?attr/textColorBanner"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/goalBt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:drawableTop="@drawable/ic_baseline_track_changes_20_white"
+                android:drawableTint="?attr/textColorBanner"
+                android:gravity="center_horizontal"
+                android:text="@string/goal"
+                android:textAllCaps="false"
+                android:textColor="?attr/textColorBanner"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/settingBt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:drawableTop="@drawable/ic_baseline_miscellaneous_services_20_white"
+                android:drawableTint="?attr/textColorBanner"
+                android:gravity="center_horizontal"
+                android:text="@string/setting"
+                android:textAllCaps="false"
+                android:textColor="?attr/textColorBanner"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
