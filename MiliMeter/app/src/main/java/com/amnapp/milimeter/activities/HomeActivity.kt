@@ -5,6 +5,8 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -18,6 +20,9 @@ import androidx.appcompat.app.AlertDialog
 import com.amnapp.milimeter.*
 import com.amnapp.milimeter.databinding.ActivityHomeBinding
 import com.amnapp.milimeter.databinding.ActivitySettingBinding
+import com.google.common.io.ByteStreams.toByteArray
+import java.io.ByteArrayOutputStream
+import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.system.exitProcess
@@ -27,11 +32,15 @@ class HomeActivity : AppCompatActivity() {
     val binding by lazy { ActivityHomeBinding.inflate(layoutInflater) }
     lateinit var mLoadingDialog: AlertDialog//로딩화면임. setProgressDialog()를 실행후 mLoadingDialog.show()로 시작
 
+    //프로필사진 설정
     private val GALLERY = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        val bitmap = assetsToBitmap("purpleFlower.png")
+        
 
         initUI()
         autoLogin()
@@ -44,6 +53,7 @@ class HomeActivity : AppCompatActivity() {
 
     }
 
+
     @Override
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -54,7 +64,7 @@ class HomeActivity : AppCompatActivity() {
                 Toast.makeText(this,ImnageData.toString(), Toast.LENGTH_SHORT ).show()
                 try {
                     val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, ImnageData)
-                    binding.profileCiv.setImageBitmap(bitmap)
+                    binding.profileCiv.setImageBitmap(bitmap.toByteArray().toBitmap())
                 }
                 catch (e:Exception){
                     e.printStackTrace()
@@ -65,6 +75,31 @@ class HomeActivity : AppCompatActivity() {
         }
 
     }
+
+    fun Context.assetsToBitmap(fileName:String): Bitmap?{
+        return try {
+            val stream = assets.open(fileName)
+            BitmapFactory.decodeStream(stream)
+        } catch (e: IOException) {
+            e.printStackTrace()
+            null
+        }
+    }
+
+    //byte로 변환
+    fun Bitmap.toByteArray():ByteArray{
+        ByteArrayOutputStream().apply {
+            compress(Bitmap.CompressFormat.JPEG,10,this)
+            return toByteArray()
+        }
+    }
+
+    //bitmap으로 변환
+    fun ByteArray.toBitmap():Bitmap{
+        return BitmapFactory.decodeByteArray(this,0,size)
+    }
+
+
 
     private fun initUI() {
         setProgressDialog()
