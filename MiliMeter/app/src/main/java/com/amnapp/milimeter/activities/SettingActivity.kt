@@ -12,11 +12,13 @@ import com.amnapp.milimeter.databinding.ActivityInviteSubUserBinding
 import com.amnapp.milimeter.databinding.ActivitySettingBinding
 import kotlin.system.exitProcess
 
-class SettingActivity : AppCompatActivity() {
+class SettingActivity : CustomThemeActivity() {
     lateinit var binding: ActivitySettingBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        loadTheme()
+
         binding = ActivitySettingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

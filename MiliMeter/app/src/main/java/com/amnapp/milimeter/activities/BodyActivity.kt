@@ -31,9 +31,9 @@ import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.system.exitProcess
 
-class BodyActivity : AppCompatActivity() {
+class BodyActivity : CustomThemeActivity() {
 
-    val binding by lazy { ActivityBodyBinding.inflate(layoutInflater) }
+    lateinit var binding: ActivityBodyBinding
 
     //핸들러사용
     val handler = Handler()
@@ -43,6 +43,9 @@ class BodyActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        loadTheme()
+
+        binding = ActivityBodyBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         //핸들러 - 1초마다 실행되게 함

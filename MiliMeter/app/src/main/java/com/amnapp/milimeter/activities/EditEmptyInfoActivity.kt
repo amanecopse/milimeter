@@ -19,7 +19,7 @@ import com.amnapp.milimeter.databinding.ActivityAdminPageBinding
 import com.amnapp.milimeter.databinding.ActivityEditEmptyInfoBinding
 import com.amnapp.milimeter.viewModels.AdminPageViewModel
 
-class EditEmptyInfoActivity : AppCompatActivity() {
+class EditEmptyInfoActivity : CustomThemeActivity() {
     lateinit var binding: ActivityEditEmptyInfoBinding
     lateinit var mLoadingDialog: AlertDialog//로딩화면임. setProgressDialog()를 실행후 mLoadingDialog.show()로 시작
     lateinit var mChildGroupMemberData: GroupMemberData
@@ -27,6 +27,8 @@ class EditEmptyInfoActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        loadTheme()
+
         binding = ActivityEditEmptyInfoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

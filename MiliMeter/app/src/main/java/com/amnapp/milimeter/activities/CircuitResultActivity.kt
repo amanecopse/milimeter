@@ -17,10 +17,12 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 
-class CircuitResultActivity:AppCompatActivity() {
+class CircuitResultActivity : CustomThemeActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
+        loadTheme()
+
         setContentView(R.layout.activity_circuit_result)
 
         showGrade()

@@ -4,7 +4,6 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +13,6 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.amnapp.milimeter.AccountManager
@@ -24,7 +22,7 @@ import com.amnapp.milimeter.databinding.ActivityAdminPageBinding
 import com.amnapp.milimeter.recyclerViews.AdminPageRecyclerAdapter
 import com.amnapp.milimeter.viewModels.AdminPageViewModel
 
-class AdminPageActivity : AppCompatActivity() {
+class AdminPageActivity : CustomThemeActivity() {
 
     lateinit var binding: ActivityAdminPageBinding
     lateinit var mLoadingDialog: AlertDialog//로딩화면임. setProgressDialog()를 실행후 mLoadingDialog.show()로 시작
@@ -32,6 +30,7 @@ class AdminPageActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        loadTheme()
         binding = ActivityAdminPageBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

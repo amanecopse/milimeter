@@ -24,10 +24,12 @@ import kotlin.coroutines.EmptyCoroutineContext
 import kotlin.system.exitProcess
 
 
-class ResultActivity : AppCompatActivity() {
+class ResultActivity : CustomThemeActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        loadTheme()
+
         setContentView(R.layout.activity_result)
         //그래프
 

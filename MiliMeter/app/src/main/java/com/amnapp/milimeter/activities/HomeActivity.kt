@@ -7,30 +7,28 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.Gravity
-import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import com.amnapp.milimeter.*
 import com.amnapp.milimeter.databinding.ActivityHomeBinding
-import com.amnapp.milimeter.databinding.ActivitySettingBinding
-import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.system.exitProcess
 
-class HomeActivity : AppCompatActivity() {
-
-    val binding by lazy { ActivityHomeBinding.inflate(layoutInflater) }
+class HomeActivity : CustomThemeActivity() {
+    lateinit var binding: ActivityHomeBinding
     lateinit var mLoadingDialog: AlertDialog//로딩화면임. setProgressDialog()를 실행후 mLoadingDialog.show()로 시작
 
     private val GALLERY = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        loadTheme()
+
+        binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         initUI()

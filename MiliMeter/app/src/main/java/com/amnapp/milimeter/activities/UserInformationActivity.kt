@@ -15,12 +15,15 @@ import com.google.android.material.R
 import java.text.SimpleDateFormat
 import java.util.*
 
-class UserInformationActivity :AppCompatActivity() {
+class UserInformationActivity :CustomThemeActivity() {
 
-    val binding by lazy { ActivityUserInformationBinding.inflate(layoutInflater) }
+    lateinit var binding : ActivityUserInformationBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        loadTheme()
+
+        binding = ActivityUserInformationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val userData = loadUserData()

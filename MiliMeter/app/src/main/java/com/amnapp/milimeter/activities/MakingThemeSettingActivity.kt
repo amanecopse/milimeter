@@ -6,12 +6,15 @@ import android.os.Bundle
 import com.amnapp.milimeter.R
 import com.amnapp.milimeter.databinding.ActivityMakingThemeSettingBinding
 
-class MakingThemeSettingActivity : AppCompatActivity() {
+class MakingThemeSettingActivity : CustomThemeActivity() {
 
-    val binding by lazy { ActivityMakingThemeSettingBinding.inflate(layoutInflater) }
+    lateinit var binding : ActivityMakingThemeSettingBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        loadTheme()
+
+        binding = ActivityMakingThemeSettingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         // 창닫기 (바로 설정창으로)

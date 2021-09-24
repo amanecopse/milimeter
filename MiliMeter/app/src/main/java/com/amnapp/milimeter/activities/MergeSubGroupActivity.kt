@@ -14,12 +14,14 @@ import com.amnapp.milimeter.AccountManager
 import com.amnapp.milimeter.databinding.ActivityLoginBinding
 import com.amnapp.milimeter.databinding.ActivityMergeSubGroupBinding
 
-class MergeSubGroupActivity : AppCompatActivity() {
+class MergeSubGroupActivity : CustomThemeActivity() {
     lateinit var binding: ActivityMergeSubGroupBinding
     lateinit var mLoadingDialog: AlertDialog//로딩화면임. setProgressDialog()를 실행후 mDialog.show()로 시작
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        loadTheme()
+
         binding = ActivityMergeSubGroupBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

@@ -15,7 +15,7 @@ import com.amnapp.milimeter.GroupMemberData
 import com.amnapp.milimeter.R
 import com.amnapp.milimeter.databinding.ActivityInviteSubUserBinding
 
-class InviteSubUserActivity : AppCompatActivity() {
+class InviteSubUserActivity : CustomThemeActivity() {
     lateinit var binding: ActivityInviteSubUserBinding
     lateinit var mLoadingDialog: AlertDialog//로딩화면임. setProgressDialog()를 실행후 mDialog.show()로 시작
     lateinit var mParentGroupMemberData: GroupMemberData
@@ -23,6 +23,8 @@ class InviteSubUserActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        loadTheme()
+
         binding = ActivityInviteSubUserBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

@@ -7,12 +7,15 @@ import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import com.amnapp.milimeter.databinding.ActivityNoticeBinding
 
-class NoticeActivity : AppCompatActivity() {
+class NoticeActivity : CustomThemeActivity() {
 
-    val binding by lazy { ActivityNoticeBinding.inflate(layoutInflater) }
+    lateinit var binding: ActivityNoticeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        loadTheme()
+
+        binding = ActivityNoticeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         // 창닫기

@@ -7,12 +7,14 @@ import com.amnapp.milimeter.R
 import com.amnapp.milimeter.databinding.ActivityDebugBinding
 import com.amnapp.milimeter.databinding.ActivitySignInBinding
 
-class DebugActivity : AppCompatActivity() {
+class DebugActivity : CustomThemeActivity() {
 
     lateinit var binding: ActivityDebugBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        loadTheme()
+
         binding = ActivityDebugBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

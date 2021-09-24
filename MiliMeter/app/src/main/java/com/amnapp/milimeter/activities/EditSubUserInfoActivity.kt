@@ -22,7 +22,7 @@ import com.google.android.material.R
 import java.text.SimpleDateFormat
 import java.util.*
 
-class EditSubUserInfoActivity : AppCompatActivity() {
+class EditSubUserInfoActivity : CustomThemeActivity() {
 
     lateinit var binding: ActivityEditSubUserInfoBinding
     lateinit var mLoadingDialog: AlertDialog//로딩화면임. setProgressDialog()를 실행후 mLoadingDialog.show()로 시작
@@ -31,6 +31,8 @@ class EditSubUserInfoActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        loadTheme()
+
         binding = ActivityEditSubUserInfoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

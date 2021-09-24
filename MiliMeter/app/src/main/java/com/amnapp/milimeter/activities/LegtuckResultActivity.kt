@@ -20,10 +20,12 @@ import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.ValueFormatter
 import org.w3c.dom.Text
 
-class LegtuckResultActivity: AppCompatActivity() {
+class LegtuckResultActivity: CustomThemeActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        loadTheme()
+
         setContentView(R.layout.activity_leg_result)
 
         //버튼

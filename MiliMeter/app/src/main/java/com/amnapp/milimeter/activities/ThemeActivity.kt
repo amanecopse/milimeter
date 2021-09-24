@@ -1,5 +1,6 @@
 package com.amnapp.milimeter.activities
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,12 +9,15 @@ import com.amnapp.milimeter.R
 import com.amnapp.milimeter.databinding.ActivityThemeBinding
 
 
-class ThemeActivity : AppCompatActivity() {
+class ThemeActivity : CustomThemeActivity() {
 
-    val binding by lazy { ActivityThemeBinding.inflate(layoutInflater) }
+    lateinit var binding : ActivityThemeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        loadTheme()
+
+        binding = ActivityThemeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         // 창닫기

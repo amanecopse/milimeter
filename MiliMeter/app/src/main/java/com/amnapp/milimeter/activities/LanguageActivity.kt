@@ -16,13 +16,16 @@ import java.util.*
 
 
 
-class LanguageActivity : AppCompatActivity() {
+class LanguageActivity : CustomThemeActivity() {
 
-    val binding by lazy { ActivityLanguageBinding.inflate(layoutInflater) }
+    lateinit var binding : ActivityLanguageBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
+        loadTheme()
+
+        binding = ActivityLanguageBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         if (PreferenceManager().getLanguageData(this).toString() == "en") {

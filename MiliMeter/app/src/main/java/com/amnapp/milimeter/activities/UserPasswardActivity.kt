@@ -14,12 +14,15 @@ import com.amnapp.milimeter.R
 import com.amnapp.milimeter.UserData
 import com.amnapp.milimeter.databinding.ActivityUserPasswardBinding
 
-class UserPasswardActivity :AppCompatActivity() {
+class UserPasswardActivity :CustomThemeActivity() {
 
-    val binding by lazy { ActivityUserPasswardBinding.inflate(layoutInflater) }
+    lateinit var binding : ActivityUserPasswardBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        loadTheme()
+
+        binding = ActivityUserPasswardBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val user = UserData.getInstance()

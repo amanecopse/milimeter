@@ -14,12 +14,14 @@ import androidx.appcompat.app.AppCompatActivity
 import com.amnapp.milimeter.AccountManager
 import com.amnapp.milimeter.databinding.ActivityPublishGroupBinding
 
-class PublishGroupActivity : AppCompatActivity() {
+class PublishGroupActivity : CustomThemeActivity() {
     lateinit var binding: ActivityPublishGroupBinding
     lateinit var mLoadingDialog: AlertDialog//로딩화면임. setProgressDialog()를 실행후 mDialog.show()로 시작
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        loadTheme()
+
         binding = ActivityPublishGroupBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

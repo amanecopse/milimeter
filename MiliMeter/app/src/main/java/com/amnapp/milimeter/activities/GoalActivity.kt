@@ -12,12 +12,15 @@ import com.amnapp.milimeter.databinding.ActivityGoalBinding
 import com.amnapp.milimeter.databinding.ActivityHomeBinding
 import kotlin.system.exitProcess
 
-class GoalActivity : AppCompatActivity() {
+class GoalActivity : CustomThemeActivity() {
 
-    val binding by lazy { ActivityGoalBinding.inflate(layoutInflater) }
+    lateinit var binding: ActivityGoalBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        loadTheme()
+
+        binding = ActivityGoalBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         initUI()

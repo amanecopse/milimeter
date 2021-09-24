@@ -14,10 +14,12 @@ import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineDataSet
 
-class RunningResultActivity: AppCompatActivity() {
+class RunningResultActivity: CustomThemeActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
+        loadTheme()
+
         setContentView(R.layout.activity_running_result)
 
         //버튼

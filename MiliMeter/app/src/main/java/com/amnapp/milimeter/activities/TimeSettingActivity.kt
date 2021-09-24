@@ -13,12 +13,15 @@ import com.amnapp.milimeter.Notification.Companion.TAG
 import com.amnapp.milimeter.databinding.ActivityTimeSettingBinding
 import java.util.*
 
-class TimeSettingActivity : AppCompatActivity() {
+class TimeSettingActivity : CustomThemeActivity() {
 
-    val binding by lazy { ActivityTimeSettingBinding.inflate(layoutInflater) }
+    lateinit var binding : ActivityTimeSettingBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        loadTheme()
+
+        binding = ActivityTimeSettingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         // 창닫기

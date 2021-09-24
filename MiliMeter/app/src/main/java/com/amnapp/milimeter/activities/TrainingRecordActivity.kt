@@ -19,12 +19,14 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class TrainingRecordActivity : AppCompatActivity() {
+class TrainingRecordActivity : CustomThemeActivity() {
 
     lateinit var binding: ActivityTrainingRecordBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        loadTheme()
+
         binding = ActivityTrainingRecordBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
