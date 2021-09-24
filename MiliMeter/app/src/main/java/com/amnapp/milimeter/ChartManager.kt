@@ -52,7 +52,7 @@ class ChartManager {
             }
         }
 
-        return if(maxValue == Int.MIN_VALUE) -1 else maxValue
+        return if(maxValue == Int.MAX_VALUE) -1 else maxValue
     }
 
     fun makeCircleProgressBar(circleProgressBar: CircleProgressBar, progress: Int, max: Int){
