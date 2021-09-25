@@ -1,19 +1,25 @@
 package com.amnapp.milimeter.activities
 
+import android.app.DatePickerDialog
+import android.app.Dialog
 import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
+import android.view.Window
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import androidx.cardview.widget.CardView
 import com.amnapp.milimeter.ChartManager
 import com.amnapp.milimeter.DataUtil
 import com.amnapp.milimeter.R
 import com.amnapp.milimeter.UserData
+import com.amnapp.milimeter.databinding.ActivityResultBinding
+import com.amnapp.milimeter.databinding.ActivityUserInformationBinding
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineDataSet
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import org.w3c.dom.Text
@@ -26,11 +32,14 @@ import kotlin.system.exitProcess
 
 class ResultActivity : CustomThemeActivity() {
 
+    lateinit var binding : ActivityResultBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         loadTheme()
 
-        setContentView(R.layout.activity_result)
+        binding = ActivityResultBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         //그래프
 
 
@@ -95,8 +104,72 @@ class ResultActivity : CustomThemeActivity() {
             startActivity(optionintent)
         }
 
+        binding.recordBt.setOnClickListener {
+            showRecordDialog()
+        }
 
+    }
 
+    private fun showRecordDialog() {//기록 다이얼로그 띄움
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.dialog_basic_record_input)
+
+        val courseSp = dialog.findViewById<Spinner>(R.id.courseSp)
+        val dateLl = dialog.findViewById<LinearLayout>(R.id.dateLl)
+        val dateTv = dialog.findViewById<TextView>(R.id.dateTv)
+        val recordEt = dialog.findViewById<EditText>(R.id.recordEt)
+        val saveCv = dialog.findViewById<CardView>(R.id.saveCv)
+        val cancelIb = dialog.findViewById<ImageButton>(R.id.cancelIb)
+
+        val defaultDateMessage = dateTv.text
+
+        dateLl.setOnClickListener {
+            showDatePickerDialog(dateTv)
+        }
+
+        saveCv.setOnClickListener {
+            val myUd = UserData.getInstance()
+            val currDate = dateTv.text.toString()
+            if(!myUd.login){
+                showDialogMessage("오류", "로그인 한 뒤 기록해 주세요")
+                return@setOnClickListener
+            }
+            else if(currDate == defaultDateMessage || recordEt.text.isNullOrEmpty()){
+                showDialogMessage("오류", "입력하지 않은 정보가 있습니다")
+                return@setOnClickListener
+            }
+
+            val course = arrayOf("legTuck", "shuttleRun", "fieldTraining", "weight")
+            val record = hashMapOf(
+                course[courseSp.selectedItemPosition] to recordEt.text.toString(),
+                "date" to currDate
+            )
+
+            val cm = ChartManager()
+            cm.updateTrainingRecord(UserData.getInstance(),currDate,record){
+                showDialogMessage("완료", "운동 결과를 기록했습니다"){
+                    dialog.dismiss()
+                    recreate()
+                }
+            }
+        }
+
+        cancelIb.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
+    }
+
+    private fun showDatePickerDialog(dateTv: TextView) {// 날짜 선택 다이얼로그 띄움
+        val callBack = DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+            dateTv.text = ""+year+"."+ String.format("%02d", month)+"."+String.format("%02d", dayOfMonth)
+        }
+        val year = SimpleDateFormat("yyyy").format(Date()).toInt()
+        val month = SimpleDateFormat("MM").format(Date()).toInt()
+        val day = SimpleDateFormat("dd").format(Date()).toInt()
+        DatePickerDialog(this, callBack,year,month,day).show()
     }
 
     //그래프 생성
@@ -286,7 +359,7 @@ class ResultActivity : CustomThemeActivity() {
             if (datelist.size == 1) {
 
                 var date1 = findViewById<TextView>(R.id.date1)
-                date1.setText(datelist.get(datelist.size - 3))
+                date1.setText(datelist.get(datelist.size - 1))
             }
 
             if(legTuckList.size==1) {
@@ -326,6 +399,14 @@ class ResultActivity : CustomThemeActivity() {
         builder.setMessage(body)
         builder.setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int -> callBack(i)}
         builder.setNegativeButton("취소") { dialogInterface: DialogInterface, i: Int -> callBack(i)}
+        builder.show()
+    }
+
+    fun showDialogMessage(title: String, body: String, callBack: () -> Unit) {//다이얼로그 메시지를 띄우는 함수
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(title)
+        builder.setMessage(body)
+        builder.setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int -> callBack()}
         builder.show()
     }
 

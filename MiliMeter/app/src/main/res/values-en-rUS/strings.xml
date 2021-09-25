@@ -28,6 +28,7 @@
     <string name="running">240m</string>
     <string name="circuit">circuit</string>
     <string name="type_date">type/date</string>
+    <string name="basic_record_input">Input your record</string>
 
     // 설정
     <string name="theme">theme</string>

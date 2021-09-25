@@ -148,7 +148,7 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="50dp" />
+                android:layout_height="20dp" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -314,6 +314,17 @@
         android:orientation="vertical"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent">
+
+        <Button
+            android:id="@+id/recordBt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bottom_button_background_cyan"
+            android:elevation="10dp"
+            android:text="@string/basic_record_input"
+            android:textColor="?attr/buttonTextColor"
+            android:textSize="@dimen/smallText"
+            app:layout_constraintBottom_toBottomOf="@+id/bodySv" />
 
         <ImageView
             android:id="@+id/bottomBorderLineIv"

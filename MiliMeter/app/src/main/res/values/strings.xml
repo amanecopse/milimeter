@@ -23,6 +23,7 @@
     <string name="running">240M 왕복달리기</string>
     <string name="circuit">전장순환운동</string>
     <string name="type_date">종목/날짜</string>
+    <string name="basic_record_input">기록 입력</string>
 
     // 목표
     <string name="goal_grade">목표등급: </string>
