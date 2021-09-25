@@ -39,18 +39,9 @@ class HomeActivity : CustomThemeActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val bitmap = assetsToBitmap("purpleFlower.png")
-
-
         initUI()
         autoLogin()
         loadProfile()
-
-        binding.profilechangeBt.setOnClickListener{
-            val intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
-            intent.setType("image/*")
-            startActivityForResult(intent,GALLERY) }
-
     }
 
 
@@ -64,7 +55,9 @@ class HomeActivity : CustomThemeActivity() {
                 Toast.makeText(this,ImnageData.toString(), Toast.LENGTH_SHORT ).show()
                 try {
                     val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, ImnageData)
-                    binding.profileCiv.setImageBitmap(bitmap.toByteArray().toBitmap())
+                    val pm = PreferenceManager()
+                    pm.setProfileImage(this, bitmap)
+                    binding.profileCiv.setImageBitmap(bitmap)
                 }
                 catch (e:Exception){
                     e.printStackTrace()
@@ -85,21 +78,6 @@ class HomeActivity : CustomThemeActivity() {
             null
         }
     }
-
-    //byte로 변환
-    fun Bitmap.toByteArray():ByteArray{
-        ByteArrayOutputStream().apply {
-            compress(Bitmap.CompressFormat.JPEG,10,this)
-            return toByteArray()
-        }
-    }
-
-    //bitmap으로 변환
-    fun ByteArray.toBitmap():Bitmap{
-        return BitmapFactory.decodeByteArray(this,0,size)
-    }
-
-
 
     private fun initUI() {
         setProgressDialog()
@@ -139,6 +117,12 @@ class HomeActivity : CustomThemeActivity() {
             startActivity(intent)
         }
 
+        binding.profilechangeBt.setOnClickListener{//프로필 이미지 변경 버튼
+            val intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
+            intent.setType("image/*")
+            startActivityForResult(intent,GALLERY)
+        }
+
         //DdayBt default
 //        binding.dDayBt.setText("전역일 설정")
 
@@ -169,6 +153,8 @@ class HomeActivity : CustomThemeActivity() {
                    else{
                        binding.dDayBt.text=("D-${dday}")}
 
+                   PreferenceManager().setDDay(applicationContext, dday)// 이미지 캐시  저장
+
                 }
 
             }, year, month, date)
@@ -182,6 +168,19 @@ class HomeActivity : CustomThemeActivity() {
         binding.nameTv.text = userData.name
         binding.militaryIdTv.text = userData.militaryId
         binding.groupCodeTv.text = AccountManager.mGroupCode
+
+        val pm = PreferenceManager()
+        val bitmap = pm.getProfileImage(this)// PM에서 저장된 이미지를 가져와서 프로필사진으로 로드
+        if(bitmap != null){
+            binding.profileCiv.setImageBitmap(bitmap)
+        }
+        val dDay = pm.getDDay(this)//PM에서 디데이 로드
+        if(dDay != null){
+            var dDayMessage =
+                if (dDay==0) "D-day"
+                else "D-${dDay}"
+            binding.dDayBt.setText(dDayMessage)
+        }
     }
 
     private fun autoLogin() {
