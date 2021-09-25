@@ -147,8 +147,11 @@ class PreferenceManager {
         val prefs = getSettingsPreference(context)
         val bitmapString = prefs?.getString(SETTINGS_DATA_PROFILE_IMAGE,null)
 
-        val encodeByte1: ByteArray = Base64.decode(bitmapString, Base64.DEFAULT)
-        val bitmap = BitmapFactory.decodeByteArray(encodeByte1, 0, encodeByte1.size)
+        var bitmap: Bitmap? = null
+        if(bitmapString != null){
+            val encodeByte1: ByteArray = Base64.decode(bitmapString, Base64.DEFAULT)
+            bitmap = BitmapFactory.decodeByteArray(encodeByte1, 0, encodeByte1.size)
+        }
 
         return bitmap
     }
