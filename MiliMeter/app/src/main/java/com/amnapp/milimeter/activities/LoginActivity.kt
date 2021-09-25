@@ -227,7 +227,7 @@ class LoginActivity : CustomThemeActivity() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle(title)
         builder.setMessage(body)
-        builder.setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int -> callBack}
+        builder.setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int -> callBack()}
         builder.show()
     }
 
