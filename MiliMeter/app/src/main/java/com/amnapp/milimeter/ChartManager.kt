@@ -246,6 +246,19 @@ class ChartManager {
         }
     }
 
+    fun updateTrainingRecord(userData: UserData, date: String, record: HashMap<String, String>, callBack: ()-> Unit){
+        userData.id?.let { id ->
+            Firebase.firestore.collection(USERS)
+                .document(id)
+                .collection(TRAINING_RECORDS)
+                .document(date)
+                .set(record, SetOptions.merge())
+                .addOnSuccessListener {
+                    callBack()
+                }
+        }
+    }
+
     fun calculateDate(date: String, dayDifference: Int): String{
         val simpleDateFormat = SimpleDateFormat("yyyy.MM.dd").parse(date)
         val calendar = Calendar.getInstance()
