@@ -1,398 +1,509 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    android:background="?attr/appWindowBackground"
     tools:context=".activities.CircuitResultActivity">
 
-
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/appBarCl"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="55dp"
+        android:background="?attr/cardBackground"
+        android:elevation="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <Button
-                android:id="@+id/all"
+            <ImageView
+                android:id="@+id/iconIv"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginRight="10dp"
+                app:srcCompat="@drawable/ic_baseline_insert_chart_outlined_20_white"
+                app:tint="?attr/textColorBanner" />
+
+            <TextView
+                android:id="@+id/titleTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="전 종목" />
-
-            <Button
-                android:id="@+id/legtuckbutton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="레그턱" />
-
-            <Button
-                android:id="@+id/run"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="240m" />
-
-            <Button
-                android:id="@+id/circuit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="전장 순환" />
-
+                android:text="전장순환운동"
+                android:textColor="?attr/textColorBanner"
+                android:textSize="@dimen/largeText" />
         </LinearLayout>
 
-        <com.github.mikephil.charting.charts.LineChart
-            android:id="@+id/circuitChart"
-            android:layout_width="match_parent"
-            android:layout_height="221dp"
-            />
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <ImageButton
+            android:id="@+id/backIb"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="5dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_arrow_back_24_cyan" />
 
-            <TableLayout
+        <ImageButton
+            android:id="@+id/cancelIb"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="10dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_cancel_24_cyan" />
+
+        <ImageView
+            android:id="@+id/borderLineIv"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="?attr/textColorBanner"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+        </ImageView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/bodySv"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarCl">
+
+        <LinearLayout
+            android:id="@+id/bodyLl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="11dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="11dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/bottom_button_background_cyan"
+                    android:text="전 종목"
+                    android:textColor="?attr/buttonTextColor"
+                    android:textSize="@dimen/smallText" />
+
+                <Button
+                    android:id="@+id/legtuckbutton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/bottom_button_background_cyan"
+                    android:text="레그턱"
+                    android:textColor="?attr/buttonTextColor"
+                    android:textSize="@dimen/smallText" />
+
+                <Button
+                    android:id="@+id/run"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/bottom_button_background_cyan"
+                    android:text="240m"
+                    android:textColor="?attr/buttonTextColor"
+                    android:textSize="@dimen/smallText" />
+
+                <Button
+                    android:id="@+id/circuit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/bottom_button_background_cyan"
+                    android:text="전장순환"
+                    android:textColor="?attr/buttonTextColor"
+                    android:textSize="@dimen/smallText" />
+
+            </LinearLayout>
+
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center">
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                app:cardBackgroundColor="#ffffff">
 
-                <TableRow
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    >
+                    android:layout_margin="5dp"
+                    android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/event_date"
-                        android:layout_width="92dp"
-                        android:layout_height="match_parent"
-                        android:text="특급"
-                        android:textColor="@android:color/black"
-                        android:background="@android:color/holo_blue_bright"
-                        />
+                    <com.github.mikephil.charting.charts.LineChart
+                        android:id="@+id/circuitChart"
+                        android:layout_width="match_parent"
+                        android:layout_height="250dp"></com.github.mikephil.charting.charts.LineChart>
+                </LinearLayout>
 
-                    <TextView
+            </androidx.cardview.widget.CardView>
 
-                        android:layout_width="167dp"
-                        android:layout_height="match_parent"
-                        android:text="2분15초"
-                        android:textAlignment="center"
-                        android:textColor="@android:color/black"
-                        android:background="@android:color/holo_blue_bright"
-                        android:gravity="center_horizontal" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
 
-                    <TextView
-                        android:layout_width="150dp"
-                        android:layout_height="match_parent"
-                        android:id="@+id/expert"
-                        android:background="@android:color/white"
-                        />
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:cardBackgroundColor="#ffffff">
 
-                </TableRow>
-                <TableRow
+                <HorizontalScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    >
+                    android:layout_height="match_parent">
 
-                    <TextView
-
-                        android:layout_width="92dp"
+                    <LinearLayout
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="1급"
-                        android:textColor="@android:color/black"
-                        android:background="@android:color/holo_blue_dark"
-                        />
+                        android:layout_margin="20dp"
+                        android:orientation="vertical">
 
-                    <TextView
+                        <TableLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center">
 
-                        android:layout_width="167dp"
-                        android:layout_height="match_parent"
-                        android:text="2분36초"
-                        android:textAlignment="center"
-                        android:textColor="@android:color/black"
-                        android:background="@android:color/holo_blue_dark"
-                        android:gravity="center_horizontal" />
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
 
-                    <TextView
-                        android:layout_width="150dp"
-                        android:layout_height="match_parent"
-                        android:id="@+id/grade1"
-                        android:background="@android:color/white"
+                                <TextView
+                                    android:id="@+id/event_date"
+                                    android:layout_width="92dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@android:color/holo_blue_bright"
+                                    android:text="특급"
+                                    android:textColor="@android:color/black" />
 
-                        />
+                                <TextView
 
-                </TableRow>
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    >
+                                    android:layout_width="167dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@android:color/holo_blue_bright"
+                                    android:gravity="center_horizontal"
+                                    android:text="2분15초"
+                                    android:textAlignment="center"
+                                    android:textColor="@android:color/black" />
 
-                    <TextView
+                                <TextView
+                                    android:id="@+id/expert"
+                                    android:layout_width="150dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@android:color/white" />
 
-                        android:layout_width="92dp"
-                        android:layout_height="match_parent"
-                        android:text="2급"
-                        android:textColor="@android:color/black"
-                        android:background="@android:color/holo_blue_dark"
-                        />
+                            </TableRow>
 
-                    <TextView
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
 
-                        android:layout_width="167dp"
-                        android:layout_height="match_parent"
-                        android:text="2분57초"
-                        android:textAlignment="center"
-                        android:textColor="@android:color/black"
-                        android:background="@android:color/holo_blue_dark"
-                        android:gravity="center_horizontal" />
+                                <TextView
 
-                    <TextView
-                        android:layout_width="150dp"
-                        android:layout_height="match_parent"
-                        android:id="@+id/grade2"
-                        android:background="@android:color/white"
-                        />
+                                    android:layout_width="92dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@android:color/holo_blue_dark"
+                                    android:text="1급"
+                                    android:textColor="@android:color/black" />
 
-                </TableRow>
+                                <TextView
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    >
+                                    android:layout_width="167dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@android:color/holo_blue_dark"
+                                    android:gravity="center_horizontal"
+                                    android:text="2분36초"
+                                    android:textAlignment="center"
+                                    android:textColor="@android:color/black" />
 
-                    <TextView
+                                <TextView
+                                    android:id="@+id/grade1"
+                                    android:layout_width="150dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@android:color/white"
 
-                        android:layout_width="92dp"
-                        android:layout_height="match_parent"
-                        android:text="3급"
-                        android:textColor="@android:color/black"
-                        android:background="@android:color/holo_blue_dark"
-                        />
+                                    />
 
-                    <TextView
+                            </TableRow>
 
-                        android:layout_width="167dp"
-                        android:layout_height="match_parent"
-                        android:text="3분18초"
-                        android:textAlignment="center"
-                        android:textColor="@android:color/black"
-                        android:background="@android:color/holo_blue_dark"
-                        android:gravity="center_horizontal" />
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
 
-                    <TextView
-                        android:layout_width="150dp"
-                        android:layout_height="match_parent"
-                        android:id="@+id/grade3"
-                        android:background="@android:color/white"
-                        />
+                                <TextView
 
-                </TableRow>
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    >
+                                    android:layout_width="92dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@android:color/holo_blue_dark"
+                                    android:text="2급"
+                                    android:textColor="@android:color/black" />
 
-                    <TextView
+                                <TextView
 
-                        android:layout_width="92dp"
-                        android:layout_height="match_parent"
-                        android:text="4급"
-                        android:textColor="@android:color/black"
-                        android:background="@android:color/holo_green_dark"
-                        />
+                                    android:layout_width="167dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@android:color/holo_blue_dark"
+                                    android:gravity="center_horizontal"
+                                    android:text="2분57초"
+                                    android:textAlignment="center"
+                                    android:textColor="@android:color/black" />
 
-                    <TextView
+                                <TextView
+                                    android:id="@+id/grade2"
+                                    android:layout_width="150dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@android:color/white" />
 
-                        android:layout_width="167dp"
-                        android:layout_height="match_parent"
-                        android:text="3분39초"
-                        android:textAlignment="center"
-                        android:textColor="@android:color/black"
-                        android:background="@android:color/holo_green_dark"
-                        android:gravity="center_horizontal" />
+                            </TableRow>
 
-                    <TextView
-                        android:layout_width="150dp"
-                        android:layout_height="match_parent"
-                        android:id="@+id/grade4"
-                        android:background="@android:color/white"
-                        />
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
 
-                </TableRow>
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    >
+                                <TextView
 
-                    <TextView
+                                    android:layout_width="92dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@android:color/holo_blue_dark"
+                                    android:text="3급"
+                                    android:textColor="@android:color/black" />
 
-                        android:layout_width="92dp"
-                        android:layout_height="match_parent"
-                        android:text="5급"
-                        android:textColor="@android:color/black"
-                        android:background="@android:color/holo_green_dark"
-                        />
+                                <TextView
 
-                    <TextView
+                                    android:layout_width="167dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@android:color/holo_blue_dark"
+                                    android:gravity="center_horizontal"
+                                    android:text="3분18초"
+                                    android:textAlignment="center"
+                                    android:textColor="@android:color/black" />
 
-                        android:layout_width="167dp"
-                        android:layout_height="match_parent"
-                        android:text="4분00초"
-                        android:textAlignment="center"
-                        android:textColor="@android:color/black"
-                        android:background="@android:color/holo_green_dark"
-                        android:gravity="center_horizontal" />
+                                <TextView
+                                    android:id="@+id/grade3"
+                                    android:layout_width="150dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@android:color/white" />
 
-                    <TextView
-                        android:layout_width="150dp"
-                        android:layout_height="match_parent"
-                        android:id="@+id/grade5"
-                        android:background="@android:color/white"
-                        />
+                            </TableRow>
 
-                </TableRow>
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    >
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
 
-                    <TextView
+                                <TextView
 
-                        android:layout_width="92dp"
-                        android:layout_height="match_parent"
-                        android:text="6급"
-                        android:textColor="@android:color/black"
-                        android:background="@android:color/holo_green_dark"
-                        />
+                                    android:layout_width="92dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@android:color/holo_green_dark"
+                                    android:text="4급"
+                                    android:textColor="@android:color/black" />
 
-                    <TextView
+                                <TextView
 
-                        android:layout_width="167dp"
-                        android:layout_height="match_parent"
-                        android:text="4분21초"
-                        android:textAlignment="center"
-                        android:textColor="@android:color/black"
-                        android:background="@android:color/holo_green_dark"
-                        android:gravity="center_horizontal" />
+                                    android:layout_width="167dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@android:color/holo_green_dark"
+                                    android:gravity="center_horizontal"
+                                    android:text="3분39초"
+                                    android:textAlignment="center"
+                                    android:textColor="@android:color/black" />
 
-                    <TextView
-                        android:layout_width="150dp"
-                        android:layout_height="match_parent"
-                        android:id="@+id/grade6"
-                        android:background="@android:color/white"
-                        />
+                                <TextView
+                                    android:id="@+id/grade4"
+                                    android:layout_width="150dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@android:color/white" />
 
-                </TableRow>
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    >
+                            </TableRow>
 
-                    <TextView
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
 
-                        android:layout_width="92dp"
-                        android:layout_height="match_parent"
-                        android:text="7급"
-                        android:textColor="@android:color/black"
-                        android:background="@android:color/holo_green_dark"
-                        />
+                                <TextView
 
-                    <TextView
+                                    android:layout_width="92dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@android:color/holo_green_dark"
+                                    android:text="5급"
+                                    android:textColor="@android:color/black" />
 
-                        android:layout_width="167dp"
-                        android:layout_height="match_parent"
-                        android:text="4분42초"
-                        android:textAlignment="center"
-                        android:textColor="@android:color/black"
-                        android:background="@android:color/holo_green_dark"
-                        android:gravity="center_horizontal" />
+                                <TextView
 
-                    <TextView
-                        android:layout_width="150dp"
-                        android:layout_height="match_parent"
-                        android:id="@+id/grade7"
-                        android:background="@android:color/white"
-                        />
+                                    android:layout_width="167dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@android:color/holo_green_dark"
+                                    android:gravity="center_horizontal"
+                                    android:text="4분00초"
+                                    android:textAlignment="center"
+                                    android:textColor="@android:color/black" />
 
-                </TableRow>
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    >
+                                <TextView
+                                    android:id="@+id/grade5"
+                                    android:layout_width="150dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@android:color/white" />
 
-                    <TextView
+                            </TableRow>
 
-                        android:layout_width="92dp"
-                        android:layout_height="match_parent"
-                        android:text="8급"
-                        android:textColor="@android:color/black"
-                        android:background="@android:color/holo_red_dark"
-                        />
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
 
-                    <TextView
+                                <TextView
 
-                        android:layout_width="167dp"
-                        android:layout_height="match_parent"
-                        android:text="5분3초"
-                        android:textAlignment="center"
-                        android:textColor="@android:color/black"
-                        android:background="@android:color/holo_red_dark"
-                        android:gravity="center_horizontal" />
+                                    android:layout_width="92dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@android:color/holo_green_dark"
+                                    android:text="6급"
+                                    android:textColor="@android:color/black" />
 
-                    <TextView
-                        android:layout_width="150dp"
-                        android:layout_height="match_parent"
-                        android:id="@+id/grade8"
-                        android:background="@android:color/white"
-                        />
+                                <TextView
 
-                </TableRow>
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    >
+                                    android:layout_width="167dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@android:color/holo_green_dark"
+                                    android:gravity="center_horizontal"
+                                    android:text="4분21초"
+                                    android:textAlignment="center"
+                                    android:textColor="@android:color/black" />
 
-                    <TextView
+                                <TextView
+                                    android:id="@+id/grade6"
+                                    android:layout_width="150dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@android:color/white" />
 
-                        android:layout_width="92dp"
-                        android:layout_height="match_parent"
-                        android:text="9급"
-                        android:textColor="@android:color/black"
-                        android:background="@android:color/holo_red_dark"
-                        />
+                            </TableRow>
 
-                    <TextView
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
 
-                        android:layout_width="167dp"
-                        android:layout_height="match_parent"
-                        android:text="5분3초초과"
-                        android:textAlignment="center"
-                        android:textColor="@android:color/black"
-                        android:background="@android:color/holo_red_dark"
-                        android:gravity="center_horizontal" />
+                                <TextView
 
-                    <TextView
-                        android:layout_width="150dp"
-                        android:layout_height="match_parent"
-                        android:id="@+id/grade9"
-                        android:background="@android:color/white"
-                        />
+                                    android:layout_width="92dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@android:color/holo_green_dark"
+                                    android:text="7급"
+                                    android:textColor="@android:color/black" />
 
-                </TableRow>
+                                <TextView
+
+                                    android:layout_width="167dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@android:color/holo_green_dark"
+                                    android:gravity="center_horizontal"
+                                    android:text="4분42초"
+                                    android:textAlignment="center"
+                                    android:textColor="@android:color/black" />
+
+                                <TextView
+                                    android:id="@+id/grade7"
+                                    android:layout_width="150dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@android:color/white" />
+
+                            </TableRow>
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+
+                                    android:layout_width="92dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@android:color/holo_red_dark"
+                                    android:text="8급"
+                                    android:textColor="@android:color/black" />
+
+                                <TextView
+
+                                    android:layout_width="167dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@android:color/holo_red_dark"
+                                    android:gravity="center_horizontal"
+                                    android:text="5분3초"
+                                    android:textAlignment="center"
+                                    android:textColor="@android:color/black" />
+
+                                <TextView
+                                    android:id="@+id/grade8"
+                                    android:layout_width="150dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@android:color/white" />
+
+                            </TableRow>
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+
+                                    android:layout_width="92dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@android:color/holo_red_dark"
+                                    android:text="9급"
+                                    android:textColor="@android:color/black" />
+
+                                <TextView
+
+                                    android:layout_width="167dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@android:color/holo_red_dark"
+                                    android:gravity="center_horizontal"
+                                    android:text="5분3초초과"
+                                    android:textAlignment="center"
+                                    android:textColor="@android:color/black" />
+
+                                <TextView
+                                    android:id="@+id/grade9"
+                                    android:layout_width="150dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@android:color/white" />
+
+                            </TableRow>
 
 
+                        </TableLayout>
+                    </LinearLayout>
+                </HorizontalScrollView>
 
+            </androidx.cardview.widget.CardView>
 
-            </TableLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
-        </ScrollView>
-    </LinearLayout>
-
-
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
