@@ -120,7 +120,7 @@ class ResultActivity : CustomThemeActivity() {
         val dateTv = dialog.findViewById<TextView>(R.id.dateTv)
         val recordEt = dialog.findViewById<EditText>(R.id.recordEt)
         val saveCv = dialog.findViewById<CardView>(R.id.saveCv)
-        val cancelIb = dialog.findViewById<ImageButton>(R.id.cancelIb)
+        val cancelCv = dialog.findViewById<CardView>(R.id.cancelCv)
 
         val defaultDateMessage = dateTv.text
 
@@ -155,7 +155,7 @@ class ResultActivity : CustomThemeActivity() {
             }
         }
 
-        cancelIb.setOnClickListener {
+        cancelCv.setOnClickListener {
             dialog.dismiss()
         }
 

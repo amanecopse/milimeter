@@ -10,6 +10,8 @@ import com.amnapp.milimeter.ChartManager
 import com.amnapp.milimeter.R
 import com.amnapp.milimeter.TrainingValueFormatter
 import com.amnapp.milimeter.UserData
+import com.amnapp.milimeter.databinding.ActivityLegResultBinding
+import com.amnapp.milimeter.databinding.ActivitySpecialThemeSettingBinding
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.XAxis
@@ -22,11 +24,25 @@ import org.w3c.dom.Text
 
 class LegtuckResultActivity: CustomThemeActivity() {
 
+    lateinit var binding: ActivityLegResultBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         loadTheme()
 
-        setContentView(R.layout.activity_leg_result)
+        binding = ActivityLegResultBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        // 창닫기 (바로 결과창으로)
+        binding.cancelIb.setOnClickListener {
+            val intentBack = Intent(this, ResultActivity::class.java)
+            startActivity(intentBack)
+            finish()
+        }
+        // 뒤로가기 (결과창으로)
+        binding.backIb.setOnClickListener {
+            finish()
+        }
 
         //버튼
         val CurrentButton = findViewById<Button>(R.id.all)
