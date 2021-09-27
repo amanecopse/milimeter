@@ -1,5 +1,6 @@
 package com.amnapp.milimeter.activities
 
+import android.app.Dialog
 import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
@@ -7,20 +8,18 @@ import android.os.Bundle
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.LinearLayout
-import android.widget.ProgressBar
-import android.widget.TextView
+import android.view.Window
+import android.widget.*
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
+import androidx.cardview.widget.CardView
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.amnapp.milimeter.AccountManager
-import com.amnapp.milimeter.GroupMemberData
-import com.amnapp.milimeter.UserData
+import com.amnapp.milimeter.*
 import com.amnapp.milimeter.databinding.ActivityAdminPageBinding
 import com.amnapp.milimeter.recyclerViews.AdminPageRecyclerAdapter
 import com.amnapp.milimeter.viewModels.AdminPageViewModel
+import com.github.mikephil.charting.charts.LineChart
 
 class AdminPageActivity : CustomThemeActivity() {
 
@@ -88,6 +87,13 @@ class AdminPageActivity : CustomThemeActivity() {
                 }
 
             })
+            //차트 클릭 리스너 등록
+            adminPageRecyclerAdapter.setChartOnClickListener(object: AdminPageRecyclerAdapter.OnChartClickListener{
+                override fun onClicked(v: View, pos: Int) {
+                    val childUserData = it[pos]
+                    showChartDialog(childUserData)
+                }
+            })
             binding.subUserListRv.adapter = adminPageRecyclerAdapter//로드된 데이터를 담은 어댑터를 뷰에 탑재
             mLoadingDialog.dismiss() //로딩 해제
         })
@@ -132,6 +138,27 @@ class AdminPageActivity : CustomThemeActivity() {
 
     private fun renewUI(){
         binding.chageGroupCodeBt.visibility = if(AccountManager.mMaster) View.VISIBLE else View.GONE
+    }
+
+    private fun showChartDialog(userData: UserData) {//기록 다이얼로그 띄움
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.dialog_sub_user_chart)
+
+        val subUserLc = dialog.findViewById<LineChart>(R.id.subUserLc)
+        val cancelIb = dialog.findViewById<ImageButton>(R.id.cancelIb)
+
+        val cm = ChartManager()
+        cm.loadTrainingRecordNDaysAgo(userData,cm.getCurrentDateBasedOnFormat(),7)
+        { docs, lineDataSets, dateList ->
+            cm.makeLineChart(subUserLc, lineDataSets, dateList)
+        }
+
+        cancelIb.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
     }
 
     fun setProgressDialog() {
