@@ -19,13 +19,20 @@ class AdminPageRecyclerAdapter(var subUserlist: MutableList<UserData>): Recycler
     interface OnEditClickListener{
         fun onClicked(v: View, pos: Int)
     }
+    interface OnChartClickListener{
+        fun onClicked(v: View, pos: Int)
+    }
     var itemListener: OnItemClickListener? = null
     var editListener: OnEditClickListener? = null
+    var chartListener: OnChartClickListener? = null
     fun setItemOnClickListener(listener: OnItemClickListener){
         this.itemListener = listener
     }
     fun setEditOnClickListener(listener: OnEditClickListener){
         this.editListener = listener
+    }
+    fun setChartOnClickListener(listener: OnChartClickListener){
+        this.chartListener = listener
     }
 
     inner class ViewHolder(itemView: ViewGroup) : RecyclerView.ViewHolder(itemView) {
@@ -33,6 +40,7 @@ class AdminPageRecyclerAdapter(var subUserlist: MutableList<UserData>): Recycler
         val militaryIdTv = itemView.findViewById<TextView>(R.id.militaryIdTv)
         val itemCv = itemView.findViewById<CardView>(R.id.itemCv)
         val editIb = itemView.findViewById<ImageButton>(R.id.editIb)
+        val chartIb = itemView.findViewById<ImageButton>(R.id.chartIb)
 
         init {//클릭이벤트 콜백 설정
             itemCv.setOnClickListener {
@@ -40,6 +48,9 @@ class AdminPageRecyclerAdapter(var subUserlist: MutableList<UserData>): Recycler
             }
             editIb.setOnClickListener {
                 editListener?.onClicked(it, adapterPosition)
+            }
+            chartIb.setOnClickListener {
+                chartListener?.onClicked(it, adapterPosition)
             }
         }
     }

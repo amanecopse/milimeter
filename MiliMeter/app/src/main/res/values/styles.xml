@@ -270,14 +270,14 @@
 
     <style name="CreamAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- 이 모드가 되면 이 값들로 변한다-->
-        <item name="appWindowBackground">#F2F2F2</item>
-        <item name="cardBackground">#FFB5ADA9</item>
+        <item name="appWindowBackground">#FFFDF6</item>
+        <item name="cardBackground">#FFFCE0</item>
         <item name="textColor">#000000</item>
-        <item name="textColorSecondary">#FF9494D8</item>
-        <item name="textColorBanner">#FF566054</item>
+        <item name="textColorSecondary">#877C22</item>
+        <item name="textColorBanner">#FFDE7C</item>
         <item name="iconColor">#6A6A6A</item>
-        <item name="buttonBackground">#FF566054</item>
-        <item name="buttonTextColor">#FFFFFF</item>
+        <item name="buttonBackground">#FFCC81</item>
+        <item name="buttonTextColor">#493F21</item>
     </style>
 
     <style name="MustardYellowAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -307,18 +307,6 @@
     <style name="DarkBlackBlueAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- 이 모드가 되면 이 값들로 변한다-->
         <item name="appWindowBackground">#F2F2F2</item>
-        <item name="cardBackground">#FF403E3B</item>
-        <item name="textColor">#000000</item>
-        <item name="textColorSecondary">#FFE3E0DB</item>
-        <item name="textColorBanner">#FF101433</item>
-        <item name="iconColor">#6A6A6A</item>
-        <item name="buttonBackground">#FF101433</item>
-        <item name="buttonTextColor">#FFFFFF</item>
-    </style>
-
-    <style name="MakeAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- 이 모드가 되면 이 값들로 변한다-->
-        <item name="appWindowBackground"></item>
         <item name="cardBackground">#FF403E3B</item>
         <item name="textColor">#000000</item>
         <item name="textColorSecondary">#FFE3E0DB</item>

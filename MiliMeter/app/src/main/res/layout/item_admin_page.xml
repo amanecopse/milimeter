@@ -23,6 +23,7 @@
             android:layout_margin="5dp">
 
             <LinearLayout
+                android:id="@+id/linearLayout3"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:clickable="false"
@@ -88,6 +89,19 @@
                 </LinearLayout>
 
             </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/chartIb"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="15dp"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_baseline_insert_chart_outlined_20_white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/editIb"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="?attr/textColorSecondary" />
 
             <ImageButton
                 android:id="@+id/editIb"
