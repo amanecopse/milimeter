@@ -8,35 +8,70 @@
     <string name="goal">goal</string>
     <string name="setting">setting</string>
 
+    <string name="critical_items">*critical items</string>
+    <string name="save">저장</string>
+    <string name="cancel">취소</string>
+
     // 홈
-    <string name="name">name: </string>
-    <string name="military_number">military number: </string>
-    <string name="group_code">group code: </string>
+    <string name="name">name:&#160;</string>
+    <string name="military_number">military number:&#160;</string>
+    <string name="group_code">group code:&#160;</string>
     <string name="Dday_setting">date setting</string>
     <string name="login_user">login and user</string>
+    <string name="ch_profile">change profile picture</string>
 
     // 신체
+    <string name="body_weight">~than the target weight</string>
+    <string name="more_weight">overweight</string>
+    <string name="less_weight">underweight</string>
+    <string name="exercise_name">Please enter the name of the exercise.</string>
+    <string name="exercise_chart">*It is recorded on the exercise chart.</string>
+    <string name="hint_exercise">example : running</string>
 
     // 목표
-    <string name="goal_grade">target rating: </string>
-    <string name="now_grade">current rating: </string>
+    <string name="goal_grade">target rating:&#160;</string>
+    <string name="now_grade">current rating:&#160;</string>
     <string name="week_top_grade">(weekly highest rating)</string>
 
     // 결과
+    <string name="result_title">운동결과</string>
     <string name="total">total</string>
     <string name="legtuk">legtuk</string>
-    <string name="running">240m</string>
-    <string name="circuit">circuit</string>
+    <string name="running1">240m shuttle run</string>
+    <string name="running2">240M</string>
+    <string name="circuit1">Battlefield circulation exercise</string>
+    <string name="circuit2">circuit</string>
     <string name="type_date">type/date</string>
     <string name="basic_record_input">Input your record</string>
+    <string name="type">type :</string>
+    <string name="date">date :</string>
+    <string name="record">record/weight :</string>
+    <string name="hint_record">please input the time in seconds.</string>
 
     // 설정
+    <string name="setting_title">environment setting</string>
     <string name="theme">theme</string>
     <string name="language">language</string>
     <string name="alarm">notification</string>
     <string name="passward">user information</string>
     <string name="user_information">personal information management</string>
+
+    <string name="basic_theme">basic theme</string>
+    <string name="special_theme">special theme</string>
+    <string name="making_theme">making theme</string>
+    <string name="basic">bisic</string>
+    <string name="dark">dark</string>
+    <string name="color">color</string>
+    <string name="theme_icon">theme icon</string>
+    <string name="theme_color">theme color</string>
+    <string name="account">*This theme is applied the icon pictures like that.</string>
+    <string name="light_green">light green</string>
+    <string name="green">green</string>
+    <string name="dark_green">dark green</string>
+
     <string name="lang1">korea</string>
     <string name="lang2">english</string>
+
+    <string name="notice">time_setting</string>
 
 </resources>
