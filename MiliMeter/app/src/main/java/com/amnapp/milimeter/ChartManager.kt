@@ -123,6 +123,7 @@ class ChartManager {
         lineChart.setDrawGridBackground(false)
 
         lineChart.animateY(2000, Easing.EaseInCubic)
+        lineChart.description.text = "일주일간의 기록"
         lineChart.invalidate()
     }
 
