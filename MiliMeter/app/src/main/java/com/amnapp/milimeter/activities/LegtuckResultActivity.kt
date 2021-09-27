@@ -90,16 +90,16 @@ class LegtuckResultActivity: CustomThemeActivity() {
                 //이미지로 저장할예정
                 if (legTuckList.size > 0) {
                     val grade = cm.calculateGrade(legTuckList.get(legTuckList.size - 1), "LEG_TUCK")
-                    if (grade == 10f) findViewById<TextView>(R.id.expert).setText("<-")
-                    else if (grade == 9f) findViewById<TextView>(R.id.grade1).setText("<-")
-                    else if (grade == 8f) findViewById<TextView>(R.id.grade2).setText("<-")
-                    else if (grade == 7f) findViewById<TextView>(R.id.grade3).setText("<-")
-                    else if (grade == 6f) findViewById<TextView>(R.id.grade4).setText("<-")
-                    else if (grade == 5f) findViewById<TextView>(R.id.grade5).setText("<-")
-                    else if (grade == 4f) findViewById<TextView>(R.id.grade6).setText("<-")
-                    else if (grade == 3f) findViewById<TextView>(R.id.grade7).setText("<-")
-                    else if (grade == 2f) findViewById<TextView>(R.id.grade8).setText("<-")
-                    else findViewById<TextView>(R.id.grade9).setText("<-")
+                    if (grade == 10f) findViewById<TextView>(R.id.expert).setText("<--")
+                    else if (grade == 9f) findViewById<TextView>(R.id.grade1).setText("<--")
+                    else if (grade == 8f) findViewById<TextView>(R.id.grade2).setText("<--")
+                    else if (grade == 7f) findViewById<TextView>(R.id.grade3).setText("<--")
+                    else if (grade == 6f) findViewById<TextView>(R.id.grade4).setText("<--")
+                    else if (grade == 5f) findViewById<TextView>(R.id.grade5).setText("<--")
+                    else if (grade == 4f) findViewById<TextView>(R.id.grade6).setText("<--")
+                    else if (grade == 3f) findViewById<TextView>(R.id.grade7).setText("<--")
+                    else if (grade == 2f) findViewById<TextView>(R.id.grade8).setText("<--")
+                    else findViewById<TextView>(R.id.grade9).setText("<--")
                 } else {
                     continue
                 }

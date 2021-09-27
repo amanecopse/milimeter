@@ -316,4 +316,16 @@
         <item name="buttonTextColor">#FFFFFF</item>
     </style>
 
+    <style name="MakeAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- 이 모드가 되면 이 값들로 변한다-->
+        <item name="appWindowBackground"></item>
+        <item name="cardBackground">#FF403E3B</item>
+        <item name="textColor">#000000</item>
+        <item name="textColorSecondary">#FFE3E0DB</item>
+        <item name="textColorBanner">#FF101433</item>
+        <item name="iconColor">#6A6A6A</item>
+        <item name="buttonBackground">#FF101433</item>
+        <item name="buttonTextColor">#FFFFFF</item>
+    </style>
+
 </resources>

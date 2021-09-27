@@ -85,22 +85,21 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/bodySv"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/bottomLl"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/appWindowBackground"
+        android:layout_marginTop="60dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarCl"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:id="@+id/bodyLl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            tools:ignore="MissingConstraints">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -110,7 +109,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_margin="20dp"
                     android:orientation="vertical" >
 
@@ -121,81 +120,172 @@
                         android:textColor="?attr/textColor"
                         android:textSize="@dimen/middleText" />
 
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="*색상코드는 인터넷 검색을 통해 참고해주세요."
+                        android:textSize="13sp"
+                        android:textColor="?attr/textColor"/>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginTop="10dp"
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
 
-                        <Button
-                            android:id="@+id/homeBBt"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:background="@android:color/transparent"
-                            android:drawableTop="@drawable/ic_baseline_add_to_photos_20_white"
-                            android:drawableTint="?attr/iconColor"
-                            android:gravity="center_horizontal"
-                            android:text="@string/home"
-                            android:textAllCaps="false"
-                            android:textColor="?attr/textColorSecondary"
-                            android:textSize="15sp" />
+                       <TableLayout
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:orientation="vertical">
 
-                        <Button
-                            android:id="@+id/bodyBBt"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:background="@android:color/transparent"
-                            android:drawableTop="@drawable/ic_baseline_add_to_photos_20_white"
-                            android:drawableTint="?attr/iconColor"
-                            android:gravity="center_horizontal"
-                            android:text="@string/body"
-                            android:textAllCaps="false"
-                            android:textColor="?attr/textColorSecondary"
-                            android:textSize="15sp" />
+                           <TableRow
+                               android:layout_width="match_parent"
+                               android:layout_height="match_parent"
+                               android:orientation="horizontal">
 
-                        <Button
-                            android:id="@+id/resultBBt"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:background="@android:color/transparent"
-                            android:drawableTop="@drawable/ic_baseline_add_to_photos_20_white"
-                            android:drawableTint="?attr/iconColor"
-                            android:gravity="center_horizontal"
-                            android:text="@string/result"
-                            android:textAllCaps="false"
-                            android:textColor="?attr/textColorSecondary"
-                            android:textSize="15sp" />
+                               <TextView
+                                   android:layout_width="0dp"
+                                   android:layout_height="wrap_content"
+                                   android:layout_weight="0.5"
+                                   android:text="바탕색1"
+                                   android:textStyle="bold"
+                                   android:textSize="15sp"
+                                   android:textColor="?attr/textColor"
+                                   android:gravity="center_horizontal"/>
 
-                        <Button
-                            android:id="@+id/goalBBt"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:background="@android:color/transparent"
-                            android:drawableTop="@drawable/ic_baseline_add_to_photos_20_white"
-                            android:drawableTint="?attr/iconColor"
-                            android:gravity="center_horizontal"
-                            android:text="@string/goal"
-                            android:textAllCaps="false"
-                            android:textColor="?attr/textColorSecondary"
-                            android:textSize="15sp" />
+                               <EditText
+                                   android:id="@+id/background1Code"
+                                   android:layout_width="0dp"
+                                   android:layout_height="wrap_content"
+                                   android:layout_weight="1"
+                                   android:hint="색상코드를 입력해주세요"
+                                   android:textColor="#000000"
+                                   android:background="#ffffff"
+                                   android:textColorHint="?attr/textColorSecondary"
+                                   android:textSize="15sp"
+                                   android:gravity="center_horizontal"/>
 
-                        <Button
-                            android:id="@+id/settingBBt"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:background="@android:color/transparent"
-                            android:drawableTop="@drawable/ic_baseline_add_to_photos_20_white"
-                            android:drawableTint="?attr/iconColor"
-                            android:gravity="center_horizontal"
-                            android:text="@string/setting"
-                            android:textAllCaps="false"
-                            android:textColor="?attr/textColorSecondary"
-                            android:textSize="15sp" />
+                           </TableRow>
+
+                           <TableRow
+                               android:layout_width="match_parent"
+                               android:layout_height="match_parent"
+                               android:orientation="horizontal">
+
+                               <TextView
+                                   android:layout_width="0dp"
+                                   android:layout_height="wrap_content"
+                                   android:layout_weight="0.5"
+                                   android:text="바탕색2"
+                                   android:textStyle="bold"
+                                   android:textSize="15sp"
+                                   android:textColor="?attr/textColor"
+                                   android:gravity="center_horizontal"/>
+
+                               <EditText
+                                   android:id="@+id/background2Code"
+                                   android:layout_width="0dp"
+                                   android:layout_height="wrap_content"
+                                   android:layout_weight="1"
+                                   android:hint="색상코드를 입력해주세요"
+                                   android:textColor="#000000"
+                                   android:background="#ffffff"
+                                   android:textColorHint="?attr/textColorSecondary"
+                                   android:textSize="15sp"
+                                   android:gravity="center_horizontal"/>
+
+                           </TableRow>
+
+                           <TableRow
+                               android:layout_width="match_parent"
+                               android:layout_height="match_parent"
+                               android:orientation="horizontal">
+
+                               <TextView
+                                   android:layout_width="0dp"
+                                   android:layout_height="wrap_content"
+                                   android:layout_weight="0.5"
+                                   android:text="글씨색1"
+                                   android:textStyle="bold"
+                                   android:textSize="15sp"
+                                   android:textColor="?attr/textColor"
+                                   android:gravity="center_horizontal"/>
+
+                               <EditText
+                                   android:id="@+id/text1Code"
+                                   android:layout_width="0dp"
+                                   android:layout_height="wrap_content"
+                                   android:layout_weight="1"
+                                   android:hint="색상코드를 입력해주세요"
+                                   android:textColor="#000000"
+                                   android:background="#ffffff"
+                                   android:textColorHint="?attr/textColorSecondary"
+                                   android:textSize="15sp"
+                                   android:gravity="center_horizontal"/>
+
+                           </TableRow>
+
+                           <TableRow
+                               android:layout_width="match_parent"
+                               android:layout_height="match_parent"
+                               android:orientation="horizontal">
+
+                               <TextView
+                                   android:layout_width="0dp"
+                                   android:layout_height="wrap_content"
+                                   android:layout_weight="0.5"
+                                   android:text="글씨색2"
+                                   android:textStyle="bold"
+                                   android:textSize="15sp"
+                                   android:textColor="?attr/textColor"
+                                   android:gravity="center_horizontal"/>
+
+                               <EditText
+                                   android:id="@+id/text2Code"
+                                   android:layout_width="0dp"
+                                   android:layout_height="wrap_content"
+                                   android:layout_weight="1"
+                                   android:hint="색상코드를 입력해주세요"
+                                   android:textColor="#000000"
+                                   android:background="#ffffff"
+                                   android:textColorHint="?attr/textColorSecondary"
+                                   android:textSize="15sp"
+                                   android:gravity="center_horizontal"/>
+
+                           </TableRow>
+
+                           <TableRow
+                               android:layout_width="match_parent"
+                               android:layout_height="match_parent"
+                               android:orientation="horizontal">
+
+                               <TextView
+                                   android:layout_width="0dp"
+                                   android:layout_height="wrap_content"
+                                   android:layout_weight="0.5"
+                                   android:text="제목/아이콘"
+                                   android:textStyle="bold"
+                                   android:textSize="15sp"
+                                   android:textColor="?attr/textColor"
+                                   android:gravity="center_horizontal"/>
+
+                               <EditText
+                                   android:id="@+id/bannerCode"
+                                   android:layout_width="0dp"
+                                   android:layout_height="wrap_content"
+                                   android:layout_weight="1"
+                                   android:hint="색상코드를 입력해주세요"
+                                   android:textColor="#000000"
+                                   android:background="#ffffff"
+                                   android:textColorHint="?attr/textColorSecondary"
+                                   android:textSize="15sp"
+                                   android:gravity="center_horizontal"/>
+
+                           </TableRow>
+
+                       </TableLayout>
+
+
 
                     </LinearLayout>
                 </LinearLayout>
@@ -206,11 +296,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                app:cardBackgroundColor="?attr/cardBackground">
+                app:cardBackgroundColor="?attr/cardBackground"
+                tools:ignore="MissingConstraints">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_margin="20dp"
                     android:orientation="vertical">
 
@@ -301,234 +392,11 @@
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
+    </LinearLayout>
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                app:cardBackgroundColor="?attr/cardBackground">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="20dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="색상"
-                        android:textColor="?attr/textColor"
-                        android:textSize="@dimen/middleText" />
-
-                    <TableLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentBottom="true"
-                        android:layout_marginTop="10dp"
-                        android:weightSum="6">
-
-                        <TableRow
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:gravity="center">
-
-                            <Button
-                                android:id="@+id/creamBt"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="#FFF8DF" />
-
-                            <Button
-                                android:id="@+id/vanilaYellowBt"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="#FFFAB7" />
-
-                            <Button
-                                android:id="@+id/lightYellowBt"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="#FFFB00" />
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 
-                            <Button
-                                android:id="@+id/mustardYellowBt"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="#F4E910" />
-                        </TableRow>
-
-                        <TableRow
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:gravity="center">
-
-                            <Button
-                                android:id="@+id/lightPinkOrangeBt"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="#FF9E8D" />
-
-                            <Button
-                                android:id="@+id/orangeBt"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="#FF855B" />
-
-                            <Button
-                                android:id="@+id/darkGoldenYellowBt"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="#DCA706" />
-
-                            <Button
-                                android:id="@+id/lightBrownBt"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="#D33C02" />
-
-                        </TableRow>
-
-                        <TableRow
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:gravity="center">
-
-                            <Button
-                                android:id="@+id/pinkBt"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="#FB7AE6" />
-
-                            <Button
-                                android:id="@+id/redBt"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="#FF0404" />
-
-                            <Button
-                                android:id="@+id/redWineBt"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="#FF5C1F12" />
-
-                            <Button
-                                android:id="@+id/purpleBt"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="#CD93FF" />
-                        </TableRow>
-
-                        <TableRow
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:gravity="center">
-
-                            <Button
-                                android:id="@+id/lightGreenBt"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="#B7FD90" />
-
-                            <Button
-                                android:id="@+id/lightLimeBt"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="#7AFF90" />
-
-                            <Button
-                                android:id="@+id/mintBt"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="#3CFFBB" />
-
-                            <Button
-                                android:id="@+id/grayGreenBt"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="#257814" />
-
-                        </TableRow>
-
-                        <TableRow
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:gravity="center">
-
-                            <Button
-                                android:id="@+id/lightBlueGreenBt"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="#88FDE2" />
-
-                            <Button
-                                android:id="@+id/lightBlueBt"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="#6FC8FF" />
-
-                            <Button
-                                android:id="@+id/cobaltBt"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="#FF6062B1" />
-
-                            <Button
-                                android:id="@+id/darkBlackBlueBt"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="#FF101433" />
-
-
-                        </TableRow>
-
-                        <TableRow
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:gravity="center">
-
-                            <Button
-                                android:id="@+id/beigeBt"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="#FFDF93" />
-
-                            <Button
-                                android:id="@+id/beigeBrownBt"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="#AA907C" />
-
-                            <Button
-                                android:id="@+id/lightGrayBt"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="#D6D7D8" />
-
-                            <Button
-                                android:id="@+id/grayBt"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="#FF656565" />
-                        </TableRow>
-                    </TableLayout>
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="100dp" />
-
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
 
     <LinearLayout
         android:id="@+id/bottomLl"
