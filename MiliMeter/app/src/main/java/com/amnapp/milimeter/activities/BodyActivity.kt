@@ -117,7 +117,7 @@ class BodyActivity : CustomThemeActivity() {
                             record,
                             object : ChartManager.UICallBack {
                                 override fun whatToDo() {
-                                    showDialogMessage("완료", "운동 결과를 기록했습니다")
+                                    showDialogMessage("완료", "운동결과/몸무게를 기록했습니다")
                                     // showChart()
                                 }
 

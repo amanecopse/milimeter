@@ -1,8 +1,14 @@
 package com.amnapp.milimeter.activities
 
+import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.WindowManager
+import android.widget.Button
+import android.widget.EditText
+import com.amnapp.milimeter.PreferenceManager
 import com.amnapp.milimeter.R
 import com.amnapp.milimeter.databinding.ActivityMakingThemeSettingBinding
 
@@ -27,6 +33,10 @@ class MakingThemeSettingActivity : CustomThemeActivity() {
         binding.backIb.setOnClickListener {
             finish()
         }
+
+       binding.saveCv.setOnClickListener {
+           finish()
+       }
 
 
     }

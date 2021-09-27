@@ -138,11 +138,11 @@
 
     <style name="LightGreenAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- 이 모드가 되면 이 값들로 변한다-->
-        <item name="appWindowBackground">#F2F2F2</item>
-        <item name="cardBackground">#FF8EAF77</item>
+        <item name="appWindowBackground">#B7FD90</item>
+        <item name="cardBackground">#D1FFB1</item>
         <item name="textColor">#000000</item>
         <item name="textColorSecondary">#FF395526</item>
-        <item name="textColorBanner">#FF26391A</item>
+        <item name="textColorBanner">#409C07</item>
         <item name="iconColor">#6A6A6A</item>
         <item name="buttonBackground">#FF26391A</item>
         <item name="buttonTextColor">#FFFFFF</item>
@@ -162,11 +162,11 @@
 
     <style name="LightLimeAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- 이 모드가 되면 이 값들로 변한다-->
-        <item name="appWindowBackground">#F2F2F2</item>
-        <item name="cardBackground">#FFA2C347</item>
+        <item name="appWindowBackground">#CBFF75</item>
+        <item name="cardBackground">#9DFF00</item>
         <item name="textColor">#000000</item>
         <item name="textColorSecondary">#FF719314</item>
-        <item name="textColorBanner">#FF486005</item>
+        <item name="textColorBanner">#4AB100</item>
         <item name="iconColor">#6A6A6A</item>
         <item name="buttonBackground">#FF486005</item>
         <item name="buttonTextColor">#000000</item>
@@ -198,14 +198,14 @@
 
     <style name="GrayGreenAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- 이 모드가 되면 이 값들로 변한다-->
-        <item name="appWindowBackground">#F2F2F2</item>
-        <item name="cardBackground">#FF788775</item>
-        <item name="textColor">#000000</item>
-        <item name="textColorSecondary">#FF51604E</item>
-        <item name="textColorBanner">#FF373E35</item>
-        <item name="iconColor">#6A6A6A</item>
+        <item name="appWindowBackground">#254926</item>
+        <item name="cardBackground">#006104</item>
+        <item name="textColor">#9FBC9C</item>
+        <item name="textColorSecondary">#1FB800</item>
+        <item name="textColorBanner">#5FA649</item>
+        <item name="iconColor">#C8C8C8</item>
         <item name="buttonBackground">#FF373E35</item>
-        <item name="buttonTextColor">#FFFFFF</item>
+        <item name="buttonTextColor">#112012</item>
     </style>
 
     <style name="BeigeBrownAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -270,14 +270,14 @@
 
     <style name="CreamAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- 이 모드가 되면 이 값들로 변한다-->
-        <item name="appWindowBackground">#F2F2F2</item>
-        <item name="cardBackground">#FFB5ADA9</item>
+        <item name="appWindowBackground">#FFFDF6</item>
+        <item name="cardBackground">#FFFCE0</item>
         <item name="textColor">#000000</item>
-        <item name="textColorSecondary">#FF9494D8</item>
-        <item name="textColorBanner">#FF566054</item>
+        <item name="textColorSecondary">#877C22</item>
+        <item name="textColorBanner">#FFDE7C</item>
         <item name="iconColor">#6A6A6A</item>
-        <item name="buttonBackground">#FF566054</item>
-        <item name="buttonTextColor">#FFFFFF</item>
+        <item name="buttonBackground">#FFCC81</item>
+        <item name="buttonTextColor">#493F21</item>
     </style>
 
     <style name="MustardYellowAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
