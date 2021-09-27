@@ -12,6 +12,7 @@ import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
+import androidx.core.app.ActivityCompat.finishAffinity
 import com.amnapp.milimeter.ChartManager
 import com.amnapp.milimeter.R
 import com.amnapp.milimeter.TrainingValueFormatter
@@ -38,7 +39,6 @@ class BodyActivity : CustomThemeActivity() {
     //핸들러사용
     val handler = Handler()
     var timeValue = 0
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -264,26 +264,13 @@ class BodyActivity : CustomThemeActivity() {
             var piedata = ArrayList<PieEntry>()
             var datamap = mapOf<String, Float>()
 
-            cm.loadTrainingRecordNDaysAgo(
-                UserData.getInstance(),
-                cm.getCurrentDateBasedOnFormat(),
-                1
-            ) { docs, lineDataSets, dateList ->
-                for (doc in docs) {
-                    doc.data?.get(ChartManager.TRAINING_RECORDS)?.let { data ->
-
-
-                    }
-
-
-                }
-
-
-            }
 
         }
 
+
     }
+
+
     //타이머시간 변환작업
     private fun timeToText(time: Int = 0): String? {
         return if (time < 0) {
@@ -313,7 +300,7 @@ class BodyActivity : CustomThemeActivity() {
      */
 
 
-    fun timeGenerator() :String{
+    fun timeGenerator(): String {
         val instance = Calendar.getInstance()
         val year = instance.get(Calendar.YEAR).toString()
         var month = (instance.get(Calendar.MONTH) + 1).toString()
@@ -328,18 +315,22 @@ class BodyActivity : CustomThemeActivity() {
         return now
     }
 
-    fun showTwoButtonDialogMessage(title: String, body: String, callBack: (Int) -> Unit) {//다이얼로그 메시지를 띄우는 함수
+    fun showTwoButtonDialogMessage(
+        title: String,
+        body: String,
+        callBack: (Int) -> Unit
+    ) {//다이얼로그 메시지를 띄우는 함수
         val builder = AlertDialog.Builder(this)
         builder.setTitle(title)
         builder.setMessage(body)
-        builder.setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int -> callBack(i)}
-        builder.setNegativeButton("취소") { dialogInterface: DialogInterface, i: Int -> callBack(i)}
+        builder.setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int -> callBack(i) }
+        builder.setNegativeButton("취소") { dialogInterface: DialogInterface, i: Int -> callBack(i) }
         builder.show()
     }
 
     override fun onBackPressed() {
-        showTwoButtonDialogMessage("알림", "Mili Meter를 종료하시겠습니까?"){
-            when(it){
+        showTwoButtonDialogMessage("알림", "Mili Meter를 종료하시겠습니까?") {
+            when (it) {
                 -1 -> {
                     finishAffinity()
                     exitProcess(0)
@@ -348,53 +339,53 @@ class BodyActivity : CustomThemeActivity() {
         }
     }
 
-}
 
-// 기록 다이얼로그
-class CustomDialog(context: Context) {
-    private val dialog = Dialog(context)
+    // 기록 다이얼로그
+    class CustomDialog(context: Context) {
+        private val dialog = Dialog(context)
 
 
-    fun recordDialog() {
-        dialog.show()
-    }
-
-    fun RecordDialog() {
-        dialog.setContentView(R.layout.record_dialog)
-
-        // dialog 크기 설정
-        dialog.window!!.setLayout(WindowManager.LayoutParams.MATCH_PARENT,WindowManager.LayoutParams.WRAP_CONTENT)
-        dialog.setCanceledOnTouchOutside(true)
-        dialog.setCancelable(true)
-
-        // 다이얼로그 버튼 클릭시 이벤트처리
-        val edit = dialog.findViewById<EditText>(R.id.typeEt)
-        val btDone = dialog.findViewById<Button>(R.id.saveBt)
-        val btCancel = dialog.findViewById<Button>(R.id.cancelBt)
-
-        btDone.setOnClickListener {
-            onClickedListener.onClicked(edit.text.toString())
-            dialog.dismiss()
+        fun recordDialog() {
+            dialog.show()
         }
 
-        btCancel.setOnClickListener {
-            dialog.dismiss()
+        fun RecordDialog() {
+            dialog.setContentView(R.layout.record_dialog)
+
+            // dialog 크기 설정
+            dialog.window!!.setLayout(
+                WindowManager.LayoutParams.MATCH_PARENT,
+                WindowManager.LayoutParams.WRAP_CONTENT
+            )
+            dialog.setCanceledOnTouchOutside(true)
+            dialog.setCancelable(true)
+
+            // 다이얼로그 버튼 클릭시 이벤트처리
+            val edit = dialog.findViewById<EditText>(R.id.typeEt)
+            val btDone = dialog.findViewById<Button>(R.id.saveBt)
+            val btCancel = dialog.findViewById<Button>(R.id.cancelBt)
+
+            btDone.setOnClickListener {
+                onClickedListener.onClicked(edit.text.toString())
+                dialog.dismiss()
+            }
+
+            btCancel.setOnClickListener {
+                dialog.dismiss()
+            }
+
+        }
+
+
+        interface ButtonClickListener {
+            fun onClicked(type: String)
+        }
+
+        private lateinit var onClickedListener: ButtonClickListener
+
+        fun setOnClickedListener(listener: ButtonClickListener) {
+            onClickedListener = listener
         }
 
     }
-
-
-
-
-
-    interface ButtonClickListener {
-        fun onClicked(type: String)
-    }
-
-    private lateinit var onClickedListener: ButtonClickListener
-
-    fun setOnClickedListener(listener: ButtonClickListener) {
-        onClickedListener = listener
-    }
-
 }
