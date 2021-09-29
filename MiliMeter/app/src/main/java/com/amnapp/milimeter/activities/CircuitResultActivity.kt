@@ -122,7 +122,7 @@ class CircuitResultActivity : CustomThemeActivity() {
                 for (doc in docs) {
                     doc.data?.get(ChartManager.FIELD_TRAINING)?.let { score ->
                         circuit.add(
-                            Entry(index.toFloat(), cm.calculateGrade(score.toString().toInt(), ChartManager.LEG_TUCK)
+                            Entry(index.toFloat(), cm.calculateGrade(score.toString().toInt(), ChartManager.FIELD_TRAINING)
                             )
                         )
 

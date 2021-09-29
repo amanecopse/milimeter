@@ -78,7 +78,7 @@ class LegtuckResultActivity: CustomThemeActivity() {
         cm.loadTrainingRecordNDaysAgo(
             UserData.getInstance(),
             cm.getCurrentDateBasedOnFormat(),
-            7
+            30
         ) { docs, lineDataSets, dateList ->
 
             val legTuckList = mutableListOf<Int>()
@@ -89,7 +89,7 @@ class LegtuckResultActivity: CustomThemeActivity() {
                 }
                 //이미지로 저장할예정
                 if (legTuckList.size > 0) {
-                    val grade = cm.calculateGrade(legTuckList.get(legTuckList.size - 1), "LEG_TUCK")
+                    val grade = cm.calculateGrade(legTuckList.get(legTuckList.size - 1), ChartManager.LEG_TUCK)
                     if (grade == 10f) findViewById<TextView>(R.id.expert).setText("<--")
                     else if (grade == 9f) findViewById<TextView>(R.id.grade1).setText("<--")
                     else if (grade == 8f) findViewById<TextView>(R.id.grade2).setText("<--")

@@ -67,7 +67,7 @@ class RunningResultActivity: CustomThemeActivity() {
         cm.loadTrainingRecordNDaysAgo(
             UserData.getInstance(),
             cm.getCurrentDateBasedOnFormat(),
-            7
+            30
         ) { docs, lineDataSets, dateList ->
 
             val list = mutableListOf<Int>()
@@ -78,7 +78,7 @@ class RunningResultActivity: CustomThemeActivity() {
                 }
                 //이미지로 저장할예정
                 if (list.size > 0) {
-                    val grade = cm.calculateGrade(list.get(list.size - 1), "SHUTTLE_RUN")
+                    val grade = cm.calculateGrade(list.get(list.size-1), ChartManager.SHUTTLE_RUN)
                     if (grade == 10f) findViewById<TextView>(R.id.rexpert).setText("<--")
                     else if (grade == 9f) findViewById<TextView>(R.id.rgrade1).setText("<--")
                     else if (grade == 8f) findViewById<TextView>(R.id.rgrade2).setText("<--")
