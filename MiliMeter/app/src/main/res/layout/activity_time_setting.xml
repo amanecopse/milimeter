@@ -40,7 +40,7 @@
                 android:id="@+id/titleTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="알림설정"
+                android:text="@string/notice"
                 android:textColor="?attr/textColorBanner"
                 android:textSize="@dimen/largeText" />
         </LinearLayout>
@@ -117,7 +117,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:gravity="center_vertical"
-                        android:text="알림 시간"
+                        android:text="@string/notice_time"
                         android:textColor="?attr/textColor"
                         android:textSize="20sp" />
 
@@ -152,7 +152,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:gravity="center_vertical"
-                        android:text="알림 내용"
+                        android:text="@string/notice_content"
                         android:textColor="?attr/textColor"
                         android:textSize="20sp" />
 
@@ -161,7 +161,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:hint="알림 내용을 적어주세요(예시: 오늘 하루도 힘내세요~)"
+                        android:hint="@string/notice_hintc"
                         android:textColor="?attr/textColor"
                         android:textColorHint="?attr/textColor"
                         android:textSize="15sp" />
@@ -177,7 +177,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
-                        android:text="알림 제목"
+                        android:text="@string/notice_title"
                         android:textColor="?attr/textColor"
                         android:textSize="20sp" />
 
@@ -186,7 +186,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:hint="알림 제목을 적어주세요(예시: 운동)"
+                        android:hint="@string/notice_hintt"
                         android:textColor="?attr/textColor"
                         android:textColorHint="?attr/textColor"
                         android:textSize="15sp" />
@@ -234,7 +234,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:padding="10dp"
-                    android:text="저장"
+                    android:text="@string/save"
                     android:textColor="?attr/textColorBanner"
                     android:textSize="@dimen/middleText" />
             </LinearLayout>

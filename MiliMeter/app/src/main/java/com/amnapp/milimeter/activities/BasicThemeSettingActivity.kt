@@ -38,6 +38,8 @@ class BasicThemeSettingActivity : CustomThemeActivity() {
             binding.darkModeRBt.setChecked(true)
         } else {
             binding.colorModeRBt.setChecked(true)
+            allColorBtClickChangeText()
+            mode = "color"
         }
 
         binding.modeSettingRG.setOnCheckedChangeListener { group, checkedId ->

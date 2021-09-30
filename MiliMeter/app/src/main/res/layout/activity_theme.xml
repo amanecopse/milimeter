@@ -40,7 +40,7 @@
                 android:id="@+id/titleTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="테마"
+                android:text="@string/theme"
                 android:textColor="?attr/textColorBanner"
                 android:textSize="@dimen/largeText" />
         </LinearLayout>
@@ -131,7 +131,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="10dp"
-                            android:text="기본 테마"
+                            android:text="@string/basic_theme"
                             android:textColor="?attr/textColor"
                             android:textSize="@dimen/middleText" />
 
@@ -161,7 +161,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="10dp"
-                            android:text="특별한 테마"
+                            android:text="@string/special_theme"
                             android:textColor="?attr/textColor"
                             android:textSize="@dimen/middleText" />
 
@@ -191,7 +191,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="10dp"
-                            android:text="테마 제작하기"
+                            android:text="@string/making_theme"
                             android:textColor="?attr/textColor"
                             android:textSize="@dimen/middleText" />
 

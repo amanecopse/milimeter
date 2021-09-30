@@ -40,7 +40,7 @@
                 android:id="@+id/titleTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="테마 제작하기"
+                android:text="@string/making_theme"
                 android:textColor="?attr/textColorBanner"
                 android:textSize="@dimen/largeText" />
         </LinearLayout>

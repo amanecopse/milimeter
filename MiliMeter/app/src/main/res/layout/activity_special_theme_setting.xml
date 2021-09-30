@@ -40,7 +40,7 @@
                 android:id="@+id/titleTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="특별한 테마"
+                android:text="@string/special_theme"
                 android:textColor="?attr/textColorBanner"
                 android:textSize="@dimen/largeText" />
         </LinearLayout>
@@ -118,7 +118,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:gravity="center|left"
-                        android:text="테마 아이콘"
+                        android:text="@string/theme_icon"
                         android:textColor="?attr/textColor"
                         android:textSize="@dimen/middleText" />
 
@@ -133,7 +133,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:layout_marginTop="20dp"
-                        android:text="* 이 테마는 아이콘 그림이 다음과 같이 적용됩니다."
+                        android:text="@string/account"
                         android:textColor="?attr/textColor"
                         android:textSize="@dimen/smallText" />
                 </LinearLayout>
@@ -156,7 +156,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:gravity="center|left"
-                        android:text="테마 색상"
+                        android:text="@string/theme_color"
                         android:textColor="?attr/textColor"
                         android:textSize="@dimen/middleText" />
 
@@ -216,7 +216,7 @@
                                     android:layout_weight="1"
                                     android:gravity="center"
                                     android:paddingRight="30dp"
-                                    android:text="light green"
+                                    android:text="@string/light_green"
                                     android:textColor="?attr/textColor" />
 
                                 <RadioButton
@@ -227,7 +227,7 @@
                                     android:layout_weight="1"
                                     android:gravity="center"
                                     android:paddingRight="30dp"
-                                    android:text="green"
+                                    android:text="@string/green"
                                     android:textColor="?attr/textColor" />
 
                                 <RadioButton
@@ -238,7 +238,7 @@
                                     android:layout_weight="1"
                                     android:gravity="center"
                                     android:paddingRight="30dp"
-                                    android:text="dark green"
+                                    android:text="@string/dark_green"
                                     android:textColor="?attr/textColor" />
 
 
@@ -290,7 +290,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:padding="10dp"
-                    android:text="저장"
+                    android:text="@string/save"
                     android:textColor="?attr/textColorBanner"
                     android:textSize="@dimen/middleText" />
             </LinearLayout>

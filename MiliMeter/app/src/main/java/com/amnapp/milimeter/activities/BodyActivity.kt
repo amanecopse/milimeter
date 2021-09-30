@@ -146,12 +146,12 @@ class BodyActivity : CustomThemeActivity() {
         if (goalWeight != null && userWeight != null) {
             if (goalWeight < userWeight) {
                 binding.weightTv.text =
-                    "목표치보다 +${userWeight.toInt() - goalWeight.toInt()}kg  :  과체중"
+                    "${R.string.body_weight} +${userWeight.toInt() - goalWeight.toInt()}kg  :  ${R.string.more_weight}"
             } else if (goalWeight > userWeight) {
                 binding.weightTv.text =
-                    "목표치보다 -${goalWeight.toInt() - userWeight.toInt()}kg  :  저체중"
+                    "${R.string.body_weight} -${goalWeight.toInt() - userWeight.toInt()}kg  :  ${R.string.less_weight}"
             } else if (goalWeight == userWeight) {
-                binding.weightTv.text = "목표몸무게 도달!!"
+                binding.weightTv.text = "${R.string.goal_body}"
             }
         }
 

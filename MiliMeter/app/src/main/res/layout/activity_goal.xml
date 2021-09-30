@@ -39,7 +39,7 @@
                 android:id="@+id/titleTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="목표"
+                android:text="@string/goal"
                 android:textColor="?attr/textColorBanner"
                 android:textSize="@dimen/largeText" />
         </LinearLayout>
@@ -104,7 +104,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
-                            android:text="레그턱"
+                            android:text="@string/legtuk1"
                             android:textColor="?attr/textColor"
                             android:textSize="@dimen/middleText" />
 
@@ -119,8 +119,8 @@
 
                                 <TextView
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="목표등급: "
+                                    android:layout_height="match_parent"
+                                    android:text="@string/goal_grade"
                                     android:textColor="?attr/textColorSecondary"
                                     android:textSize="@dimen/smallText" />
 
@@ -139,7 +139,7 @@
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="현재등급: "
+                                    android:text="@string/now_grade"
                                     android:textColor="?attr/textColorSecondary"
                                     android:textSize="@dimen/smallText" />
 
@@ -158,7 +158,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
-                            android:text="(주간 최고 등급)"
+                            android:text="@string/week_top_grade"
                             android:textColor="?attr/textColorSecondary"
                             android:textSize="@dimen/smallText" />
 
@@ -192,7 +192,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
-                            android:text="240m달리기"
+                            android:text="@string/running1"
                             android:textColor="?attr/textColor"
                             android:textSize="@dimen/middleText" />
 
@@ -208,7 +208,7 @@
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:text="목표등급: "
+                                    android:text="@string/goal_grade"
                                     android:textColor="?attr/textColorSecondary"
                                     android:textSize="@dimen/smallText" />
 
@@ -227,7 +227,7 @@
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="현재등급:"
+                                    android:text="@string/now_grade"
                                     android:textColor="?attr/textColorSecondary"
                                     android:textSize="@dimen/smallText" />
 
@@ -246,7 +246,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
-                            android:text="(주간 최고 등급)"
+                            android:text="@string/week_top_grade"
                             android:textColor="?attr/textColorSecondary"
                             android:textSize="@dimen/smallText" />
                     </LinearLayout>
@@ -279,7 +279,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
-                            android:text="전장순환운동"
+                            android:text="@string/circuit1"
                             android:textColor="?attr/textColor"
                             android:textSize="@dimen/middleText" />
 
@@ -295,7 +295,7 @@
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="목표등급: "
+                                    android:text="@string/goal_grade"
                                     android:textColor="?attr/textColorSecondary"
                                     android:textSize="@dimen/smallText" />
 
@@ -314,7 +314,7 @@
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="현재등급: "
+                                    android:text="@string/now_grade"
                                     android:textColor="?attr/textColorSecondary"
                                     android:textSize="@dimen/smallText" />
 
@@ -333,7 +333,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
-                            android:text="(주간 최고 등급)"
+                            android:text="@string/week_top_grade"
                             android:textColor="?attr/textColorSecondary"
                             android:textSize="@dimen/smallText" />
                     </LinearLayout>

@@ -42,7 +42,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:text="이름:"
+                        android:text="@string/name"
                         android:textColor="?attr/textColorSecondary"
                         android:textSize="@dimen/middleText" />
 
@@ -74,7 +74,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:text="군번:"
+                        android:text="@string/military_number"
                         android:textColor="?attr/textColorSecondary"
                         android:textSize="@dimen/middleText" />
 

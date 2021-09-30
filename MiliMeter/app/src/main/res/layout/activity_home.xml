@@ -87,7 +87,7 @@
                 android:layout_marginStart="50dp"
                 android:layout_marginEnd="50dp"
                 android:background="@drawable/bottom_button_background_cyan"
-                android:text="프로필 사진 변경"
+                android:text="@string/ch_profile"
                 android:textColor="?attr/buttonTextColor"
                 android:textSize="@dimen/smallText" />
 
@@ -200,7 +200,7 @@
         android:background="@drawable/header_button_background_cyan"
         android:textColor="?attr/buttonTextColor"
         android:textSize="@dimen/smallText"
-        android:text="전역일 설정"
+        android:text="@string/Dday_setting"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarCl" />
 
