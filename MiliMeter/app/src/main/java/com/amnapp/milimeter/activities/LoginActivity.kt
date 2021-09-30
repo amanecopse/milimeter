@@ -13,6 +13,7 @@ import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import com.amnapp.milimeter.*
 import com.amnapp.milimeter.databinding.ActivityLoginBinding
+import de.hdodenhof.circleimageview.CircleImageView
 import kotlin.reflect.KClass
 
 class LoginActivity : CustomThemeActivity() {
@@ -189,6 +190,9 @@ class LoginActivity : CustomThemeActivity() {
         val userData = UserData.getInstance()
         val groupMemberData = GroupMemberData.getInstance()
         if (userData.login) {//이미 로그인한 상태
+
+            loadProfileImage(binding.profileCiv)
+
             binding.afterLoginLl.visibility = View.VISIBLE
             binding.beforeLoginLl.visibility = View.GONE
             binding.signInCv.visibility = View.GONE
@@ -212,6 +216,14 @@ class LoginActivity : CustomThemeActivity() {
             binding.signInCv.visibility = View.VISIBLE
 
             loadLoginData()
+        }
+    }
+
+    private fun loadProfileImage(profileCiv: CircleImageView){
+        val pm = PreferenceManager()
+        val bitmap = pm.getProfileImage(this)// PM에서 저장된 이미지를 가져와서 프로필사진으로 로드
+        if(bitmap != null){
+            profileCiv.setImageBitmap(bitmap)
         }
     }
 
