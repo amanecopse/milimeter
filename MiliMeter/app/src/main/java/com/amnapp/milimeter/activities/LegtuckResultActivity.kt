@@ -82,14 +82,25 @@ class LegtuckResultActivity: CustomThemeActivity() {
         ) { docs, lineDataSets, dateList ->
 
             val legTuckList = mutableListOf<Int>()
+
             for (doc in docs) {
                 doc.data?.get(ChartManager.LEG_TUCK)?.let { score ->
                     legTuckList.add(score.toString().toInt())
 
                 }
+                //초기화
+                findViewById<TextView>(R.id.expert).setText(" ")
+                findViewById<TextView>(R.id.grade1).setText(" ")
+                findViewById<TextView>(R.id.grade2).setText(" ")
+                findViewById<TextView>(R.id.grade4).setText(" ")
+                findViewById<TextView>(R.id.grade5).setText(" ")
+                findViewById<TextView>(R.id.grade6).setText(" ")
+                findViewById<TextView>(R.id.grade7).setText(" ")
+                findViewById<TextView>(R.id.grade8).setText(" ")
+                findViewById<TextView>(R.id.grade9).setText(" ")
                 //이미지로 저장할예정
                 if (legTuckList.size > 0) {
-                    val grade = cm.calculateGrade(legTuckList.get(legTuckList.size - 1), ChartManager.LEG_TUCK)
+                    val grade = cm.calculateGrade(legTuckList.last(), ChartManager.LEG_TUCK)
                     if (grade == 10f) findViewById<TextView>(R.id.expert).setText("<--")
                     else if (grade == 9f) findViewById<TextView>(R.id.grade1).setText("<--")
                     else if (grade == 8f) findViewById<TextView>(R.id.grade2).setText("<--")
