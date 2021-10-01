@@ -2,76 +2,114 @@
 <resources>
     <string name="app_name">Mili Meter</string>
     // english version icon
-    <string name="home">home</string>
-    <string name="body">body</string>
-    <string name="result">result</string>
-    <string name="goal">goal</string>
-    <string name="setting">setting</string>
+    <string name="home">Home</string>
+    <string name="body">Body</string>
+    <string name="result">Result</string>
+    <string name="goal">Goal</string>
+    <string name="setting">Setting</string>
 
-    <string name="critical_items">*critical items</string>
-    <string name="save">저장</string>
-    <string name="cancel">취소</string>
+    <string name="critical_items">*Critical items</string>
+    <string name="save">save</string>
+    <string name="cancel">cancel</string>
+    <string name="check">next</string>
+    <string name="login">Login</string>
+    <string name="logout">Logout</string>
+    <string name="id">id</string>
+    <string name="pw">password</string>
 
     // 홈
-    <string name="name">name:&#160;</string>
-    <string name="military_number">military number:&#160;</string>
-    <string name="group_code">group code:&#160;</string>
-    <string name="Dday_setting">date setting</string>
-    <string name="login_user">login and user</string>
-    <string name="ch_profile">change profile picture</string>
+    <string name="name">Name:&#160;</string>
+    <string name="military_number">Military number:&#160;</string>
+    <string name="group_code">Group code:&#160;</string>
+    <string name="Dday_setting">Date setting</string>
+    <string name="login_user">Login and user</string>
+    <string name="ch_profile">Change profile picture</string>
 
     // 신체
     <string name="body_weight">~than the target weight</string>
-    <string name="more_weight">overweight</string>
-    <string name="less_weight">underweight</string>
+    <string name="more_weight">Overweight</string>
+    <string name="less_weight">Underweight</string>
+    <string name="goal_body">You reached your target weight!!</string>
+    <string name="default_body">Target weight +/- 00kg</string>
     <string name="exercise_name">Please enter the name of the exercise.</string>
     <string name="exercise_chart">*It is recorded on the exercise chart.</string>
     <string name="hint_exercise">example : running</string>
 
     // 목표
-    <string name="goal_grade">target rating:&#160;</string>
-    <string name="now_grade">current rating:&#160;</string>
-    <string name="week_top_grade">(weekly highest rating)</string>
+    <string name="goal_grade">목표등급:&#160;</string>
+    <string name="now_grade">현재등급:&#160;</string>
+    <string name="week_top_grade">(주간 최고 등급)</string>
 
     // 결과
-    <string name="result_title">운동결과</string>
-    <string name="total">total</string>
-    <string name="legtuk">legtuk</string>
+    <string name="result_title">Result of exercise</string>
+    <string name="total">Total</string>
+    <string name="legtuk2">legtuk</string>
+    <string name="legtuk1">Legtuk</string>
     <string name="running1">240m shuttle run</string>
     <string name="running2">240M</string>
-    <string name="circuit1">Battlefield circulation exercise</string>
+    <string name="circuit1">Battle circulation</string>
     <string name="circuit2">circuit</string>
     <string name="type_date">type/date</string>
     <string name="basic_record_input">Input your record</string>
-    <string name="type">type :</string>
-    <string name="date">date :</string>
-    <string name="record">record/weight :</string>
+    <string name="type">Type :</string>
+    <string name="date">Date :</string>
+    <string name="record">Record/Weight :</string>
     <string name="hint_record">please input the time in seconds.</string>
+    <string name="click">click and enter</string>
 
     // 설정
-    <string name="setting_title">environment setting</string>
-    <string name="theme">theme</string>
-    <string name="language">language</string>
-    <string name="alarm">notification</string>
-    <string name="passward">user information</string>
-    <string name="user_information">personal information management</string>
+    <string name="setting_title">Environment setting</string>
+    <string name="theme">Theme</string>
+    <string name="language">Language</string>
+    <string name="alarm">Notification</string>
+    <string name="password">User information</string>
+    <string name="user_information">Personal information management</string>
 
-    <string name="basic_theme">basic theme</string>
-    <string name="special_theme">special theme</string>
-    <string name="making_theme">making theme</string>
+    <string name="basic_theme">Basic theme</string>
+    <string name="special_theme">Special theme</string>
+    <string name="making_theme">Making theme</string>
     <string name="basic">bisic</string>
     <string name="dark">dark</string>
     <string name="color">color</string>
-    <string name="theme_icon">theme icon</string>
-    <string name="theme_color">theme color</string>
+    <string name="theme_icon">Theme icon</string>
+    <string name="theme_color">Theme color</string>
     <string name="account">*This theme is applied the icon pictures like that.</string>
     <string name="light_green">light green</string>
     <string name="green">green</string>
     <string name="dark_green">dark green</string>
 
-    <string name="lang1">korea</string>
-    <string name="lang2">english</string>
+    <string name="lang1">Korea</string>
+    <string name="lang2">English</string>
 
-    <string name="notice">time_setting</string>
+    <string name="notice">Notice setting</string>
+    <string name="notice_time">Time setting</string>
+    <string name="notice_title">Notice title</string>
+    <string name="notice_content">Notice content</string>
+    <string name="notice_hintc">please write down the content</string>
+    <string name="notice_hintt">please write down the title</string>
+
+    <string name="password_change">Password change</string>
+    <string name="group_manager">Group account management</string>
+    <string name="before_pw">Please enter your current password</string>
+    <string name="after_pw">Please enter a new password</string>
+    <string name="notice_pw">*please set a different password than before\n*please set the password within 5 to 20 digits</string>
+
+    <string name="user_info">My information</string>
+    <string name="invite">Invite lower-level member within a group</string>
+    <string name="merge">Merge subgroup within a group</string>
+    <string name="manager">Administrator page</string>
+    <string name="drop">Out of the group</string>
+    <string name="group_code_change">Group code change</string>
+    <string name="lower_level_member">lower member</string>
+
+    <string name="height">height</string>
+    <string name="weight">weight</string>
+    <string name="blood_type">blood type :</string>
+    <string name="notice_info">Just put numbers without "-"</string>
+    <string name="goal_weight">Goal weight</string>
+    <string name="goal_total">Target level for all sports :</string>
+    <string name="goal_leg">Legtuk goal level :</string>
+    <string name="goal_240">240m shuttle run goal level  :</string>
+    <string name="goal_cir">Battlefield circulation exercise goal level :</string>
 
 </resources>
