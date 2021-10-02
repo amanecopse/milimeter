@@ -151,7 +151,7 @@ class BodyActivity : CustomThemeActivity() {
                 binding.weightTv.text =
                     "목표치보다 -${goalWeight.toInt() - userWeight.toInt()}kg  :  저체중"
             } else if (goalWeight == userWeight) {
-                binding.weightTv.text = "목표몸무게 도달!!"
+                binding.weightTv.text = "목표 몸무게 도달!!"
             }
         }
 

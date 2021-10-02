@@ -39,7 +39,7 @@
                 android:id="@+id/titleTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="운동결과"
+                android:text="@string/result_title"
                 android:textColor="?attr/textColorBanner"
                 android:textSize="@dimen/largeText" />
         </LinearLayout>
@@ -88,7 +88,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/bottom_button_background_cyan"
-                    android:text="전 종목"
+                    android:text="@string/total"
                     android:textColor="?attr/buttonTextColor"
                     android:textSize="@dimen/smallText" />
 
@@ -98,7 +98,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/bottom_button_background_cyan"
-                    android:text="레그턱"
+                    android:text="@string/legtuk2"
                     android:textColor="?attr/buttonTextColor"
                     android:textSize="@dimen/smallText" />
 
@@ -108,7 +108,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/bottom_button_background_cyan"
-                    android:text="240m"
+                    android:text="@string/running2"
                     android:textColor="?attr/buttonTextColor"
                     android:textSize="@dimen/smallText" />
 
@@ -118,7 +118,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/bottom_button_background_cyan"
-                    android:text="전장순환"
+                    android:text="@string/circuit2"
                     android:textColor="?attr/buttonTextColor"
                     android:textSize="@dimen/smallText" />
 
@@ -179,7 +179,7 @@
                                     android:id="@+id/event_date"
                                     android:layout_width="92dp"
                                     android:layout_height="match_parent"
-                                    android:text="종목/날짜"
+                                    android:text="@string/type_date"
                                     android:textColor="@android:color/black" />
 
                                 <TextView
@@ -211,7 +211,7 @@
                                     android:id="@+id/legtuck"
                                     android:layout_width="109dp"
                                     android:layout_height="match_parent"
-                                    android:text="레그턱"
+                                    android:text="@string/legtuk2"
                                     android:textColor="@android:color/black" />
 
                                 <TextView
@@ -242,7 +242,7 @@
                                     android:id="@+id/runrecord"
                                     android:layout_width="109dp"
                                     android:layout_height="match_parent"
-                                    android:text="240m"
+                                    android:text="@string/running2"
                                     android:textColor="@android:color/black" />
 
                                 <TextView
@@ -273,7 +273,7 @@
                                     android:id="@+id/circuitrecord"
                                     android:layout_width="109dp"
                                     android:layout_height="match_parent"
-                                    android:text="전장순환"
+                                    android:text="@string/circuit2"
                                     android:textColor="@android:color/black" />
 
                                 <TextView

@@ -74,18 +74,30 @@ class CircuitResultActivity : CustomThemeActivity() {
         cm.loadTrainingRecordNDaysAgo(
             UserData.getInstance(),
             cm.getCurrentDateBasedOnFormat(),
-            7
+            30
         ) { docs, lineDataSets, dateList ->
 
             val FieldTrainingList = mutableListOf<Int>()
+
             for (doc in docs) {
                 doc.data?.get(ChartManager.FIELD_TRAINING)?.let { score ->
                     FieldTrainingList.add(score.toString().toInt())
 
                 }
+                // 초기화
+                findViewById<TextView>(R.id.cexpert).setText(" ")
+                findViewById<TextView>(R.id.cgrade1).setText(" ")
+                findViewById<TextView>(R.id.cgrade2).setText(" ")
+                findViewById<TextView>(R.id.cgrade3).setText(" ")
+                findViewById<TextView>(R.id.cgrade4).setText(" ")
+                findViewById<TextView>(R.id.cgrade5).setText(" ")
+                findViewById<TextView>(R.id.cgrade6).setText(" ")
+                findViewById<TextView>(R.id.cgrade7).setText(" ")
+                findViewById<TextView>(R.id.cgrade8).setText(" ")
+                findViewById<TextView>(R.id.cgrade9).setText(" ")
                 //이미지로 저장할예정
                 if (FieldTrainingList.size > 0) {
-                    val grade = cm.calculateGrade(FieldTrainingList.get(FieldTrainingList.size - 1), "FIELD_TRAINING")
+                    val grade = cm.calculateGrade(FieldTrainingList.last(), "FIELD_TRAINING")
                     if(grade == 10f) findViewById<TextView>(R.id.cexpert).setText("<--")
                     else if (grade == 9f) findViewById<TextView>(R.id.cgrade1).setText("<--")
                     else if (grade == 8f) findViewById<TextView>(R.id.cgrade2).setText("<--")
