@@ -92,10 +92,44 @@ open class CustomThemeActivity : AppCompatActivity() {
         else if (mTheme == PreferenceManager.THEME_GRAY) {
             setTheme(R.style.GrayAppTheme)
         }
+        else if (mTheme == PreferenceManager.THEME_SPECIAL1) {
+            setTheme(R.style.SpecialAppTheme1)
+        }
+        else if (mTheme == PreferenceManager.THEME_SPECIAL2) {
+            setTheme(R.style.SpecialAppTheme2)
+        }
+        else if (mTheme == PreferenceManager.THEME_SPECIAL3) {
+            setTheme(R.style.SpecialAppTheme3)
+        }
         else{
             setTheme(R.style.AppTheme)
         }
 
+    }
+
+    fun loadIconS() {
+        if (PreferenceManager().getThemeData(this) == PreferenceManager.THEME_SPECIAL1) {
+            findViewById<Button>(R.id.homeBt).setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.home_special_icon,0,0)
+            findViewById<Button>(R.id.bodyBt).setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.body_special_icon,0,0)
+            findViewById<Button>(R.id.resultBt).setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.result_special_icon,0,0)
+            findViewById<Button>(R.id.goalBt).setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.goal_special_icon,0,0)
+            findViewById<Button>(R.id.settingBt).setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.setting_special_icon,0,0)
+        }
+        else if (PreferenceManager().getThemeData(this) == PreferenceManager.THEME_SPECIAL2) {
+            findViewById<Button>(R.id.homeBt).setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.home_special_icon,0,0)
+            findViewById<Button>(R.id.bodyBt).setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.body_special_icon,0,0)
+            findViewById<Button>(R.id.resultBt).setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.result_special_icon,0,0)
+            findViewById<Button>(R.id.goalBt).setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.goal_special_icon,0,0)
+            findViewById<Button>(R.id.settingBt).setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.setting_special_icon,0,0)
+        }
+        else if (PreferenceManager().getThemeData(this) == PreferenceManager.THEME_SPECIAL3) {
+            findViewById<Button>(R.id.homeBt).setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.home_special_icon,0,0)
+            findViewById<Button>(R.id.bodyBt).setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.body_special_icon,0,0)
+            findViewById<Button>(R.id.resultBt).setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.result_special_icon,0,0)
+            findViewById<Button>(R.id.goalBt).setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.goal_special_icon,0,0)
+            findViewById<Button>(R.id.settingBt).setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.setting_special_icon,0,0)
+        }
+        //else { android:drawableTint="?attr/textColorBanner" }
     }
 
     fun colorBtInactivation() {

@@ -1,11 +1,11 @@
 package com.amnapp.milimeter.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.amnapp.milimeter.PreferenceManager
 import com.amnapp.milimeter.R
 import com.amnapp.milimeter.databinding.ActivitySpecialThemeSettingBinding
+
 
 class SpecialThemeSettingActivity : CustomThemeActivity() {
 
@@ -30,31 +30,30 @@ class SpecialThemeSettingActivity : CustomThemeActivity() {
         }
 
         // 테마색깔 설정하기
-
-        if (PreferenceManager().getThemeData(this) == PreferenceManager.THEME_LIGHTGREEN) {
-            binding.lightGreenRBt.setChecked(true)
-        } else if (PreferenceManager().getThemeData(this) == PreferenceManager.THEME_LIGHTLIME) {
-            binding.greenRBt.setChecked(true)
-        } else if (PreferenceManager().getThemeData(this) == PreferenceManager.THEME_GRAYGREEN) {
-            binding.darkGreenRBt.setChecked(true)
+        if (PreferenceManager().getThemeData(this) == PreferenceManager.THEME_SPECIAL1) {
+            binding.theme1RBt.setChecked(true)
+        } else if (PreferenceManager().getThemeData(this) == PreferenceManager.THEME_SPECIAL2) {
+            binding.theme2RBt.setChecked(true)
+        } else if (PreferenceManager().getThemeData(this) == PreferenceManager.THEME_SPECIAL3) {
+            binding.theme3RBt.setChecked(true)
         }
 
         binding.themeColorRG.setOnCheckedChangeListener { group, checkedId ->
             when (checkedId) {
-                // 기본 모드
-                R.id.lightGreenRBt -> {
-                    pm.setThemeData(this, PreferenceManager.THEME_LIGHTGREEN)
-                    mode = "lightgreen theme"
+                // 테마1
+                R.id.theme1RBt -> {
+                    pm.setThemeData(this, PreferenceManager.THEME_SPECIAL1)
+                    mode = "special theme1"
                 }
-                // 다크 모드
-                R.id.greenRBt -> {
-                    pm.setThemeData(this, PreferenceManager.THEME_LIGHTLIME)
-                    mode = "lightlime theme"
+                // 테마2
+                R.id.theme2RBt -> {
+                    pm.setThemeData(this, PreferenceManager.THEME_SPECIAL2)
+                    mode = "special theme2"
                 }
-                // 색상 모드
-                R.id.darkGreenRBt -> {
-                    pm.setThemeData(this, PreferenceManager.THEME_GRAYGREEN)
-                    mode = "graygreen theme"
+                // 테마3
+                R.id.theme3RBt -> {
+                    pm.setThemeData(this, PreferenceManager.THEME_SPECIAL3)
+                    mode = "special theme3"
                 }
             }
         }

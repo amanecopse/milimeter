@@ -5,16 +5,23 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
+import android.graphics.PorterDuff
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.Gravity
+import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
+import androidx.core.graphics.drawable.DrawableCompat.clearColorFilter
 import com.amnapp.milimeter.*
 import com.amnapp.milimeter.databinding.ActivityHomeBinding
 import com.amnapp.milimeter.databinding.ActivitySettingBinding
@@ -35,9 +42,18 @@ class HomeActivity : CustomThemeActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         loadTheme()
+        loadIconS()
 
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        if (PreferenceManager().getThemeData(this) == PreferenceManager.THEME_DEFAULT) {
+            findViewById<Button>(R.id.homeBt).setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.home_special_icon,0,0)
+            findViewById<Button>(R.id.bodyBt).setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.body_special_icon,0,0)
+            findViewById<Button>(R.id.resultBt).setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.result_special_icon,0,0)
+            findViewById<Button>(R.id.goalBt).setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.goal_special_icon,0,0)
+            findViewById<Button>(R.id.settingBt).setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.setting_special_icon,0,0)
+        }
 
         initUI()
         autoLogin()

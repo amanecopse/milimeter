@@ -18,6 +18,7 @@ class SettingActivity : CustomThemeActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         loadTheme()
+        loadIconS()
 
         binding = ActivitySettingBinding.inflate(layoutInflater)
         setContentView(binding.root)

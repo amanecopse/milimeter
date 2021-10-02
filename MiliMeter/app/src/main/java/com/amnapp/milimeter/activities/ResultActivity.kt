@@ -37,6 +37,7 @@ class ResultActivity : CustomThemeActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         loadTheme()
+        loadIconS()
 
         binding = ActivityResultBinding.inflate(layoutInflater)
         setContentView(binding.root)

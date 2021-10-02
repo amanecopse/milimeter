@@ -47,6 +47,9 @@ class PreferenceManager {
         val THEME_BEIGEBROWN = "beigebrown theme"
         val THEME_LIGHTGRAY = "lightgray theme"
         val THEME_GRAY = "gray theme"
+        val THEME_SPECIAL1 = "special theme1"
+        val THEME_SPECIAL2 = "special theme2"
+        val THEME_SPECIAL3 = "special theme3"
 
     }
 

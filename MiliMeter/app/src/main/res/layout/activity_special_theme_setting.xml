@@ -209,7 +209,7 @@
                                 android:layout_weight="1">
 
                                 <RadioButton
-                                    android:id="@+id/lightGreenRBt"
+                                    android:id="@+id/theme1RBt"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
@@ -220,7 +220,7 @@
                                     android:textColor="?attr/textColor" />
 
                                 <RadioButton
-                                    android:id="@+id/greenRBt"
+                                    android:id="@+id/theme2RBt"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
@@ -231,13 +231,13 @@
                                     android:textColor="?attr/textColor" />
 
                                 <RadioButton
-                                    android:id="@+id/darkGreenRBt"
+                                    android:id="@+id/theme3RBt"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
                                     android:layout_weight="1"
-                                    android:gravity="center"
                                     android:paddingRight="30dp"
+                                    android:gravity="center"
                                     android:text="@string/dark_green"
                                     android:textColor="?attr/textColor" />
 

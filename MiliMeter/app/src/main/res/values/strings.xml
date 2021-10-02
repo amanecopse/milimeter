@@ -74,9 +74,9 @@
     <string name="theme_icon">테마 아이콘</string>
     <string name="theme_color">테마 색상</string>
     <string name="account">*이 테마는 아이콘 그림이 다음과 같이 적용됩니다.</string>
-    <string name="light_green">밝은 녹색</string>
-    <string name="green">녹색</string>
-    <string name="dark_green">어두운 녹색</string>
+    <string name="light_green">테마1</string>
+    <string name="green">테마2</string>
+    <string name="dark_green">테마3</string>
 
     <string name="lang1">한국어</string>
     <string name="lang2">영어</string>
