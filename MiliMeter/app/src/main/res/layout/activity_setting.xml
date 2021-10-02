@@ -147,36 +147,6 @@
                         android:background="?android:attr/listDivider" />
 
                     <LinearLayout
-                        android:id="@+id/noticeSettingBt"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:clickable="true"
-                        android:foreground="?android:attr/selectableItemBackground"
-                        android:gravity="center_vertical"
-                        android:padding="20dp">
-
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            app:srcCompat="@drawable/ic_baseline_notifications_none_15_white"
-                            app:tint="?attr/textColor" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="10dp"
-                            android:text="@string/alarm"
-                            android:textColor="?attr/textColor"
-                            android:textSize="@dimen/middleText" />
-
-                    </LinearLayout>
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="?android:attr/listDivider" />
-
-                    <LinearLayout
                         android:id="@+id/privateSettingBt"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"

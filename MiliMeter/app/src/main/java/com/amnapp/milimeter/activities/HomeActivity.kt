@@ -42,18 +42,11 @@ class HomeActivity : CustomThemeActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         loadTheme()
-        loadIconS()
+        //loadIconS()
 
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        if (PreferenceManager().getThemeData(this) == PreferenceManager.THEME_DEFAULT) {
-            findViewById<Button>(R.id.homeBt).setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.home_special_icon,0,0)
-            findViewById<Button>(R.id.bodyBt).setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.body_special_icon,0,0)
-            findViewById<Button>(R.id.resultBt).setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.result_special_icon,0,0)
-            findViewById<Button>(R.id.goalBt).setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.goal_special_icon,0,0)
-            findViewById<Button>(R.id.settingBt).setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.setting_special_icon,0,0)
-        }
 
         initUI()
         autoLogin()

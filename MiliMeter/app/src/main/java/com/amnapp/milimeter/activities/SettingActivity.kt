@@ -18,7 +18,7 @@ class SettingActivity : CustomThemeActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         loadTheme()
-        loadIconS()
+        //loadIconS()
 
         binding = ActivitySettingBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -32,11 +32,6 @@ class SettingActivity : CustomThemeActivity() {
         binding.languageSettingBt.setOnClickListener {
             val intentLanguage = Intent(this, LanguageActivity::class.java)
             startActivity(intentLanguage)
-        }
-        // 알림설정창 이동
-        binding.noticeSettingBt.setOnClickListener {
-            val intentNotice = Intent(this, NoticeActivity::class.java)
-            startActivity(intentNotice)
         }
         // 회원정보창 이동(비밀번호변경)
         binding.privateSettingBt.setOnClickListener {

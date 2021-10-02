@@ -44,7 +44,7 @@ class BodyActivity : CustomThemeActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         loadTheme()
-        loadIconS()
+        //loadIconS()
 
         binding = ActivityBodyBinding.inflate(layoutInflater)
         setContentView(binding.root)

@@ -38,10 +38,6 @@ class ThemeActivity : CustomThemeActivity() {
             val intentSpecialTheme = Intent(this, SpecialThemeSettingActivity::class.java)
             startActivity(intentSpecialTheme)
         }
-        // 테마 제작하기창으로 이동
-        binding.makingThemeLl.setOnClickListener {
-            val intentMakingTheme = Intent(this, MakingThemeSettingActivity::class.java)
-            startActivity(intentMakingTheme)
-        }
+
     }
 }

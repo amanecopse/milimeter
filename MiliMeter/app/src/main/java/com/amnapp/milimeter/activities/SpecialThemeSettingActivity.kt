@@ -30,11 +30,11 @@ class SpecialThemeSettingActivity : CustomThemeActivity() {
         }
 
         // 테마색깔 설정하기
-        if (PreferenceManager().getThemeData(this) == PreferenceManager.THEME_SPECIAL1) {
+        if (PreferenceManager().getThemeData(this) == PreferenceManager.THEME_SPECIAL_FIRST) {
             binding.theme1RBt.setChecked(true)
-        } else if (PreferenceManager().getThemeData(this) == PreferenceManager.THEME_SPECIAL2) {
+        } else if (PreferenceManager().getThemeData(this) == PreferenceManager.THEME_SPECIAL_SECOND) {
             binding.theme2RBt.setChecked(true)
-        } else if (PreferenceManager().getThemeData(this) == PreferenceManager.THEME_SPECIAL3) {
+        } else if (PreferenceManager().getThemeData(this) == PreferenceManager.THEME_SPECIAL_THIRD) {
             binding.theme3RBt.setChecked(true)
         }
 
@@ -42,18 +42,18 @@ class SpecialThemeSettingActivity : CustomThemeActivity() {
             when (checkedId) {
                 // 테마1
                 R.id.theme1RBt -> {
-                    pm.setThemeData(this, PreferenceManager.THEME_SPECIAL1)
-                    mode = "special theme1"
+                    pm.setThemeData(this, PreferenceManager.THEME_SPECIAL_FIRST)
+                    mode = "special"
                 }
                 // 테마2
                 R.id.theme2RBt -> {
-                    pm.setThemeData(this, PreferenceManager.THEME_SPECIAL2)
-                    mode = "special theme2"
+                    pm.setThemeData(this, PreferenceManager.THEME_SPECIAL_SECOND)
+                    mode = "special"
                 }
                 // 테마3
                 R.id.theme3RBt -> {
-                    pm.setThemeData(this, PreferenceManager.THEME_SPECIAL3)
-                    mode = "special theme3"
+                    pm.setThemeData(this, PreferenceManager.THEME_SPECIAL_THIRD)
+                    mode = "special"
                 }
             }
         }
