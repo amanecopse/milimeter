@@ -150,6 +150,13 @@ class HomeActivity : CustomThemeActivity() {
 
                    if (dday==0) {
                        binding.dDayBt.text=("D-day")}
+                   else if (dday<0){
+                       val builder = AlertDialog.Builder(this@HomeActivity)
+                       builder.setTitle("잘못된 날짜 선택입니다")
+                       builder.setMessage("오늘 이후의 날짜를 선택해주세요")
+                       builder.setPositiveButton("네",null)
+                       builder.show()
+                   }
                    else{
                        binding.dDayBt.text=("D-${dday}")}
 
