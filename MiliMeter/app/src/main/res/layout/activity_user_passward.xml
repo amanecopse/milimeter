@@ -40,7 +40,7 @@
                 android:id="@+id/titleTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="회원정보"
+                android:text="@string/password"
                 android:textColor="?attr/textColorBanner"
                 android:textSize="@dimen/largeText" />
         </LinearLayout>
@@ -131,7 +131,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="10dp"
-                            android:text="비밀번호 변경하기"
+                            android:text="@string/password_change"
                             android:textColor="?attr/textColor"
                             android:textSize="@dimen/middleText" />
 
@@ -161,7 +161,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="10dp"
-                            android:text="그룹계정관리"
+                            android:text="@string/group_manager"
                             android:textColor="?attr/textColor"
                             android:textSize="@dimen/middleText" />
 

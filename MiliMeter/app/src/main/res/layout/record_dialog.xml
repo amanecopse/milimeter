@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="45dp"
-            android:text=" 운동명을 입력해주세요."
+            android:text="@string/exercise_name"
             android:textSize="25sp"
             android:textStyle="bold" />
 
@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            android:text="*운동차트에 기록됩니다.\n*필수항목입니다."
+            android:text="@string/exercise_chart"
             android:textColor="#C80808"
             android:textSize="15sp"
             android:textStyle="bold" />
@@ -36,7 +36,7 @@
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginTop="15dp"
-            android:hint="예시 : 달리기" />
+            android:hint="@string/hint_exercise" />
 
     </LinearLayout>
 
@@ -52,8 +52,9 @@
             android:id="@+id/saveBt"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:background="#A9FFAD"
-            android:text="완료"
+            android:background="?attr/cardBackground"
+            android:text="@string/save"
+            android:textColor="?attr/textColor"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -61,10 +62,11 @@
             android:id="@+id/cancelBt"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:background="#A9FFAD"
-            android:text="취소"
+            android:background="?attr/cardBackground"
+            android:text="@string/cancel"
             android:textSize="20sp"
             android:textStyle="bold"
+            android:textColor="?attr/textColor"
             android:layout_marginLeft="20dp" />
 
     </LinearLayout>

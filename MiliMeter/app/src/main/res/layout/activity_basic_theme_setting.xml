@@ -40,7 +40,7 @@
                 android:id="@+id/titleTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="기본 테마"
+                android:text="@string/basic_theme"
                 android:textColor="?attr/textColorBanner"
                 android:textSize="@dimen/largeText" />
         </LinearLayout>
@@ -165,7 +165,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:checked="true"
-                                    android:text="  기본"
+                                    android:text="@string/basic"
                                     android:textColor="?attr/textColor"
                                     android:textSize="@dimen/middleText"
                                     android:textStyle="bold" />
@@ -175,7 +175,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="  다크"
+                                    android:text="@string/dark"
                                     android:textColor="?attr/textColor"
                                     android:textSize="@dimen/middleText"
                                     android:textStyle="bold" />
@@ -185,7 +185,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="  색상"
+                                    android:text="@string/color"
                                     android:textColor="?attr/textColor"
                                     android:textSize="@dimen/middleText"
                                     android:textStyle="bold" />
@@ -522,7 +522,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:padding="10dp"
-                    android:text="저장"
+                    android:text="@string/save"
                     android:textColor="?attr/textColorBanner"
                     android:textSize="@dimen/middleText" />
             </LinearLayout>

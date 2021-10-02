@@ -71,14 +71,29 @@ class RunningResultActivity: CustomThemeActivity() {
         ) { docs, lineDataSets, dateList ->
 
             val list = mutableListOf<Int>()
+
             for (doc in docs) {
                 doc.data?.get(ChartManager.SHUTTLE_RUN)?.let { score ->
                     list.add(score.toString().toInt())
 
                 }
+
+                //초기화
+                findViewById<TextView>(R.id.rexpert).setText(" ")
+                findViewById<TextView>(R.id.rgrade1).setText(" ")
+                findViewById<TextView>(R.id.rgrade2).setText(" ")
+                findViewById<TextView>(R.id.rgrade3).setText(" ")
+                findViewById<TextView>(R.id.rgrade4).setText(" ")
+                findViewById<TextView>(R.id.rgrade5).setText(" ")
+                findViewById<TextView>(R.id.rgrade6).setText(" ")
+                findViewById<TextView>(R.id.rgrade7).setText(" ")
+                findViewById<TextView>(R.id.rgrade8).setText(" ")
+                findViewById<TextView>(R.id.rgrade9).setText(" ")
+
+
                 //이미지로 저장할예정
                 if (list.size > 0) {
-                    val grade = cm.calculateGrade(list.get(list.size-1), ChartManager.SHUTTLE_RUN)
+                    val grade = cm.calculateGrade(list.last(), ChartManager.SHUTTLE_RUN)
                     if (grade == 10f) findViewById<TextView>(R.id.rexpert).setText("<--")
                     else if (grade == 9f) findViewById<TextView>(R.id.rgrade1).setText("<--")
                     else if (grade == 8f) findViewById<TextView>(R.id.rgrade2).setText("<--")

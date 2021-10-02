@@ -39,7 +39,7 @@
                 android:id="@+id/titleTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="개인정보관리"
+                android:text="@string/user_information"
                 android:textColor="?attr/textColorBanner"
                 android:textSize="@dimen/largeText" />
         </LinearLayout>
@@ -123,7 +123,7 @@
                             android:id="@+id/nameEt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="*이름"
+                            android:hint="*이름(name)"
                             android:maxLength="20"
                             android:singleLine="true"
                             android:textColor="?attr/textColor"
@@ -153,7 +153,7 @@
                             android:clickable="false"
                             android:paddingTop="20dp"
                             android:paddingBottom="20dp"
-                            android:text="생년월일 입력"
+                            android:text="생년월일 입력(birth)"
                             android:textColor="?attr/textColor"
                             android:textSize="@dimen/middleText" />
 
@@ -173,7 +173,7 @@
                             android:id="@+id/militaryIdEt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="*군번"
+                            android:hint="*군번(military number)"
                             android:inputType="number"
                             android:maxLength="20"
                             android:singleLine="true"
@@ -196,7 +196,7 @@
                             android:id="@+id/heightEt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="*키"
+                            android:hint="*키(height)"
                             android:inputType="number"
                             android:maxLength="3"
                             android:singleLine="true"
@@ -219,7 +219,7 @@
                             android:id="@+id/weightEt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="*몸무게"
+                            android:hint="*몸무게(weight)"
                             android:inputType="number"
                             android:maxLength="3"
                             android:singleLine="true"
@@ -239,7 +239,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
-                            android:text="혈액형:"
+                            android:text="@string/blood_type"
                             android:textColor="?attr/textColor"
                             android:textSize="@dimen/smallText" />
 
@@ -291,7 +291,7 @@
                             android:id="@+id/goalOfWeightEt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="목표 몸무게"
+                            android:hint="@string/goal_weight"
                             android:inputType="number"
                             android:maxLength="3"
                             android:singleLine="true"
@@ -312,7 +312,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="전체 종목 목표 등급:"
+                            android:text="@string/goal_total"
                             android:textColor="?attr/textColor"
                             android:textSize="@dimen/smallText" />
 
@@ -343,7 +343,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="레그턱 목표 등급:"
+                            android:text="@string/goal_leg"
                             android:textColor="?attr/textColor"
                             android:textSize="@dimen/smallText" />
 
@@ -374,7 +374,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="240m 왕복달리기 등급:"
+                            android:text="@string/goal_240"
                             android:textColor="?attr/textColor"
                             android:textSize="@dimen/smallText" />
 
@@ -405,7 +405,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="전장순환운동 목표 등급:"
+                            android:text="@string/goal_cir"
                             android:textColor="?attr/textColor"
                             android:textSize="@dimen/smallText" />
 
@@ -468,7 +468,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:padding="10dp"
-                    android:text="저장"
+                    android:text="@string/save"
                     android:textColor="?attr/textColorBanner"
                     android:textSize="@dimen/middleText" />
             </LinearLayout>

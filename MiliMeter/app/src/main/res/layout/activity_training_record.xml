@@ -21,7 +21,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="종목: "
+                android:text="@string/type"
                 android:textSize="@dimen/middleText"
                 tools:layout_editor_absoluteX="-44dp"
                 tools:layout_editor_absoluteY="415dp" />
@@ -57,7 +57,7 @@
                 android:id="@+id/textView14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="날짜: "
+                android:text="@string/date"
                 android:textSize="@dimen/middleText"
                 tools:layout_editor_absoluteX="-44dp"
                 tools:layout_editor_absoluteY="415dp" />
@@ -67,7 +67,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
-                android:text="클릭해서 입력"
+                android:text="@string/click"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/middleText"
                 tools:layout_editor_absoluteX="-44dp"
@@ -96,7 +96,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="초,횟수,kg: "
+                android:text="@string/record"
                 android:textSize="@dimen/middleText"
                 tools:layout_editor_absoluteX="-44dp"
                 tools:layout_editor_absoluteY="415dp" />
@@ -105,6 +105,7 @@
                 android:id="@+id/recordEt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:hint="@string/hint_record"
                 android:ems="10"
                 android:inputType="number" />
 
@@ -119,7 +120,7 @@
                 android:id="@+id/confirmBt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="확인" />
+                android:text="@string/save" />
         </TableRow>
     </TableLayout>
 

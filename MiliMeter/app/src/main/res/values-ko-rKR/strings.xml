@@ -10,7 +10,12 @@
 
     <string name="critical_items">*필수항목입니다.</string>
     <string name="save">저장</string>
+    <string name="check">확인</string>
     <string name="cancel">취소</string>
+    <string name="login">로그인</string>
+    <string name="logout">로그아웃</string>
+    <string name="id">아이디</string>
+    <string name="pw">비밀번호</string>
 
     // 홈
     <string name="name">이름:&#160;</string>
@@ -24,6 +29,8 @@
     <string name="body_weight">목표치보다</string>
     <string name="more_weight">과제중</string>
     <string name="less_weight">저체중</string>
+    <string name="goal_body">목표 몸무게 도달!!</string>
+    <string name="default_body">목표치까지 +/- 00kg</string>
     <string name="exercise_name">운동명을 입력해주세요.</string>
     <string name="exercise_chart">*운동차트에 기록됩니다.</string>
     <string name="hint_exercise">예시 : 달리기</string>
@@ -31,7 +38,8 @@
     // 결과
     <string name="result_title">운동결과</string>
     <string name="total">전 종목</string>
-    <string name="legtuk">레그턱</string>
+    <string name="legtuk2">레그턱</string>
+    <string name="legtuk1">레그턱</string>
     <string name="running1">240M 왕복달리기</string>
     <string name="running2">240M</string>
     <string name="circuit1">전장순환운동</string>
@@ -42,6 +50,7 @@
     <string name="date">날짜 :</string>
     <string name="record">기록/몸무게 :</string>
     <string name="hint_record">시간은 초로 입력해주세요.</string>
+    <string name="click">클릭해서 입력</string>
 
     // 목표
     <string name="goal_grade">목표등급:&#160;</string>
@@ -53,7 +62,7 @@
     <string name="theme">테마</string>
     <string name="language">언어</string>
     <string name="alarm">알림</string>
-    <string name="passward">회원정보</string>
+    <string name="password">회원정보</string>
     <string name="user_information">개인정보관리</string>
 
     <string name="basic_theme">기본 테마</string>
@@ -73,6 +82,36 @@
     <string name="lang2">영어</string>
 
     <string name="notice">알림설정</string>
+    <string name="notice_time">알림 시간</string>
+    <string name="notice_title">알림 제목</string>
+    <string name="notice_content">알림 내용</string>
+    <string name="notice_hintc">알림 내용을 적어주세요.</string>
+    <string name="notice_hintt">알림 제목을 적어주세요.</string>
+
+    <string name="password_change">비밀번호 변경하기</string>
+    <string name="group_manager">그룹계정관리</string>
+    <string name="before_pw">현재 비밀번호를 입력하세요</string>
+    <string name="after_pw">새로운 비밀번호를 입력하세요</string>
+    <string name="notice_pw">*이전과 다른 비밀번호로 설정해주세요\n*비밀번호는 5~20자리 내로 설정해주세요</string>
+
+    <string name="user_info">내정보</string>
+    <string name="invite">그룹 내 하위회원 초대</string>
+    <string name="merge">그룹 내 하위그룹 병합</string>
+    <string name="manager">관리자 페이지</string>
+    <string name="drop">그룹탈퇴</string>
+    <string name="group_code_change">이 그룹의 그룹코드 변경</string>
+    <string name="lower_level_member">의 하위회원</string>
+
+    <string name="height">키</string>
+    <string name="weight">몸무게</string>
+    <string name="blood_type">혈액형 :</string>
+    <string name="notice_info">"-"없이 숫자만 입력</string>
+    <string name="goal_weight">목표 몸무게</string>
+    <string name="goal_total">전체 종목 목표 등급 :</string>
+    <string name="goal_leg">레그턱 목표 등급 :</string>
+    <string name="goal_240">240m 왕복달리기 목표 등급 :</string>
+    <string name="goal_cir">전장순환운동 목표 등급 :</string>
+
 
 
 

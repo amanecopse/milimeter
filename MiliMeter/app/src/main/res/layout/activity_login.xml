@@ -39,7 +39,7 @@
                 android:id="@+id/titleTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="로그인 및 계정"
+                android:text="@string/login_user"
                 android:textColor="?attr/textColorBanner"
                 android:textSize="@dimen/largeText" />
         </LinearLayout>
@@ -131,7 +131,7 @@
                                 android:id="@+id/idEt"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="아이디"
+                                android:hint="@string/id"
                                 android:singleLine="true"
                                 android:textColor="?attr/textColor"
                                 android:textColorHint="?attr/textColor"
@@ -150,7 +150,7 @@
                                 android:id="@+id/pwEt"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="비밀번호"
+                                android:hint="@string/pw"
                                 android:password="true"
                                 android:singleLine="true"
                                 android:textColor="?attr/textColor"
@@ -182,7 +182,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="?attr/buttonBackground"
-                    android:text="로그인"
+                    android:text="@string/login"
                     android:textColor="?attr/buttonTextColor"
                     android:textSize="@dimen/middleText" />
             </LinearLayout>
