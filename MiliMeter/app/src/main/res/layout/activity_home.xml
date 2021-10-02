@@ -107,71 +107,70 @@
                     android:layout_margin="20dp"
                     android:orientation="vertical">
 
-                    <TableLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:orientation="horizontal">
 
-                        <TableRow
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginBottom="10dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/name"
+                            android:textColor="?attr/textColor"
+                            android:textSize="@dimen/middleText" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/name"
-                                android:textColor="?attr/textColor"
-                                android:textSize="@dimen/middleText" />
+                        <TextView
+                            android:id="@+id/nameTv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="?attr/textColor"
+                            android:textSize="@dimen/middleText" />
 
-                            <TextView
-                                android:id="@+id/nameTv"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="?attr/textColor"
-                                android:textSize="@dimen/middleText" />
+                    </LinearLayout>
 
-                        </TableRow>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:orientation="horizontal">
 
-                        <TableRow
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginBottom="10dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/military_number"
+                            android:textColor="?attr/textColor"
+                            android:textSize="@dimen/middleText" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/military_number"
-                                android:textColor="?attr/textColor"
-                                android:textSize="@dimen/middleText" />
+                        <TextView
+                            android:id="@+id/militaryIdTv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="?attr/textColor"
+                            android:textSize="@dimen/middleText" />
+                    </LinearLayout>
 
-                            <TextView
-                                android:id="@+id/militaryIdTv"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="?attr/textColor"
-                                android:textSize="@dimen/middleText" />
-                        </TableRow>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:orientation="horizontal">
 
-                        <TableRow
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/group_code"
+                            android:textColor="?attr/textColor"
+                            android:textSize="@dimen/middleText" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/group_code"
-                                android:textColor="?attr/textColor"
-                                android:textSize="@dimen/middleText" />
+                        <TextView
+                            android:id="@+id/groupCodeTv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="?attr/textColor"
+                            android:textSize="@dimen/middleText" />
 
-                            <TextView
-                                android:id="@+id/groupCodeTv"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="?attr/textColor"
-                                android:textSize="@dimen/middleText" />
-                        </TableRow>
-
-                    </TableLayout>
+                    </LinearLayout>
 
                 </LinearLayout>
 
