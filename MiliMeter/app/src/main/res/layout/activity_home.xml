@@ -197,9 +197,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/header_button_background_cyan"
+        android:padding="10dp"
+        android:text="@string/Dday_setting"
         android:textColor="?attr/buttonTextColor"
         android:textSize="@dimen/smallText"
-        android:text="@string/Dday_setting"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarCl" />
 
