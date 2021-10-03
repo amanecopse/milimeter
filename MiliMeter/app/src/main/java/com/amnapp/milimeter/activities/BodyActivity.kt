@@ -217,10 +217,14 @@ class BodyActivity : CustomThemeActivity() {
                     xAxis.isGranularityEnabled = true
 
                     val yLAxis = linechart.axisLeft//y축
+                    val yRAxis =linechart.axisRight
                     yLAxis.axisMaximum = 120f //y축최대
                     yLAxis.axisMinimum = 0f  //
                     yLAxis.labelCount = 24
-                    linechart.axisRight.isEnabled = false
+                    yRAxis.axisMaximum=120f
+                    yRAxis.axisMinimum = 0f  //
+                    yLAxis.labelCount = 10
+                    linechart.axisRight.isEnabled=true
                     for (doc in docs) {
                         //데이터 엔트리 추가
                         doc.data?.get(ChartManager.WEIGHT)?.let { score ->
