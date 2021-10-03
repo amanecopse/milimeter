@@ -19,6 +19,7 @@ class GoalActivity : CustomThemeActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         loadTheme()
+        //loadIconS()
 
         binding = ActivityGoalBinding.inflate(layoutInflater)
         setContentView(binding.root)

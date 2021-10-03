@@ -37,9 +37,11 @@ class BasicThemeSettingActivity : CustomThemeActivity() {
         } else if (PreferenceManager().getThemeData(this) == PreferenceManager.THEME_DARK){
             binding.darkModeRBt.setChecked(true)
         } else {
-            binding.colorModeRBt.setChecked(true)
-            allColorBtClickChangeText()
-            mode = "color"
+            if (PreferenceManager().getThemeData(this) != PreferenceManager.THEME_SPECIAL_FIRST || PreferenceManager().getThemeData(this) != PreferenceManager.THEME_SPECIAL_SECOND || PreferenceManager().getThemeData(this) != PreferenceManager.THEME_SPECIAL_THIRD) {
+                binding.colorModeRBt.setChecked(true)
+                allColorBtClickChangeText()
+                mode = "color"
+            }
         }
 
         binding.modeSettingRG.setOnCheckedChangeListener { group, checkedId ->
@@ -68,8 +70,7 @@ class BasicThemeSettingActivity : CustomThemeActivity() {
             }
         }
 
-        // 색상으로 설정되어 있는 상태이면 또 색상으로 설정 못함 색상표 클릭이 안됨
-        // 색상모드에서 다크나 일반 모드 클릭했다가 하면 제대로 작동 됨
+
         binding.saveCv.setOnClickListener {
             if (mode == "color") {
                 findColor()

@@ -147,36 +147,6 @@
                         android:background="?android:attr/listDivider" />
 
                     <LinearLayout
-                        android:id="@+id/noticeSettingBt"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:clickable="true"
-                        android:foreground="?android:attr/selectableItemBackground"
-                        android:gravity="center_vertical"
-                        android:padding="20dp">
-
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            app:srcCompat="@drawable/ic_baseline_notifications_none_15_white"
-                            app:tint="?attr/textColor" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="10dp"
-                            android:text="@string/alarm"
-                            android:textColor="?attr/textColor"
-                            android:textSize="@dimen/middleText" />
-
-                    </LinearLayout>
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="?android:attr/listDivider" />
-
-                    <LinearLayout
                         android:id="@+id/privateSettingBt"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -278,7 +248,6 @@
                 android:layout_weight="1"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
                 android:drawableTop="@drawable/ic_baseline_home_20_white"
-                android:drawableTint="?attr/textColorBanner"
                 android:gravity="center_horizontal"
                 android:text="@string/home"
                 android:textAllCaps="false"
@@ -292,7 +261,6 @@
                 android:layout_weight="1"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
                 android:drawableTop="@drawable/ic_baseline_accessibility_20_white"
-                android:drawableTint="?attr/textColorBanner"
                 android:gravity="center_horizontal"
                 android:text="@string/body"
                 android:textAllCaps="false"
@@ -306,7 +274,6 @@
                 android:layout_weight="1"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
                 android:drawableTop="@drawable/ic_baseline_insert_chart_outlined_20_white"
-                android:drawableTint="?attr/textColorBanner"
                 android:gravity="center_horizontal"
                 android:text="@string/result"
                 android:textAllCaps="false"
@@ -320,7 +287,6 @@
                 android:layout_weight="1"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
                 android:drawableTop="@drawable/ic_baseline_track_changes_20_white"
-                android:drawableTint="?attr/textColorBanner"
                 android:gravity="center_horizontal"
                 android:text="@string/goal"
                 android:textAllCaps="false"
@@ -334,7 +300,6 @@
                 android:layout_weight="1"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
                 android:drawableTop="@drawable/ic_baseline_miscellaneous_services_20_white"
-                android:drawableTint="?attr/textColorBanner"
                 android:gravity="center_horizontal"
                 android:text="@string/setting"
                 android:textAllCaps="false"
