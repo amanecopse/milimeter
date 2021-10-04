@@ -149,7 +149,7 @@ class AdminPageActivity : CustomThemeActivity() {
         val cancelIb = dialog.findViewById<ImageButton>(R.id.cancelIb)
 
         val cm = ChartManager()
-        cm.loadTrainingRecordNDaysAgo(userData,cm.getCurrentDateBasedOnFormat(),7)
+        cm.loadTrainingRecordNDaysAgo(userData,cm.getCurrentDateBasedOnFormat(),30)
         { docs, lineDataSets, dateList ->
             cm.makeLineChart(subUserLc, lineDataSets, dateList)
         }
