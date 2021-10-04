@@ -167,35 +167,6 @@
 
                     </LinearLayout>
 
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="?android:attr/listDivider" />
-
-                    <LinearLayout
-                        android:id="@+id/makingThemeLl"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:clickable="true"
-                        android:foreground="?android:attr/selectableItemBackground"
-                        android:gravity="center_vertical"
-                        android:padding="20dp">
-
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            app:srcCompat="@drawable/ic_baseline_engineering_20_white"
-                            app:tint="?attr/textColor" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="10dp"
-                            android:text="@string/making_theme"
-                            android:textColor="?attr/textColor"
-                            android:textSize="@dimen/middleText" />
-
-                    </LinearLayout>
 
                 </LinearLayout>
 

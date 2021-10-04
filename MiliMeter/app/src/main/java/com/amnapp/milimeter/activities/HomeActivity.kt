@@ -5,9 +5,12 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
+import android.graphics.PorterDuff
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -17,6 +20,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
+import androidx.core.graphics.drawable.DrawableCompat.clearColorFilter
 import com.amnapp.milimeter.*
 import com.amnapp.milimeter.databinding.ActivityHomeBinding
 import java.io.IOException
@@ -33,9 +39,11 @@ class HomeActivity : CustomThemeActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         loadTheme()
+        //loadIconS()
 
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
 
         initUI()
         autoLogin()
@@ -171,6 +179,13 @@ class HomeActivity : CustomThemeActivity() {
 
                    if (dday==0) {
                        binding.dDayBt.text=("D-day")}
+                   else if (dday<0){
+                       val builder = AlertDialog.Builder(this@HomeActivity)
+                       builder.setTitle("잘못된 날짜 선택입니다")
+                       builder.setMessage("오늘 이후의 날짜를 선택해주세요")
+                       builder.setPositiveButton("네",null)
+                       builder.show()
+                   }
                    else{
                        binding.dDayBt.text=("D-${dday}")}
 

@@ -74,9 +74,9 @@
     <string name="theme_icon">Theme icon</string>
     <string name="theme_color">Theme color</string>
     <string name="account">*This theme is applied the icon pictures like that.</string>
-    <string name="light_green">light green</string>
-    <string name="green">green</string>
-    <string name="dark_green">dark green</string>
+    <string name="light_green">Theme1</string>
+    <string name="green">Theme2</string>
+    <string name="dark_green">Theme3</string>
 
     <string name="lang1">Korea</string>
     <string name="lang2">English</string>
