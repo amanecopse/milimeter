@@ -12,16 +12,14 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.Gravity
+import android.view.KeyEvent
+import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import com.amnapp.milimeter.*
 import com.amnapp.milimeter.databinding.ActivityHomeBinding
-import com.amnapp.milimeter.databinding.ActivitySettingBinding
-import com.google.common.io.ByteStreams.toByteArray
-import java.io.ByteArrayOutputStream
 import java.io.IOException
-import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.system.exitProcess
 
@@ -42,6 +40,7 @@ class HomeActivity : CustomThemeActivity() {
         initUI()
         autoLogin()
         loadProfile()
+        loadDebug()
     }
 
 
@@ -69,6 +68,32 @@ class HomeActivity : CustomThemeActivity() {
 
     }
 
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        when (keyCode) {
+            KeyEvent.KEYCODE_A -> {//A누르면 디버그 패스워드 창 표시
+                binding.debugLl.visibility = View.VISIBLE
+                return true
+            }
+        }
+        return false
+    }
+
+    private fun loadDebug(){//디버그 창에 진입하기 위해 패스워드를 입력하는 과정
+        binding.debugBt.setOnClickListener {//디버그 창으로 가는 코드
+            val intent = Intent(this, DebugActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.debugEt.setOnKeyListener { v, keyCode, event ->
+            if(keyCode==KeyEvent.KEYCODE_ENTER){
+                if(binding.debugEt.text.toString() != "debug")
+                    return@setOnKeyListener true
+                binding.debugBt.visibility = View.VISIBLE
+            }
+            return@setOnKeyListener true
+        }
+    }
+
     fun Context.assetsToBitmap(fileName:String): Bitmap?{
         return try {
             val stream = assets.open(fileName)
@@ -82,10 +107,6 @@ class HomeActivity : CustomThemeActivity() {
     private fun initUI() {
         setProgressDialog()
 
-        binding.debugBt.setOnClickListener {//디버그 창으로 가는 코드
-            val intent = Intent(this, DebugActivity::class.java)
-            startActivity(intent)
-        }
         // 각 아이콘 창으로 이동 -> 아이콘 버튼 클릭시 화면 전환
         binding.homeBt.setOnClickListener {
             val homeintent = Intent(this, HomeActivity::class.java)
