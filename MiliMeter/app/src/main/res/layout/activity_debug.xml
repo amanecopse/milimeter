@@ -8,21 +8,111 @@
     tools:context=".activities.DebugActivity">
 
     <Button
-        android:id="@+id/loginActivityBt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="로그인창" />
-
-    <Button
-        android:id="@+id/trainingRecordActivityBt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="운동정보 입력창" />
-
-    <Button
         android:id="@+id/themeExampleActivity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="테마예시" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/defaultCv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="?attr/cardBackground">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="운동정보 랜덤입력기" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="아이디:"
+                    android:textColor="?attr/textColor"
+                    android:textSize="@dimen/middleText" />
+
+                <EditText
+                    android:id="@+id/idEt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textPersonName" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="기준일:"
+                    android:textColor="?attr/textColor"
+                    android:textSize="@dimen/middleText" />
+
+                <TextView
+                    android:id="@+id/dateTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="?attr/textColor"
+                    android:textSize="@dimen/middleText" />
+
+                <Button
+                    android:id="@+id/dateBt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="일자선택" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="기간:"
+                    android:textColor="?attr/textColor"
+                    android:textSize="@dimen/middleText" />
+
+                <EditText
+                    android:id="@+id/rangeEt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="number" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/randomInputBt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="랜덤입력" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 
 </LinearLayout>
