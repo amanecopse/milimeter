@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.amnapp.milimeter.ChartManager
+import com.amnapp.milimeter.PreferenceManager
 import com.amnapp.milimeter.R
 import com.amnapp.milimeter.UserData
 import com.amnapp.milimeter.databinding.ActivityGoalBinding
@@ -19,10 +20,18 @@ class GoalActivity : CustomThemeActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         loadTheme()
-        //loadIconS()
 
         binding = ActivityGoalBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // 특별한 테마창 아이콘
+        if (mTheme == PreferenceManager.THEME_SPECIAL_FIRST || mTheme == PreferenceManager.THEME_SPECIAL_SECOND || mTheme == PreferenceManager.THEME_SPECIAL_THIRD) {
+            binding.homeBt.setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.home_special_icon,0,0)
+            binding.bodyBt.setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.body_special_icon,0,0)
+            binding.resultBt.setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.result_special_icon,0,0)
+            binding.goalBt.setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.goal_special_icon,0,0)
+            binding.settingBt.setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.setting_special_icon,0,0)
+        }
 
         initUI()
     }

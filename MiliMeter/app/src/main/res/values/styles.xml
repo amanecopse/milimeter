@@ -316,39 +316,39 @@
         <item name="buttonTextColor">#000000</item>
     </style>
 
-    <style name="SpecialAppTheme1" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="SpecialAppTheme2" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- 이 모드가 되면 이 값들로 변한다-->
-        <item name="appWindowBackground">#111720</item>
-        <item name="cardBackground">#222831</item>
-        <item name="textColor">#FFFFFF</item>
-        <item name="textColorSecondary">#DAA8A8A8</item>
-        <item name="textColorBanner">#04B4AE</item>
-        <item name="iconColor">#00fff5</item>
-        <item name="buttonBackground">#04B4AE</item>
+        <item name="appWindowBackground">#F2F2F2</item>
+        <item name="cardBackground">#FFFFFF</item>
+        <item name="textColor">#356300</item>
+        <item name="textColorSecondary">#008E06</item>
+        <item name="textColorBanner">#AFDF01</item>
+        <item name="iconColor">#6A6A6A</item>
+        <item name="buttonBackground">#C8FF00</item>
         <item name="buttonTextColor">#FFFFFF</item>
     </style>
 
-    <style name="SpecialAppTheme2" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="SpecialAppTheme1" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- 이 모드가 되면 이 값들로 변한다-->
-        <item name="appWindowBackground">#111720</item>
-        <item name="cardBackground">#222831</item>
-        <item name="textColor">#FFFFFF</item>
-        <item name="textColorSecondary">#DAA8A8A8</item>
-        <item name="textColorBanner">#04B4AE</item>
-        <item name="iconColor">#00fff5</item>
-        <item name="buttonBackground">#04B4AE</item>
+        <item name="appWindowBackground">#F2F2F2</item>
+        <item name="cardBackground">#FFFFFF</item>
+        <item name="textColor">#710000</item>
+        <item name="textColorSecondary">#6E0000</item>
+        <item name="textColorBanner">#FF0000</item>
+        <item name="iconColor">#6A6A6A</item>
+        <item name="buttonBackground">#EF0000</item>
         <item name="buttonTextColor">#FFFFFF</item>
     </style>
 
     <style name="SpecialAppTheme3" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- 이 모드가 되면 이 값들로 변한다-->
-        <item name="appWindowBackground">#111720</item>
-        <item name="cardBackground">#222831</item>
-        <item name="textColor">#FFFFFF</item>
-        <item name="textColorSecondary">#DAA8A8A8</item>
-        <item name="textColorBanner">#04B4AE</item>
-        <item name="iconColor">#00fff5</item>
-        <item name="buttonBackground">#04B4AE</item>
+        <item name="appWindowBackground">#F2F2F2</item>
+        <item name="cardBackground">#FFFFFF</item>
+        <item name="textColor">#000A42</item>
+        <item name="textColorSecondary">#000D55</item>
+        <item name="textColorBanner">#132CB8</item>
+        <item name="iconColor">#6A6A6A</item>
+        <item name="buttonBackground">#132CB8</item>
         <item name="buttonTextColor">#FFFFFF</item>
     </style>
 

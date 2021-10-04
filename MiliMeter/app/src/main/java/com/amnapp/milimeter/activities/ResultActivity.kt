@@ -10,10 +10,7 @@ import android.view.Window
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.cardview.widget.CardView
-import com.amnapp.milimeter.ChartManager
-import com.amnapp.milimeter.DataUtil
-import com.amnapp.milimeter.R
-import com.amnapp.milimeter.UserData
+import com.amnapp.milimeter.*
 import com.amnapp.milimeter.databinding.ActivityResultBinding
 import com.amnapp.milimeter.databinding.ActivityUserInformationBinding
 import com.github.mikephil.charting.charts.LineChart
@@ -38,10 +35,19 @@ class ResultActivity : CustomThemeActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         loadTheme()
-        //loadIconS()
 
         binding = ActivityResultBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // 특별한 테마창 아이콘
+        if (mTheme == PreferenceManager.THEME_SPECIAL_FIRST || mTheme == PreferenceManager.THEME_SPECIAL_SECOND || mTheme == PreferenceManager.THEME_SPECIAL_THIRD) {
+            binding.homeBt.setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.home_special_icon,0,0)
+            binding.bodyBt.setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.body_special_icon,0,0)
+            binding.resultBt.setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.result_special_icon,0,0)
+            binding.goalBt.setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.goal_special_icon,0,0)
+            binding.settingBt.setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.setting_special_icon,0,0)
+        }
+
         //그래프
 
 
