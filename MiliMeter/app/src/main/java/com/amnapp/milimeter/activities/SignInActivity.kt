@@ -292,7 +292,7 @@ class SignInActivity : CustomThemeActivity() {
 
     private fun showDatePickerDialog() {
         val callBack = DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
-            binding.birthDateTv.text = ""+year+"."+ String.format("%02d", month)+"."+String.format("%02d", dayOfMonth)
+            binding.birthDateTv.text = ""+year+"."+ String.format("%02d", month+1)+"."+String.format("%02d", dayOfMonth)
         }
         val year = SimpleDateFormat("yyyy").format(Date()).toInt()
         val month = SimpleDateFormat("MM").format(Date()).toInt()
