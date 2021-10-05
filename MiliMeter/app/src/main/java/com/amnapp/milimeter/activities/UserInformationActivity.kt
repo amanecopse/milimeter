@@ -188,13 +188,13 @@ class UserInformationActivity :CustomThemeActivity() {
         val day = SimpleDateFormat("dd").format(Date()).toInt()
 
         if(UserData.getInstance().birthDate.isNullOrEmpty())
-            DatePickerDialog(this, callBack,year-20,month,day).show()
+            DatePickerDialog(this, callBack,year-20,month+1,day).show()
         else{
             val simpleDateFormat = SimpleDateFormat("yyyy.MM.dd").parse(UserData.getInstance().birthDate)
             val userYear = SimpleDateFormat("yyyy").format(simpleDateFormat).toInt()
             val userMonth = SimpleDateFormat("MM").format(simpleDateFormat).toInt()
             val userDay = SimpleDateFormat("dd").format(simpleDateFormat).toInt()
-            DatePickerDialog(this, callBack,userYear,userMonth,userDay).show()
+            DatePickerDialog(this, callBack,userYear,userMonth-1,userDay).show()
         }
     }
 

@@ -165,12 +165,12 @@ class ResultActivity : CustomThemeActivity() {
 
     private fun showDatePickerDialog(dateTv: TextView) {// 날짜 선택 다이얼로그 띄움
         val callBack = DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
-            dateTv.text = "" + year + "." + String.format("%02d", month) + "." + String.format("%02d", dayOfMonth)
+            dateTv.text = "" + year + "." + String.format("%02d", month+1) + "." + String.format("%02d", dayOfMonth)
         }
         val year = SimpleDateFormat("yyyy").format(Date()).toInt()
         val month = SimpleDateFormat("MM").format(Date()).toInt()
         val day = SimpleDateFormat("dd").format(Date()).toInt()
-        DatePickerDialog(this, callBack, year, month, day).show()
+        DatePickerDialog(this, callBack, year, month-1, day).show()
     }
 
     //그래프 생성

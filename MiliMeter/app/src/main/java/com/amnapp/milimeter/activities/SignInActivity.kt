@@ -297,6 +297,6 @@ class SignInActivity : CustomThemeActivity() {
         val year = SimpleDateFormat("yyyy").format(Date()).toInt()
         val month = SimpleDateFormat("MM").format(Date()).toInt()
         val day = SimpleDateFormat("dd").format(Date()).toInt()
-        DatePickerDialog(this, callBack,year-20,month,day).show()
+        DatePickerDialog(this, callBack,year-20,month-1,day).show()
     }
 }
