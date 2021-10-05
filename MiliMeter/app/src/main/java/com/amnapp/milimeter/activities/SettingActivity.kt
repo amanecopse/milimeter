@@ -18,10 +18,17 @@ class SettingActivity : CustomThemeActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         loadTheme()
-        //loadIconS()
 
         binding = ActivitySettingBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        if (mTheme == PreferenceManager.THEME_SPECIAL_FIRST || mTheme == PreferenceManager.THEME_SPECIAL_SECOND || mTheme == PreferenceManager.THEME_SPECIAL_THIRD) {
+            binding.homeBt.setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.home_special_icon,0,0)
+            binding.bodyBt.setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.body_special_icon,0,0)
+            binding.resultBt.setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.result_special_icon,0,0)
+            binding.goalBt.setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.goal_special_icon,0,0)
+            binding.settingBt.setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.setting_special_icon,0,0)
+        }
 
         // 테마설정창 이동
         binding.themeSettingBt.setOnClickListener {
