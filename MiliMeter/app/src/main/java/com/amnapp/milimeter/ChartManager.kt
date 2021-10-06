@@ -65,6 +65,11 @@ class ChartManager {
     }
 
     fun makeLineChart(lineChart: LineChart, lineDataSets: MutableList<LineDataSet>, dateList: ArrayList<String>){
+
+        for(i in 0 until dateList.size){
+            dateList[i] = dateList[i].substring(5)
+        }
+
         val colorSet = arrayOf(Color.BLUE, Color.RED, Color.GREEN, Color.CYAN, Color.MAGENTA, Color.YELLOW)
         var colorIndex = 0
         for(lineDataSet in lineDataSets){
