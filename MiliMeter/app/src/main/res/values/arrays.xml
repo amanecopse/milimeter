@@ -33,6 +33,13 @@
         <item>RH- AB형</item>
     </string-array>
 
+    <string-array name="dateRange">
+        <item>30일</item>
+        <item>10일</item>
+        <item>5일</item>
+        <item>1일</item>
+    </string-array>
+
 
 
 </resources>
