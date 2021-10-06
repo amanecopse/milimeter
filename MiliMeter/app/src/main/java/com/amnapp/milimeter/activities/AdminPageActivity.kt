@@ -162,7 +162,7 @@ class AdminPageActivity : CustomThemeActivity() {
         cm.loadTrainingRecordNDaysAgo(userData,viewModel.chartDate!!,viewModel.dateRange)
         { docs, lineDataSets, dateList ->
             cm.makeLineChart(subUserLc, lineDataSets, dateList)
-            val dateFrom = cm.calculateDate(viewModel.chartDate!!, -viewModel.dateRange)//차트 시작일
+            val dateFrom = cm.calculateDate(viewModel.chartDate!!, 1-viewModel.dateRange)//차트 시작일
             dateRangeTv.text = dateFrom+"~"+viewModel.chartDate
         }
 
@@ -174,7 +174,7 @@ class AdminPageActivity : CustomThemeActivity() {
             cm.loadTrainingRecordNDaysAgo(userData,viewModel.chartDate!!,viewModel.dateRange)
             { docs, lineDataSets, dateList ->
                 cm.makeLineChart(subUserLc, lineDataSets, dateList)
-                val dateFrom = cm.calculateDate(viewModel.chartDate!!, -viewModel.dateRange)//차트 시작일
+                val dateFrom = cm.calculateDate(viewModel.chartDate!!, 1-viewModel.dateRange)//차트 시작일
                 dateRangeTv.text = dateFrom+"~"+viewModel.chartDate
             }
         }
@@ -183,7 +183,7 @@ class AdminPageActivity : CustomThemeActivity() {
             cm.loadTrainingRecordNDaysAgo(userData,viewModel.chartDate!!,viewModel.dateRange)
             { docs, lineDataSets, dateList ->
                 cm.makeLineChart(subUserLc, lineDataSets, dateList)
-                val dateFrom = cm.calculateDate(viewModel.chartDate!!, -viewModel.dateRange)//차트 시작일
+                val dateFrom = cm.calculateDate(viewModel.chartDate!!, 1-viewModel.dateRange)//차트 시작일
                 dateRangeTv.text = dateFrom+"~"+viewModel.chartDate
             }
         }
@@ -203,7 +203,7 @@ class AdminPageActivity : CustomThemeActivity() {
                 cm.loadTrainingRecordNDaysAgo(userData,viewModel.chartDate!!,viewModel.dateRange)
                 { docs, lineDataSets, dateList ->
                     cm.makeLineChart(subUserLc, lineDataSets, dateList)
-                    val dateFrom = cm.calculateDate(viewModel.chartDate!!, -viewModel.dateRange)//차트 시작일
+                    val dateFrom = cm.calculateDate(viewModel.chartDate!!, 1-viewModel.dateRange)//차트 시작일
                     dateRangeTv.text = dateFrom+"~"+viewModel.chartDate
                 }
             }
