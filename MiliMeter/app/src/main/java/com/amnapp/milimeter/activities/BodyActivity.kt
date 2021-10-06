@@ -150,14 +150,22 @@ class BodyActivity : CustomThemeActivity() {
         var userWeight = getInstance().weight
         var goalWeight = getInstance().goalOfWeight
         if (goalWeight != null && userWeight != null) {
-            if (goalWeight < userWeight) {
+            if (goalWeight < userWeight && PreferenceManager().getLanguageData(this).toString() == "ko") {
                 binding.weightTv.text =
                     "목표치보다 +${userWeight.toInt() - goalWeight.toInt()}kg  :  과체중"
-            } else if (goalWeight > userWeight) {
+            } else if (goalWeight > userWeight && PreferenceManager().getLanguageData(this).toString() == "ko") {
                 binding.weightTv.text =
                     "목표치보다 -${goalWeight.toInt() - userWeight.toInt()}kg  :  저체중"
-            } else if (goalWeight == userWeight) {
+            } else if (goalWeight == userWeight && PreferenceManager().getLanguageData(this).toString() == "ko") {
                 binding.weightTv.text = "목표 몸무게 도달!!"
+            } else if (goalWeight < userWeight && PreferenceManager().getLanguageData(this).toString() == "en") {
+                binding.weightTv.text =
+                    "~than the target weight +${userWeight.toInt() - goalWeight.toInt()}kg  :  Overweight"
+            } else if (goalWeight > userWeight && PreferenceManager().getLanguageData(this).toString() == "en") {
+                binding.weightTv.text =
+                    "~than the target weight -${goalWeight.toInt() - userWeight.toInt()}kg  :  Underweight"
+            } else if (goalWeight == userWeight && PreferenceManager().getLanguageData(this).toString() == "en") {
+                binding.weightTv.text = "You reached your target weight!!"
             }
         }
 

@@ -13,6 +13,8 @@
     <string name="cancel">cancel</string>
     <string name="check">next</string>
     <string name="login">Login</string>
+    <string name="sign_up">Sign up</string>
+    <string name="auto_login">auto login</string>
     <string name="logout">Logout</string>
     <string name="id">id</string>
     <string name="pw">password</string>
@@ -61,13 +63,12 @@
     <string name="setting_title">Environment setting</string>
     <string name="theme">Theme</string>
     <string name="language">Language</string>
-    <string name="alarm">Notification</string>
     <string name="password">User information</string>
     <string name="user_information">Personal information management</string>
+    <string name="user_information1">Edit information</string>
 
     <string name="basic_theme">Basic theme</string>
     <string name="special_theme">Special theme</string>
-    <string name="making_theme">Making theme</string>
     <string name="basic">bisic</string>
     <string name="dark">dark</string>
     <string name="color">color</string>
@@ -81,12 +82,6 @@
     <string name="lang1">Korea</string>
     <string name="lang2">English</string>
 
-    <string name="notice">Notice setting</string>
-    <string name="notice_time">Time setting</string>
-    <string name="notice_title">Notice title</string>
-    <string name="notice_content">Notice content</string>
-    <string name="notice_hintc">please write down the content</string>
-    <string name="notice_hintt">please write down the title</string>
 
     <string name="password_change">Password change</string>
     <string name="group_manager">Group account management</string>
@@ -98,18 +93,37 @@
     <string name="invite">Invite lower-level member within a group</string>
     <string name="merge">Merge subgroup within a group</string>
     <string name="manager">Administrator page</string>
+    <string name="make_group">Open group</string>
+    <string name="invite_group">Invite</string>
+    <string name="merge_group">Merge</string>
     <string name="drop">Out of the group</string>
     <string name="group_code_change">Group code change</string>
-    <string name="lower_level_member">lower member</string>
+    <string name="lower_level_member"> lower member</string>
+    <string name="invite1">Enter the ID of the user you want to invite and invite the user to a member of the subgroup. Only users who do not belong to the group can be invited.</string>
+    <string name="invite2">The invited user is designated as the administrator</string>
+    <string name="invite3">ID of the invited user</string>
+    <string name="merge1">Enter the group leader ID of the group you want to invite and invite the user as your subgroup administrator. You can only invite users who belong to the group.</string>
+    <string name="merge2">The ID of the leader of the lower group</string>
+    <string name="merge3">The Password of the leader of the lower group</string>
+    <string name="merge4">The original group code of the subgroup</string>
+    <string name="make_group_code">The group code of the new group you are going to open</string>
+    <string name="edit_submember">Edit the sub-user</string>
+    <string name="check0">Duplicate check</string>
+    <string name="edit1">This account is an empty group account after withdrawal. New sub-members can be invited to this place, and if you do not need this group account, you can delete it.(However, if you delete it, it is possible only when there is no sub-account for this.)</string>
+    <string name="edit2">Designate this group account as an administrator account</string>
+    <string name="edit3">Invite sub-member and designate him here</string>
+    <string name="edit4">Delete this group account</string>
+
 
     <string name="height">height</string>
     <string name="weight">weight</string>
     <string name="blood_type">blood type :</string>
-    <string name="notice_info">Just put numbers without "-"</string>
+    <string name="notice_info">Just put numbers without &quot;-&quot;&#160;</string>
     <string name="goal_weight">Goal weight</string>
     <string name="goal_total">Target level for all sports :</string>
     <string name="goal_leg">Legtuk goal level :</string>
     <string name="goal_240">240m shuttle run goal level  :</string>
     <string name="goal_cir">Battlefield circulation exercise goal level :</string>
+    <string name="drop1">Get this user out of the group</string>
 
 </resources>
