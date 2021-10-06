@@ -39,7 +39,7 @@
                 android:id="@+id/titleTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="그룹초대"
+                android:text="@string/invite_group"
                 android:textColor="?attr/textColorBanner"
                 android:textSize="@dimen/largeText" />
         </LinearLayout>
@@ -119,7 +119,7 @@
                         android:id="@+id/textView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="초대하고 싶은 유저의 아이디를 입력하여 그 유저를 자신의 하위그룹멤버로서 초대합니다. 그룹에 속하지 않은 유저만 초대할 수 있습니다."
+                        android:text="@string/invite1"
                         android:textColor="?attr/textColor"
                         android:textSize="@dimen/smallText" />
 
@@ -130,7 +130,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_weight="1"
                         android:buttonTint="?attr/textColorSecondary"
-                        android:text="초대받는 유저를 관리자로 지정"
+                        android:text="@string/invite2"
                         android:textColor="?attr/textColor"
                         android:textSize="@dimen/smallText" />
 
@@ -146,7 +146,7 @@
                             android:id="@+id/subUserIdEt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="초대받는 유저의 아이디"
+                            android:hint="@string/invite3"
                             android:maxLength="20"
                             android:singleLine="true"
                             android:textColor="?attr/textColor"
@@ -163,7 +163,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?attr/buttonBackground"
-                android:text="그룹초대"
+                android:text="@string/invite_group"
                 android:textColor="?attr/buttonTextColor"
                 android:textSize="@dimen/middleText" />
 

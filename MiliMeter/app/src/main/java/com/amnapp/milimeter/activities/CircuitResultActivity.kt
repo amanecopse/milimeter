@@ -74,7 +74,7 @@ class CircuitResultActivity : CustomThemeActivity() {
         cm.loadTrainingRecordNDaysAgo(
             UserData.getInstance(),
             cm.getCurrentDateBasedOnFormat(),
-            30
+            60
         ) { docs, lineDataSets, dateList ->
 
             val FieldTrainingList = mutableListOf<Int>()
@@ -124,7 +124,7 @@ class CircuitResultActivity : CustomThemeActivity() {
         cm.loadTrainingRecordNDaysAgo(
             UserData.getInstance(),
             cm.getCurrentDateBasedOnFormat(),
-            7
+            14
         ) { docs, lineDataSets, dateList ->
 
             //데이터 없을때

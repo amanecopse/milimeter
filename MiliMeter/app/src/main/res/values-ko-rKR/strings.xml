@@ -13,6 +13,8 @@
     <string name="check">확인</string>
     <string name="cancel">취소</string>
     <string name="login">로그인</string>
+    <string name="sign_up">회원가입</string>
+    <string name="auto_login">자동 로그인</string>
     <string name="logout">로그아웃</string>
     <string name="id">아이디</string>
     <string name="pw">비밀번호</string>
@@ -61,13 +63,12 @@
     <string name="setting_title">환경설정</string>
     <string name="theme">테마</string>
     <string name="language">언어</string>
-    <string name="alarm">알림</string>
     <string name="password">회원정보</string>
     <string name="user_information">개인정보관리</string>
+    <string name="user_information1">개인정보관리</string>
 
     <string name="basic_theme">기본 테마</string>
     <string name="special_theme">특별한 테마</string>
-    <string name="making_theme">테마 제작하기</string>
     <string name="basic">기본</string>
     <string name="dark">다크</string>
     <string name="color">색상</string>
@@ -81,13 +82,6 @@
     <string name="lang1">한국어</string>
     <string name="lang2">영어</string>
 
-    <string name="notice">알림설정</string>
-    <string name="notice_time">알림 시간</string>
-    <string name="notice_title">알림 제목</string>
-    <string name="notice_content">알림 내용</string>
-    <string name="notice_hintc">알림 내용을 적어주세요.</string>
-    <string name="notice_hintt">알림 제목을 적어주세요.</string>
-
     <string name="password_change">비밀번호 변경하기</string>
     <string name="group_manager">그룹계정관리</string>
     <string name="before_pw">현재 비밀번호를 입력하세요</string>
@@ -98,9 +92,27 @@
     <string name="invite">그룹 내 하위회원 초대</string>
     <string name="merge">그룹 내 하위그룹 병합</string>
     <string name="manager">관리자 페이지</string>
+    <string name="make_group">그룹개설</string>
+    <string name="invite_group">그룹초대</string>
+    <string name="merge_group">그룹병합</string>
     <string name="drop">그룹탈퇴</string>
     <string name="group_code_change">이 그룹의 그룹코드 변경</string>
     <string name="lower_level_member">의 하위회원</string>
+    <string name="invite1">초대하고 싶은 유저의 아이디를 입력하여 그 유저를 자신의 하위그룹멤버로서 초대합니다. 그룹에 속하지 않은 유저만 초대할 수 있습니다.</string>
+    <string name="invite2">초대받는 유저를 관리자로 지정</string>
+    <string name="invite3">초대받는 유저의 아이디</string>
+    <string name="merge1">초대하고 싶은 그룹의 그룹장 아이디를 입력하여 그 유저를 자신의 하위그룹 관리자로서 초대합니다. 그룹에 속해 있는 유저만 초대할 수 있습니다.</string>
+    <string name="merge2">하위그룹 그룹장의 아이디</string>
+    <string name="merge3">하위그룹 그룹장의 비밀번호</string>
+    <string name="merge4">하위그룹의 원래 그룹코드</string>
+    <string name="make_group_code">새로 개설할 그룹의 그룹코드</string>
+    <string name="edit_submember">하위유저 편집</string>
+    <string name="check0">중복체크</string>
+    <string name="edit1">이 계정은 탈퇴 후 비어있는 그룹계정입니다. 새로운 하위회원을 이 자리에 초대할 수 있고, 이 그룹계정이 필요없다면 삭제할 수 있습니다.(단, 삭제할 경우 이 계정의 하위계정이 하나도 없는 상태에만 가능합니다.)</string>
+    <string name="edit2">이 그룹계정을 관리자계정으로</string>
+    <string name="edit3">하위회원을 초대하여 이 자리에 지정</string>
+    <string name="edit4">이 그룹계정 삭제</string>
+
 
     <string name="height">키</string>
     <string name="weight">몸무게</string>
@@ -111,7 +123,7 @@
     <string name="goal_leg">레그턱 목표 등급 :</string>
     <string name="goal_240">240m 왕복달리기 목표 등급 :</string>
     <string name="goal_cir">전장순환운동 목표 등급 :</string>
-
+    <string name="drop1">해당 계정 그룹에서 탈퇴시키기</string>
 
 
 

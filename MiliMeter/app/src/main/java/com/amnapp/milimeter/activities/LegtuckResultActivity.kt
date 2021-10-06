@@ -75,13 +75,16 @@ class LegtuckResultActivity: CustomThemeActivity() {
     private fun showGrade() {
         val cm = ChartManager()
 
+
         cm.loadTrainingRecordNDaysAgo(
             UserData.getInstance(),
             cm.getCurrentDateBasedOnFormat(),
-            30
+            60
         ) { docs, lineDataSets, dateList ->
 
             val legTuckList = mutableListOf<Int>()
+            //초기화
+            legTuckList.clear()
 
             for (doc in docs) {
                 doc.data?.get(ChartManager.LEG_TUCK)?.let { score ->
@@ -89,31 +92,37 @@ class LegtuckResultActivity: CustomThemeActivity() {
 
                 }
                 //초기화
-                findViewById<TextView>(R.id.expert).setText(" ")
-                findViewById<TextView>(R.id.grade1).setText(" ")
-                findViewById<TextView>(R.id.grade2).setText(" ")
-                findViewById<TextView>(R.id.grade4).setText(" ")
-                findViewById<TextView>(R.id.grade5).setText(" ")
-                findViewById<TextView>(R.id.grade6).setText(" ")
-                findViewById<TextView>(R.id.grade7).setText(" ")
-                findViewById<TextView>(R.id.grade8).setText(" ")
-                findViewById<TextView>(R.id.grade9).setText(" ")
+                findViewById<TextView>(R.id.lexpert).setText("  ")
+                findViewById<TextView>(R.id.lgrade1).setText("  ")
+                findViewById<TextView>(R.id.lgrade2).setText("  ")
+                findViewById<TextView>(R.id.lgrade3).setText("  ")
+                findViewById<TextView>(R.id.lgrade4).setText("  ")
+                findViewById<TextView>(R.id.lgrade5).setText("  ")
+                findViewById<TextView>(R.id.lgrade6).setText("  ")
+                findViewById<TextView>(R.id.lgrade7).setText("  ")
+                findViewById<TextView>(R.id.lgrade8).setText("  ")
+                findViewById<TextView>(R.id.lgrade9).setText("  ")
+
                 //이미지로 저장할예정
                 if (legTuckList.size > 0) {
-                    val grade = cm.calculateGrade(legTuckList.last(), ChartManager.LEG_TUCK)
-                    if (grade == 10f) findViewById<TextView>(R.id.expert).setText("<--")
-                    else if (grade == 9f) findViewById<TextView>(R.id.grade1).setText("<--")
-                    else if (grade == 8f) findViewById<TextView>(R.id.grade2).setText("<--")
-                    else if (grade == 7f) findViewById<TextView>(R.id.grade3).setText("<--")
-                    else if (grade == 6f) findViewById<TextView>(R.id.grade4).setText("<--")
-                    else if (grade == 5f) findViewById<TextView>(R.id.grade5).setText("<--")
-                    else if (grade == 4f) findViewById<TextView>(R.id.grade6).setText("<--")
-                    else if (grade == 3f) findViewById<TextView>(R.id.grade7).setText("<--")
-                    else if (grade == 2f) findViewById<TextView>(R.id.grade8).setText("<--")
-                    else findViewById<TextView>(R.id.grade9).setText("<--")
+                    var grade = cm.calculateGrade(legTuckList.get(legTuckList.size-1), ChartManager.LEG_TUCK)
+
+
+                    if (grade == 10f) findViewById<TextView>(R.id.lexpert).setText("<--")
+                    else if (grade == 9f) findViewById<TextView>(R.id.lgrade1).setText("<--")
+                    else if (grade == 8f) findViewById<TextView>(R.id.lgrade2).setText("<--")
+                    else if (grade == 7f) findViewById<TextView>(R.id.lgrade3).setText("<--")
+                    else if (grade == 6f) findViewById<TextView>(R.id.lgrade4).setText("<--")
+                    else if (grade == 5f) findViewById<TextView>(R.id.lgrade5).setText("<--")
+                    else if (grade == 4f) findViewById<TextView>(R.id.lgrade6).setText("<--")
+                    else if (grade == 3f) findViewById<TextView>(R.id.lgrade7).setText("<--")
+                    else if (grade == 2f) findViewById<TextView>(R.id.lgrade8).setText("<--")
+                    else findViewById<TextView>(R.id.lgrade9).setText("<--")
+
                 } else {
                     continue
                 }
+                legTuckList.clear()
             }
         }
         //바그래프 저장
@@ -126,7 +135,7 @@ class LegtuckResultActivity: CustomThemeActivity() {
         cm.loadTrainingRecordNDaysAgo(
             UserData.getInstance(),
             cm.getCurrentDateBasedOnFormat(),
-            7
+            14
         ) { docs, lineDataSets, dateList ->
 
             //데이터 없을때
@@ -144,7 +153,7 @@ class LegtuckResultActivity: CustomThemeActivity() {
                 xAxis.valueFormatter = (TrainingValueFormatter(dateList))
                 xAxis.granularity = 1f
                 xAxis.isGranularityEnabled = true
-
+                xAxis.labelCount=4
                 val yLAxis = linechart.axisLeft//y축
                 yLAxis.axisMaximum = 25f //y축최대
                 yLAxis.axisMinimum = 0f  //

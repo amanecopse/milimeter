@@ -72,6 +72,7 @@ class UserInformationActivity :CustomThemeActivity() {
                 if(message == AccountManager.RESULT_SUCCESS)
                     showDialogMessage("수정 완료", "회원정보가 정상적으로 수정되었습니다"){
                         finish()
+
                     }
             }
         }

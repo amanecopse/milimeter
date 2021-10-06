@@ -219,7 +219,7 @@
                                 android:textColor="?attr/textColorBanner" />
 
                             <TextView
-                                android:id="@+id/expert"
+                                android:id="@+id/lexpert"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.2"
@@ -255,14 +255,14 @@
                                 android:textColor="?attr/textColor" />
 
                             <TextView
-                                android:id="@+id/grade1"
+                                android:id="@+id/lgrade1"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.2"
                                 android:background="#FFFFFF"
-                                android:textStyle="bold"
+                                android:text=""
                                 android:textColor="#FF0000"
-                                android:text="" />
+                                android:textStyle="bold" />
 
                         </TableRow>
 
@@ -292,7 +292,7 @@
                                 android:textColor="?attr/textColor" />
 
                             <TextView
-                                android:id="@+id/grade2"
+                                android:id="@+id/lgrade2"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.2"
@@ -329,7 +329,7 @@
                                 android:textColor="?attr/textColor" />
 
                             <TextView
-                                android:id="@+id/grade3"
+                                android:id="@+id/lgrade3"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.2"
@@ -366,7 +366,7 @@
                                 android:textColor="?attr/textColor" />
 
                             <TextView
-                                android:id="@+id/grade4"
+                                android:id="@+id/lgrade4"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.2"
@@ -403,7 +403,7 @@
                                 android:textColor="?attr/textColor" />
 
                             <TextView
-                                android:id="@+id/grade5"
+                                android:id="@+id/lgrade5"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.2"
@@ -440,7 +440,7 @@
                                 android:textColor="?attr/textColor" />
 
                             <TextView
-                                android:id="@+id/grade6"
+                                android:id="@+id/lgrade6"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.2"
@@ -477,7 +477,7 @@
                                 android:textColor="?attr/textColor" />
 
                             <TextView
-                                android:id="@+id/grade7"
+                                android:id="@+id/lgrade7"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.2"
@@ -514,7 +514,7 @@
                                 android:textColor="?attr/textColor" />
 
                             <TextView
-                                android:id="@+id/grade8"
+                                android:id="@+id/lgrade8"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.2"
@@ -551,7 +551,7 @@
                                 android:textColor="?attr/textColor" />
 
                             <TextView
-                                android:id="@+id/grade9"
+                                android:id="@+id/lgrade9"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.2"

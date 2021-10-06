@@ -39,7 +39,7 @@
                 android:id="@+id/titleTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="그룹개설"
+                android:text="@string/make_group"
                 android:textColor="?attr/textColorBanner"
                 android:textSize="@dimen/largeText" />
         </LinearLayout>
@@ -127,7 +127,7 @@
                             android:id="@+id/newGroupCodeEt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="새로 개설할 그룹의 그룹코드"
+                            android:hint="@string/make_group_code"
                             android:maxLength="20"
                             android:singleLine="true"
                             android:textColor="?attr/textColor"
@@ -144,7 +144,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?attr/buttonBackground"
-                android:text="그룹개설"
+                android:text="@string/make_group"
                 android:textColor="?attr/buttonTextColor"
                 android:textSize="@dimen/middleText" />
 

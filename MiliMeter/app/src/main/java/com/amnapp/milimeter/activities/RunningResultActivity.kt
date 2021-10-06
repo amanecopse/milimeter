@@ -67,7 +67,7 @@ class RunningResultActivity: CustomThemeActivity() {
         cm.loadTrainingRecordNDaysAgo(
             UserData.getInstance(),
             cm.getCurrentDateBasedOnFormat(),
-            30
+            60
         ) { docs, lineDataSets, dateList ->
 
             val list = mutableListOf<Int>()
@@ -119,7 +119,7 @@ class RunningResultActivity: CustomThemeActivity() {
         cm.loadTrainingRecordNDaysAgo(
             UserData.getInstance(),
             cm.getCurrentDateBasedOnFormat(),
-            7
+            14
         ) { docs, lineDataSets, dateList ->
 
             //데이터 없을때
@@ -162,7 +162,7 @@ class RunningResultActivity: CustomThemeActivity() {
                 yRAxis.axisMinimum = 0f  //y축최소
                 yRAxis.valueFormatter = (TrainingValueFormatter(yValue))
                 yRAxis.granularity = 1f
-                yRAxis.labelCount = 10
+                yRAxis.labelCount = 30
                 yRAxis.textColor = Color.BLACK
 
                 linechart.axisLeft.isEnabled = false

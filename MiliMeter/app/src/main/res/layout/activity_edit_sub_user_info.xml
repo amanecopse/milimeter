@@ -39,7 +39,7 @@
                 android:id="@+id/titleTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="하위유저 편집"
+                android:text="@string/edit_submember"
                 android:textColor="?attr/textColorBanner"
                 android:textSize="@dimen/largeText" />
         </LinearLayout>
@@ -115,7 +115,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="이름:"
+                        android:text="이름(name):"
                         android:textColor="?attr/textColor"
                         android:textSize="@dimen/smallText" />
 
@@ -123,7 +123,7 @@
                         android:id="@+id/nameTv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="이름"
+                        android:text="이름(name)"
                         android:textColor="?attr/textColorSecondary"
                         android:textSize="@dimen/middleText" />
 
@@ -134,7 +134,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="ID:"
+                        android:text="아이디(id):"
                         android:textColor="?attr/textColor"
                         android:textSize="@dimen/smallText" />
 
@@ -142,7 +142,7 @@
                         android:id="@+id/idTv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="아이디"
+                        android:text="아이디(id)"
                         android:textColor="?attr/textColorSecondary"
                         android:textSize="@dimen/middleText" />
 
@@ -179,7 +179,7 @@
                             android:id="@+id/pwEt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="*비밀번호"
+                            android:hint="*비밀번호(password)"
                             android:password="true"
                             android:singleLine="true"
                             android:textColor="?attr/textColor"
@@ -208,7 +208,7 @@
                             android:clickable="false"
                             android:paddingTop="20dp"
                             android:paddingBottom="20dp"
-                            android:text="생년월일 입력"
+                            android:text="생년월일 입력(birth)"
                             android:textColor="?attr/textColor"
                             android:textSize="@dimen/middleText" />
 
@@ -221,13 +221,13 @@
                         android:textColorHint="?attr/textColorSecondary"
                         app:helperTextTextColor="@android:color/holo_red_dark"
                         app:passwordToggleTint="?attr/textColorSecondary"
-                        app:suffixText='"-" 없이 숫자만 입력'>
+                        app:suffixText='@string/notice_info'>
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/militaryIdEt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="*군번"
+                            android:hint="*군번(military number)"
                             android:inputType="number"
                             android:maxLength="20"
                             android:singleLine="true"
@@ -249,7 +249,7 @@
                             android:id="@+id/heightEt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="*키"
+                            android:hint="*키(height)"
                             android:inputType="number"
                             android:maxLength="3"
                             android:singleLine="true"
@@ -271,7 +271,7 @@
                             android:id="@+id/weightEt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="*몸무게"
+                            android:hint="*몸무게(weight)"
                             android:inputType="number"
                             android:maxLength="3"
                             android:singleLine="true"
@@ -294,7 +294,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="혈액형:"
+                            android:text="@string/blood_type"
                             android:textColor="?attr/textColor"
                             android:textSize="@dimen/smallText" />
 
@@ -341,7 +341,7 @@
                             android:id="@+id/goalOfWeightEt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="목표 몸무게"
+                            android:hint="@string/goal_weight"
                             android:singleLine="true"
                             android:textColor="?attr/textColor"
                             android:textSize="@dimen/middleText" />
@@ -363,7 +363,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="전체 종목 목표 등급"
+                            android:text="@string/goal_total"
                             android:textColor="?attr/textColor"
                             android:textSize="@dimen/smallText" />
 
@@ -397,7 +397,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="레그턱 목표 등급"
+                            android:text="@string/goal_leg"
                             android:textColor="?attr/textColor"
                             android:textSize="@dimen/smallText" />
 
@@ -431,7 +431,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="왕복 달리기 목표 등급"
+                            android:text="@string/goal_240"
                             android:textColor="?attr/textColor"
                             android:textSize="@dimen/smallText" />
 
@@ -465,7 +465,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="전장순환훈련 목표 등급"
+                            android:text="@string/goal_cir"
                             android:textColor="?attr/textColor"
                             android:textSize="@dimen/smallText" />
 
@@ -493,7 +493,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/holo_red_light"
-                android:text="해당 계정 그룹에서 탈퇴시키기"
+                android:text="@string/drop1"
                 android:textColor="?attr/buttonTextColor"
                 android:textSize="@dimen/smallText" />
 
@@ -537,7 +537,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:padding="10dp"
-                    android:text="저장"
+                    android:text="@string/save"
                     android:textColor="?attr/textColorBanner"
                     android:textSize="@dimen/middleText" />
             </LinearLayout>
