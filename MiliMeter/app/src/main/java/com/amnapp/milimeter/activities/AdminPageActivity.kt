@@ -144,18 +144,45 @@ class AdminPageActivity : CustomThemeActivity() {
         val dialog = Dialog(this)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.dialog_sub_user_chart)
+        val param = dialog.window!!.attributes//다이얼로그의 파라미터
+        param.width = ViewGroup.LayoutParams.MATCH_PARENT
+        param.height = ViewGroup.LayoutParams.MATCH_PARENT
+        dialog.window!!.attributes = param//변경한 파라미터 적용
 
         val subUserLc = dialog.findViewById<LineChart>(R.id.subUserLc)
         val cancelIb = dialog.findViewById<ImageButton>(R.id.cancelIb)
+        val prevDateLl = dialog.findViewById<LinearLayout>(R.id.prevDateLl)
+        val nextDateLl = dialog.findViewById<LinearLayout>(R.id.nextDateLl)
 
         val cm = ChartManager()
-        cm.loadTrainingRecordNDaysAgo(userData,cm.getCurrentDateBasedOnFormat(),30)
+        viewModel.chartDate = cm.getCurrentDateBasedOnFormat()//차트에서의 기준일
+        cm.loadTrainingRecordNDaysAgo(userData,viewModel.chartDate!!,10)
         { docs, lineDataSets, dateList ->
             cm.makeLineChart(subUserLc, lineDataSets, dateList)
+            val dateFrom = cm.calculateDate(viewModel.chartDate!!, -10)//차트 시작일
+            Toast.makeText(applicationContext, dateFrom+"~"+viewModel.chartDate,Toast.LENGTH_SHORT).show()
         }
 
         cancelIb.setOnClickListener {
             dialog.dismiss()
+        }
+        prevDateLl.setOnClickListener {
+            viewModel.chartDate = cm.calculateDate(viewModel.chartDate!!, -10)
+            cm.loadTrainingRecordNDaysAgo(userData,viewModel.chartDate!!,10)
+            { docs, lineDataSets, dateList ->
+                cm.makeLineChart(subUserLc, lineDataSets, dateList)
+                val dateFrom = cm.calculateDate(viewModel.chartDate!!, -10)//차트 시작일
+                Toast.makeText(applicationContext, dateFrom+"~"+viewModel.chartDate,Toast.LENGTH_SHORT).show()
+            }
+        }
+        nextDateLl.setOnClickListener {
+            viewModel.chartDate = cm.calculateDate(viewModel.chartDate!!, 10)
+            cm.loadTrainingRecordNDaysAgo(userData,viewModel.chartDate!!,10)
+            { docs, lineDataSets, dateList ->
+                cm.makeLineChart(subUserLc, lineDataSets, dateList)
+                val dateFrom = cm.calculateDate(viewModel.chartDate!!, -10)//차트 시작일
+                Toast.makeText(applicationContext, dateFrom+"~"+viewModel.chartDate,Toast.LENGTH_SHORT).show()
+            }
         }
 
         dialog.show()

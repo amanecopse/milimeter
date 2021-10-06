@@ -20,6 +20,7 @@ class AdminPageViewModel: ViewModel() {
     var subGroupMemberList: MutableLiveData<MutableList<GroupMemberData>> = MutableLiveData<MutableList<GroupMemberData>>()
     val myUserData = UserData.getInstance()
     val myGroupMemberData = GroupMemberData.getInstance()
+    var chartDate: String? = null
 
     init {
         parentName.value = myUserData.name
