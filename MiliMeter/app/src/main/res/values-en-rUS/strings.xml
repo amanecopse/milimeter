@@ -19,7 +19,7 @@
 
     // 홈
     <string name="name">Name:&#160;</string>
-    <string name="military_number">Military number:&#160;</string>
+    <string name="military_number">Military ID:&#160;</string>
     <string name="group_code">Group code:&#160;</string>
     <string name="Dday_setting">Date setting</string>
     <string name="login_user">Login and user</string>

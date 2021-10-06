@@ -69,7 +69,7 @@ class ChartManager {
         var colorIndex = 0
         for(lineDataSet in lineDataSets){
             lineDataSet.setLineWidth(2F)
-            lineDataSet.setCircleRadius(6F)
+            lineDataSet.setCircleRadius(3F)
             lineDataSet.setCircleColor(colorSet[colorIndex])
             lineDataSet.circleHoleColor = colorSet[colorIndex]
             lineDataSet.setColor(colorSet[colorIndex])
@@ -80,6 +80,7 @@ class ChartManager {
             lineDataSet.setDrawValues(false)
             colorIndex = if(colorIndex==5) 0 else colorIndex+1
         }
+
         val data = LineData(lineDataSets as List<ILineDataSet>?)
         lineChart.data = data
 
@@ -233,6 +234,9 @@ class ChartManager {
             }
         }
     }
+
+
+
 
     fun updateTrainingRecord(userData: UserData, date: String, record: HashMap<String, String>, callBack: UICallBack){
         userData.id?.let { id ->

@@ -183,7 +183,7 @@ class ResultActivity : CustomThemeActivity() {
     private fun result_graph() {
         var linechart = findViewById<LineChart>(R.id.lineChart)
         val cm = ChartManager()
-        cm.loadTrainingRecordNDaysAgo(UserData.getInstance(), cm.getCurrentDateBasedOnFormat(), 7)
+        cm.loadTrainingRecordNDaysAgo(UserData.getInstance(), cm.getCurrentDateBasedOnFormat(), 60)
         { docs, lineDataSets, dateList ->
 
             //데이터 있으면
@@ -356,8 +356,8 @@ class ResultActivity : CustomThemeActivity() {
 
                 //날짜 2개
                 else if (dateList.size == 2) {
-                    date1.setText(dateList.size - 2)
-                    date2.setText(dateList.size - 1)
+                    date1.setText(dateList[dateList.size - 2])
+                    date2.setText(dateList[dateList.size - 1])
                     date3.setText("X")
 
                     //레그턱
@@ -430,8 +430,9 @@ class ResultActivity : CustomThemeActivity() {
                     field3.setText("X")
 
 
-                } else if (dateList.size == 1) {
-                    date1.setText(dateList.size - 1)
+                }
+                else if (dateList.size == 1) {
+                    date1.setText(dateList[dateList.size - 1])
                     date2.setText("X")
                     date3.setText("X")
 
@@ -471,6 +472,23 @@ class ResultActivity : CustomThemeActivity() {
                             )
                         )
                     }
+                    field2.setText("X")
+                    field3.setText("X")
+                }
+                else{
+                    date1.setText("X")
+                    date2.setText("X")
+                    date3.setText("X")
+
+                    leg1.setText("X")
+                    leg2.setText("X")
+                    leg3.setText("X")
+
+                    run1.setText("X")
+                    run2.setText("X")
+                    run3.setText("X")
+
+                    field1.setText("X")
                     field2.setText("X")
                     field3.setText("X")
                 }
