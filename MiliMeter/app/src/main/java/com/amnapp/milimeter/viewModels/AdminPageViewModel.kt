@@ -20,6 +20,9 @@ class AdminPageViewModel: ViewModel() {
     var subGroupMemberList: MutableLiveData<MutableList<GroupMemberData>> = MutableLiveData<MutableList<GroupMemberData>>()
     val myUserData = UserData.getInstance()
     val myGroupMemberData = GroupMemberData.getInstance()
+    var chartDate: String? = null//차트에서 기준일
+    var dateRange: Int = 30//차트에서 보여주는 날짜범위
+    var moveRange: Int = 30//차트에서 날짜 이동범위
 
     init {
         parentName.value = myUserData.name

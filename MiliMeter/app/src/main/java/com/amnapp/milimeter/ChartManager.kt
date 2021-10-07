@@ -65,6 +65,11 @@ class ChartManager {
     }
 
     fun makeLineChart(lineChart: LineChart, lineDataSets: MutableList<LineDataSet>, dateList: ArrayList<String>){
+
+        for(i in 0 until dateList.size){
+            dateList[i] = dateList[i].substring(5)
+        }
+
         val colorSet = arrayOf(Color.BLUE, Color.RED, Color.GREEN, Color.CYAN, Color.MAGENTA, Color.YELLOW)
         var colorIndex = 0
         for(lineDataSet in lineDataSets){
@@ -124,7 +129,7 @@ class ChartManager {
         lineChart.setDrawGridBackground(false)
 
         lineChart.animateY(2000, Easing.EaseInCubic)
-        lineChart.description.text = "일주일간의 기록"
+        lineChart.description.text = ""
         lineChart.invalidate()
     }
 
