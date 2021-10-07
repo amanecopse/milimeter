@@ -714,8 +714,9 @@ class AccountManager {
     }
 
     companion object{
-        var mGroupCode: String? = null //트리순회에 필요하므로 로그인 시 정적으로 입력할 것
-        var mMaster: Boolean = false
+        var mGroupCode: String? = null //트리순회에 필요하므로 로그인 시 입력할 것
+        var mMaster: Boolean = false//그룹코드 유효성 체크 시 master권한 여부도 판별되므로 그떄 같이 입력할 것
+        var mStartScreen = true// 첫화면일 때까지 true로 유지하다가 자동로그인 함수 실행하면서 false입력(자동로그인을 첫화면에서 한 번만 실행하기 위함)
 
         const val TAG = "AccountManager"
         const val USERS = "users"

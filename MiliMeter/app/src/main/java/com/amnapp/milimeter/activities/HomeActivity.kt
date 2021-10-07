@@ -235,6 +235,12 @@ class HomeActivity : CustomThemeActivity() {
     }
 
     private fun autoLogin() {
+        if(AccountManager.mStartScreen){//첫화면이면 mStartScreen을 false로 바꾸고 아래 코드대로 자동로그인 실행
+            AccountManager.mStartScreen = false
+        }
+        else// 첫화면이 아니면 스킵한다
+            return
+
         mLoadingDialog.show() // 로딩화면 실행
         AccountManager().autoLogin(this){resultMessage->
             if(resultMessage == AccountManager.RESULT_SUCCESS){
