@@ -208,9 +208,17 @@ class HomeActivity : CustomThemeActivity() {
 
     private fun loadProfile(){
         val userData = UserData.getInstance()
-        binding.nameTv.text = userData.name
-        binding.militaryIdTv.text = userData.militaryId
-        binding.groupCodeTv.text = AccountManager.mGroupCode
+
+        if(userData.login){//로그인 되어있으면 회원정보랑 그룹코드 로드
+            binding.nameTv.text = userData.name
+            binding.militaryIdTv.text = userData.militaryId
+            binding.groupCodeTv.text = AccountManager.mGroupCode
+        }
+        else{// 안되어있으면 비움
+            binding.nameTv.text = ""
+            binding.militaryIdTv.text = ""
+            binding.groupCodeTv.text = ""
+        }
 
         val pm = PreferenceManager()
         val bitmap = pm.getProfileImage(this)// PM에서 저장된 이미지를 가져와서 프로필사진으로 로드
