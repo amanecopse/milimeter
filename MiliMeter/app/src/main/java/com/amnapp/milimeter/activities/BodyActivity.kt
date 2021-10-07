@@ -211,7 +211,7 @@ class BodyActivity : CustomThemeActivity() {
             cm.loadTrainingRecordNDaysAgo(
                 UserData.getInstance(),
                 cm.getCurrentDateBasedOnFormat(),
-                7
+                60
             ) { docs, lineDataSets, dateList ->
 
                 //데이터 없을때

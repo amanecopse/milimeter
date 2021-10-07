@@ -64,9 +64,10 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/menuBottomLl"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarCl">
+        app:layout_constraintTop_toBottomOf="@+id/appBarCl"
+        app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
             android:id="@+id/bodyLl"
@@ -186,6 +187,7 @@
                                     android:id="@+id/date1"
                                     android:layout_width="103dp"
                                     android:layout_height="match_parent"
+                                    android:text=""
                                     android:textColor="@android:color/black" />
 
                                 <TextView
@@ -198,6 +200,33 @@
                                     android:id="@+id/date3"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
+                                    android:text=""
+                                    android:textColor="@android:color/black" />
+
+                                <TextView
+                                    android:id="@+id/date4"
+                                    android:layout_width="103dp"
+                                    android:layout_height="match_parent"
+                                    android:text=""
+                                    android:textColor="@android:color/black" />
+                                <TextView
+                                    android:id="@+id/date5"
+                                    android:layout_width="103dp"
+                                    android:layout_height="match_parent"
+                                    android:text=""
+                                    android:textColor="@android:color/black" />
+                                <TextView
+                                    android:id="@+id/date6"
+                                    android:layout_width="103dp"
+                                    android:layout_height="match_parent"
+                                    android:text=""
+                                    android:textColor="@android:color/black" />
+
+                                <TextView
+                                    android:id="@+id/date7"
+                                    android:layout_width="103dp"
+                                    android:layout_height="match_parent"
+                                    android:text=""
                                     android:textColor="@android:color/black" />
 
                             </TableRow>
@@ -228,6 +257,29 @@
 
                                 <TextView
                                     android:id="@+id/legrecord3"
+                                    android:layout_width="88dp"
+                                    android:layout_height="match_parent"
+                                    android:textColor="@android:color/black" />
+
+                                <TextView
+                                    android:id="@+id/legrecord4"
+                                    android:layout_width="88dp"
+                                    android:layout_height="match_parent"
+                                    android:textColor="@android:color/black" />
+                                <TextView
+                                    android:id="@+id/legrecord5"
+                                    android:layout_width="88dp"
+                                    android:layout_height="match_parent"
+                                    android:textColor="@android:color/black" />
+
+                                <TextView
+                                    android:id="@+id/legrecord6"
+                                    android:layout_width="88dp"
+                                    android:layout_height="match_parent"
+                                    android:textColor="@android:color/black" />
+
+                                <TextView
+                                    android:id="@+id/legrecord7"
                                     android:layout_width="88dp"
                                     android:layout_height="match_parent"
                                     android:textColor="@android:color/black" />
@@ -262,6 +314,30 @@
                                     android:layout_width="117dp"
                                     android:layout_height="wrap_content"
                                     android:textColor="@android:color/black" />
+
+                                <TextView
+                                    android:id="@+id/runrecord4"
+                                    android:layout_width="117dp"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@android:color/black" />
+
+                                <TextView
+                                    android:id="@+id/runrecord5"
+                                    android:layout_width="117dp"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@android:color/black" />
+
+                                <TextView
+                                    android:id="@+id/runrecord6"
+                                    android:layout_width="117dp"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@android:color/black" />
+
+                                <TextView
+                                    android:id="@+id/runrecord7"
+                                    android:layout_width="117dp"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@android:color/black" />
                             </TableRow>
 
                             <TableRow
@@ -290,6 +366,30 @@
 
                                 <TextView
                                     android:id="@+id/circuitrecord3"
+                                    android:layout_width="103dp"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@android:color/black" />
+
+                                <TextView
+                                    android:id="@+id/circuitrecord4"
+                                    android:layout_width="103dp"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@android:color/black" />
+
+                                <TextView
+                                    android:id="@+id/circuitrecord5"
+                                    android:layout_width="103dp"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@android:color/black" />
+
+                                <TextView
+                                    android:id="@+id/circuitrecord6"
+                                    android:layout_width="103dp"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@android:color/black" />
+
+                                <TextView
+                                    android:id="@+id/circuitrecord7"
                                     android:layout_width="103dp"
                                     android:layout_height="wrap_content"
                                     android:textColor="@android:color/black" />
