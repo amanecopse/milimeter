@@ -144,18 +144,91 @@ class AdminPageActivity : CustomThemeActivity() {
         val dialog = Dialog(this)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.dialog_sub_user_chart)
+        val param = dialog.window!!.attributes//다이얼로그의 파라미터
+        param.width = ViewGroup.LayoutParams.MATCH_PARENT
+        param.height = ViewGroup.LayoutParams.MATCH_PARENT
+        dialog.window!!.attributes = param//변경한 파라미터 적용
 
         val subUserLc = dialog.findViewById<LineChart>(R.id.subUserLc)
         val cancelIb = dialog.findViewById<ImageButton>(R.id.cancelIb)
+        val prevDateLl = dialog.findViewById<LinearLayout>(R.id.prevDateLl)
+        val nextDateLl = dialog.findViewById<LinearLayout>(R.id.nextDateLl)
+        val dateRangeSp = dialog.findViewById<Spinner>(R.id.dateRangeSp)
+        val moveRangeSp = dialog.findViewById<Spinner>(R.id.moveRangeSp)
+        val dateRangeTv = dialog.findViewById<TextView>(R.id.dateRangeTv)
 
         val cm = ChartManager()
-        cm.loadTrainingRecordNDaysAgo(userData,cm.getCurrentDateBasedOnFormat(),30)
+        viewModel.chartDate = cm.getCurrentDateBasedOnFormat()//차트에서의 기준일
+        cm.loadTrainingRecordNDaysAgo(userData,viewModel.chartDate!!,viewModel.dateRange)
         { docs, lineDataSets, dateList ->
             cm.makeLineChart(subUserLc, lineDataSets, dateList)
+            val dateFrom = cm.calculateDate(viewModel.chartDate!!, 1-viewModel.dateRange)//차트 시작일
+            dateRangeTv.text = dateFrom+"~"+viewModel.chartDate
         }
 
         cancelIb.setOnClickListener {
             dialog.dismiss()
+        }
+        prevDateLl.setOnClickListener {
+            viewModel.chartDate = cm.calculateDate(viewModel.chartDate!!, -viewModel.moveRange)
+            cm.loadTrainingRecordNDaysAgo(userData,viewModel.chartDate!!,viewModel.dateRange)
+            { docs, lineDataSets, dateList ->
+                cm.makeLineChart(subUserLc, lineDataSets, dateList)
+                val dateFrom = cm.calculateDate(viewModel.chartDate!!, 1-viewModel.dateRange)//차트 시작일
+                dateRangeTv.text = dateFrom+"~"+viewModel.chartDate
+            }
+        }
+        nextDateLl.setOnClickListener {
+            viewModel.chartDate = cm.calculateDate(viewModel.chartDate!!, viewModel.moveRange)
+            cm.loadTrainingRecordNDaysAgo(userData,viewModel.chartDate!!,viewModel.dateRange)
+            { docs, lineDataSets, dateList ->
+                cm.makeLineChart(subUserLc, lineDataSets, dateList)
+                val dateFrom = cm.calculateDate(viewModel.chartDate!!, 1-viewModel.dateRange)//차트 시작일
+                dateRangeTv.text = dateFrom+"~"+viewModel.chartDate
+            }
+        }
+        dateRangeSp.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                when(position){
+                    0-> viewModel.dateRange = 30
+                    1-> viewModel.dateRange = 10
+                    2-> viewModel.dateRange = 5
+                    3-> viewModel.dateRange = 1
+                }
+                cm.loadTrainingRecordNDaysAgo(userData,viewModel.chartDate!!,viewModel.dateRange)
+                { docs, lineDataSets, dateList ->
+                    cm.makeLineChart(subUserLc, lineDataSets, dateList)
+                    val dateFrom = cm.calculateDate(viewModel.chartDate!!, 1-viewModel.dateRange)//차트 시작일
+                    dateRangeTv.text = dateFrom+"~"+viewModel.chartDate
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+        }
+        moveRangeSp.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                when(position){
+                    0-> viewModel.moveRange = 30
+                    1-> viewModel.moveRange = 10
+                    2-> viewModel.moveRange = 5
+                    3-> viewModel.moveRange = 1
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+
         }
 
         dialog.show()

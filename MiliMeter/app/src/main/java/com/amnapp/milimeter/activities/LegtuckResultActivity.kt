@@ -135,7 +135,7 @@ class LegtuckResultActivity: CustomThemeActivity() {
         cm.loadTrainingRecordNDaysAgo(
             UserData.getInstance(),
             cm.getCurrentDateBasedOnFormat(),
-            7
+            14
         ) { docs, lineDataSets, dateList ->
 
             //데이터 없을때
@@ -153,7 +153,7 @@ class LegtuckResultActivity: CustomThemeActivity() {
                 xAxis.valueFormatter = (TrainingValueFormatter(dateList))
                 xAxis.granularity = 1f
                 xAxis.isGranularityEnabled = true
-
+                xAxis.labelCount=4
                 val yLAxis = linechart.axisLeft//y축
                 yLAxis.axisMaximum = 25f //y축최대
                 yLAxis.axisMinimum = 0f  //

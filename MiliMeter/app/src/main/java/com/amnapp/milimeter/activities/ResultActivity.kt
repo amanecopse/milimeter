@@ -183,7 +183,7 @@ class ResultActivity : CustomThemeActivity() {
     private fun result_graph() {
         var linechart = findViewById<LineChart>(R.id.lineChart)
         val cm = ChartManager()
-        cm.loadTrainingRecordNDaysAgo(UserData.getInstance(), cm.getCurrentDateBasedOnFormat(), 7)
+        cm.loadTrainingRecordNDaysAgo(UserData.getInstance(), cm.getCurrentDateBasedOnFormat(), 60)
         { docs, lineDataSets, dateList ->
 
             //데이터 있으면
@@ -209,22 +209,41 @@ class ResultActivity : CustomThemeActivity() {
 
             var lsize = dateList.size
             var index = 0
-
             var date1 = findViewById<TextView>(R.id.date1)
             var date2 = findViewById<TextView>(R.id.date2)
             var date3 = findViewById<TextView>(R.id.date3)
+            var date4 = findViewById<TextView>(R.id.date4)
+            var date5 = findViewById<TextView>(R.id.date5)
+            var date6 = findViewById<TextView>(R.id.date6)
+            var date7 = findViewById<TextView>(R.id.date7)
+
 
             var leg1 = findViewById<TextView>(R.id.legrecord1)
             var leg2 = findViewById<TextView>(R.id.legrecord2)
             var leg3 = findViewById<TextView>(R.id.legrecord3)
+            var leg4 = findViewById<TextView>(R.id.legrecord4)
+            var leg5 = findViewById<TextView>(R.id.legrecord5)
+            var leg6 =findViewById<TextView>(R.id.legrecord6)
+            var leg7= findViewById<TextView>(R.id.legrecord7)
 
             var run1 = findViewById<TextView>(R.id.runrecord1)
             var run2 = findViewById<TextView>(R.id.runrecord2)
             var run3 = findViewById<TextView>(R.id.runrecord3)
+            var run4 = findViewById<TextView>(R.id.runrecord4)
+            var run5 = findViewById<TextView>(R.id.runrecord5)
+            var run6 = findViewById<TextView>(R.id.runrecord6)
+            var run7 = findViewById<TextView>(R.id.runrecord7)
+
+
+
 
             var field1 = findViewById<TextView>(R.id.circuitrecord1)
             var field2 = findViewById<TextView>(R.id.circuitrecord2)
             var field3 = findViewById<TextView>(R.id.circuitrecord3)
+            var field4 = findViewById<TextView>(R.id.circuitrecord4)
+            var field5 = findViewById<TextView>(R.id.circuitrecord5)
+            var field6 = findViewById<TextView>(R.id.circuitrecord6)
+            var field7 = findViewById<TextView>(R.id.circuitrecord7)
 
             if (lsize > 0) {
                 val legtuckList = mutableListOf<Int>()
@@ -254,10 +273,770 @@ class ResultActivity : CustomThemeActivity() {
 
 
                 //날짜 3개
-                if (dateList.size >= 3) {
+
+                if(dateList.size>=7){
+                    date1.setText(dateList[dateList.size - 7])
+                    date2.setText(dateList[dateList.size - 6])
+                    date3.setText(dateList[dateList.size - 5])
+                    date4.setText(dateList[dateList.size - 4])
+                    date5.setText(dateList[dateList.size - 3])
+                    date6.setText(dateList[dateList.size - 2])
+                    date7.setText(dateList[dateList.size - 1])
+
+
+                    if (legtuckList[dateList.size - 7] == -1)  {
+                        leg1.setText("X")
+                    } else {
+                        leg1.setText(legtuckList[dateList.size - 7].toString())
+                    }
+
+                    if (legtuckList[dateList.size - 6] == -1)  {
+                        leg2.setText("X")
+                    } else {
+                        leg2.setText(legtuckList[dateList.size - 6].toString())
+                    }
+
+                    if (legtuckList[dateList.size - 5] == -1)  {
+                        leg3.setText("X")
+                    } else {
+                        leg3.setText(legtuckList[dateList.size - 4].toString())
+                    }
+
+
+                    if (legtuckList[dateList.size - 4] == -1) {
+                        leg4.setText("X")
+                    } else {
+                        leg4.setText(legtuckList[dateList.size - 4].toString())
+                    }
+
+                    if (legtuckList[dateList.size - 3] == -1) {
+                        leg5.setText("X")
+                    } else {
+                        leg5.setText(legtuckList[dateList.size - 3].toString())
+                    }
+
+                    if (legtuckList[dateList.size - 2] == -1) {
+                        leg6.setText("X")
+                    } else {
+                        leg6.setText(legtuckList[dateList.size - 2].toString())
+                    }
+                    if(legtuckList[dateList.size-1]==-1){
+                        leg7.setText("X")
+                    }
+                    else{
+                        leg7.setText(legtuckList[dateList.size - 1].toString())
+                    }
+
+
+                    //240m
+                    if (shuttleRunList[dateList.size - 7] == 0) {
+                        run1.setText("X")
+                    } else {
+                        run1.setText(
+                            String.format(
+                                "%d분 %d초",
+                                shuttleRunList[dateList.size - 7] / 60,
+                                shuttleRunList[dateList.size - 7] % 60
+                            )
+                        )
+                    }
+
+
+
+                    if (shuttleRunList[dateList.size - 6] == 0) {
+                        run2.setText("X")
+                    } else {
+                        run2.setText(
+                            String.format(
+                                "%d분 %d초",
+                                shuttleRunList[dateList.size - 6] / 60,
+                                shuttleRunList[dateList.size - 6] % 60
+                            )
+                        )
+                    }
+
+                    if (shuttleRunList[dateList.size - 5] == 0) {
+                        run3.setText("X")
+                    } else {
+                        run3.setText(
+                            String.format(
+                                "%d분 %d초",
+                                shuttleRunList[dateList.size - 5] / 60,
+                                shuttleRunList[dateList.size - 5] % 60
+                            )
+                        )
+                    }
+
+
+                    if (shuttleRunList[dateList.size - 4] == 0) {
+                        run4.setText("X")
+                    } else {
+                        run4.setText(
+                            String.format(
+                                "%d분 %d초",
+                                shuttleRunList[dateList.size - 4] / 60,
+                                shuttleRunList[dateList.size - 4] % 60
+                            )
+                        )
+                    }
+
+                    if (shuttleRunList[dateList.size - 3] == 0) {
+                        run5.setText("X")
+                    } else {
+                        run5.setText(
+                            String.format(
+                                "%d분 %d초",
+                                shuttleRunList[dateList.size - 3] / 60,
+                                shuttleRunList[dateList.size - 3] % 60
+                            )
+                        )
+                    }
+
+                    if (shuttleRunList[dateList.size - 2] == 0) {
+                        run6.setText("X")
+                    } else {
+                        run6.setText(
+                            String.format(
+                                "%d분 %d초",
+                                shuttleRunList[dateList.size - 2] / 60,
+                                shuttleRunList[dateList.size - 2] % 60
+                            )
+                        )
+                    }
+                    if(shuttleRunList[dateList.size-1]==0) {
+                        run7.setText("X")
+                    }
+                    else{
+                        run7.setText(
+                            String.format(
+                                "%d분 %d초",
+                                shuttleRunList[dateList.size - 1] / 60,
+                                shuttleRunList[dateList.size - 1] % 60
+                            )
+                        )
+                    }
+
+
+                    //전장 순환
+                    if(fieldTrainingList[dateList.size-7]==0){
+                        field1.setText("X")
+                    }
+                    else{
+                        field1.setText(
+                            String.format(
+                                "%d분 %d초",
+                                fieldTrainingList[dateList.size - 7] / 60,
+                                fieldTrainingList[dateList.size - 7] % 60
+                            )
+                        )
+                    }
+
+                    if(fieldTrainingList[dateList.size-6]==0){
+                        field2.setText("X")
+                    }
+                    else{
+                        field2.setText(
+                            String.format(
+                                "%d분 %d초",
+                                fieldTrainingList[dateList.size - 6] / 60,
+                                fieldTrainingList[dateList.size - 6] % 60
+                            )
+                        )
+                    }
+
+                    if(fieldTrainingList[dateList.size-5]==0){
+                        field3.setText("X")
+                    }
+                    else{
+                        field3.setText(
+                            String.format(
+                                "%d분 %d초",
+                                fieldTrainingList[dateList.size - 5] / 60,
+                                fieldTrainingList[dateList.size - 5] % 60
+                            )
+                        )
+                    }
+
+                    if(fieldTrainingList[dateList.size-4]==0){
+                        field4.setText("X")
+                    }
+                    else{
+                        field4.setText(
+                            String.format(
+                                "%d분 %d초",
+                                fieldTrainingList[dateList.size - 4] / 60,
+                                fieldTrainingList[dateList.size - 4] % 60
+                            )
+                        )
+                    }
+
+
+
+                    if (fieldTrainingList[dateList.size - 3] == 0) {
+                        field5.setText("X")
+                    } else {
+                        field5.setText(
+                            String.format(
+                                "%d분 %d초",
+                                fieldTrainingList[dateList.size - 3] / 60,
+                                fieldTrainingList[dateList.size - 3] % 60
+                            )
+                        )
+                    }
+
+                    if (fieldTrainingList[dateList.size - 2] == 0) {
+                        field6.setText("X")
+                    } else {
+                        field6.setText(
+                            String.format(
+                                "%d분 %d초",
+                                fieldTrainingList[dateList.size - 2] / 60,
+                                fieldTrainingList[dateList.size - 2] % 60
+                            )
+                        )
+                    }
+
+                    if (fieldTrainingList[dateList.size - 1] == 0) {
+                        field7.setText("X")
+                    } else {
+                        field7.setText(
+                            String.format(
+                                "%d분 %d초",
+                                fieldTrainingList[dateList.size - 1] / 60,
+                                fieldTrainingList[dateList.size - 1] % 60
+                            )
+                        )
+                    }
+
+
+
+                }
+
+                else if(dateList.size==6){
+                    date1.setText(dateList[dateList.size - 6])
+                    date2.setText(dateList[dateList.size - 5])
+                    date3.setText(dateList[dateList.size - 4])
+                    date4.setText(dateList[dateList.size - 3])
+                    date5.setText(dateList[dateList.size - 2])
+                    date6.setText(dateList[dateList.size - 1])
+                    date7.setText("X")
+
+                    if (legtuckList[dateList.size - 6] == -1)  {
+                        leg1.setText("X")
+                    } else {
+                        leg1.setText(legtuckList[dateList.size - 6].toString())
+                    }
+
+                    if (legtuckList[dateList.size - 5] == -1)  {
+                        leg2.setText("X")
+                    } else {
+                        leg2.setText(legtuckList[dateList.size - 4].toString())
+                    }
+
+
+                    if (legtuckList[dateList.size - 4] == -1) {
+                        leg3.setText("X")
+                    } else {
+                        leg3.setText(legtuckList[dateList.size - 4].toString())
+                    }
+
+                    if (legtuckList[dateList.size - 3] == -1) {
+                        leg4.setText("X")
+                    } else {
+                        leg4.setText(legtuckList[dateList.size - 3].toString())
+                    }
+
+                    if (legtuckList[dateList.size - 2] == -1) {
+                        leg5.setText("X")
+                    } else {
+                        leg5.setText(legtuckList[dateList.size - 2].toString())
+                    }
+                    if(legtuckList[dateList.size-1]==-1){
+                        leg6.setText("X")
+                    }
+                    else{
+                        leg6.setText(legtuckList[dateList.size - 1].toString())
+                    }
+                    leg7.setText("X")
+
+                    //240m
+                    if (shuttleRunList[dateList.size - 6] == 0) {
+                        run1.setText("X")
+                    } else {
+                        run1.setText(
+                            String.format(
+                                "%d분 %d초",
+                                shuttleRunList[dateList.size - 6] / 60,
+                                shuttleRunList[dateList.size - 6] % 60
+                            )
+                        )
+                    }
+
+                    if (shuttleRunList[dateList.size - 5] == 0) {
+                        run2.setText("X")
+                    } else {
+                        run2.setText(
+                            String.format(
+                                "%d분 %d초",
+                                shuttleRunList[dateList.size - 5] / 60,
+                                shuttleRunList[dateList.size - 5] % 60
+                            )
+                        )
+                    }
+
+
+                    if (shuttleRunList[dateList.size - 4] == 0) {
+                        run3.setText("X")
+                    } else {
+                        run3.setText(
+                            String.format(
+                                "%d분 %d초",
+                                shuttleRunList[dateList.size - 4] / 60,
+                                shuttleRunList[dateList.size - 4] % 60
+                            )
+                        )
+                    }
+
+                    if (shuttleRunList[dateList.size - 3] == 0) {
+                        run4.setText("X")
+                    } else {
+                        run4.setText(
+                            String.format(
+                                "%d분 %d초",
+                                shuttleRunList[dateList.size - 3] / 60,
+                                shuttleRunList[dateList.size - 3] % 60
+                            )
+                        )
+                    }
+
+                    if (shuttleRunList[dateList.size - 2] == 0) {
+                        run5.setText("X")
+                    } else {
+                        run5.setText(
+                            String.format(
+                                "%d분 %d초",
+                                shuttleRunList[dateList.size - 2] / 60,
+                                shuttleRunList[dateList.size - 2] % 60
+                            )
+                        )
+                    }
+                    if(shuttleRunList[dateList.size-1]==0) {
+                        run6.setText("X")
+                    }
+                    else{
+                        run6.setText(
+                            String.format(
+                                "%d분 %d초",
+                                shuttleRunList[dateList.size - 1] / 60,
+                                shuttleRunList[dateList.size - 1] % 60
+                            )
+                        )
+                    }
+                    run7.setText("X")
+
+                    //전장 순환
+                    if(fieldTrainingList[dateList.size-6]==0){
+                        field1.setText("X")
+                    }
+                    else{
+                        field1.setText(
+                            String.format(
+                                "%d분 %d초",
+                                fieldTrainingList[dateList.size - 6] / 60,
+                                fieldTrainingList[dateList.size - 6] % 60
+                            )
+                        )
+                    }
+
+                    if(fieldTrainingList[dateList.size-5]==0){
+                        field2.setText("X")
+                    }
+                    else{
+                        field2.setText(
+                            String.format(
+                                "%d분 %d초",
+                                fieldTrainingList[dateList.size - 5] / 60,
+                                fieldTrainingList[dateList.size - 5] % 60
+                            )
+                        )
+                    }
+
+                    if(fieldTrainingList[dateList.size-4]==0){
+                        field3.setText("X")
+                    }
+                    else{
+                        field3.setText(
+                            String.format(
+                                "%d분 %d초",
+                                fieldTrainingList[dateList.size - 4] / 60,
+                                fieldTrainingList[dateList.size - 4] % 60
+                            )
+                        )
+                    }
+
+
+
+                    if (fieldTrainingList[dateList.size - 3] == 0) {
+                        field4.setText("X")
+                    } else {
+                        field4.setText(
+                            String.format(
+                                "%d분 %d초",
+                                fieldTrainingList[dateList.size - 3] / 60,
+                                fieldTrainingList[dateList.size - 3] % 60
+                            )
+                        )
+                    }
+
+                    if (fieldTrainingList[dateList.size - 2] == 0) {
+                        field5.setText("X")
+                    } else {
+                        field5.setText(
+                            String.format(
+                                "%d분 %d초",
+                                fieldTrainingList[dateList.size - 2] / 60,
+                                fieldTrainingList[dateList.size - 2] % 60
+                            )
+                        )
+                    }
+
+                    if (fieldTrainingList[dateList.size - 1] == 0) {
+                        field6.setText("X")
+                    } else {
+                        field6.setText(
+                            String.format(
+                                "%d분 %d초",
+                                fieldTrainingList[dateList.size - 1] / 60,
+                                fieldTrainingList[dateList.size - 1] % 60
+                            )
+                        )
+                    }
+
+                    field7.setText("X")
+                }
+                else if(dateList.size==5){
+                    date1.setText(dateList[dateList.size-5])
+                    date2.setText(dateList[dateList.size - 4])
+                    date3.setText(dateList[dateList.size - 3])
+                    date4.setText(dateList[dateList.size - 2])
+                    date5.setText(dateList[dateList.size - 1])
+                    date6.setText("X")
+                    date7.setText("X")
+
+                    if (legtuckList[dateList.size - 5] == -1)  {
+                        leg1.setText("X")
+                    } else {
+                        leg1.setText(legtuckList[dateList.size - 4].toString())
+                    }
+
+
+                    if (legtuckList[dateList.size - 4] == -1) {
+                        leg2.setText("X")
+                    } else {
+                        leg2.setText(legtuckList[dateList.size - 4].toString())
+                    }
+
+                    if (legtuckList[dateList.size - 3] == -1) {
+                        leg3.setText("X")
+                    } else {
+                        leg3.setText(legtuckList[dateList.size - 3].toString())
+                    }
+
+                    if (legtuckList[dateList.size - 2] == -1) {
+                        leg4.setText("X")
+                    } else {
+                        leg4.setText(legtuckList[dateList.size - 2].toString())
+                    }
+                    if(legtuckList[dateList.size-1]==-1){
+                        leg5.setText("X")
+                    }
+                    else{
+                        leg5.setText(legtuckList[dateList.size - 1].toString())
+                    }
+                    leg6.setText("X")
+                    leg7.setText("X")
+
+                    //240m
+                    if (shuttleRunList[dateList.size - 5] == 0) {
+                        run1.setText("X")
+                    } else {
+                        run1.setText(
+                            String.format(
+                                "%d분 %d초",
+                                shuttleRunList[dateList.size - 5] / 60,
+                                shuttleRunList[dateList.size - 5] % 60
+                            )
+                        )
+                    }
+
+
+                    if (shuttleRunList[dateList.size - 4] == 0) {
+                        run2.setText("X")
+                    } else {
+                        run2.setText(
+                            String.format(
+                                "%d분 %d초",
+                                shuttleRunList[dateList.size - 4] / 60,
+                                shuttleRunList[dateList.size - 4] % 60
+                            )
+                        )
+                    }
+
+                    if (shuttleRunList[dateList.size - 3] == 0) {
+                        run3.setText("X")
+                    } else {
+                        run3.setText(
+                            String.format(
+                                "%d분 %d초",
+                                shuttleRunList[dateList.size - 3] / 60,
+                                shuttleRunList[dateList.size - 3] % 60
+                            )
+                        )
+                    }
+
+                    if (shuttleRunList[dateList.size - 2] == 0) {
+                        run4.setText("X")
+                    } else {
+                        run4.setText(
+                            String.format(
+                                "%d분 %d초",
+                                shuttleRunList[dateList.size - 2] / 60,
+                                shuttleRunList[dateList.size - 2] % 60
+                            )
+                        )
+                    }
+                    if(shuttleRunList[dateList.size-1]==0) {
+                        run5.setText("X")
+                    }
+                    else{
+                        run5.setText(
+                            String.format(
+                                "%d분 %d초",
+                                shuttleRunList[dateList.size - 1] / 60,
+                                shuttleRunList[dateList.size - 1] % 60
+                            )
+                        )
+                    }
+                    run6.setText("X")
+                    run7.setText("X")
+
+                    //전장 순환
+                    if(fieldTrainingList[dateList.size-5]==0){
+                        field1.setText("X")
+                    }
+                    else{
+                        field1.setText(
+                            String.format(
+                                "%d분 %d초",
+                                fieldTrainingList[dateList.size - 5] / 60,
+                                fieldTrainingList[dateList.size - 5] % 60
+                            )
+                        )
+                    }
+
+                    if(fieldTrainingList[dateList.size-4]==0){
+                        field2.setText("X")
+                    }
+                    else{
+                        field2.setText(
+                            String.format(
+                                "%d분 %d초",
+                                fieldTrainingList[dateList.size - 4] / 60,
+                                fieldTrainingList[dateList.size - 4] % 60
+                            )
+                        )
+                    }
+
+
+
+                    if (fieldTrainingList[dateList.size - 3] == 0) {
+                        field3.setText("X")
+                    } else {
+                        field3.setText(
+                            String.format(
+                                "%d분 %d초",
+                                fieldTrainingList[dateList.size - 3] / 60,
+                                fieldTrainingList[dateList.size - 3] % 60
+                            )
+                        )
+                    }
+
+                    if (fieldTrainingList[dateList.size - 2] == 0) {
+                        field4.setText("X")
+                    } else {
+                        field4.setText(
+                            String.format(
+                                "%d분 %d초",
+                                fieldTrainingList[dateList.size - 2] / 60,
+                                fieldTrainingList[dateList.size - 2] % 60
+                            )
+                        )
+                    }
+
+                    if (fieldTrainingList[dateList.size - 1] == 0) {
+                        field5.setText("X")
+                    } else {
+                        field5.setText(
+                            String.format(
+                                "%d분 %d초",
+                                fieldTrainingList[dateList.size - 1] / 60,
+                                fieldTrainingList[dateList.size - 1] % 60
+                            )
+                        )
+                    }
+                    field6.setText("X")
+                    field7.setText("X")}
+                else if(dateList.size==4){date1.setText(dateList[dateList.size - 4])
+                    date2.setText(dateList[dateList.size - 3])
+                    date3.setText(dateList[dateList.size - 2])
+                    date4.setText(dateList[dateList.size - 1])
+                    date5.setText("X")
+                    date6.setText("X")
+                    date7.setText("X")
+
+                    if (legtuckList[dateList.size - 4] == -1) {
+                        leg1.setText("X")
+                    } else {
+                        leg1.setText(legtuckList[dateList.size - 4].toString())
+                    }
+
+                    if (legtuckList[dateList.size - 3] == -1) {
+                        leg2.setText("X")
+                    } else {
+                        leg2.setText(legtuckList[dateList.size - 3].toString())
+                    }
+
+                    if (legtuckList[dateList.size - 2] == -1) {
+                        leg3.setText("X")
+                    } else {
+                        leg3.setText(legtuckList[dateList.size - 2].toString())
+                    }
+                    if(legtuckList[dateList.size-1]==-1){
+                    leg4.setText("X")
+                    }
+                    else{
+                        leg4.setText(legtuckList[dateList.size - 1].toString())
+                    }
+                    leg5.setText("X")
+                    leg6.setText("X")
+                    leg7.setText("X")
+
+                    //240m
+                    if (shuttleRunList[dateList.size - 4] == 0) {
+                        run1.setText("X")
+                    } else {
+                        run1.setText(
+                            String.format(
+                                "%d분 %d초",
+                                shuttleRunList[dateList.size - 4] / 60,
+                                shuttleRunList[dateList.size - 4] % 60
+                            )
+                        )
+                    }
+
+                    if (shuttleRunList[dateList.size - 3] == 0) {
+                        run2.setText("X")
+                    } else {
+                        run2.setText(
+                            String.format(
+                                "%d분 %d초",
+                                shuttleRunList[dateList.size - 3] / 60,
+                                shuttleRunList[dateList.size - 3] % 60
+                            )
+                        )
+                    }
+
+                    if (shuttleRunList[dateList.size - 2] == 0) {
+                        run3.setText("X")
+                    } else {
+                        run3.setText(
+                            String.format(
+                                "%d분 %d초",
+                                shuttleRunList[dateList.size - 2] / 60,
+                                shuttleRunList[dateList.size - 2] % 60
+                            )
+                        )
+                    }
+                    if(shuttleRunList[dateList.size-1]==0) {
+                        run4.setText("X")
+                    }
+                    else{
+                        run4.setText(
+                            String.format(
+                                "%d분 %d초",
+                                shuttleRunList[dateList.size - 1] / 60,
+                                shuttleRunList[dateList.size - 1] % 60
+                            )
+                        )
+                    }
+                    run5.setText("X")
+                    run6.setText("X")
+                    run7.setText("X")
+
+                    //전장 순환
+
+                    if(fieldTrainingList[dateList.size-4]==0){
+                        field1.setText("X")
+                    }
+                    else{
+                        field1.setText(
+                            String.format(
+                                "%d분 %d초",
+                                fieldTrainingList[dateList.size - 4] / 60,
+                                fieldTrainingList[dateList.size - 4] % 60
+                            )
+                        )
+                    }
+
+
+
+                    if (fieldTrainingList[dateList.size - 3] == 0) {
+                        field2.setText("X")
+                    } else {
+                        field2.setText(
+                            String.format(
+                                "%d분 %d초",
+                                fieldTrainingList[dateList.size - 3] / 60,
+                                fieldTrainingList[dateList.size - 3] % 60
+                            )
+                        )
+                    }
+
+                    if (fieldTrainingList[dateList.size - 2] == 0) {
+                        field3.setText("X")
+                    } else {
+                        field3.setText(
+                            String.format(
+                                "%d분 %d초",
+                                fieldTrainingList[dateList.size - 2] / 60,
+                                fieldTrainingList[dateList.size - 2] % 60
+                            )
+                        )
+                    }
+
+                    if (fieldTrainingList[dateList.size - 1] == 0) {
+                        field4.setText("X")
+                    } else {
+                        field4.setText(
+                            String.format(
+                                "%d분 %d초",
+                                fieldTrainingList[dateList.size - 1] / 60,
+                                fieldTrainingList[dateList.size - 1] % 60
+                            )
+                        )
+                    }
+                    field5.setText("X")
+                    field6.setText("X")
+                    field7.setText("X")
+                }
+                else if (dateList.size == 3) {
                     date1.setText(dateList[dateList.size - 3])
                     date2.setText(dateList[dateList.size - 2])
                     date3.setText(dateList[dateList.size - 1])
+                    date4.setText("X")
+                    date5.setText("X")
+                    date6.setText("X")
+                    date7.setText("X")
 
                     if (legtuckList[dateList.size - 3] == -1) {
                         leg1.setText("X")
@@ -276,6 +1055,10 @@ class ResultActivity : CustomThemeActivity() {
                     } else {
                         leg3.setText(legtuckList[dateList.size - 1].toString())
                     }
+                    leg4.setText("X")
+                    leg5.setText("X")
+                    leg6.setText("X")
+                    leg7.setText("X")
 
                     //240m
                     if (shuttleRunList[dateList.size - 3] == 0) {
@@ -313,6 +1096,10 @@ class ResultActivity : CustomThemeActivity() {
                             )
                         )
                     }
+                    run4.setText("X")
+                    run5.setText("X")
+                    run6.setText("X")
+                    run7.setText("X")
 
                     //전장 순환
                     //240m
@@ -351,14 +1138,23 @@ class ResultActivity : CustomThemeActivity() {
                             )
                         )
                     }
+                    field4.setText("X")
+                    field5.setText("X")
+                    field6.setText("X")
+                    field7.setText("X")
+
                 }
 
 
                 //날짜 2개
                 else if (dateList.size == 2) {
-                    date1.setText(dateList.size - 2)
-                    date2.setText(dateList.size - 1)
+                    date1.setText(dateList[dateList.size - 2])
+                    date2.setText(dateList[dateList.size - 1])
                     date3.setText("X")
+                    date4.setText("X")
+                    date5.setText("X")
+                    date6.setText("X")
+                    date7.setText("X")
 
                     //레그턱
                     if (legtuckList[dateList.size - 2] == -1) {
@@ -401,6 +1197,10 @@ class ResultActivity : CustomThemeActivity() {
                     }
 
                     run3.setText("X")
+                    run4.setText("X")
+                    run5.setText("X")
+                    run6.setText("X")
+                    run7.setText("X")
 
 
                     //전장순환
@@ -430,11 +1230,15 @@ class ResultActivity : CustomThemeActivity() {
                     field3.setText("X")
 
 
-                } else if (dateList.size == 1) {
-                    date1.setText(dateList.size - 1)
+                }
+                else if (dateList.size == 1) {
+                    date1.setText(dateList[dateList.size - 1])
                     date2.setText("X")
                     date3.setText("X")
-
+                    date4.setText("X")
+                    date5.setText("X")
+                    date6.setText("X")
+                    date7.setText("X")
                     //레그턱
                     if (legtuckList[dateList.size - 1] == -1) {
                         leg1.setText("X")
@@ -458,7 +1262,10 @@ class ResultActivity : CustomThemeActivity() {
                     }
                     run2.setText("X")
                     run3.setText("X")
-
+                    run4.setText("X")
+                    run5.setText("X")
+                    run6.setText("X")
+                    run7.setText("X")
                     //전장순환
                     if (fieldTrainingList[dateList.size - 1] == 0) {
                         field1.setText("X")
@@ -473,6 +1280,27 @@ class ResultActivity : CustomThemeActivity() {
                     }
                     field2.setText("X")
                     field3.setText("X")
+                    field4.setText("X")
+                    field5.setText("X")
+                    field6.setText("X")
+                    field7.setText("X")
+                }
+                else{
+                    date1.setText("X")
+                    date2.setText("X")
+                    date3.setText("X")
+
+                    leg1.setText("X")
+                    leg2.setText("X")
+                    leg3.setText("X")
+
+                    run1.setText("X")
+                    run2.setText("X")
+                    run3.setText("X")
+
+                    field1.setText("X")
+                    field2.setText("X")
+                    field3.setText("X")
                 }
             }
             //아무것도 없으면
@@ -480,6 +1308,10 @@ class ResultActivity : CustomThemeActivity() {
                 date1.setText("X")
                 date2.setText("X")
                 date3.setText("X")
+                date4.setText("X")
+                date5.setText("X")
+                date6.setText("X")
+                date7.setText("X")
 
                 leg1.setText("X")
                 leg2.setText("X")
@@ -488,7 +1320,11 @@ class ResultActivity : CustomThemeActivity() {
                 run1.setText("X")
                 run2.setText("X")
                 run3.setText("X")
-
+                run3.setText("X")
+                run4.setText("X")
+                run5.setText("X")
+                run6.setText("X")
+                run7.setText("X")
                 field1.setText("X")
                 field2.setText("X")
                 field3.setText("X")

@@ -39,7 +39,7 @@
                 android:id="@+id/titleTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/user_information"
+                android:text="@string/user_information1"
                 android:textColor="?attr/textColorBanner"
                 android:textSize="@dimen/largeText" />
         </LinearLayout>
@@ -166,7 +166,7 @@
                         android:textColorHint="?attr/textColorSecondary"
                         app:helperTextTextColor="@android:color/holo_red_dark"
                         app:passwordToggleTint="?attr/textColorSecondary"
-                        app:suffixText='"-" 없이 숫자만 입력'
+                        app:suffixText='@string/notice_info'
                         app:suffixTextColor="?attr/textColor">
 
                         <com.google.android.material.textfield.TextInputEditText

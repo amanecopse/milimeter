@@ -65,11 +65,16 @@ class ChartManager {
     }
 
     fun makeLineChart(lineChart: LineChart, lineDataSets: MutableList<LineDataSet>, dateList: ArrayList<String>){
+
+        for(i in 0 until dateList.size){
+            dateList[i] = dateList[i].substring(5)
+        }
+
         val colorSet = arrayOf(Color.BLUE, Color.RED, Color.GREEN, Color.CYAN, Color.MAGENTA, Color.YELLOW)
         var colorIndex = 0
         for(lineDataSet in lineDataSets){
             lineDataSet.setLineWidth(2F)
-            lineDataSet.setCircleRadius(6F)
+            lineDataSet.setCircleRadius(3F)
             lineDataSet.setCircleColor(colorSet[colorIndex])
             lineDataSet.circleHoleColor = colorSet[colorIndex]
             lineDataSet.setColor(colorSet[colorIndex])
@@ -80,6 +85,7 @@ class ChartManager {
             lineDataSet.setDrawValues(false)
             colorIndex = if(colorIndex==5) 0 else colorIndex+1
         }
+
         val data = LineData(lineDataSets as List<ILineDataSet>?)
         lineChart.data = data
 
@@ -123,7 +129,7 @@ class ChartManager {
         lineChart.setDrawGridBackground(false)
 
         lineChart.animateY(2000, Easing.EaseInCubic)
-        lineChart.description.text = "일주일간의 기록"
+        lineChart.description.text = ""
         lineChart.invalidate()
     }
 
@@ -233,6 +239,9 @@ class ChartManager {
             }
         }
     }
+
+
+
 
     fun updateTrainingRecord(userData: UserData, date: String, record: HashMap<String, String>, callBack: UICallBack){
         userData.id?.let { id ->
