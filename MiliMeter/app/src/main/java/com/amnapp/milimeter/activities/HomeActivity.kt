@@ -169,20 +169,21 @@ class HomeActivity : CustomThemeActivity() {
             val month: Int = today.get(Calendar.MONTH)
             val date: Int = today.get(Calendar.DATE)
 
-            val Tyear: Int = year*10000
+            val Tyear: Int = year
             val Tmonth: Int = (month+1)*100
             val Tdate: Int = date
-            val Today: Int = Tyear+Tmonth+Tdate
+            val Today: Int = Tmonth+Tdate
 
             val Dday = DatePickerDialog(this, object : DatePickerDialog.OnDateSetListener {
 
                override fun onDateSet(view: DatePicker?, year: Int, month: Int, date: Int) {
 
-                   val Syear: Int = year*10000
+                   val Syear: Int = year
                    val Smonth: Int = (month+1)*100
                    val Sdate: Int = date
-                   val Setday: Int = Syear+Smonth+Sdate
-                   val dday: Int = Setday-Today
+                   val Setday: Int = Smonth + Sdate
+                   val Year: Int = Syear-Tyear
+                   val dday: Int = Year*365 + Setday-Today
 
                    if (dday==0) {
                        binding.dDayBt.text=("D-day")}
