@@ -229,7 +229,7 @@ class BodyActivity : CustomThemeActivity() {
                     xAxis.valueFormatter = (TrainingValueFormatter(dateList))
                     xAxis.granularity = 1f
                     xAxis.isGranularityEnabled = true
-
+                    xAxis.labelCount= 5
                     val yLAxis = linechart.axisLeft//y축
                     val yRAxis =linechart.axisRight
                     yLAxis.axisMaximum = 120f //y축최대
