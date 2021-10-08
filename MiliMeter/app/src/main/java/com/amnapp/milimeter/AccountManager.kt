@@ -550,37 +550,50 @@ class AccountManager {
             }
     }
 
-    fun login(id: String, pw: String, callBack: (resultMessage: String) -> Unit){
-        findUserDataById(id){resultMessage, querySnapShot ->
-            if(resultMessage == RESULT_FAILURE)
-                callBack(ERROR_NOT_FOUND_ID)// 아이디가 존재하지 않음
-            else if(resultMessage == RESULT_SUCCESS){
-                val doc = querySnapShot.documents[0]
-                val userData = doc.toObject<UserData>()
-                if (userData != null) {
-                    if(userData.pw != pw){
-                        callBack(ERROR_WRONG_PASSWORD)
-                        return@findUserDataById
-                    }// 비밀번호가 달라 실패
-                    userData.login = true //접속중으로 처리
-                    UserData.setInstance(userData) // 서버에서 받은 계정정보를 등록
-                    Firebase.firestore.collection(USERS).document(userData.id!!)
-                        .set(userData) // 서버에 접속중임을 알림
-                    Firebase.firestore.collection(GROUP_MEMBERS).whereEqualTo("id",userData.id)
-                        .get()
-                        .addOnSuccessListener {
-                            if(it.isEmpty){
-                                callBack(RESULT_SUCCESS)
-                            }
-                            else{
-                                it.documents[0].toObject<GroupMemberData>()?.let { groupMemberData ->
-                                    GroupMemberData.setInstance(
-                                        groupMemberData
-                                    )
+    fun login(context: Context, id: String, pw: String, callBack: (resultMessage: String) -> Unit){
+        val am = AccountManager()
+        val pm = PreferenceManager()
+        val gc = pm.getGroupCode(context)
+        am.findGroupMemberDataById(id.toString()){resultMessage, querySnapShot ->//그룹멤버데이터에서 hashedGroupCode를 가져옴
+            if(resultMessage == RESULT_SUCCESS) {
+                val groupMemberData = querySnapShot.documents[0].toObject<GroupMemberData>()
+                if(checkGroupCodeValid(context, id, gc, groupMemberData!!.hashedGroupCode))//hashedGroupCode와 로그인 캐시를 대조
+                    mGroupCode = gc// 대조해서 그룹코드가 유효하면 mGroupCode에 입력
+                else
+                    mGroupCode = null //유효하지 않으면 null
+            }
+
+            findUserDataById(id){resultMessage, querySnapShot ->
+                if(resultMessage == RESULT_FAILURE)
+                    callBack(ERROR_NOT_FOUND_ID)// 아이디가 존재하지 않음
+                else if(resultMessage == RESULT_SUCCESS){
+                    val doc = querySnapShot.documents[0]
+                    val userData = doc.toObject<UserData>()
+                    if (userData != null) {
+                        if(userData.pw != pw){
+                            callBack(ERROR_WRONG_PASSWORD)
+                            return@findUserDataById
+                        }// 비밀번호가 달라 실패
+                        userData.login = true //접속중으로 처리
+                        UserData.setInstance(userData) // 서버에서 받은 계정정보를 등록
+                        Firebase.firestore.collection(USERS).document(userData.id!!)
+                            .set(userData) // 서버에 접속중임을 알림
+                        Firebase.firestore.collection(GROUP_MEMBERS).whereEqualTo("id",userData.id)
+                            .get()
+                            .addOnSuccessListener {
+                                if(it.isEmpty){
+                                    callBack(RESULT_SUCCESS)
                                 }
-                                callBack(RESULT_SUCCESS)
+                                else{
+                                    it.documents[0].toObject<GroupMemberData>()?.let { groupMemberData ->
+                                        GroupMemberData.setInstance(
+                                            groupMemberData
+                                        )
+                                    }
+                                    callBack(RESULT_SUCCESS)
+                                }
                             }
-                        }
+                    }
                 }
             }
         }
@@ -596,11 +609,13 @@ class AccountManager {
 
     fun autoLogin(context: Context, callBack: (resultMessage: String) -> Unit){
         val pm = PreferenceManager()
-        if(pm.isAutoLoginEnable(context) && !UserData.getInstance().login){
+        val userData = UserData.getInstance()
+        if(pm.isAutoLoginEnable(context) && !userData.login){
             val loginData = pm.getLoginData(context)
-            mGroupCode = pm.getGroupCode(context)
-            login(loginData[0].toString(), loginData[1].toString()){resultMessage ->
-                if(resultMessage == RESULT_SUCCESS)
+            val id = loginData[0]
+            val pw = loginData[1]
+            login(context, id.toString(), pw.toString()){resultMessage2 ->//로그인 캐시로 로그인 시도
+                if(resultMessage2 == RESULT_SUCCESS)
                     callBack(RESULT_SUCCESS)
                 else
                     callBack(RESULT_FAILURE)
@@ -699,8 +714,9 @@ class AccountManager {
     }
 
     companion object{
-        var mGroupCode: String? = null //트리순회에 필요하므로 로그인 시 정적으로 입력할 것
-        var mMaster: Boolean = false
+        var mGroupCode: String? = null //트리순회에 필요하므로 로그인 시 입력할 것
+        var mMaster: Boolean = false//그룹코드 유효성 체크 시 master권한 여부도 판별되므로 그떄 같이 입력할 것
+        var mStartScreen = true// 첫화면일 때까지 true로 유지하다가 자동로그인 함수 실행하면서 false입력(자동로그인을 첫화면에서 한 번만 실행하기 위함)
 
         const val TAG = "AccountManager"
         const val USERS = "users"

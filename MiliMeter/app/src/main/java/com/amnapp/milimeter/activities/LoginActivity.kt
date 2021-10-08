@@ -43,7 +43,7 @@ class LoginActivity : CustomThemeActivity() {
             val pw = binding.pwEt.text.toString()
             val autoLoginEnable = binding.autoLoginCb.isChecked
             setLoginData(id, pw, autoLoginEnable)
-            AccountManager().login(id, pw){resultMessage ->
+            AccountManager().login(applicationContext, id, pw){resultMessage ->
                 when(resultMessage){
                     AccountManager.ERROR_NOT_FOUND_ID ->{
                         showDialogMessage("존재하지 않는 아이디", "다시 입력해주세요")

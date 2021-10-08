@@ -169,20 +169,21 @@ class HomeActivity : CustomThemeActivity() {
             val month: Int = today.get(Calendar.MONTH)
             val date: Int = today.get(Calendar.DATE)
 
-            val Tyear: Int = year*10000
+            val Tyear: Int = year
             val Tmonth: Int = (month+1)*100
             val Tdate: Int = date
-            val Today: Int = Tyear+Tmonth+Tdate
+            val Today: Int = Tmonth+Tdate
 
             val Dday = DatePickerDialog(this, object : DatePickerDialog.OnDateSetListener {
 
                override fun onDateSet(view: DatePicker?, year: Int, month: Int, date: Int) {
 
-                   val Syear: Int = year*10000
+                   val Syear: Int = year
                    val Smonth: Int = (month+1)*100
                    val Sdate: Int = date
-                   val Setday: Int = Syear+Smonth+Sdate
-                   val dday: Int = Setday-Today
+                   val Setday: Int = Smonth + Sdate
+                   val Year: Int = Syear-Tyear
+                   val dday: Int = Year*365 + Setday-Today
 
                    if (dday==0) {
                        binding.dDayBt.text=("D-day")}
@@ -208,9 +209,17 @@ class HomeActivity : CustomThemeActivity() {
 
     private fun loadProfile(){
         val userData = UserData.getInstance()
-        binding.nameTv.text = userData.name
-        binding.militaryIdTv.text = userData.militaryId
-        binding.groupCodeTv.text = AccountManager.mGroupCode
+
+        if(userData.login){//로그인 되어있으면 회원정보랑 그룹코드 로드
+            binding.nameTv.text = userData.name
+            binding.militaryIdTv.text = userData.militaryId
+            binding.groupCodeTv.text = AccountManager.mGroupCode
+        }
+        else{// 안되어있으면 비움
+            binding.nameTv.text = ""
+            binding.militaryIdTv.text = ""
+            binding.groupCodeTv.text = ""
+        }
 
         val pm = PreferenceManager()
         val bitmap = pm.getProfileImage(this)// PM에서 저장된 이미지를 가져와서 프로필사진으로 로드
@@ -227,6 +236,12 @@ class HomeActivity : CustomThemeActivity() {
     }
 
     private fun autoLogin() {
+        if(AccountManager.mStartScreen){//첫화면이면 mStartScreen을 false로 바꾸고 아래 코드대로 자동로그인 실행
+            AccountManager.mStartScreen = false
+        }
+        else// 첫화면이 아니면 스킵한다
+            return
+
         mLoadingDialog.show() // 로딩화면 실행
         AccountManager().autoLogin(this){resultMessage->
             if(resultMessage == AccountManager.RESULT_SUCCESS){
