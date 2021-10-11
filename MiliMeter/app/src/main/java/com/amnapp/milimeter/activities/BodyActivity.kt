@@ -276,6 +276,7 @@ class BodyActivity : CustomThemeActivity() {
 
 
         //운동 원형차트트
+        /*
         binding.exercisechart.apply {
             val cm = ChartManager()
             val piechart = findViewById<PieChart>(R.id.exercisechart)
@@ -284,6 +285,8 @@ class BodyActivity : CustomThemeActivity() {
 
 
         }
+
+         */
 
 
     }

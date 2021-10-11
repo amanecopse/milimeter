@@ -167,7 +167,8 @@
                             android:tintMode="src_in"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:tint="@color/dark_green" />
+                            app:tint="@color/dark_green"
+                            android:visibility="gone" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </LinearLayout>
@@ -185,30 +186,6 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
                     android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:background="#ffffff" >
-
-
-                        <com.github.mikephil.charting.charts.PieChart
-                            android:id="@+id/exercisechart"
-                            android:layout_width="match_parent"
-                            android:layout_height="155dp"
-                            android:layout_weight="1">
-
-                        </com.github.mikephil.charting.charts.PieChart>
-
-                        <com.github.mikephil.charting.charts.PieChart
-                            android:id="@+id/weeklyexercisechart"
-                            android:layout_width="match_parent"
-                            android:layout_height="155dp"
-                            android:layout_weight="1">
-
-                        </com.github.mikephil.charting.charts.PieChart>
-                    </LinearLayout>
 
                     <com.github.mikephil.charting.charts.LineChart
                         android:id="@+id/weightChart"
